@@ -30,7 +30,7 @@ const DealerPortal = () => {
   }, [selectedState]);
 
   const fetchDealers = async () => {
-    let url = 'http://localhost:5000/api/admin/dashboard/Dealers/dealers-portal?';
+    let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Dealers/dealers-portal?`;
   
     const params = new URLSearchParams();
     params.append('page', currentPage);
@@ -63,7 +63,7 @@ const DealerPortal = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/admin/dashboard/Dealers/delete-dealer/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Dealers/delete-dealer/${id}`);
       setDealers(dealers.filter((dealer) => dealer._id !== id));
       console.log("Dealer deleted successfully");
     } catch (error) {
@@ -83,7 +83,7 @@ const DealerPortal = () => {
         data: updatedData,
       };
 
-      await axios.put(`http://localhost:5000/api/admin/dashboard/Dealers/update-dealers/${id}`, requestData);
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Dealers/update-dealers/${id}`, requestData);
       setEditFormVisible(false);
       setSelectedDealer(null);
       fetchDealers();
@@ -100,12 +100,14 @@ const DealerPortal = () => {
   const handlePrevPage = () => {
     if (!isFirstPage) {
       setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0);
     }
   };
 
   const handleNextPage = () => {
     if (!isLastPage) {
       setCurrentPage(prevPage => prevPage + 1);
+      window.scrollTo(0, 0);
     }
   };
   
