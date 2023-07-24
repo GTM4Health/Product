@@ -29,7 +29,7 @@ const Products = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/admin/dashboard/Products', {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Products`, {
         companyName,
         website,
         address,
