@@ -41,12 +41,14 @@ const AdminUserAccess = () => {
   const handlePrevPage = () => {
     if (!isFirstPage) {
       setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0);
     }
   };
 
   const handleNextPage = () => {
     if (!isLastPage) {
       setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0);
     }
   };
 
