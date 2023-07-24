@@ -7,6 +7,14 @@ import axios from "axios";
 import EditHospitalForm from "./AdminUpdateHosp"
 import { stateOptions, getCityOptionsByState } from "./cityOptions";
 
+// require('dotenv').config();
+// import dotenv from 'dotenv';
+// dotenv.config();
+// const baseUrl = process.env.REACT_APP_BASE_URL|| 'default-value';
+// console.log(baseUrl);
+
+// console.log(baseUrl)
+
 const CityPortal = () => {
   const isAuthenticated = useAuth();
   const [hospitals, setHospitals] = useState([]);
@@ -100,12 +108,14 @@ const CityPortal = () => {
   const handlePrevPage = () => {
     if (!isFirstPage) {
       setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0);
     }
   };
 
   const handleNextPage = () => {
     if (!isLastPage) {
       setCurrentPage(prevPage => prevPage + 1);
+      window.scrollTo(0, 0);
     }
   };
   
