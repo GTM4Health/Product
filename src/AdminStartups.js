@@ -14,7 +14,7 @@ const StartupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/admin/dashboard/Startups', {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Startups`, {
         startupName,
         website,
         productStage,
