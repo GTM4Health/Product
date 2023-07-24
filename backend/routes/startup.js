@@ -97,4 +97,15 @@ router.get(
   }
 );
 
+// Route to fetch all startups without pagination
+router.get('/all-startups', async (req, res) => {
+  try {
+    const startups = await Startup.find();
+    res.json(startups);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 module.exports = router;
