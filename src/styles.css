@@ -476,9 +476,9 @@ button[type="submit"]:hover {
 
 .d-content {
   margin-left: 250px; /* Adjust this value based on the menu bar width */
-  padding: 20px;
+  /* padding: 20px; */
   /*240vh*/
-  min-height: 200vh;
+  min-height: 120vh;
   height: auto;
   /* max-height: 400vh; */
   /* margin-bottom: 100px; Adjust this value based on the footer height */
@@ -501,7 +501,7 @@ button[type="submit"]:hover {
   background-color: lightblue;
   color: darkblue;
   width: 250px;
-  height: 90vh; /* Adjust the value based on the combined height of the header and footer */
+  height: 100vh; /* Adjust the value based on the combined height of the header and footer */
   position: absolute;
   left: 0;
   top: 150px; /* Adjust the value based on the header height */
@@ -585,6 +585,7 @@ button[type="submit"]:hover {
     margin-bottom: .5rem;
     padding-bottom: 1rem;
     /* margin: auto; */
+    height: auto;
     overflow-x: hidden;
 }
 
@@ -839,11 +840,12 @@ form.hospital-f .hsubtn {
 
 .prev-button {
   margin-right: auto;
+  margin-left:2.5rem
 }
 
 .next-button {
  margin-left: auto;
- margin-right: 1rem;
+ margin-right: 2.5rem;
 }
 
 .total-rows {
@@ -858,7 +860,7 @@ form.hospital-f .hsubtn {
 
 .right{
   margin-left: auto;
-  margin-right: 1rem
+  margin-right: 3rem
 }
 
 .prev-button,
@@ -1022,9 +1024,9 @@ form.hospital-f .hsubtn {
   /* font-size: 16px; */
   /* width: 100%; */
   margin-bottom: 1rem;
-  margin-left: 2rem;
-  width: 45vh;
-  height: 30vh;
+  margin-left: 1rem;
+  width: 60vh;
+  height: 40vh;
   font-family: Arial, sans-serif;
   /* resize: none; */
 }
@@ -1057,8 +1059,8 @@ form.hospital-f .hsubtn {
   left: 0;
   top: 150px; /* Adjust the value based on the header height */
   padding: 10px;
-  overflow-y: auto;
   overflow: visible;
+  /* overflow-y: auto; */
 }
 
 .menu-item {
@@ -1171,7 +1173,7 @@ form.hospital-f .hsubtn {
 .f-select{
   width: 33.3333%;
   gap: 3rem;
-  margin-right: 3rem;
+  margin-right: 2rem;
 }
 
 .f-label{
@@ -1180,8 +1182,10 @@ form.hospital-f .hsubtn {
 }
 
 .home-button {
-  background-color: #007bff;
-  color: white;
+  /* background-color: #007bff; */
+  /* background-color: #4cf; */
+  background-color: white;
+  color: #4cf;
   border: none;
   border-radius: 50%;
   padding: 10px;
@@ -1196,6 +1200,9 @@ form.hospital-f .hsubtn {
   width: 50%;
 }
 
+.wd100{
+  width: 100%;
+}
 
 
 
