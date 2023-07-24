@@ -42,6 +42,7 @@ const hospitalPortalRouter = require('./routes/hospPortal');
 const dealerRouter = require('./routes/dealer');
 const productRouter = require('./routes/products');
 const startupRouter = require('./routes/startup');
+const projectRouter = require('./routes/project');
 
 // Use routes
 app.use('/api/signup', signupRouter);
@@ -51,8 +52,7 @@ app.use('/api/admin/dashboard/Add-Hospital', hospitalRouter);
 app.use('/api/admin/dashboard/Dealers',dealerRouter);
 app.use('/api/admin/dashboard/Products', productRouter);
 app.use('/api/admin/dashboard/Startups',startupRouter);
-// app.use('/api/admin/dashboard/update-hospital', hospitalRouter); 
-// app.use('/api/admin/dashboard/delete-hospital/',hospitalRouter)
+app.use('/api/admin/dashboard/Projects',projectRouter);
 app.use('/api/users',userRouter);
 app.use('/api/hospital-portal',hospitalPortalRouter);
 
