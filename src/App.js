@@ -27,6 +27,8 @@ import Products from './AdminProducts';
 import ProductPortal from './AdminViewProducts';
 import StartupForm from './AdminStartups';
 import StartupPortal from './AdminViewStartup';
+import CreateProject from './AdminProjects';
+import UpdateProject from './AdminUpdateProjects';
 //import PrivateRoute from './components/Privateroute';
 
 //Entry Function into the Product
@@ -59,6 +61,8 @@ export default function App() {
         <Route path='admin/dashboard/View-Products' element={<ProductPortal />} />
         <Route path='admin/dashboard/Add-Startups' element={<StartupForm />} />
         <Route path='admin/dashboard/View-Startups' element={<StartupPortal />} />
+        <Route path='admin/dashboard/Create-Project' element={<CreateProject />} />
+        <Route path='admin/dashboard/Update-Project' element={<UpdateProject />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path='/termsofuse' element={<Terms />} />
