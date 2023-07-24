@@ -5,6 +5,10 @@ import AdminHeader from './components/AdminHeader';
 import AdminMenuBar from './components/AdminMenubar';
 import useAuth from './components/useAuth';
 import { stateOptions, getCityOptionsByState } from './cityOptions';
+// import dotenv from 'dotenv';
+// dotenv.config();
+// require('dotenv').config();
+
 
 const Hospital = () => {
   const [name, setName] = useState('');
@@ -25,7 +29,7 @@ const Hospital = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/admin/dashboard/Add-Hospital', {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Add-Hospital`, {
         name,
         city,
         state,
