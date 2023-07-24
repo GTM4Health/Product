@@ -4,6 +4,9 @@ import AdminHeader from "./components/AdminHeader";
 import AdminMenuBar from "./components/AdminMenubar";
 import useAuth from "./components/useAuth";
 import axios from "axios";
+// require('dotenv').config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 const AdminUserAccess = () => {
   const isAuthenticated = useAuth();
@@ -17,7 +20,7 @@ const AdminUserAccess = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/users?page=${currentPage}&limit=${pageSize}`
+          `${process.env.REACT_APP_BASE_URL}/api/users?page=${currentPage}&limit=${pageSize}`
         );
         setUsers(response.data.users);
         setTotalRows(response.data.totalRows)
