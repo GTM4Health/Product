@@ -7,6 +7,8 @@ import axios from 'axios';
 import HeaderIn from './HeaderIn';
 import Footer from './Footer';
 
+
+
 const Signup = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -31,7 +33,7 @@ const Signup = () => {
 
     try {
       // Make a POST request to the server to create a new user
-      const response = await axios.post('http://localhost:5000/api/signup', {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/signup`, {
         name,
         phone,
         email,
