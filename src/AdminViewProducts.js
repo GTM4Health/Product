@@ -30,7 +30,7 @@ const ProductPortal = () => {
   }, [selectedState]);
 
   const fetchProducts = async () => {
-    let url = 'http://localhost:5000/api/admin/dashboard/Products/products-portal?';
+    let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Products/products-portal?`;
   
     const params = new URLSearchParams();
     params.append('page', currentPage);
@@ -61,7 +61,7 @@ const ProductPortal = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/admin/dashboard/Products/delete-product/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Products/delete-product/${id}`);
       setProducts(products.filter((product) => product._id !== id));
       console.log("Product deleted successfully");
     } catch (error) {
@@ -81,7 +81,7 @@ const ProductPortal = () => {
         data: updatedData,
       };
 
-      await axios.put(`http://localhost:5000/api/admin/dashboard/Products/update-product/${id}`, requestData);
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Products/update-product/${id}`, requestData);
       setEditFormVisible(false);
       setSelectedProduct(null);
       fetchProducts();
@@ -98,12 +98,14 @@ const ProductPortal = () => {
   const handlePrevPage = () => {
     if (!isFirstPage) {
       setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0);
     }
   };
 
   const handleNextPage = () => {
     if (!isLastPage) {
       setCurrentPage(prevPage => prevPage + 1);
+      window.scrollTo(0, 0);
     }
   };
 
