@@ -183,6 +183,10 @@ const AdminMenuBar = () => {
               <i className="fas fa-edit sub-menu-icon"></i>
               <span className="menu-text">Update Project</span>
             </a>
+            <a href="/admin/dashboard/Save-Project" className="sub-menu-item menu-link">
+              <i className="fas fa-envelope sub-menu-icon"></i>
+              <span className="menu-text">Mail & Print Project</span>
+            </a>
           </div>
         )}
       </div>
