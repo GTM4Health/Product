@@ -22,16 +22,24 @@ const UpdateProject = () => {
   }, []);
 
   const handleProjectChange = async (e) => {
-    setSelectedProject(e.target.value);
+    const selectedProjectId = e.target.value;
+    setSelectedProject(selectedProjectId);
 
     // Fetch the current progress for the selected project from the backend
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Projects/${e.target.value}`);
-      setProgress(response.data.progress);
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Projects/${selectedProjectId}`);
+      // Check if the response contains progress and set the state accordingly
+      if (response.data.progress) {
+        setProgress(response.data.progress);
+      } else {
+        // If progress is empty, set the state to a blank value
+        setProgress('');
+      }
     } catch (error) {
       console.error('Error fetching project progress', error);
     }
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
