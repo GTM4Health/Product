@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import startupOptions from "./startupOptions.json"; // Import the options
 
 const EditStartupForm = ({ startup, onUpdate, onCancel }) => {
   const [startupName, setStartupName] = useState(startup.startupName);
@@ -57,9 +58,12 @@ const EditStartupForm = ({ startup, onUpdate, onCancel }) => {
             value={productStage}
             onChange={(e) => setProductStage(e.target.value)}
           >
-            <option value="MVP">MVP</option>
-            <option value="Early Adopters">Early Adopters</option>
-            <option value="Commercialised">Commercialised</option>
+            {/* Use the imported options array */}
+            {startupOptions.productStageOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
         <div className="form-group">
@@ -69,16 +73,12 @@ const EditStartupForm = ({ startup, onUpdate, onCancel }) => {
             value={domain}
             onChange={(e) => setDomain(e.target.value)}
           >
-            <option value="Maternal Child Healthcare (MCH)">Maternal Child Healthcare (MCH)</option>
-            <option value="Non Communicable Diseases (NCD)">Non Communicable Diseases (NCD)</option>
-            <option value="Assistive Healthcare Technologies">Assistive Healthcare Technologies</option>
-            <option value="Chronic Care">Chronic Care</option>
-            <option value="Hearing Diagnostics">Hearing Diagnostics</option>
-            <option value="IVF">IVF</option>
-            <option value="Colostomy">Colostomy</option>
-            <option value="Rehabilitation Solutions">Rehabilitation Solutions</option>
-            <option value="Cancer Care">Cancer Care</option>
-            <option value="Kidney Care">Kidney Care</option>
+            {/* Use the imported options array */}
+            {startupOptions.domainOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
         <div className="button-group">
