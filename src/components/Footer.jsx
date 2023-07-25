@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="left-content">
           <span className="footer-text">
             <h1>&copy; 2023 GTM4Health</h1>
-            <h3>V1.2.17</h3>
+            <h3>V1.2.20</h3>
           </span>
           <div className="social-icons">
             <a href="https://www.facebook.com/gtm4health">
