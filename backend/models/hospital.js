@@ -31,6 +31,12 @@ const hospitalSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
+  speciality: {
+    type: String,
+  },
+  lastConnected: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model('Hospital', hospitalSchema);
