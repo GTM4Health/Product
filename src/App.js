@@ -30,6 +30,8 @@ import StartupPortal from './AdminViewStartup';
 import CreateProject from './AdminProjects';
 import UpdateProject from './AdminUpdateProjects';
 import MarketAccessAll from './MarketAccessAll';
+import AdminSaveProject from './AdminSaveProject';
+import NotFoundPage from './NotFound';
 //import PrivateRoute from './components/Privateroute';
 
 //Entry Function into the Product
@@ -70,6 +72,8 @@ export default function App() {
         <Route path='/privacypolicy' element={<Privacy />} />
         <Route path="/dashboard/Market-Access" element={<MarketAccess />} />
         <Route path='/dashboard/View-Healthcare-Centres-All' element={<MarketAccessAll />} />
+        <Route path='/admin/dashboard/Save-Project' element={<AdminSaveProject />} />
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </Router>
   );
