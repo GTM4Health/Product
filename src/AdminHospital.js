@@ -5,12 +5,9 @@ import AdminHeader from './components/AdminHeader';
 import AdminMenuBar from './components/AdminMenubar';
 import useAuth from './components/useAuth';
 import { stateOptions, getCityOptionsByState } from './cityOptions';
-// import dotenv from 'dotenv';
-// dotenv.config();
-// require('dotenv').config();
+import specialitiesData from './specialities.json'; // Import the specialities data
 
-
-const Hospital = () => {
+const AdminHospital = () => {
   const [name, setName] = useState('');
   const [state, setState] = useState('');
   const [infraSer, setInfraSer] = useState('');
@@ -19,6 +16,8 @@ const Hospital = () => {
   const [docSpez, setDocSpez] = useState('');
   const [mail, setMail] = useState('');
   const [phone, setPhone] = useState('');
+  const [speciality, setSpeciality] = useState('');
+  const [lastConnected, setLastConnected] = useState('');
   const [hospitalStatus, setHospitalStatus] = useState(null);
 
   const handleStateChange = (e) => {
@@ -37,7 +36,9 @@ const Hospital = () => {
         docName,
         docSpez,
         mail,
-        phone
+        phone,
+        speciality,
+        lastConnected
       });
       setName('');
       setCity('');
@@ -47,6 +48,8 @@ const Hospital = () => {
       setDocSpez('');
       setMail('');
       setPhone('');
+      setSpeciality('');
+      setLastConnected('');
       setHospitalStatus('success');
 
       // Clear the success message after 2 seconds
@@ -80,10 +83,18 @@ const Hospital = () => {
   const renderCityOptions = () => {
     const cities = getCityOptionsByState(state);
     if(!state)
-    return     <option disabled value=''> State is Mandatory field * </option>
+      return <option disabled value=''> State is a Mandatory field *</option>
     return cities.map((city) => (
       <option key={city.value} value={city.value}>
         {city.label}
+      </option>
+    ));
+  };
+
+  const renderSpecialityOptions = () => {
+    return specialitiesData.specialities.map((spec) => (
+      <option key={spec} value={spec}>
+        {spec}
       </option>
     ));
   };
@@ -199,6 +210,31 @@ const Hospital = () => {
                   className="form-outline"
                 />
               </div>
+              <div className="form-group">
+                <label className='f-label' htmlFor="speciality">Speciality :</label>
+                <select
+                  id="speciality"
+                  value={speciality}
+                  onChange={(e) => setSpeciality(e.target.value)}
+                  className="form-outline f-select wd50"
+                >
+                  <option value="" disabled hidden>
+                    Select Speciality
+                  </option>
+                  {renderSpecialityOptions()}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="lastConnected">Last Connected:</label>
+                <textarea
+                  id="lastConnected"
+                  required
+                  value={lastConnected}
+                  onChange={(e) => setLastConnected(e.target.value)}
+                  placeholder="Last Connected"
+                  className="form-outline textarea"
+                ></textarea>
+              </div>
               <button type="submit" className="hsubtn login-btn">
                 Submit
               </button>
@@ -211,4 +247,4 @@ const Hospital = () => {
   );
 };
 
-export default Hospital;
+export default AdminHospital;
