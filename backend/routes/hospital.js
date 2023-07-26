@@ -6,8 +6,8 @@ const Hospital = require('../models/hospital');
 router.post('/', async (req, res) => {
   try {
     console.log('Hospital creation request received');
-    const { name, city, state, infraSer, docName, docSpez, mail, phone } = req.body;
-    const hospital = new Hospital({ name, city, state, infraSer, docName, docSpez, mail, phone });
+    const { name, city, state, infraSer, docName, docSpez, mail, phone, speciality, lastConnected } = req.body;
+    const hospital = new Hospital({ name, city, state, infraSer, docName, docSpez, mail, phone, speciality, lastConnected });
     const savedHospital = await hospital.save();
     res.status(201).json({ message: 'Hospital created successfully' });
   } catch (error) {
@@ -33,7 +33,7 @@ router.delete('/delete-hospital/:id', async (req, res) => {
 // Update a hospital by ID
 router.put('/hospitals/:id', async (req, res) => {
   const { id } = req.params;
-  const updatedData = req.body.data;
+  const updatedData = req.body;
 
   try {
     const updatedHospital = await Hospital.findByIdAndUpdate(id, updatedData, {
