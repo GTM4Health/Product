@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { stateOptions, getCityOptionsByState } from "./cityOptions";
+import specialitiesData from "./specialities.json"; // Import the specialities data
 
 const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
   const [name, setName] = useState(hospital.name);
@@ -11,6 +12,8 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
   const [phone, setPhone] = useState(hospital.phone);
   const [infraSer, setInfraSer] = useState(hospital.infraSer);
   const [state, setState] = useState(hospital.state);
+  const [speciality, setSpeciality] = useState(hospital.speciality);
+  const [lastConnected, setLastConnected] = useState(hospital.lastConnected);
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -26,6 +29,8 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     setPhone(hospital.phone);
     setInfraSer(hospital.infraSer);
     setState(hospital.state);
+    setSpeciality(hospital.speciality);
+    setLastConnected(hospital.lastConnected);
   }, [hospital]);
 
   const handleSubmit = (e) => {
@@ -39,14 +44,16 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
       phone,
       infraSer,
       state,
+      speciality,
+      lastConnected,
     };
     onUpdate(hospital._id, updatedData);
   };
 
   const renderCityOptions = () => {
     const cities = getCityOptionsByState(state);
-    if(!state)
-      return     <option disabled value=''> State is Mandatory field * </option>
+    if (!state)
+      return <option disabled value=""> State is Mandatory field *</option>;
     return cities.map((city) => (
       <option key={city.value} value={city.value}>
         {city.label}
@@ -58,6 +65,14 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     return stateOptions.map((state) => (
       <option key={state.value} value={state.value}>
         {state.label}
+      </option>
+    ));
+  };
+
+  const renderSpecialityOptions = () => {
+    return specialitiesData.specialities.map((spec) => (
+      <option key={spec} value={spec}>
+        {spec}
       </option>
     ));
   };
@@ -144,6 +159,29 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
+        </div>
+        <div className="form-group">
+          <label htmlFor="speciality">Speciality</label>
+          <select
+            id="speciality"
+            value={speciality}
+            onChange={(e) => setSpeciality(e.target.value)}
+          >
+            <option disabled hidden value="">
+              Select Speciality
+            </option>
+            {renderSpecialityOptions()}
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastConnected">Last Connected</label>
+          <textarea
+            id="lastConnected"
+            value={lastConnected}
+            onChange={(e) => setLastConnected(e.target.value)}
+            placeholder="Last Connected"
+            className="textarea"
+          ></textarea>
         </div>
         <div className="button-group">
           <button type="submit" className="btn-primary">
