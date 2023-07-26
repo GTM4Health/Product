@@ -198,6 +198,8 @@ const CityPortal = () => {
                   <th>Role</th>
                   <th>Contact Email</th>
                   <th>Contact Number</th>
+                  <th>Specialization</th>
+                  <th>Last-Connected</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -213,6 +215,8 @@ const CityPortal = () => {
                     <td>{hospital.docSpez}</td>
                     <td>{hospital.mail}</td>
                     <td>{hospital.phone}</td>
+                    <td>{hospital.speciality}</td>
+                    <td>{hospital.lastConnected}</td>
                     <td>
                       <button className="edit-button" onClick={() => handleEditHospital(hospital)}>
                         <i className="fas fa-pencil-alt"></i>
