@@ -2,7 +2,7 @@
 // GTM4Health logo and In Private Beta Image
 //
 import React from "react";
-import imgP from "../images/logo.png";
+import imgP from "../images/newlogo.png";
 import Beta from "../images/beta.png";
 
 const Logo = () => {

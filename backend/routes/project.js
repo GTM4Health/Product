@@ -2,8 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const Project = require('../models/project');
-const PDFDocument = require('pdfkit');
-const fs = require('fs');
+// const PDFDocument = require('pdfkit');
+// const fs = require('fs');
 
 // Route to create a new project
 router.post('/', async (req, res) => {
@@ -49,7 +49,7 @@ router.get('/:projectId', async (req, res) => {
       return res.status(404).json({ error: 'Project not found' });
     }
 
-    res.json({ progress: project.progress });
+    res.json({ projectName: project.projectName, progress: project.progress });
   } catch (error) {
     console.error('Error fetching project progress:', error);
     res.status(500).json({ error: 'Failed to fetch project progress' });
@@ -79,46 +79,46 @@ router.put('/:projectId', async (req, res) => {
   }
 });
 
-// Route to generate and save the PDF
-router.post('/api/admin/save-progress', async (req, res) => {
-  const { project, progress } = req.body;
+// // Route to generate and save the PDF
+// router.post('/api/admin/save-progress', async (req, res) => {
+//   const { project, progress } = req.body;
 
-  try {
-    // Find the selected project details
-    const selectedProject = await Project.findById(project);
+//   try {
+//     // Find the selected project details
+//     const selectedProject = await Project.findById(project);
 
-    if (!selectedProject) {
-      return res.status(404).json({ error: 'Project not found' });
-    }
+//     if (!selectedProject) {
+//       return res.status(404).json({ error: 'Project not found' });
+//     }
 
-    // Create a new PDF document
-    const doc = new PDFDocument();
+//     // Create a new PDF document
+//     const doc = new PDFDocument();
 
-    // Set response headers for the PDF file
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename=${selectedProject.projectName}_progress.pdf`);
+//     // Set response headers for the PDF file
+//     res.setHeader('Content-Type', 'application/pdf');
+//     res.setHeader('Content-Disposition', `attachment; filename=${selectedProject.projectName}_progress.pdf`);
 
-    // Pipe the PDF to the response
-    doc.pipe(res);
+//     // Pipe the PDF to the response
+//     doc.pipe(res);
 
-    // Load the logo image
-    const logoImage = `../src/img/logo.png`; // Replace with the actual path to the logo image
+//     // Load the logo image
+//     const logoImage = `../src/img/logo.png`; // Replace with the actual path to the logo image
 
-    // Add the logo image to the top-left corner
-    doc.image(logoImage, 50, 50, { width: 100 });
+//     // Add the logo image to the top-left corner
+//     doc.image(logoImage, 50, 50, { width: 100 });
 
-    // Add content to the PDF
-    doc.text(`Project Name: ${selectedProject.projectName}`, { align: 'center' });
-    doc.text(`Progress: ${progress}`, { align: 'left' });
-    doc.text(`Start Date: ${selectedProject.startDate.toDateString()}`, { align: 'left' });
-    doc.text(`End Date: ${selectedProject.endDate.toDateString()}`, { align: 'right' });
+//     // Add content to the PDF
+//     doc.text(`Project Name: ${selectedProject.projectName}`, { align: 'center' });
+//     doc.text(`Progress: ${progress}`, { align: 'left' });
+//     doc.text(`Start Date: ${selectedProject.startDate.toDateString()}`, { align: 'left' });
+//     doc.text(`End Date: ${selectedProject.endDate.toDateString()}`, { align: 'right' });
 
-    // Finalize the PDF
-    doc.end();
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to generate and save PDF' });
-  }
-});
+//     // Finalize the PDF
+//     doc.end();
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Failed to generate and save PDF' });
+//   }
+// });
 
 module.exports = router;

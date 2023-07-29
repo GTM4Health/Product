@@ -1,15 +1,49 @@
-import React, { useState, useEffect } from 'react';
+// src/saveproject.js
+
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import Footer from "../../../layout/pages/Footer"
+import { PDFViewer, PDFDownloadLink, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import Footer from "../../../layout/pages/Footer";
 import AdminMenuBar from "../../../layout/admin/AdminMenubar";
 import useAuth from "../../../hooks/useAuth";
 import AdminHeader from "../../../layout/admin/AdminHeader";
 
+const styles = StyleSheet.create({
+  page: {
+    fontFamily: 'Helvetica',
+    fontSize: 12,
+    paddingTop: 30,
+    paddingLeft: 60,
+    paddingRight: 60,
+    lineHeight: 1.5,
+    flexDirection: 'column',
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+    flexGrow: 1,
+  },
+});
+
+const ProgressReportPDF = ({ projectName, progress }) => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Text>Project Name: {projectName}</Text>
+        <Text>Progress: {progress}</Text>
+      </View>
+    </Page>
+  </Document>
+);
+
 const AdminSaveProject = () => {
   const [projects, setProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState('');
+  const [selectedProject, setSelectedProject] = useState(null);
   const [progress, setProgress] = useState('');
+  const [projectName, setProjectName] = useState('');
   const [reportSent, setReportSent] = useState(false);
+  const pdfRef = useRef();
+  const [mailtoLink, setMailtoLink] = useState('');
 
   useEffect(() => {
     // Fetch the list of projects from the backend
@@ -22,43 +56,47 @@ const AdminSaveProject = () => {
       });
   }, []);
 
-  const handleProjectChange = async (e) => {
-    const selectedProjectId = e.target.value;
-    setSelectedProject(selectedProjectId);
-
-    // Fetch the current progress for the selected project from the backend
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Projects/${selectedProjectId}`);
-      // Check if the response contains progress and set the state accordingly
-      if (response.data.progress) {
-        setProgress(response.data.progress);
-      } else {
-        // If progress is empty, set the state to a blank value
-        setProgress('');
-      }
-    } catch (error) {
-      console.error('Error fetching project progress', error);
+  useEffect(() => {
+    // When the selected project ID changes, find the corresponding project object
+    if (selectedProject) {
+      const project = projects.find((proj) => proj._id === selectedProject);
+      setSelectedProject(project?._id);
+      setProjectName(project?.projectName);
+      setProgress(project?.progress || '');
     }
+  }, [selectedProject, projects]);
+
+  const handleProjectChange = (e) => {
+    setSelectedProject(e.target.value);
   };
 
-  const handleMailReport = async () => {
-    try {
-      // Create a PDF of the progress and send the report via mail
-      // Replace the 'generatePDF' and 'sendMail' functions with your actual implementations
-      await generatePDF(progress); // Function to generate PDF from progress
-      await sendMail(progress); // Function to send the PDF report via mail
-      setReportSent(true);
-    } catch (error) {
-      console.error('Error sending report', error);
-      // Perform error handling if required
+  const handleMailReport = () => {
+    if (selectedProject && projectName && progress) {
+      const subject = `Progress Report for ${projectName}`;
+      const body = `Progress Report for ${projectName}:\n${progress}`;
+      const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  
+      const anchor = document.createElement('a');
+      anchor.href = mailtoLink;
+      anchor.click();
     }
   };
+  
 
   const renderReportButton = () => {
     if (reportSent) {
       return <button disabled>Report Sent</button>;
     } else {
-      return <button onClick={handleMailReport}>Mail/Print Update</button>;
+      return (
+        <div>
+          <button onClick={handleMailReport}>Mail Report</button>
+          <PDFDownloadLink document={<ProgressReportPDF projectName={projectName} progress={progress} />} fileName="Progress_Report.pdf">
+            {({ blob, url, loading, error }) =>
+              loading ? 'Loading...' : 'Print PDF'
+            }
+          </PDFDownloadLink>
+        </div>
+      );
     }
   };
 
