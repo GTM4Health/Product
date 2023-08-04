@@ -4,10 +4,13 @@ import Footer from "../layout/pages/Footer";
 import Header from "../layout/users/Header";
 
 
+
 const Privacy = () => {
+    
     const Title = "Privacy Policy"
     const Features = ["feature one","feature two","feature three","feature four","feature five","feature six",]
-  return (
+
+    return (
     <div className="content page-view">
       <Header />
       <div className="card-container">

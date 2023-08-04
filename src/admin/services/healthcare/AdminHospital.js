@@ -229,6 +229,7 @@ const AdminHospital = () => {
                 <label htmlFor="lastConnected">Last Connected:</label>
                 <textarea
                   id="lastConnected"
+                  required
                   value={lastConnected}
                   onChange={(e) => setLastConnected(e.target.value)}
                   placeholder="Last Connected"

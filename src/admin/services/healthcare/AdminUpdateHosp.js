@@ -183,7 +183,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
             className="textarea"
           ></textarea>
         </div>
-        <div>
+        <div className="button-group">
           <button type="submit" className="btn-primary">
             Update
           </button>

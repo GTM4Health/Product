@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 
 const MarketAccessAll = () => {
+  const isAuthenticated = useAuth();
   const [hospitals, setHospitals] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -54,6 +55,11 @@ const MarketAccessAll = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  if (!isAuthenticated) {
+    // Optional: Show a loading state or return null while checking authentication
+    return null;
+  }
 
   return (
     <div className="page-view">

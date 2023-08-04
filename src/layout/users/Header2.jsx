@@ -32,11 +32,15 @@ const Header2 = ({ user }) => {
               }`}
               onClick={handleProfileClick} // Clicking the profile icon toggles the name visibility
             ></i>
-            <span
-              className={`highlight-name ${showName && !userMenuOpen ? "visible" : "hidden"}`}
-            >
-              {user.name}
-            </span>
+            {user && (
+              <span
+                className={`highlight-name ${
+                  showName && !userMenuOpen ? "visible" : "hidden"
+                }`}
+              >
+                {user.name}
+              </span>
+            )}
             <div
               className={`user-menu-items ${userMenuOpen ? "open" : "closed"}`}
             >

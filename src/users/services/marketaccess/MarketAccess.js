@@ -3,12 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../../../layout/pages/Footer";
 import Header2 from "../../../layout/users/Header2";
-import Menubar from "../../../layout/users/MenuBar";
 import useAuth from "../../../hooks/useAuth";
+import Menubar from "../../../layout/users/MenuBar";
 import axios from "axios";
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions"; // Importing getCityOptionsByState from cityOptions
 
 const MarketAccess = () => {
+  const isAuthenticated = useAuth();
   const [hospitals, setHospitals] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -24,18 +25,12 @@ const MarketAccess = () => {
     if (storedUser) {
       setUser(storedUser);
     }
-  }, []);
-
-  useEffect(() => {
     fetchHospitals();
-  }, [currentPage, selectedState, selectedCity]);
-
-  useEffect(() => {
-    // Load initial city options based on the first state option
     if (stateOptions.length > 0) {
       setCityOptions(getCityOptionsByState(stateOptions[0].value));
     }
-  }, []);
+  }, [currentPage, selectedState, selectedCity]);
+
 
   const fetchHospitals = async () => {
     try {
@@ -89,6 +84,11 @@ const MarketAccess = () => {
     setSelectedState("All");
     setSelectedCity("All");
   };
+
+  if (!isAuthenticated) {
+    // Optional: Show a loading state or return null while checking authentication
+    return null;
+  }
 
   return (
     <div className="page-view">

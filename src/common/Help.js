@@ -3,10 +3,12 @@ import Card from "../components/Card";
 import Footer from "../layout/pages/Footer";
 import Header2 from "../layout/users/Header2";
 import MenuBar from "../layout/users/MenuBar";
+import useAuth from "../hooks/useAuth";
 
 const HelpPage = () => {
-    const Title = "Help"
-    const Features = ["feature one","feature two","feature three","feature four","feature five","feature six",]
+    const Title = "Help";
+    const Features = ["feature one","feature two","feature three","feature four","feature five","feature six",];
+    const isAuthenticated = useAuth();
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -16,6 +18,10 @@ const HelpPage = () => {
       }
     }, []);
 
+    if (!isAuthenticated) {
+      // Optional: Show a loading state or return null while checking authentication
+      return null;
+    }
   return (
     <div className="content page-view">
       <Header2 user={user}/>
