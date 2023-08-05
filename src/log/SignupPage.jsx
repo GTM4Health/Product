@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import HeaderIn from '../layout/users/HeaderIn';
 import Footer from "../layout/pages/Footer";
+import rolesData from '../assets/roles.json';
 
 
 const Signup = () => {
@@ -18,6 +19,7 @@ const Signup = () => {
   const [agreed, setAgreed] = useState(false); // state for the checkbox
   const [signupStatus, setSignupStatus] = useState(null); // state for signup status
   const [errorMessage, setErrorMessage] = useState(''); //Err message
+
 
 
   const navigate = useNavigate();
@@ -148,32 +150,22 @@ const Signup = () => {
               />
             </div>
             <div className="form-field">
-              <label htmlFor="role">Your Role* :</label>
-              <select
-                id="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                required
-              >
-                <option disabled hidden value="">
-                  Choose your Role
-                </option>
-                <option value="Healthcare Entrepreneur">
-                  Healthcare Entrepreneur
-                </option>
-                <option value="Engineer">Engineer</option>
-                <option value="Doctor">Doctors</option>
-                <option value="Dealers/Distributors">
-                  Dealers/Distributors
-                </option>
-                <option value="Hospitals/Labs">Hospitals/Labs</option>
-                <option value="Student">Student</option>
-                <option value="Incubator/Accelerator">
-                  Incubator/Accelerator
-                </option>
-                <option value="Investor">Investor</option>
-                <option value="None">None of the above</option>
-              </select>
+            <label htmlFor="role">Your Role* :</label>
+                <select
+                  id="role"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  required
+                >
+                  <option disabled hidden value="">
+                    Choose your Role
+                  </option>
+                  {rolesData.map((roleOption, index) => (
+                    <option key={index} value={roleOption}>
+                      {roleOption}
+                    </option>
+                  ))}
+                </select>
             </div>
           </div>
           <br />

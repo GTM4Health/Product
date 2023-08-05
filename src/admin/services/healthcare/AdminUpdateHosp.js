@@ -29,8 +29,8 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     setPhone(hospital.phone);
     setInfraSer(hospital.infraSer);
     setState(hospital.state);
-    setSpeciality(hospital.speciality);
-    setLastConnected(hospital.lastConnected);
+    setSpeciality(hospital.speciality || ""); // Set initial value if not present
+    setLastConnected(hospital.lastConnected || ""); // Set initial value if not present
   }, [hospital]);
 
   const handleSubmit = (e) => {
@@ -167,7 +167,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
             value={speciality}
             onChange={(e) => setSpeciality(e.target.value)}
           >
-            <option disabled hidden value="">
+            <option disabled value="">
               Select Speciality
             </option>
             {renderSpecialityOptions()}

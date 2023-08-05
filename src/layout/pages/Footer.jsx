@@ -11,17 +11,17 @@ const Footer = () => {
         <div className="left-content">
           <span className="footer-text">
             <h1>&copy; 2023 GTM4Health</h1>
-            <h3>V1.3.2</h3>
+            <h3>V1.3.4</h3>
           </span>
           <div className="social-icons">
             <a href="https://www.facebook.com/gtm4health">
-              <i className="fab fa-facebook fa-lg"></i>
+              <i className="fab fa-facebook fa-lg social-icons-col"></i>
             </a>
             <a href="https://www.instagram.com/gtm4health">
-              <i className="fab fa-instagram fa-lg"></i>
+              <i className="fab fa-instagram fa-lg social-icons-col"></i>
             </a>
             <a href="https://www.linkedin.com/company/gtm4health">
-              <i className="fab fa-linkedin fa-lg"></i>
+              <i className="fab fa-linkedin fa-lg social-icons-col"></i>
             </a>
           </div>
          <br />
