@@ -32,7 +32,9 @@ import UpdateProject from '../admin/services/projects/AdminUpdateProjects';
 import MarketAccessAll from '../users/services/marketaccess/MarketAccessAll';
 import AdminSaveProject from '../admin/services/projects/AdminSaveProject';
 import NotFoundPage from '../common/NotFound';
+import AdminHelpPage from '../common/AdminHelp';
 //import PrivateRoute from './components/Privateroute';
+import AdminSettings from './../common/AdminSettings';
 
 //Entry Function into the Product
 export default function App() {
@@ -73,6 +75,8 @@ export default function App() {
         <Route path="/dashboard/Market-Access" element={<MarketAccess />} />
         <Route path='/dashboard/View-Healthcare-Centres-All' element={<MarketAccessAll />} />
         <Route path='/admin/dashboard/Save-Project' element={<AdminSaveProject />} />
+        <Route path='/admin/help' element={<AdminHelpPage />} />
+        <Route path='/admin/settings' element={<AdminSettings />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </Router>
