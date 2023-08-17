@@ -11,7 +11,7 @@ const router = express.Router();
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
-  console.log('Received login request:', email, password);
+  // console.log('Received login request:', email, password);
 
   try {
     // Verify admin credentials
@@ -21,12 +21,12 @@ router.post('/login', async (req, res) => {
       // Store the admin login date
       await Admin.create({ adminEmail: email });
 
-      console.log('Admin login date stored');
+      // console.log('Admin login date stored');
 
       // Generate a JWT token for authentication
       const token = jwt.sign({ email, role: 'admin' }, process.env.JWT_SECRET);
 
-      console.log('Token generated:', token);
+      // console.log('Token generated:', token);
 
       res.status(200).json({ token });
     } else {

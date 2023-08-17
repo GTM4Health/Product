@@ -34,8 +34,8 @@ router.put('/hospitals/:id', async (req, res) => {
   
   const { id } = req.params;
   const updatedData = req.body.data;
-  console.log("Updating hospital with Name:", updatedData.name);
-  console.log("Updated data:", updatedData);
+  // console.log("Updating hospital with Name:", updatedData.name);
+  // console.log("Updated data:", updatedData);
 
   try {
     const updatedHospital = await Hospital.findByIdAndUpdate(id, updatedData, {

@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     const { name, phone, email, password, role } = req.body;
 
     // Validate input fields
-    if (!name || !email || !password || !role || !phone) {
+    if (!name || !email || !password || !role) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
