@@ -88,14 +88,14 @@ const Signup = () => {
   <div className='page-view'>
     <HeaderIn />
     <div className="signupPage">
-      <div className="signup-container">
+      <div className="login-container">
         <h1>Sign Up</h1>
         <form onSubmit={handleSignup}>
-          <div className="left-section">
-            <div className="form-field">
+          <div className="centrepage">
+            <div className="log-field">
               <label htmlFor="name">Name* :</label>
               <input
-                type="text"
+                type="name"
                 placeholder="Enter your Name"
                 id="name"
                 value={name}
@@ -103,7 +103,7 @@ const Signup = () => {
                 required
               />
             </div>
-            <div className="form-field">
+            <div className="log-field">
               <label htmlFor="email">Email ID* :</label>
               <input
                 type="email"
@@ -114,7 +114,7 @@ const Signup = () => {
                 required
               />
             </div>
-            <div className="form-field">
+            {/* <div className="log-field">
               <label htmlFor="phone">Phone Number* :</label>
               <input
                 type="text"
@@ -124,10 +124,8 @@ const Signup = () => {
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
-            </div>
-          </div>
-          <div className="right-section">
-            <div className="form-field">
+            </div> */}
+            <div className="log-field">
               <label htmlFor="password">Password* :</label>
               <input
                 type="password"
@@ -138,7 +136,7 @@ const Signup = () => {
                 required
               />
             </div>
-            <div className="form-field">
+            <div className="log-field">
               <label htmlFor="confirmPassword">Confirm Password* :</label>
               <input
                 type="password"
@@ -149,7 +147,7 @@ const Signup = () => {
                 required
               />
             </div>
-            <div className="form-field">
+            {/* <div className="form-field">
             <label htmlFor="role">Your Role* :</label>
                 <select
                   id="role"
@@ -166,8 +164,7 @@ const Signup = () => {
                     </option>
                   ))}
                 </select>
-            </div>
-          </div>
+            </div> */}
           <br />
           <div className="subm-row">
             <div className="tnc">
@@ -193,6 +190,7 @@ const Signup = () => {
             <button type="submit" className='btn-signup sbutton' disabled={!agreed}>
               Submit
             </button>
+          </div>
           </div>
         </form>
       </div>

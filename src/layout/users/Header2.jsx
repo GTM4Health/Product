@@ -55,10 +55,12 @@ const Header2 = ({ user }) => {
                     <label className="user-label email">Mail:&nbsp;</label>
                     <span className="user-size">{user.email}</span>
                   </div>
-                  <div className="header">
-                    <label className="user-label email">Role:&nbsp;</label>
-                    <span className="user-size">{user.role}</span>
-                  </div>
+                  {user.role && (
+                    <div className="header">
+                        <label className="user-label email">Role:&nbsp;</label>
+                        <span className="user-size">{user.role}</span>
+                    </div>
+                  )}
                 </div>
               )}
               <div className="user-details-border"></div>

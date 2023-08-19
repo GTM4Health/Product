@@ -48,6 +48,12 @@ const MenuBar = () => {
           </div>
         )}
       </div>
+      <a href="/dashboard/Market-Insights" className="menu-link">
+        <div className="menu-item">
+          <i className="fas fa-lightbulb menu-icon"></i>
+          <span className="menu-text">Market Insights</span>
+        </div>
+      </a>
       <a href="/dashboard/GTM-Readiness" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-check-circle menu-icon"></i>
@@ -64,12 +70,6 @@ const MenuBar = () => {
         <div className="menu-item">
           <i className="fas fa-medkit menu-icon"></i>
           <span className="menu-text">Healthcare Domains</span>
-        </div>
-      </a>
-      <a href="/dashboard/Market-Insights" className="menu-link">
-        <div className="menu-item">
-          <i className="fas fa-lightbulb menu-icon"></i>
-          <span className="menu-text">Market Insights</span>
         </div>
       </a>
       <a href="/dashboard/Review-Products" className="menu-link">

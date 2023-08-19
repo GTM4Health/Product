@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     const { name, phone, email, password, role } = req.body;
 
     // Validate input fields
-    if (!name || !email || !password || !role) {
+    if (!name || !email || !password) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
@@ -24,10 +24,10 @@ router.post('/', async (req, res) => {
     }
 
     // Validate phone number format
-    const phoneRegex = /^\d{10}$/; // Assuming a 10-digit phone number format
-    if (!phoneRegex.test(phone)) {
-      return res.status(400).json({ error: "Check the 10-digit phone number" });
-    }
+    // const phoneRegex = /^\d{10}$/; // Assuming a 10-digit phone number format
+    // if (!phoneRegex.test(phone)) {
+    //   return res.status(400).json({ error: "Check the 10-digit phone number" });
+    // }
 
     // Check if user with the same email already exists
     const existingUser = await User.findOne({ email });

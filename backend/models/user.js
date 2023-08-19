@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: true,
+    // required: true,
   },
   email: {
     type: String,
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true,
+    // required: true,
   },
   activationTime: {
     type: String, // Change the type to String to store formatted time

@@ -35,6 +35,7 @@ import NotFoundPage from '../common/NotFound';
 import AdminHelpPage from '../common/AdminHelp';
 //import PrivateRoute from './components/Privateroute';
 import AdminSettings from './../common/AdminSettings';
+import MarketInsights from '../users/services/marketinsights/MarketInsights';
 
 //Entry Function into the Product
 export default function App() {
@@ -74,6 +75,7 @@ export default function App() {
         <Route path='/privacypolicy' element={<Privacy />} />
         <Route path="/dashboard/Market-Access" element={<MarketAccess />} />
         <Route path='/dashboard/View-Healthcare-Centres-All' element={<MarketAccessAll />} />
+        <Route path='/dashboard/Market-Insights' element={<MarketInsights />} />
         <Route path='/admin/dashboard/Save-Project' element={<AdminSaveProject />} />
         <Route path='/admin/help' element={<AdminHelpPage />} />
         <Route path='/admin/settings' element={<AdminSettings />} />
