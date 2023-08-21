@@ -3,8 +3,9 @@ import Footer from "../../../layout/pages/Footer";
 import Header2 from "../../../layout/users/Header2";
 import useAuth from "../../../hooks/useAuth";
 import Menubar from "../../../layout/users/MenuBar";
-import { Document, Page } from "react-pdf";
+import { pdfjs, Document, Page } from "react-pdf";
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
 const PdfViewer = ({ currentPage, onLoadSuccess }) => {
@@ -14,7 +15,7 @@ const PdfViewer = ({ currentPage, onLoadSuccess }) => {
         file="/Market_Insights_Report.pdf"
         onLoadSuccess={onLoadSuccess} 
       >
-        <Page pageNumber={currentPage} noData renderTextLayer={false} renderAnnotationLayer={false} />
+        <Page pageNumber={currentPage}  />
       </Document>
     </div>
   );
