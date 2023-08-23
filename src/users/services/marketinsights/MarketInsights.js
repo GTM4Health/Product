@@ -15,7 +15,7 @@ const PdfViewer = ({ currentPage, onLoadSuccess }) => {
         file="/Market_Insights_Report.pdf"
         onLoadSuccess={onLoadSuccess} 
       >
-        <Page pageNumber={currentPage}  />
+        <Page pageNumber={currentPage} noData renderTextLayer={false} renderAnnotationLayer={false}   />
       </Document>
     </div>
   );
