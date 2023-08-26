@@ -6,12 +6,14 @@ const AdminMenuBar = () => {
   const [isProductMenuOpen, setIsProductMenuOpen] = useState(false);
   const [isStartupsMenuOpen, setIsStartupsMenuOpen] = useState(false);
   const [isGTMMenuOpen, setIsGTMMenuOpen] = useState(false);
+  const [isEditContentMenuOpen, setIsEditContentMenuOpen] = useState(false); // New state
 
   const healthcareMenuRef = useRef(null);
   const medTechMenuRef = useRef(null);
   const productMenuRef = useRef(null);
   const startupsMenuRef = useRef(null);
   const gtmMenuRef = useRef(null);
+  const editContentMenuRef = useRef(null); // New ref
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -29,6 +31,9 @@ const AdminMenuBar = () => {
       }
       if (gtmMenuRef.current && !gtmMenuRef.current.contains(event.target)) {
         setIsGTMMenuOpen(false);
+      }
+      if (editContentMenuRef.current && !editContentMenuRef.current.contains(event.target)) { // New check
+        setIsEditContentMenuOpen(false);
       }
     };
 
@@ -57,6 +62,10 @@ const AdminMenuBar = () => {
 
   const handleGTMMenuClick = () => {
     setIsGTMMenuOpen(!isGTMMenuOpen);
+  };
+
+  const handleEditContentMenuClick = () => {
+    setIsEditContentMenuOpen(!isEditContentMenuOpen);
   };
 
   return (
@@ -186,6 +195,28 @@ const AdminMenuBar = () => {
             <a href="/admin/dashboard/Save-Project" className="sub-menu-item menu-link">
               <i className="fas fa-envelope sub-menu-icon"></i>
               <span className="menu-text">Mail & Print Project</span>
+            </a>
+          </div>
+        )}
+      </div>
+      <div
+        className={`menu-item ad-menu-item ${
+          isEditContentMenuOpen ? "active" : ""
+        }`}
+        onClick={handleEditContentMenuClick}
+        ref={editContentMenuRef}
+      >
+        <i className="fas fa-edit menu-icon"></i> {/* Icon for "Edit Content" */}
+        <span className="menu-text">Edit Content</span>
+        {isEditContentMenuOpen && (
+          <div className="sub-menu edit-content-menu">
+            <a href="/admin/dashboard/Add-Content" className="sub-menu-item menu-link">
+              <i className="fas fa-plus sub-menu-icon"></i>
+              <span className="menu-text">Add Content</span>
+            </a>
+            <a href="/admin/dashboard/View-Content" className="sub-menu-item menu-link">
+              <i className="fas fa-eye sub-menu-icon"></i>
+              <span className="menu-text">View Content</span>
             </a>
           </div>
         )}

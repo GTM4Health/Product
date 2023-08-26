@@ -33,6 +33,8 @@ import MarketAccessAll from '../users/services/marketaccess/MarketAccessAll';
 import AdminSaveProject from '../admin/services/projects/AdminSaveProject';
 import NotFoundPage from '../common/NotFound';
 import AdminHelpPage from '../common/AdminHelp';
+import AddContent from '../admin/services/content/addcontent';
+import ViewContent from '../admin/services/content/viewcontent';
 //import PrivateRoute from './components/Privateroute';
 import AdminSettings from './../common/AdminSettings';
 import MarketInsights from '../users/services/marketinsights/MarketInsights';
@@ -77,6 +79,8 @@ export default function App() {
         <Route path='/dashboard/View-Healthcare-Centres-All' element={<MarketAccessAll />} />
         <Route path='/dashboard/Market-Insights' element={<MarketInsights />} />
         <Route path='/admin/dashboard/Save-Project' element={<AdminSaveProject />} />
+        <Route path='/admin/dashboard/Add-Content' element={<AddContent />} />
+        <Route path='/admin/dashboard/View-Content' element={<ViewContent />} />
         <Route path='/admin/help' element={<AdminHelpPage />} />
         <Route path='/admin/settings' element={<AdminSettings />} />
         <Route path='*' element={<NotFoundPage />} />
