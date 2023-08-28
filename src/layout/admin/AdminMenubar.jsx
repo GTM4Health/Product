@@ -69,7 +69,7 @@ const AdminMenuBar = () => {
   };
 
   return (
-    <div className="adbar">
+    <div className="adbar ht-bar">
       <a href="/admin/dashboard/User-Dashboard" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-users-cog menu-icon"></i>
