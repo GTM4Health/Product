@@ -490,7 +490,7 @@ button[type="submit"]:hover {
 
 .d-content {
   margin-left: 250px; /* Adjust this value based on the menu bar width */
-  /* padding: 20px; */
+  padding: 20px;
   /*240vh*/
   min-height: 120vh;
   height: auto;
@@ -515,7 +515,7 @@ button[type="submit"]:hover {
   background-color: lightblue;
   color: darkblue;
   width: 250px;
-  height: 120vh; /* Adjust the value based on the combined height of the header and footer */
+  height: 100vh; /* Adjust the value based on the combined height of the header and footer */
   position: absolute;
   left: 0;
   top: 150px; /* Adjust the value based on the header height */
@@ -524,6 +524,10 @@ button[type="submit"]:hover {
   flex-direction: column;
   padding: 10px;
   overflow-y: auto;
+}
+
+.ht-bar{
+  height: 120vh;
 }
 
 .menu-item {
@@ -746,9 +750,14 @@ form.hospital-f .hsubtn {
   display: flex;
 }
 
+
 .page-title-child{
   margin: auto;
   padding-bottom: 2rem;
+}
+
+.main-space{
+  padding-bottom: 10rem;
 }
 
 /*update form*/

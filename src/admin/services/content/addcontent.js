@@ -13,35 +13,35 @@ const AddContent = () => {
   };
 
   const handleUpload = async () => {
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append("pdfFile", selectedFile);
+    if (!selectedFile) return;
 
-      try {
-        await axios.post("/api/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        alert("File uploaded successfully!");
-        setSelectedFile(null);
-      } catch (error) {
-        console.error("Error uploading file:", error);
-      }
+    const formData = new FormData();
+    formData.append("pdfFile", selectedFile);
+
+    try {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/api/cont/upload`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("File uploaded successfully!");
+      setSelectedFile(null);
+    } catch (error) {
+      console.error("Error uploading file:", error);
     }
   };
 
   return (
     <div className="page-view">
-        <AdminHeader />
-        <div className="d-content">
-            <AdminMenuBar />
-            <div className="content">
-              <h2>Add Content</h2>
-              <input type="file" onChange={handleFileChange} />
-              <button onClick={handleUpload}>Upload PDF</button>
-            </div>
+      <AdminHeader />
+      <AdminMenuBar />
+      <div className="d-content">
+        <div className="dashboard">
+          <h2 className="page-title">Add Content</h2>
+          <input type="file" onChange={handleFileChange} />
+          <button onClick={handleUpload}>Upload PDF</button>
         </div>
+      </div>
       <Footer />
     </div>
   );

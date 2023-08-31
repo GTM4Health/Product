@@ -11,7 +11,7 @@ const ViewContent = () => {
   useEffect(() => {
     const fetchPdfFiles = async () => {
       try {
-        const response = await axios.get("/api/pdfs");
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs`);
         setPdfFiles(response.data);
       } catch (error) {
         console.error("Error fetching PDF files:", error);
@@ -22,20 +22,27 @@ const ViewContent = () => {
   }, []);
 
   return (
-    <div>
+    <div className="page-view">
       <AdminHeader />
       <AdminMenuBar />
-      <div className="content">
-        <h2>View Content</h2>
-        <ul>
-          {pdfFiles.map((pdfFile, index) => (
-            <li key={index}>
-              <a href={`/public/${pdfFile}`} target="_blank" rel="noopener noreferrer">
-                {pdfFile}
-              </a>
-            </li>
-          ))}
-        </ul>
+      <div className="d-content">
+        <div className="dashboard">
+          <h2 className="page-title">View Content</h2>
+          <ul className="pdf-list">
+            {/* {pdfFiles.map((pdfFile, index) => (
+              <li key={index} className="pdf-item">
+                <a
+                  href={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(pdfFile)}`} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pdf-link"
+                >
+                  {pdfFile}
+                </a>       
+              </li>
+            ))} */}
+          </ul>
+        </div>
       </div>
       <Footer />
     </div>

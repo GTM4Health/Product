@@ -61,7 +61,7 @@ const MarketInsights = () => {
         <div className="dashboard">
           <Menubar />
           <div className="page-title">
-            <h1 className="page-title-child">Market Insights</h1>
+            <h1 className="page-title-child main-space">Market Insights</h1>
           </div>
           <PdfViewer currentPage={currentPage} onLoadSuccess={handleDocumentLoadSuccess} />
           <div className="page-navigation">

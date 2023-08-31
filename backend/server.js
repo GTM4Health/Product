@@ -43,6 +43,7 @@ const dealerRouter = require('./routes/dealer');
 const productRouter = require('./routes/products');
 const startupRouter = require('./routes/startup');
 const projectRouter = require('./routes/project');
+const contentRouter = require('./routes/content')
 
 // Use routes
 app.use('/api/signup', signupRouter);
@@ -55,7 +56,7 @@ app.use('/api/admin/dashboard/Startups',startupRouter);
 app.use('/api/admin/dashboard/Projects',projectRouter);
 app.use('/api/users',userRouter);
 app.use('/api/hospital-portal',hospitalPortalRouter);
-
+app.use('/api/cont', contentRouter);
 
 
 

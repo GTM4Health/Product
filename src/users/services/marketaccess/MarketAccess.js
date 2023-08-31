@@ -16,32 +16,38 @@ const MarketAccess = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [user, setUser] = useState(null);
-  const [selectedState, setSelectedState] = useState("All"); // Include "All" option for the state filter
-  const [selectedCity, setSelectedCity] = useState("All"); // Include "All" option for the city filter
+  const [selectedState, setSelectedState] = useState("all"); // Include "All" option for the state filter
+  const [selectedCity, setSelectedCity] = useState("all"); // Include "All" option for the city filter
   const [cityOptions, setCityOptions] = useState([]);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
-      setUser(storedUser);
+    if (isAuthenticated) {
+      fetchHospitals();
     }
-    fetchHospitals();
-    if (stateOptions.length > 0) {
-      setCityOptions(getCityOptionsByState(stateOptions[0].value));
-    }
-  }, [currentPage, selectedState, selectedCity]);
+  }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedState]);
 
 
   const fetchHospitals = async () => {
+    let url = `${process.env.REACT_APP_BASE_URL}/api/hospital-portal?`;
+  
+    const params = new URLSearchParams();
+    params.append('page', currentPage);
+    params.append('limit', pageSize);
+  
+    if (selectedState !== 'all') {
+      params.append('state', selectedState);
+    }
+  
+    if (selectedCity !== 'all') {
+      params.append('city', selectedCity);
+    }
+  
     try {
-      const params = new URLSearchParams({
-        page: currentPage,
-        limit: pageSize,
-        state: selectedState === "All" ? "" : selectedState,
-        city: selectedCity === "All" ? "" : selectedCity,
-      });
-
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal?${params}`);
+      const response = await axios.get(url + params.toString());
       setHospitals(response.data.hospitals);
       setTotalRows(response.data.totalRows);
       setTotalPages(response.data.totalPages);
@@ -49,6 +55,8 @@ const MarketAccess = () => {
       console.error(error);
     }
   };
+  
+  
 
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
@@ -65,19 +73,15 @@ const MarketAccess = () => {
     }
   };
 
-  const handleStateChange = (e) => {
-    const selectedStateValue = e.target.value;
-    setSelectedState(selectedStateValue);
-
-    // Update city options based on the selected state
-    setCityOptions(getCityOptionsByState(selectedStateValue));
-
-    // Reset selected city when changing state
-    setSelectedCity("All");
+  const handleStateChange = (event) => {
+    setSelectedState(event.target.value);
+    setSelectedCity("all");
+    setCurrentPage(1);
   };
 
-  const handleCityChange = (e) => {
-    setSelectedCity(e.target.value);
+  const handleCityChange = (event) => {
+    setSelectedCity(event.target.value);
+    setCurrentPage(1);
   };
 
   const handleClearFilters = () => {
@@ -125,7 +129,7 @@ const MarketAccess = () => {
               onChange={handleCityChange}
             >
               <option value="All">All</option>
-              {cityOptions.map((city) => (
+              {getCityOptionsByState(selectedState).map((city) => (
                 <option key={city.value} value={city.value}>
                   {city.label}
                 </option>
