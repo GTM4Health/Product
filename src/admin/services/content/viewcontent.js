@@ -29,7 +29,7 @@ const ViewContent = () => {
         <div className="dashboard">
           <h2 className="page-title">View Content</h2>
           <ul className="pdf-list">
-            {/* {pdfFiles.map((pdfFile, index) => (
+            {pdfFiles.map((pdfFile, index) => (
               <li key={index} className="pdf-item">
                 <a
                   href={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(pdfFile)}`} 
@@ -40,7 +40,7 @@ const ViewContent = () => {
                   {pdfFile}
                 </a>       
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
       </div>
