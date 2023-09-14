@@ -37,6 +37,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "postinstall": "npm install --force",
     "GTM4Health-Product": "npm install --legacy-peer-deps --save-dev concurrently && npm run setup-backend && concurrently \"npm run start-backend\" \"npm start\"",
     "setup-backend": "cd backend && npm install multer && npm install && npm install bcrypt && npm install jsonwebtoken && npm install body-parser && npm install moment && npm install mongoose-paginate-v2 && npm install express-validator && cd ..",
     "start-backend": "node backend/server.js"
