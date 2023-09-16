@@ -13,7 +13,13 @@ const app = express();
 const port = 5000;
 
 // Enable CORS
-app.use(cors());
+app.use(cors(
+  {
+    origin: ["https://login-site-frontend.vercel.app"],
+    methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
+    credentials: true, 
+  }
+));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false })); // Add this line
