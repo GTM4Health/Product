@@ -15,7 +15,7 @@ const port = 5000;
 // Enable CORS
 app.use(cors(
   {
-    origin: ["https://gtmscale-product.vercel.app/"],
+    origin: ["https://gtmscale-product.vercel.app"],
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
     credentials: true, 
   }
