@@ -36,6 +36,10 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
+app.get("/",(req,res) => {
+  return res.send("Backend is accepting APIs now!");
+})
+
 // Import routes
 // Backend this component runs on port 5000
 // Front end this kind of component runs on port 3000
