@@ -183,6 +183,7 @@ const DealerPortal = () => {
                   <th>State</th>
                   <th>City</th>
                   <th>Address</th>
+                  <th>Pincode</th>
                   <th>Website</th>
                   <th>Contact Name</th>
                   <th>Role</th>
@@ -200,6 +201,7 @@ const DealerPortal = () => {
                     <td>{dealer.products}</td>
                     <td>{dealer.state}</td>
                     <td>{dealer.city}</td>
+                    <td>{dealer.pincode}</td>
                     <td>{dealer.address}</td>
                     <td>{dealer.web}</td>
                     <td>{dealer.dealerName}</td>

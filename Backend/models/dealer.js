@@ -39,6 +39,9 @@ const dealerSchema = new mongoose.Schema({
   },
   GST: {
     type: String,
+  },
+  pincode: {
+    type: String,
   }
 });
 

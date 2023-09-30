@@ -20,6 +20,7 @@ const Dealers = () => {
   const [phone, setPhone] = useState('');
   const [GST,setGST] = useState('')
   const [dealerStatus, setDealerStatus] = useState(null);
+  const [pincode, setPincode] = useState(null);
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -40,7 +41,8 @@ const Dealers = () => {
         role,
         mail,
         phone,
-        GST
+        GST,
+        pincode,
       });
       setName('');
       setWeb('');
@@ -53,6 +55,7 @@ const Dealers = () => {
       setMail('');
       setPhone('');
       setGST('');
+      setPincode('');
       setDealerStatus('success');
 
       // Clear the success message after 2 seconds
@@ -105,7 +108,7 @@ const Dealers = () => {
             {renderDealerStatusMessage()}
             <form onSubmit={handleSubmit} className="hospital-f">
               <div className='filter-container'>
-                <div className="form-group">
+              <div className="pincode">
                   <label className='f-label' htmlFor="state">State* :</label>
                   <select
                     id="state"
@@ -114,7 +117,7 @@ const Dealers = () => {
                     className="form-outline f-select wd50"
                   >
                     <option value="" disabled hidden>
-                      Select State
+                      Select
                     </option>
                     {stateOptions.map((option) => (
                       <option key={option.value} value={option.value}>
@@ -123,7 +126,7 @@ const Dealers = () => {
                     ))}
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="pincode">
                   <label className='f-label' htmlFor="city">City* :</label>
                   <select
                     id="city"
@@ -133,10 +136,21 @@ const Dealers = () => {
                     className="form-outline f-select wd50"
                   >
                     <option value="" disabled hidden>
-                      Select City
+                      Select
                     </option>
                     {renderCityOptions()}
                   </select>
+                </div>
+                <div className="pincode">
+                  <label className='f-label'>Pincode:</label>
+                  <input
+                    type="integer"
+                    id="pincode"
+                    value={pincode}
+                    onChange={(e) => setPincode(e.target.value)}
+                    placeholder="Pincode"
+                    className="form-outline f-select pincode"
+                  />
                 </div>
                 </div>
               <div className="form-group">

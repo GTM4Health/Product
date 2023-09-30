@@ -14,6 +14,8 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
   const [state, setState] = useState(hospital.state);
   const [speciality, setSpeciality] = useState(hospital.speciality);
   const [lastConnected, setLastConnected] = useState(hospital.lastConnected);
+  const [address, setAddress] = useState(hospital.address);
+  const [pincode, setPincode] = useState(hospital.pincode);
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -31,6 +33,8 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     setState(hospital.state);
     setSpeciality(hospital.speciality || ""); // Set initial value if not present
     setLastConnected(hospital.lastConnected || ""); // Set initial value if not present
+    setPincode(hospital.pincode || "");
+    setAddress(hospital.address || "");
   }, [hospital]);
 
   const handleSubmit = (e) => {
@@ -46,6 +50,8 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
       state,
       speciality,
       lastConnected,
+      pincode,
+      address
     };
     onUpdate(hospital._id, updatedData);
   };
@@ -113,6 +119,27 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
             </option>
             {renderCityOptions()}
           </select>
+        </div>
+        <div className="form-group">
+            <label htmlFor="addrx">Address :</label>
+            <textarea
+              id="addrx"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Address"
+              className="form-outline textarea addrx"
+            ></textarea>
+        </div>
+        <div className="form-group">
+            <label >Pincode:</label>
+            <input
+              type="integer"
+              id="pincode"
+              value={pincode}
+              onChange={(e) => setPincode(e.target.value)}
+              placeholder="Pincode"
+              className="form-outline f-select pincode"
+            />
         </div>
         <div className="form-group">
           <label htmlFor="infraServ">Infrastructure & Services</label>

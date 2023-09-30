@@ -1,7 +1,5 @@
 {
     "specialities": [
-        "Behavioral Therapy",
-        "Blood Bank",
         "Cancer Care",
         "Cardiology",
         "Dentistry",
@@ -11,7 +9,6 @@
         "Emergency Medicine",
         "Endocrinology",
         "ENT",
-        "Eyecare"
         "Family Medicine",
         "Gastroenterology",
         "Gastrointestinal Surgery",
@@ -20,38 +17,32 @@
         "Gynecology",
         "Hematology",
         "Hepatology",
-        "Hospital Acquired Infections",
         "Immunology",
         "Infectious Diseases",
-        "Infection Control",
         "Internal Medicine",
-        "Marketing Software"
         "Maternity",
         "Maxillofacial Surgery",
         "Medical Genetics",
-        "Medication Adherence",
         "Microbiology",
         "Multispeciality",
         "Nephrology",
         "Neurology",
         "Nuclear Medicine",
         "Obstetrics",
-        "Occupational Therapy"
+        "Occupational Medicine",
         "Oncologic Surgery",
         "Oncology",
         "Ophthalmology",
+        "Oral and Maxillofacial Surgery",
         "Orthopedics",
+        "Physiotherapy",
         "Pediatrics",
-        "Productivity Software"
         "Psychiatry",
         "Pulmonology",
         "Radiology",
-        "Sickle Cell"
-        "Speech Therapy",
-        "Special Education",
-        "Teleradiology"
-        "Traumatic Brain Injury - TBI"
+        "Senior Care",
+        "Teleradiology",
         "Urology",
-        "Oral and Maxillofacial Surgery"
+        "Vascular Surgery"
     ]
 }

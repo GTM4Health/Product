@@ -14,6 +14,7 @@ const EditDealerForm = ({ dealer, onUpdate, onCancel }) => {
   const [address, setAddress] = useState(dealer.address);
   const [web, setWeb] = useState(dealer.web);
   const[GST,setGST] = useState(dealer.GST);
+  const[pincode,setPincode] = useState(dealer.pincode);
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -32,6 +33,7 @@ const EditDealerForm = ({ dealer, onUpdate, onCancel }) => {
     setAddress(dealer.address);
     setWeb(dealer.web);
     setGST(dealer.GST);
+    setPincode(dealer.pincode);
   }, [dealer]);
 
   const handleSubmit = (e) => {
@@ -48,6 +50,7 @@ const EditDealerForm = ({ dealer, onUpdate, onCancel }) => {
       address,
       web,
       GST,
+      pincode,
     };
     onUpdate(dealer._id, updatedData);
   };
@@ -124,6 +127,17 @@ const EditDealerForm = ({ dealer, onUpdate, onCancel }) => {
             placeholder="Company Website"
             className="form-outline"
           />
+        </div>
+        <div className="form-group">
+            <label>Pincode:</label>
+            <input
+              type="integer"
+              id="pincode"
+              value={pincode}
+              onChange={(e) => setPincode(e.target.value)}
+              placeholder="Pincode"
+              className="form-outline f-select pincode"
+            />
         </div>
         <div className="form-group">
           <label htmlFor="dealerName">Contact Name</label>

@@ -27,6 +27,10 @@ const CityPortal = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [selectedState, setSelectedState] = useState("all");
   const [selectedCity, setSelectedCity] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [displayedHospital, setDisplayedHospital] = useState(hospitals);
+
+
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -145,6 +149,22 @@ const CityPortal = () => {
 
     const displayedHospitals = hospitals;
 
+    const handleSearchInputChange = (event) => {
+      setSearchQuery(event.target.value);
+    };
+  
+    const handleSearch = () => {
+      const filteredHospitals = hospitals.filter((hospital) =>
+        hospital.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setDisplayedHospital(filteredHospitals);
+    };
+  
+    const clearSearchResults = () => {
+      setSearchQuery("");
+      setDisplayedHospital(hospitals);
+    };
+  
 
   // const displayedHospitals = hospitals.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
@@ -158,6 +178,16 @@ const CityPortal = () => {
             <h1 className="page-title-child">Healthcare Centres</h1>
           </div>
           <div className="filter-container">
+              <div className="search-container">
+                <input
+                  type="text"
+                  placeholder="Search hospitals..."
+                  value={searchQuery}
+                  onChange={handleSearchInputChange}
+                />
+                <button onClick={handleSearch}>Search</button>
+                <button onClick={clearSearchResults}>Clear Search</button>
+              </div>
             <label className="f-label"  htmlFor="state-select">State:</label>
             <select className="f-select" id="state-select" value={selectedState} onChange={handleStateChange}>
               <option value="all">All</option>
@@ -195,6 +225,8 @@ const CityPortal = () => {
                   <th>Infrastructure & Services</th>
                   <th>State</th>
                   <th>City</th>
+                  <th>Address</th>
+                  <th>Pincode</th>
                   <th>Contact Name</th>
                   <th>Role</th>
                   <th>Contact Email</th>
@@ -212,6 +244,8 @@ const CityPortal = () => {
                     <td>{hospital.infraSer}</td>
                     <td>{hospital.state}</td>
                     <td>{hospital.city}</td>
+                    <td>{hospital.address}</td>
+                    <td>{hospital.pincode}</td>
                     <td>{hospital.docName}</td>
                     <td>{hospital.docSpez}</td>
                     <td>{hospital.mail}</td>

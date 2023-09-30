@@ -122,6 +122,8 @@ const HospitalPortal = () => {
                   <th>Infrastructure & Services</th>
                   <th>State</th>
                   <th>City</th>
+                  <th>Address</th>
+                  <th>Pincode</th>
                   <th>Contact Name</th>
                   <th>Role</th>
                   <th>Contact Email</th>
@@ -139,6 +141,8 @@ const HospitalPortal = () => {
                     <td>{hospital.infraSer}</td>
                     <td>{hospital.state}</td>
                     <td>{hospital.city}</td>
+                    <td>{hospital.address}</td>
+                    <td>{hospital.pincode}</td>
                     <td>{hospital.docName}</td>
                     <td>{hospital.docSpez}</td>
                     <td>{hospital.mail}</td>

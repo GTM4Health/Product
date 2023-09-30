@@ -20,6 +20,8 @@ const AdminHospital = () => {
   const [speciality, setSpeciality] = useState('');
   const [lastConnected, setLastConnected] = useState('');
   const [hospitalStatus, setHospitalStatus] = useState(null);
+  const [pincode, setPincode] = useState(''); 
+  const [address,setAddress] = useState('');
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -39,7 +41,9 @@ const AdminHospital = () => {
         mail,
         phone,
         speciality,
-        lastConnected
+        lastConnected,
+        pincode,
+        address,
       });
       setName('');
       setCity('');
@@ -51,8 +55,9 @@ const AdminHospital = () => {
       setPhone('');
       setSpeciality('');
       setLastConnected('');
+      setPincode('');
       setHospitalStatus('success');
-
+      setAddress('');
       // Clear the success message after 2 seconds
       setTimeout(() => {
         setHospitalStatus(null);
@@ -111,7 +116,7 @@ const AdminHospital = () => {
             {renderHospitalStatusMessage()}
             <form onSubmit={handleSubmit} className="hospital-f">
               <div className='filter-container'>
-                <div className="form-group">
+                <div className="pincode">
                   <label className='f-label' htmlFor="state">State* :</label>
                   <select
                     id="state"
@@ -120,7 +125,7 @@ const AdminHospital = () => {
                     className="form-outline f-select wd50"
                   >
                     <option value="" disabled hidden>
-                      Select State
+                      Select
                     </option>
                     {stateOptions.map((option) => (
                       <option key={option.value} value={option.value}>
@@ -129,7 +134,7 @@ const AdminHospital = () => {
                     ))}
                   </select>
                 </div>
-                <div className="form-group">
+                <div className="pincode">
                   <label className='f-label' htmlFor="city">City* :</label>
                   <select
                     id="city"
@@ -139,10 +144,21 @@ const AdminHospital = () => {
                     className="form-outline f-select wd50"
                   >
                     <option value="" disabled hidden>
-                      Select City
+                      Select
                     </option>
                     {renderCityOptions()}
                   </select>
+                </div>
+                <div className="pincode">
+                  <label className='f-label'>Pincode:</label>
+                  <input
+                    type="integer"
+                    id="pincode"
+                    value={pincode}
+                    onChange={(e) => setPincode(e.target.value)}
+                    placeholder="Pincode"
+                    className="form-outline f-select pincode"
+                  />
                 </div>
               </div>
               <div className="form-group">
@@ -165,6 +181,16 @@ const AdminHospital = () => {
                   onChange={(e) => setInfraSer(e.target.value)}
                   placeholder="Infrastructure & Services"
                   className="form-outline textarea"
+                ></textarea>
+              </div>
+              <div className="form-group">
+                <label htmlFor="addrx">Address :</label>
+                <textarea
+                  id="addrx"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Address"
+                  className="form-outline textarea addrx"
                 ></textarea>
               </div>
               <div className="form-group">
