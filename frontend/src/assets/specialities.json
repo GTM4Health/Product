@@ -1,5 +1,7 @@
 {
     "specialities": [
+        "Behavioral Therapy",
+        "Occupational Therapy",
         "Cancer Care",
         "Cardiology",
         "Dentistry",
@@ -39,6 +41,7 @@
         "Psychiatry",
         "Pulmonology",
         "Radiology",
+        "Speech Therapy",
         "Urology",
         "Oral and Maxillofacial Surgery"
     ]
