@@ -18,7 +18,7 @@ function AdminDashboard() {
         <div className="dashboard">
           <AdminMenuBar />
           <div className="dashboard-content">
-            <h1>Welcome Admin!</h1>
+            <h1><center>Welcome Admin!</center></h1>
           </div>
         </div>
       </div>

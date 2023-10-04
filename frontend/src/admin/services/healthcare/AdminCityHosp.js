@@ -7,7 +7,7 @@ import AdminHeader from "../../../layout/admin/AdminHeader";
 import axios from "axios";
 import EditHospitalForm from "./AdminUpdateHosp"
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions";
-
+import { Document, Page, pdfjs } from "react-pdf";
 // require('dotenv').config();
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -178,7 +178,7 @@ const CityPortal = () => {
             <h1 className="page-title-child">Healthcare Centres</h1>
           </div>
           <div className="filter-container">
-              <div className="search-container">
+              {/* <div className="search-container">
                 <input
                   type="text"
                   placeholder="Search hospitals..."
@@ -187,7 +187,7 @@ const CityPortal = () => {
                 />
                 <button onClick={handleSearch}>Search</button>
                 <button onClick={clearSearchResults}>Clear Search</button>
-              </div>
+              </div> */}
             <label className="f-label"  htmlFor="state-select">State:</label>
             <select className="f-select" id="state-select" value={selectedState} onChange={handleStateChange}>
               <option value="all">All</option>

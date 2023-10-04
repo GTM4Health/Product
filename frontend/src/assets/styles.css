@@ -598,7 +598,7 @@ button[type="submit"]:hover {
 }
 
 .dashboard-content {
-    margin-left: 55vh;
+    margin-left: 20vh;
     max-width: 250vh;
     margin-bottom: .5rem;
     padding-bottom: 1rem;

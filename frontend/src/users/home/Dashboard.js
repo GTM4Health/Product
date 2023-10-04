@@ -30,7 +30,8 @@ const Dashboard = () => {
         <div className="dashboard">
           <MenuBar />
           <div className="dashboard-content">
-            <h1>Welcome to the GTM4Health, {user ? user.name : 'User'}!</h1>
+            <h1><center>Welcome to the GTM4Health</center></h1>
+            <h1><center>{user ? user.name : 'User'}!</center></h1>
           </div>
         </div>
       </div>

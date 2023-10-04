@@ -35,13 +35,12 @@ import NotFoundPage from '../common/NotFound';
 import AdminHelpPage from '../common/AdminHelp';
 import AddContent from '../admin/services/content/addcontent';
 import ViewContent from '../admin/services/content/viewcontent';
-import axios from 'axios';
+import PartnersPage from '../users/services/partners/viewpartners';
 import AdminSettings from './../common/AdminSettings';
 import MarketInsights from '../users/services/marketinsights/MarketInsights';
 
 //Entry Function into the Product
 export default function App() {
-  axios.defaults.withCredentials = true;
   return (
     <Router>
       <Routes>
@@ -49,6 +48,14 @@ export default function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard"element={<Dashboard />} />
+        {/* <Route
+          path="/dashboard*"
+          element={
+            <PrivateRoute
+              element={<Dashboard />}
+            /> /* Wrap PrivateRoute inside the element prop */
+          }
+        {/* /> Use PrivateRoute for the dashboard */} 
         <Route path='/admin' element={<AdminLoginPage />} />
         <Route path='/admin/dashboard/Features' element={<AdminFeatures />} />
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
@@ -76,6 +83,7 @@ export default function App() {
         <Route path='/admin/dashboard/View-Content' element={<ViewContent />} />
         <Route path='/admin/help' element={<AdminHelpPage />} />
         <Route path='/admin/settings' element={<AdminSettings />} />
+        <Route path='/dashboard/Access-GTM-Partners' element={<PartnersPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </Router>

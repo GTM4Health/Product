@@ -54,7 +54,13 @@ const MenuBar = () => {
           <span className="menu-text">Market Insights</span>
         </div>
       </a>
-      <a href="/dashboard/GTM-Readiness" className="menu-link">
+      <a href="/dashboard/Access-GTM-Partners" className="menu-link">
+        <div className="menu-item">
+          <i className="fas fa-check-circle menu-icon"></i>
+          <span className="menu-text">Access GTM Partners</span>
+        </div>
+      </a>
+      {/* <a href="/dashboard/GTM-Readiness" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-check-circle menu-icon"></i>
           <span className="menu-text">GTM Readiness</span>
@@ -65,11 +71,11 @@ const MenuBar = () => {
           <i className="fas fa-graduation-cap menu-icon"></i>
           <span className="menu-text">Bootcamp</span>
         </div>
-      </a>
+      </a> */}
       <a href="/dashboard/Healthcare-Domains" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-medkit menu-icon"></i>
-          <span className="menu-text">Healthcare Domains</span>
+          <span className="menu-text">Purchase Products</span>
         </div>
       </a>
       <a href="/dashboard/Review-Products" className="menu-link">
