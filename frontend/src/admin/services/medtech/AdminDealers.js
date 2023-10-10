@@ -240,7 +240,7 @@ const Dealers = () => {
                   className="form-outline"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="phone">GST No.:</label>
                 <input
                   type="text"
@@ -250,7 +250,7 @@ const Dealers = () => {
                   placeholder="Company Registered GST Number"
                   className="form-outline"
                 />
-              </div>
+              </div> */}
               <button type="submit" className="hsubtn login-btn">
                 Submit
               </button>

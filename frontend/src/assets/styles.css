@@ -515,7 +515,7 @@ button[type="submit"]:hover {
   background-color: lightblue;
   color: darkblue;
   width: 250px;
-  height: 100vh; /* Adjust the value based on the combined height of the header and footer */
+  height: 90vh; /* Adjust the value based on the combined height of the header and footer */
   position: absolute;
   left: 0;
   top: 150px; /* Adjust the value based on the header height */
@@ -837,6 +837,7 @@ form.hospital-f .hsubtn {
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 .prev-button:hover,

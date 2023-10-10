@@ -79,7 +79,7 @@ const MenuBar = () => {
         </div>
       </a>
       <a href="/dashboard/Review-Products" className="menu-link">
-        <div className="menu-item-btm">
+        <div className="menu-item"> {/*-btm*/}
           <i className="fas fa-star menu-icon"></i>
           <span className="menu-text">Review Products</span>
         </div>

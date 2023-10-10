@@ -140,6 +140,18 @@ const PartnersPage = () => {
               </i>
             </h4>
           </div>
+          <div className="pagination-buttons">
+            {!isFirstPage && (
+              <button className="prev-button" onClick={handlePrevPage}>
+                &laquo; Prev
+              </button>
+            )}
+            {!isLastPage && (
+              <button className="next-button" onClick={handleNextPage}>
+                Next &raquo;
+              </button>
+            )}
+          </div>
           <div className="table-content">
             <table className="user-table">
               <thead>

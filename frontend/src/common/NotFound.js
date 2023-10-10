@@ -8,11 +8,12 @@ const NotFoundPage = () => {
   const isAuthenticated = useAuth();
   const [user, setUser] = useState(null);
   const quotes = [
-    "The page you're looking for seems to have taken a little wellness break.",
-    "Oops! It looks like the link you followed is on a temporary vacation.",
-    "We apologize, but it seems the digital stethoscope couldn't locate this page.",
-    "404 – Page not found. Our team is working hard to diagnose and fix this issue.",
-    "This page might have made a rounds to other dimensions. We're working to bring it back.",
+    "This page is currently under Construction."
+    // "The page you're looking for seems to have taken a little wellness break.",
+    // "Oops! It looks like the link you followed is on a temporary vacation.",
+    // "We apologize, but it seems the digital stethoscope couldn't locate this page.",
+    // "404 – Page not found. Our team is working hard to diagnose and fix this issue.",
+    // "This page might have made a rounds to other dimensions. We're working to bring it back.",
   ];
   const [randomQuote, setRandomQuote] = useState("");
 

@@ -180,7 +180,7 @@ const EditDealerForm = ({ dealer, onUpdate, onCancel }) => {
           />
         </div>
         <div className="form-group">
-        <div className="form-group">
+        {/* <div className="form-group">
             <label htmlFor="phone">GST No.:</label>
             <input
               type="text"
@@ -190,7 +190,7 @@ const EditDealerForm = ({ dealer, onUpdate, onCancel }) => {
               placeholder="Company Registered GST Number"
               className="form-outline"
             />
-          </div>
+          </div> */}
           <label htmlFor="products">Products Managed</label>
           <textarea
             id="products"

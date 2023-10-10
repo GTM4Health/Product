@@ -15,11 +15,18 @@ const MarketAccessAll = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    if (isAuthenticated) {
+      fetchHospitals();
+    }
+  }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+
+  useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       setUser(storedUser);
     }
   }, []);
+
 
   useEffect(() => {
     fetchHospitals();
@@ -78,6 +85,18 @@ const MarketAccessAll = () => {
             <h4 className="right">
               <i>Displaying Page {currentPage} of {totalPages}</i>
             </h4>
+          </div>
+          <div className="pagination-buttons">
+            {!isFirstPage && (
+              <button className="prev-button" onClick={handlePrevPage}>
+                &laquo; Prev
+              </button>
+            )}
+            {!isLastPage && (
+              <button className="next-button" onClick={handleNextPage}>
+                Next &raquo;
+              </button>
+            )}
           </div>
           <div className="table-content">
             <table className="user-table">

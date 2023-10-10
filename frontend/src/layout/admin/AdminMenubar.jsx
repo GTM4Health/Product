@@ -207,7 +207,7 @@ const AdminMenuBar = () => {
         ref={editContentMenuRef}
       >
         <i className="fas fa-edit menu-icon"></i> {/* Icon for "Edit Content" */}
-        <span className="menu-text">Edit Content</span>
+        <span className="menu-text">Manage Content</span>
         {isEditContentMenuOpen && (
           <div className="sub-menu edit-content-menu">
             <a href="/admin/dashboard/Add-Content" className="sub-menu-item menu-link">

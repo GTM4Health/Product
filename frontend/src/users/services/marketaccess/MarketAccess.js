@@ -56,7 +56,13 @@ const MarketAccess = () => {
     }
   };
   
-  
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []); 
 
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
@@ -144,6 +150,18 @@ const MarketAccess = () => {
             <h4 className="right">
               <i>Displaying Page {currentPage} of {totalPages}</i>
             </h4>
+          </div>
+          <div className="pagination-buttons">
+            {!isFirstPage && (
+              <button className="prev-button" onClick={handlePrevPage}>
+                &laquo; Prev
+              </button>
+            )}
+            {!isLastPage && (
+              <button className="next-button" onClick={handleNextPage}>
+                Next &raquo;
+              </button>
+            )}
           </div>
           <div className="table-content">
             <table className="user-table">

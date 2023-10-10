@@ -173,6 +173,18 @@ const DealerPortal = () => {
               </i>
             </h4>
           </div>
+          <div className="pagination-buttons">
+            {!isFirstPage && (
+              <button className="prev-button" onClick={handlePrevPage}>
+                &laquo; Prev
+              </button>
+            )}
+            {!isLastPage && (
+              <button className="next-button" onClick={handleNextPage}>
+                Next &raquo;
+              </button>
+            )}
+          </div>
           <div className="table-content">
             <table className="user-table">
               <thead>
@@ -208,7 +220,7 @@ const DealerPortal = () => {
                     <td>{dealer.role}</td>
                     <td>{dealer.mail}</td>
                     <td>{dealer.phone}</td>
-                    <td>{dealer.GST}</td>
+                    {/* <td>{dealer.GST}</td> */}
                     <td>
                       <button className="edit-button" onClick={() => handleEditDealer(dealer)}>
                         <i className="fas fa-pencil-alt"></i>
