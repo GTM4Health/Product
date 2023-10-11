@@ -18,7 +18,7 @@ const MarketAccessAll = () => {
     if (isAuthenticated) {
       fetchHospitals();
     }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+  }, [isAuthenticated, currentPage]);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -28,9 +28,9 @@ const MarketAccessAll = () => {
   }, []);
 
 
-  useEffect(() => {
-    fetchHospitals();
-  }, [currentPage]);
+  // useEffect(() => {
+  //   fetchHospitals();
+  // }, [currentPage]);
 
   const fetchHospitals = async () => {
     try {
