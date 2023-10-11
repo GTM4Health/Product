@@ -8,9 +8,13 @@ import axios from "axios";
 
 function AdminDashboard() {
   const isAuthenticated = useAuth();
+  const [users, setUsers] = useState([]);
   const [totalUsers, setTotalUsers] = useState(0);
   const [currentPage, setCurrentPage] = useState(1); // You can set your default values
   const [pageSize, setPageSize] = useState(10); // You can set your default values
+  const [totalRows, setTotalRows] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
   let myPieChart; // Declare Chart.js instance reference
 
   useEffect(() => {
@@ -42,6 +46,28 @@ function AdminDashboard() {
     }
   }, [isAuthenticated, currentPage, pageSize]);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/api/users?page=${currentPage}&limit=${pageSize}`
+        );
+        setUsers(response.data.users);
+        setTotalRows(response.data.totalRows)
+        setTotalPages(response.data.totalPages);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (isAuthenticated) {
+      fetchUsers();
+    }
+  }, [isAuthenticated, currentPage, pageSize]);
+
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === totalPages;
+
   if (!isAuthenticated) {
     // Optional: Show a loading state or return null while checking authentication
     return null;
@@ -58,20 +84,36 @@ function AdminDashboard() {
     ],
   };
 
+  const handlePrevPage = () => {
+    if (!isFirstPage) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (!isLastPage) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0);
+    }
+  };
+
+//   <div className="dashboard-content">
+//   <h1>
+//     <center>Welcome Admin!</center>
+//   </h1>
+// </div>
+// <div className="pie-chart-container">
+//   <canvas id="myPieChart"></canvas> {/* Canvas element for the chart */}
+// </div>
+
   return (
     <div className="page-view">
       <AdminHeader />
       <div className="d-content">
         <div className="dashboard">
           <AdminMenuBar />
-          <div className="dashboard-content">
-            <h1>
-              <center>Welcome Admin!</center>
-            </h1>
-          </div>
-          <div className="pie-chart-container">
-            <canvas id="myPieChart"></canvas> {/* Canvas element for the chart */}
-          </div>
+
         </div>
         <div className="page-title">
             <h1 className="page-title-child">User Dashboard</h1>
@@ -80,6 +122,7 @@ function AdminDashboard() {
             <h4 className="total-rows">Total Users = {totalRows}</h4>
             <h4 className="right"><i>Displaying Page {currentPage} of {totalPages}</i></h4>
           </div>
+
           <div className="pagination-buttons">
             {!isFirstPage && (
               <button className="prev-button" onClick={handlePrevPage}>
