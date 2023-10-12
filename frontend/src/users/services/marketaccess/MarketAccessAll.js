@@ -28,9 +28,9 @@ const MarketAccessAll = () => {
   }, []);
 
 
-  // useEffect(() => {
-  //   fetchHospitals();
-  // }, [currentPage]);
+  useEffect(() => {
+    fetchHospitals();
+  }, [currentPage]);
 
   const fetchHospitals = async () => {
     try {
