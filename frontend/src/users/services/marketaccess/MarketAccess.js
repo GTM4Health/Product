@@ -143,6 +143,20 @@ const MarketAccess = () => {
                 </option>
               ))}
             </select>
+            <div className="page-jump">
+              {/* <label htmlFor="page-selector">Go to Page:</label> */}
+              <select
+                id="page-selector"
+                value={currentPage}
+                onChange={(e) => setCurrentPage(parseInt(e.target.value))}
+              >
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <option key={index + 1} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
             <button onClick={handleClearFilters}>
               Clear Filters
             </button>

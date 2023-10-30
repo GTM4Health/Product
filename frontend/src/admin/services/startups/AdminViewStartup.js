@@ -3,6 +3,7 @@ import Footer from "../../../layout/pages/Footer"
 import AdminMenuBar from "../../../layout/admin/AdminMenubar";
 import useAuth from "../../../hooks/useAuth";
 import AdminHeader from "../../../layout/admin/AdminHeader";
+import { PDFViewer, PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 import EditStartupForm from "./AdminUpdateStartup";
 import axios from "axios";
 
@@ -95,7 +96,75 @@ const StartupPortal = () => {
   if (!isAuthenticated) {
     // Optional: Show a loading state or return null while checking authentication
     return null;
+
   }
+
+
+  const generatePDF = () => {
+    console.log("Generating PDF...");
+    const startupData = startups.map((startup, index) => ({
+      slNo: (currentPage - 1) * pageSize + index + 1,
+      startupName: startup.startupName,
+      website: startup.website,
+      productStage: startup.productStage,
+      domain: startup.domain,
+    }));
+
+    //style
+    const styles = StyleSheet.create({
+      page: {
+        flexDirection: 'column',
+        padding: 20,
+      },
+      header: {
+        fontSize: 20,
+        marginBottom: 10,
+      },
+      row: {
+        flexDirection: 'row',
+        borderBottomColor: '#000',
+        borderBottomWidth: 1,
+        alignItems: 'center',
+      },
+      cell: {
+        flex: 1,
+        padding: 8,
+      },
+    });
+
+    const MyDocument = () => (
+      <Document>
+        <Page style={styles.page}>
+          <Text style={styles.header}>Startup List</Text>
+          {startupData.map((startup) => (
+            <View style={styles.row} key={startup.slNo}>
+              <Text style={styles.cell}>{startup.slNo}</Text>
+              <Text style={styles.cell}>{startup.startupName}</Text>
+              <Text style={styles.cell}>{startup.website}</Text>
+              <Text style={styles.cell}>{startup.productStage}</Text>
+              <Text style={styles.cell}>{startup.domain}</Text>
+            </View>
+          ))}
+        </Page>
+      </Document>
+    );
+  
+    console.log("PDF generated successfully.");
+  
+    return (
+      <PDFDownloadLink document={<MyDocument />} fileName="startup-list.pdf">
+        {({ blob, url, loading, error }) => {
+          if (loading) {
+            return 'Loading document...';
+          }
+          if (error) {
+            return 'Error generating PDF'; // Add this line to handle errors
+          }
+          return 'Download PDF';
+        }}
+      </PDFDownloadLink>
+    );
+  };
 
   const displayedStartups = startups;
 
@@ -108,6 +177,9 @@ const StartupPortal = () => {
           <div className="page-title">
             <h1 className="page-title-child">Startups</h1>
           </div>
+          <button className="print-pdf-button" onClick={generatePDF}>
+            Generate PDF
+          </button>
           <div className="page-display">
             <h4 className="total-rows">Total Startups = {totalRows}</h4>
             <h4 className="right">

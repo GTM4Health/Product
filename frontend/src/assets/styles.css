@@ -512,8 +512,8 @@ button[type="submit"]:hover {
 /*admin menubar*/
 
  .adbar {
-  background-color: lightblue;
-  color: darkblue;
+  background-color: #0077b6;
+  color: white;
   width: 250px;
   height: 90vh; /* Adjust the value based on the combined height of the header and footer */
   position: absolute;
@@ -551,19 +551,19 @@ button[type="submit"]:hover {
 
 .menu-link{
   text-decoration: none;
-  background-color: lightblue;
-  color: darkblue;
+  background-color: #0077b6;
+  color: white;
 
 }
 
 .menu-link:active .menu-link {
-  background-color: lightblue;
-  color: darkblue;
+  background-color: #0077b6;
+  color: white;
 }
 
 .menu-link:visited {
-  background-color: lightblue;
-  color: darkblue;
+  background-color: #0077b6;
+  color: white;
 }
 
 .menu-icon {
@@ -1081,8 +1081,8 @@ form.hospital-f .hsubtn {
 
 /*adbar*/
 .adbar {
-  background-color: lightblue;
-  color: darkblue;
+  background-color: #0077b6;
+  color: white;
   width: 250px;
   position: absolute;
   left: 0;
@@ -1107,8 +1107,8 @@ form.hospital-f .hsubtn {
 
 .menu-link {
   text-decoration: none;
-  background-color: lightblue;
-  color: darkblue;
+  background-color: #0077b6;
+  color: white;
 }
 
 .sub-menu {
@@ -1595,4 +1595,7 @@ form.hospital-f .hsubtn {
   text-underline-position: below;
 }
 
+.w10{
+  width: 10% !important;
+}
 /* You can customize these colors as desired */
