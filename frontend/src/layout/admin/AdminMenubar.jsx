@@ -5,19 +5,23 @@ const AdminMenuBar = () => {
   const [isDashBoardMenuOpen,setIsDashBoardMenuOpen] = useState(false)
   const [isHealthcareMenuOpen, setIsHealthcareMenuOpen] = useState(false);
   const [isMedTechMenuOpen, setIsMedTechMenuOpen] = useState(false);
+  const [isFormMenuOpen, setFormMenuOpen] = useState(false);
   const [isProductMenuOpen, setIsProductMenuOpen] = useState(false);
   const [isStartupsMenuOpen, setIsStartupsMenuOpen] = useState(false);
   const [isGTMMenuOpen, setIsGTMMenuOpen] = useState(false);
   const [isEditContentMenuOpen, setIsEditContentMenuOpen] = useState(false); // New state
+  const [isAuditLogsOpen, setIsAuditLogsOpen] = useState (false);
   
   const navigate = useNavigate();
   const dashboardMenuRef=useRef(null)
   const healthcareMenuRef = useRef(null);
   const medTechMenuRef = useRef(null);
+  const formMenuRef = useRef(null);
   const productMenuRef = useRef(null);
   const startupsMenuRef = useRef(null);
   const gtmMenuRef = useRef(null);
-  const editContentMenuRef = useRef(null); // New ref
+  const editContentMenuRef = useRef(null); 
+  const auditLogsOpen = useRef(null);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -30,6 +34,9 @@ const AdminMenuBar = () => {
       if (medTechMenuRef.current && !medTechMenuRef.current.contains(event.target)) {
         setIsMedTechMenuOpen(false);
       }
+      if (formMenuRef.current && !formMenuRef.current.contains(event.target)) {
+        setFormMenuOpen(false);
+      }
       if (productMenuRef.current && !productMenuRef.current.contains(event.target)) {
         setIsProductMenuOpen(false);
       }
@@ -39,8 +46,11 @@ const AdminMenuBar = () => {
       if (gtmMenuRef.current && !gtmMenuRef.current.contains(event.target)) {
         setIsGTMMenuOpen(false);
       }
-      if (editContentMenuRef.current && !editContentMenuRef.current.contains(event.target)) { // New check
+      if (editContentMenuRef.current && !editContentMenuRef.current.contains(event.target)) { 
         setIsEditContentMenuOpen(false);
+      }
+      if (isAuditLogsOpen.current && !isAuditLogsOpen.current.contains(event.target)){
+        setIsAuditLogsOpen(false);
       }
     };
 
@@ -67,6 +77,13 @@ const AdminMenuBar = () => {
     setIsMedTechMenuOpen(!isMedTechMenuOpen);
   };
 
+  const handleFormMenuClick = () => {
+    setFormMenuOpen(!isFormMenuOpen);
+    if (!isAuditLogsOpen) {
+      navigate('/admin/gtm-assessment');
+    }
+  }
+
   const handleProductMenuClick = () => {
     setIsProductMenuOpen(!isProductMenuOpen);
   };
@@ -81,6 +98,13 @@ const AdminMenuBar = () => {
 
   const handleEditContentMenuClick = () => {
     setIsEditContentMenuOpen(!isEditContentMenuOpen);
+  };
+
+  const handleAuditLogsMenuClick = () => {
+    setIsAuditLogsOpen(!isAuditLogsOpen);
+    if (!isAuditLogsOpen) {
+      navigate('/admin/audit-logs');
+    }
   };
 
   return (
@@ -165,6 +189,24 @@ const AdminMenuBar = () => {
           </div>
         )}
       </div>
+      <div 
+            className={`menu-item ad-menu-item og-tag ${
+            isAuditLogsOpen ? "active" : ""
+            }`}
+            onClick={handleAuditLogsMenuClick}
+            ref={auditLogsOpen}
+        >
+          <i className="fas fa-clipboard-list menu-icon"></i>
+          <span className="menu-text">GTM Readiness Assessment</span>
+          {/* {isDashBoardMenuOpen && (
+          <div className="sub-menu healthcare-menu og-tag">
+            <a href="/admin/dashboard/User-Dashboard" className="sub-menu-item menu-link">
+              <i className="fas fa-users sub-menu-icon"></i>
+              <span className="menu-text">User Dashboard</span>
+            </a>
+          </div>
+        )} */}
+        </div>
       <div
         className={`menu-item ad-menu-item ${
           isProductMenuOpen ? "active" : ""
@@ -256,6 +298,24 @@ const AdminMenuBar = () => {
           </div>
         )}
       </div>
+      <div 
+            className={`menu-item ad-menu-item og-tag ${
+            isAuditLogsOpen ? "active" : ""
+            }`}
+            onClick={handleAuditLogsMenuClick}
+            ref={auditLogsOpen}
+        >
+          <i className="fas fa-history menu-icon"></i>
+          <span className="menu-text">Audit Logs</span>
+          {/* {isDashBoardMenuOpen && (
+          <div className="sub-menu healthcare-menu og-tag">
+            <a href="/admin/dashboard/User-Dashboard" className="sub-menu-item menu-link">
+              <i className="fas fa-users sub-menu-icon"></i>
+              <span className="menu-text">User Dashboard</span>
+            </a>
+          </div>
+        )} */}
+        </div>
     </div>
   );
 };

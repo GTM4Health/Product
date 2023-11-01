@@ -11,6 +11,7 @@ const StartupForm = () => {
   const [website, setWebsite] = useState("");
   const [productStage, setProductStage] = useState("");
   const [domain, setDomain] = useState("");
+  const [progress, setProgress] = useState("");
   const [startupStatus, setStartupStatus] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -21,11 +22,13 @@ const StartupForm = () => {
         website,
         productStage,
         domain,
+        progress,
       });
       setStartupName("");
       setWebsite("");
       setProductStage("");
       setDomain("");
+      setProgress("");
       setStartupStatus("success");
 
       // Clear the success message after 2 seconds
@@ -118,6 +121,16 @@ const StartupForm = () => {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="infraSer">Startup Progress :</label>
+                <textarea
+                  id="infraSer"
+                  value={progress}
+                  onChange={(e) => setProgress(e.target.value)}
+                  placeholder="Startup Progress"
+                  className="form-outline textarea"
+                ></textarea>
               </div>
               <button type="submit" className="hsubtn login-btn">
                 Submit

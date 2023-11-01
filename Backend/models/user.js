@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
   },
   activationTime: {
     type: String, // Change the type to String to store formatted time
-    default: () => moment().utcOffset('+05:30').format('DD-MM-YYYY, hh:mm:ss A'), // Set default value using moment.js
+    default: () => moment().utcOffset('+05:30').format('DD-MMM-YYYY, hh:mm:ss A'), // Set default value using moment.js
   },
 });
 

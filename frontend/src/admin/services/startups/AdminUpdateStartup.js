@@ -7,12 +7,14 @@ const EditStartupForm = ({ startup, onUpdate, onCancel }) => {
   const [website, setWebsite] = useState(startup.website);
   const [productStage, setProductStage] = useState(startup.productStage);
   const [domain, setDomain] = useState(startup.domain);
+  const [progress, setProgress] = useState(startup.progress);
 
   useEffect(() => {
     setStartupName(startup.startupName);
     setWebsite(startup.website);
     setProductStage(startup.productStage);
     setDomain(startup.domain);
+    setProgress(startup.progress)
   }, [startup]);
 
   const handleSubmit = (e) => {
@@ -22,6 +24,7 @@ const EditStartupForm = ({ startup, onUpdate, onCancel }) => {
       website,
       productStage,
       domain,
+      progress,
     };
     onUpdate(startup._id, updatedData);
   };
@@ -80,6 +83,16 @@ const EditStartupForm = ({ startup, onUpdate, onCancel }) => {
               </option>
             ))}
           </select>
+        </div>
+        <div className="form-group">
+                <label htmlFor="infraSer">Startup Progress :</label>
+                <textarea
+                  id="infraSer"
+                  value={progress}
+                  onChange={(e) => setProgress(e.target.value)}
+                  placeholder="Startup Progress"
+                  className="form-outline textarea"
+                ></textarea>
         </div>
         <div className="button-group">
           <button type="submit" className="btn-primary">

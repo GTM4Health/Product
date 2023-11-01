@@ -39,6 +39,7 @@ import PartnersPage from '../users/services/partners/viewpartners';
 import AdminSettings from './../common/AdminSettings';
 import MarketInsights from '../users/services/marketinsights/MarketInsights';
 import LandingPage2 from '../users/home/LandingPage2';
+import HomePage from '../users/home/Content';
 //Entry Function into the Product
 export default function App() {
   return (
@@ -72,6 +73,7 @@ export default function App() {
         <Route path='admin/dashboard/Create-Project' element={<CreateProject />} />
         <Route path='admin/dashboard/Update-Project' element={<UpdateProject />} />
         <Route path='/home' element={<Home2 />} />
+        <Route path='/home-2' element = {<Home3 />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path='/termsofuse' element={<Terms />} />
@@ -107,6 +109,16 @@ function Home2(){
     <div className="landing-page">
       <div className="content">
         <Content />
+      </div>
+    </div>
+  );
+}
+
+const Home3 = () => {
+  return (
+    <div className="landing-page">
+      <div className="content">
+        <HomePage />
       </div>
     </div>
   );
