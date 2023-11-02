@@ -2,7 +2,8 @@
 // Just have added Versioning.
 //
 import React from 'react';
-
+import Logo from '../../components/Logo';
+import imgP from "../../images/newlogo.png";
 
 const Footer = () => {
   return (
@@ -10,8 +11,11 @@ const Footer = () => {
       <div className="footer-content">
         <div className="left-content">
           <span className="footer-text">
+          <div className="image">
+            <img src={imgP} alt="logoH" className="logo" />
+          </div>
             <h1>&copy; 2023 GTM4Health</h1>
-            <h3>V1.4.5</h3>
+            <h3>V1.4.4</h3>
           </span>
           <div className="social-icons">
              <a href="https://www.facebook.com/gtm4health" target="_blank">
