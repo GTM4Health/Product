@@ -60,6 +60,12 @@ const MenuBar = () => {
           <span className="menu-text">Access GTM Partners</span>
         </div>
       </a>
+      <a href="/dashboard/gtm-readiness-assessment" className="menu-link">
+        <div className="menu-item">
+          <i className="fas fa-clipboard-list menu-icon"></i>
+          <span className="menu-text">GTM Readiness Assessment</span>
+        </div>
+      </a>
       {/* <a href="/dashboard/GTM-Readiness" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-check-circle menu-icon"></i>

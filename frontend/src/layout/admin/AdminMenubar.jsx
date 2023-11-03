@@ -5,7 +5,7 @@ const AdminMenuBar = () => {
   const [isDashBoardMenuOpen,setIsDashBoardMenuOpen] = useState(false)
   const [isHealthcareMenuOpen, setIsHealthcareMenuOpen] = useState(false);
   const [isMedTechMenuOpen, setIsMedTechMenuOpen] = useState(false);
-  const [isFormMenuOpen, setFormMenuOpen] = useState(false);
+  
   const [isProductMenuOpen, setIsProductMenuOpen] = useState(false);
   const [isStartupsMenuOpen, setIsStartupsMenuOpen] = useState(false);
   const [isGTMMenuOpen, setIsGTMMenuOpen] = useState(false);
@@ -189,7 +189,7 @@ const AdminMenuBar = () => {
           </div>
         )}
       </div>
-      <div 
+      {/* <div 
             className={`menu-item ad-menu-item og-tag ${
             isAuditLogsOpen ? "active" : ""
             }`}
@@ -205,8 +205,8 @@ const AdminMenuBar = () => {
               <span className="menu-text">User Dashboard</span>
             </a>
           </div>
-        )} */}
-        </div>
+        )} *
+        </div> */}
       <div
         className={`menu-item ad-menu-item ${
           isProductMenuOpen ? "active" : ""
