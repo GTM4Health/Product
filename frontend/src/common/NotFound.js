@@ -8,7 +8,7 @@ const NotFoundPage = () => {
   const isAuthenticated = useAuth();
   const [user, setUser] = useState(null);
   const quotes = [
-    "This page is currently under Construction."
+    "This page is currently under Construction. Stay tuned!"
     // "The page you're looking for seems to have taken a little wellness break.",
     // "Oops! It looks like the link you followed is on a temporary vacation.",
     // "We apologize, but it seems the digital stethoscope couldn't locate this page.",
@@ -36,7 +36,7 @@ const NotFoundPage = () => {
     <Header2 user={user} />
     <div className="not-found-page">
       <div className="not-found-content">
-        <h1 className="not-found-title">404 - Page Not Found</h1>
+        <h5 className="not-found-title">Coming Soon!</h5>
         <p className="not-found-description">
           {randomQuote}
         </p>

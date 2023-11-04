@@ -112,6 +112,13 @@ const PartnersPage = () => {
           <div className="page-title">
             <h1 className="page-title-child">MedTech-Companies</h1>
           </div>
+          <a href="mailto:info@gtm4health.com">
+            <p className="hdblue-tag">
+              <i>
+              <center>If you need to connect to any GTM Partners in the below list, please drop us a note to "info@gtm4health.com"</center>
+              </i>
+            </p>
+          </a>
           <div className="filter-container">
             <label className="f-label" htmlFor="state-select">State:</label>
             <select id="state-select" value={selectedState} className="form-outline f-select" onChange={handleStateChange}>
@@ -168,7 +175,6 @@ const PartnersPage = () => {
                   <th>Role</th>
                   <th>Contact Email</th>
                   <th>Contact Number</th>
-                  <th>GST No.</th>
                 </tr>
               </thead>
               <tbody>
@@ -179,14 +185,13 @@ const PartnersPage = () => {
                     <td>{dealer.products}</td>
                     <td>{dealer.state}</td>
                     <td>{dealer.city}</td>
-                    <td>{dealer.pincode}</td>
                     <td>{dealer.address}</td>
+                    <td>{dealer.pincode}</td>
                     <td>{dealer.web}</td>
                     <td>{dealer.dealerName}</td>
                     <td>{dealer.role}</td>
                     <td>{dealer.mail}</td>
                     <td>{dealer.phone}</td>
-                    <td>{dealer.GST}</td>
                   </tr>
                 ))}
               </tbody>

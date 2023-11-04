@@ -515,7 +515,7 @@ button[type="submit"]:hover {
   background-color: #0077b6;
   color: white;
   width: 250px;
-  height: 120vh; /* Adjust the value based on the combined height of the header and footer */
+  height: 100vh; /* Adjust the value based on the combined height of the header and footer */
   position: absolute;
   left: 0;
   top: 150px; /* Adjust the value based on the header height */
@@ -527,7 +527,7 @@ button[type="submit"]:hover {
 }
 
 .ht-bar{
-  height: 140vh;
+  height: 127vh;
 }
 
 .menu-item {
@@ -1415,7 +1415,14 @@ form.hospital-f .hsubtn {
 /* Not Found*/
 
 .not-found-page {
-  background-image: url('https://wpklik.com/wp-content/uploads/2019/03/A-404-Page-Best-Practices-and-Design-Inspiration.jpg');
+  /* background-image: url('https://wpklik.com/wp-content/uploads/2019/03/A-404-Page-Best-Practices-and-Design-Inspiration.jpg');
+   */
+   background: linear-gradient(rgba(1, 76, 101, 1), transparent);
+   /* background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.3) 20%, transparent 70%),
+   radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 20%, transparent 70%),
+   radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.3) 20%, transparent 70%); */
+ background-blend-mode: overlay;
+  background-image: url('');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1423,6 +1430,7 @@ form.hospital-f .hsubtn {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 .not-found-content {
@@ -1471,6 +1479,7 @@ form.hospital-f .hsubtn {
 
 .pdf-list{
   line-height: 2.4;
+  font-size: 21px;
 }
 
 /* Dashboard.css */
@@ -1510,6 +1519,7 @@ form.hospital-f .hsubtn {
   padding: 10px;
   animation: roll 1.8s ease-in-out; /* Apply rolling animation */
 }
+
 
 @keyframes roll {
   0% {
@@ -1598,4 +1608,9 @@ form.hospital-f .hsubtn {
 .w10{
   width: 10% !important;
 }
+
+.usrbar{
+  height: 100vh;
+}
+
 /* You can customize these colors as desired */

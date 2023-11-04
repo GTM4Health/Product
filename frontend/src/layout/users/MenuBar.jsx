@@ -25,7 +25,7 @@ const MenuBar = () => {
   };
 
   return (
-    <div className="adbar">
+    <div className="adbar usrbar">
       <div
         className={`menu-item ${
           isHealthcareCentresMenuOpen ? "active" : ""

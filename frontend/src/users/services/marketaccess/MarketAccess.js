@@ -114,6 +114,14 @@ const MarketAccess = () => {
                 Healthcare Centres List - City Wise
             </h1>
           </div>
+          {/* Create a clickable link that redirects to an email */}
+          <a href="mailto:info@gtm4health.com">
+            <p className="hdblue-tag">
+              <i>
+              <center>If you need to connect to any GTM Partners in the below list, please drop us a note to "info@gtm4health.com"</center>
+              </i>
+            </p>
+          </a>
           <div className="filter-container">
             <label className="f-label" htmlFor="stateFilter">State:</label>
             <select

@@ -84,9 +84,7 @@ const MarketInsights = () => {
             <h1 className="page-title-child underline">Market Insight Reports</h1>
           </div>
           <hr/>
-          <div className="main-space">
-           
-          </div>          
+         
           {/* <PdfViewer currentPage={currentPage} onLoadSuccess={handleDocumentLoadSuccess} />
           <div className="page-navigation">
             <button onClick={goToPreviousPage} disabled={currentPage === 1}>

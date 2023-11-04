@@ -79,6 +79,13 @@ const MarketAccessAll = () => {
               Healthcare Centres List
           </h1>
           </div>
+          <a href="mailto:info@gtm4health.com">
+            <p className="hdblue-tag">
+              <i>
+              <center>If you need to connect to any GTM Partners in the below list, please drop us a note to "info@gtm4health.com"</center>
+              </i>
+            </p>
+          </a>
           <div className="page-jump w10">
               <label htmlFor="page-selector">Go to Page:</label>
               <select
