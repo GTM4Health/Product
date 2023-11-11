@@ -756,6 +756,7 @@ form.hospital-f .hsubtn {
   margin: auto;
   align-self: auto;
   padding-bottom: 2rem;
+  color: #0077b6
 }
 
 .main-space{
@@ -1422,7 +1423,6 @@ form.hospital-f .hsubtn {
    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 20%, transparent 70%),
    radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.3) 20%, transparent 70%); */
  background-blend-mode: overlay;
-  background-image: url('');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1612,5 +1612,24 @@ form.hospital-f .hsubtn {
 .usrbar{
   height: 100vh;
 }
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px;
+}
+
+.search-button {
+  background-color: #007bff; /* Example background color */
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
 
 /* You can customize these colors as desired */

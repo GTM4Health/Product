@@ -7,45 +7,122 @@ import { PDFViewer, PDFDownloadLink, Document, Page, Text, View, StyleSheet, Ima
 import EditStartupForm from "./AdminUpdateStartup";
 import axios from "axios";
 import { Button } from "bootstrap";
+import logo from "../../../images/newlogo.png";
 
-    //style
+// Styles for the PDF
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
-    padding: 20,
+    padding: 12,
   },
   header: {
-    fontSize: 20,
+    fontSize: 14,
     marginBottom: 10,
   },
-  row: {
-    flexDirection: 'row',
-    borderBottomColor: '#000',
-    borderBottomWidth: 1,
-    alignItems: 'center',
+  table: {
+    display: 'table',
+    width: '100%',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRightColor: 'black',
+    borderBottomColor: 'black',
+    marginTop: 40, // Add margin to create a gap
   },
-  cell: {
+  tableRow: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+  },
+  tableCell: {
     flex: 1,
-    padding: 8,
+    padding: 4,
+    textAlign: 'center',
+    fontSize: 10,
+  },
+  headerCell: {
+    flex: 1,
+    padding: 4,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    backgroundColor: '#0077b6',
+    color: 'white',
+    fontSize: 10,
+  },
+  smallHeaderCell:{
+    textAlign: 'center',
+    fontWeight: 'bold',
+    backgroundColor: '#0077b6',
+    color: 'white',
+    fontSize: 8,
+  },
+  smallCell:{
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 8,
+    padding: 2,
+  },
+  borderRight: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 10,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  logoContainer: {
+    position: 'absolute',
+    top: 30, // Adjust the top value to create space between the logo and the table
+    right: 30,
+  },
+  gap: {
+    height: 20, // Adjust the height to create a gap below the logo
+  },
+  section: {
+    margin: 2,
+    padding: 1,
+    flexGrow: 1,
+  },
+  logo: {
+    width: 150,
+    height: 50,
   },
 });
-// Define the MyDocument component outside the generatePDF function
+
+
 const MyDocument = ({ startupData }) => (
   <Document>
     <Page style={styles.page}>
       <Text style={styles.header}>Startup List</Text>
-      {startupData.map((startup) => (
-        <View style={styles.row} key={startup.slNo}>
-          <Text style={styles.cell}>{startup.slNo}</Text>
-          <Text style={styles.cell}>{startup.startupName}</Text>
-          <Text style={styles.cell}>{startup.website}</Text>
-          <Text style={styles.cell}>{startup.productStage}</Text>
-          <Text style={styles.cell}>{startup.domain}</Text>
+      <View style={styles.logoContainer}>
+          <Image src={logo} style={styles.logo} />
+      </View>
+      <View style={styles.gap} />
+      <View style={styles.table}>
+        <View style={styles.tableRow}>
+          <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Startup Name</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Website</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Product Stage</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Domain</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Progress</Text>
         </View>
-      ))}
+        {startupData.map((startup, index) => (
+          <View style={styles.tableRow} key={startup.slNo}>
+            <Text style={[styles.smallCell, styles.borderRight]}>{index + 1}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{startup.startupName}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{startup.website}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{startup.productStage}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{startup.domain}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{startup.progress}</Text>
+          </View>
+        ))}
+      </View>
     </Page>
   </Document>
 );
+
+
+
+
 
 
 const StartupPortal = () => {
@@ -57,12 +134,37 @@ const StartupPortal = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedStartup, setSelectedStartup] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
 
   useEffect(() => {
     if (isAuthenticated) {
       fetchStartups();
     }
   }, [isAuthenticated, currentPage]);
+
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+// Modify the filteredStartups to filter based on the searchQuery in all fields
+
+const filteredStartups = startups.filter((startup) => {
+  const startupData = [
+    startup.startupName,
+    startup.website,
+    startup.productStage,
+    startup.domain,
+    startup.progress,
+  ];
+
+  // We use optional chaining (?.) to prevent errors if a field is undefined
+  return startupData
+    .some((field) =>
+      field?.toLowerCase()?.includes(searchQuery.toLowerCase())
+    );
+});
+
 
   const fetchStartups = async () => {
     let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Startups/startups-portal?`;
@@ -172,7 +274,9 @@ const StartupPortal = () => {
   };
   
 
-  const displayedStartups = startups;
+
+  // Update displayedStartups based on the search query
+  const displayedStartups = searchQuery ? filteredStartups : startups;
 
   return (
     <div className="page-view">
@@ -186,6 +290,28 @@ const StartupPortal = () => {
           {/* <button className="print-pdf-button" onClick={generatePDF}>
             Generate PDF
           </button> */}
+          <div className="page-display">
+          <div className="pagination-buttons">
+            {!isFirstPage && (
+              <button className="prev-button" onClick={handlePrevPage}>
+                &laquo; Prev
+              </button>
+            )}
+            {!isLastPage && (
+              <button className="next-button" onClick={handleNextPage}>
+                Next &raquo;
+              </button>
+            )}
+          </div>
+          </div>
+          <div className="page-display">
+            <h4 className="total-rows">Total Startups = {totalRows}</h4>
+            <h4 className="right">
+              <i>
+                Displaying Page {currentPage} of {totalPages}
+              </i>
+            </h4>
+          </div>
           <button>
           <PDFDownloadLink document={<MyDocument startupData={startups} />} fileName="startup-list.pdf">
             {({ blob, url, loading, error }) => {
@@ -199,14 +325,20 @@ const StartupPortal = () => {
             }}
           </PDFDownloadLink>
           </button>
-          <div className="page-display">
-            <h4 className="total-rows">Total Startups = {totalRows}</h4>
-            <h4 className="right">
-              <i>
-                Displaying Page {currentPage} of {totalPages}
-              </i>
-            </h4>
-          </div>
+          <div className="page-jump w10">
+              <label htmlFor="page-selector">Go to Page:</label>
+              <select
+                id="page-selector"
+                value={currentPage}
+                onChange={(e) => setCurrentPage(parseInt(e.target.value))}
+              >
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <option key={index + 1} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
           <div className="table-content">
             <table className="user-table">
               <thead>

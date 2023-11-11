@@ -82,7 +82,7 @@ const MarketAccessAll = () => {
           <a href="mailto:info@gtm4health.com">
             <p className="hdblue-tag">
               <i>
-              <center>If you need to connect to any GTM Partners in the below list, please drop us a note to "info@gtm4health.com"</center>
+              <center>If you need to connect to any Healthcare Centres in the below list, please drop us a note to "info@gtm4health.com"</center>
               </i>
             </p>
           </a>

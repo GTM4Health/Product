@@ -45,7 +45,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home3 />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard"element={<Dashboard />} />
@@ -72,8 +72,8 @@ export default function App() {
         <Route path='admin/dashboard/View-Startups' element={<StartupPortal />} />
         <Route path='admin/dashboard/Create-Project' element={<CreateProject />} />
         <Route path='admin/dashboard/Update-Project' element={<UpdateProject />} />
-        <Route path='/home' element={<Home2 />} />
-        <Route path='/home-2' element = {<Home3 />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/home-2' element = {<Home2 />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path='/termsofuse' element={<Terms />} />
