@@ -187,11 +187,11 @@ const pieChartData = {
               </tr> */}
             </table>
             </div>
-            {chartData && (
+            {/* {chartData && (
                 <div className="pie-chart-container">
                   <Pie data={chartData} />
                 </div>
-              )}
+              )} */}
         </div>
       </div>
       <Footer />
