@@ -1609,6 +1609,10 @@ form.hospital-f .hsubtn {
   width: 10% !important;
 }
 
+.w30{
+  width: 20% !important;
+}
+
 .usrbar{
   height: 100vh;
 }
@@ -1619,7 +1623,7 @@ form.hospital-f .hsubtn {
 }
 
 .search-input {
-  flex: 1;
+  /* flex: 1; */
   padding: 8px;
 }
 
@@ -1629,6 +1633,31 @@ form.hospital-f .hsubtn {
   border: none;
   padding: 8px 12px;
   cursor: pointer;
+}
+
+.no-records-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(to right, #0077b6, #00557e); /* Blue to Dark Blue gradient */
+  color: #fff; /* Text color */
+  padding: 20px;
+  border-radius: 8px;
+  animation: fadeInOut 2.8s ease-in-out; /* Fade-in and fade-out animation */
+
+  /* Additional styles for better aesthetics */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0; /* Start and end with opacity 0 */
+  }
+  10%, 90% {
+    opacity: 1; /* Fade in and stay visible for 80% of the time */
+  }
 }
 
 

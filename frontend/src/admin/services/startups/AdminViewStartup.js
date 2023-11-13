@@ -9,6 +9,7 @@ import axios from "axios";
 import { Button } from "bootstrap";
 import logo from "../../../images/newlogo.png";
 
+
 // Styles for the PDF
 const styles = StyleSheet.create({
   page: {
@@ -135,6 +136,9 @@ const StartupPortal = () => {
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedStartup, setSelectedStartup] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchCriteria, setSearchCriteria] = useState("startupName"); // Default criteria is "Startup Name"
+  const [showNoRecordsPopup, setShowNoRecordsPopup] = useState(false);
+
 
 
   useEffect(() => {
@@ -147,23 +151,46 @@ const StartupPortal = () => {
     setSearchQuery(event.target.value);
   };
 
+
+
+  const filteredStartups = startups.filter((startup) => {
+    const fieldValue = startup[searchCriteria];
+    return (
+      fieldValue &&
+      fieldValue.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
+  
+  // Set the flag if no records are found
+  useEffect(() => {
+    setShowNoRecordsPopup(filteredStartups.length === 0);
+  }, [filteredStartups]);
+
+  const NoRecordsPopup = () => (
+    <div className="no-records-popup">
+      <p>No records found for the given search criteria.</p>
+    </div>
+  );
+  
+  
+
 // Modify the filteredStartups to filter based on the searchQuery in all fields
 
-const filteredStartups = startups.filter((startup) => {
-  const startupData = [
-    startup.startupName,
-    startup.website,
-    startup.productStage,
-    startup.domain,
-    startup.progress,
-  ];
+// const filteredStartups = startups.filter((startup) => {
+//   const startupData = [
+//     startup.startupName,
+//     startup.website,
+//     startup.productStage,
+//     startup.domain,
+//     startup.progress,
+//   ];
 
-  // We use optional chaining (?.) to prevent errors if a field is undefined
-  return startupData
-    .some((field) =>
-      field?.toLowerCase()?.includes(searchQuery.toLowerCase())
-    );
-});
+//   // We use optional chaining (?.) to prevent errors if a field is undefined
+//   return startupData
+//     .some((field) =>
+//       field?.toLowerCase()?.includes(searchQuery.toLowerCase())
+//     );
+// });
 
 
   const fetchStartups = async () => {
@@ -272,12 +299,19 @@ const filteredStartups = startups.filter((startup) => {
       </Button>
     );
   };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+  
   
 
 
   // Update displayedStartups based on the search query
   const displayedStartups = searchQuery ? filteredStartups : startups;
 
+
+  
   return (
     <div className="page-view">
       <AdminHeader />
@@ -290,7 +324,6 @@ const filteredStartups = startups.filter((startup) => {
           {/* <button className="print-pdf-button" onClick={generatePDF}>
             Generate PDF
           </button> */}
-          <div className="page-display">
           <div className="pagination-buttons">
             {!isFirstPage && (
               <button className="prev-button" onClick={handlePrevPage}>
@@ -302,7 +335,6 @@ const filteredStartups = startups.filter((startup) => {
                 Next &raquo;
               </button>
             )}
-          </div>
           </div>
           <div className="page-display">
             <h4 className="total-rows">Total Startups = {totalRows}</h4>
@@ -324,7 +356,37 @@ const filteredStartups = startups.filter((startup) => {
               return 'Generate PDF';
             }}
           </PDFDownloadLink>
+          
           </button>
+
+          <div class="search-container">
+              <label for="search-criteria">Search :</label>
+              <select
+                value={searchCriteria}
+                placeholder="Criteria"
+                onChange={(e) => setSearchCriteria(e.target.value)}
+                className="search-criteria w30"
+              >
+                <option value="startupName">Startup Name</option>
+                <option value="website">Website</option>
+                <option value="productStage">Product Stage</option>
+                <option value="domain">Domain</option>
+                <option value="progress">Progress</option>
+              </select>
+              <input
+                id="search-input"
+                type="text"
+                placeholder={`Enter ${capitalizeFirstLetter(searchCriteria)}`}
+                value={searchQuery}
+                className="search-input w30"
+                onChange={handleSearchInputChange}
+              />
+              <button className="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+
+
           <div className="page-jump w10">
               <label htmlFor="page-selector">Go to Page:</label>
               <select
@@ -339,6 +401,7 @@ const filteredStartups = startups.filter((startup) => {
                 ))}
               </select>
             </div>
+          {showNoRecordsPopup && <NoRecordsPopup />}
           <div className="table-content">
             <table className="user-table">
               <thead>

@@ -3,6 +3,7 @@ import Footer from "../../layout/pages/Footer";
 import AdminMenuBar from "../../layout/admin/AdminMenubar";
 import useAuth from "../../hooks/useAuth";
 import AdminHeader from "../../layout/admin/AdminHeader";
+import AdminUpdateUserForm from "./AdminUpdateUsers";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 
@@ -14,6 +15,8 @@ function AdminDashboard() {
   const [pageSize, setPageSize] = useState(10);
   const [totalRows, setTotalRows] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [editFormVisible, setEditFormVisible] = useState(false);
 
   const myPieChartRef = useRef(); // Use a ref for Chart.js instance
 
@@ -86,6 +89,43 @@ function AdminDashboard() {
   if (!isAuthenticated) {
     return null;
   }
+  const handleDeleteUser = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this user?");
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/users/delete-user/${id}`);
+      setUsers(users.filter((user) => user._id !== id));
+      console.log("User deleted successfully");
+    } catch (error) {
+      console.error(error);
+      console.log("Error deleting user");
+    }
+  };
+
+  const handleEditUser = (user) => {
+    setSelectedUser(user);
+    setEditFormVisible(true);
+  };
+
+  const handleUpdateUser = async (id, updatedData) => {
+    try {
+      const requestData = {
+        data: updatedData,
+      };
+
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/users/update-user/${id}`, requestData);
+      setEditFormVisible(false);
+      setSelectedUser(null);
+      fetchUsers();
+      console.log("User updated successfully");
+    } catch (error) {
+      console.error(error);
+      console.log("Error updating user");
+    }
+  };
 
   const pieChartData = {
     labels: ["Total Users"],
@@ -150,6 +190,7 @@ function AdminDashboard() {
                 {/* <th>Phone</th>
                 <th>Role</th> */}
                 <th>Activated Date & Time</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -161,6 +202,14 @@ function AdminDashboard() {
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
                   <td>{user.activationTime}</td>
+                  <td>
+                      <button className="edit-button" onClick={() => handleEditUser(user)}>
+                        <i className="fas fa-pencil-alt"></i>
+                      </button>
+                      <button className="delete-button" onClick={() => handleDeleteUser(user._id)}>
+                        <i className="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                </td>
                 </tr>
               ))}
             </tbody>
@@ -179,6 +228,13 @@ function AdminDashboard() {
           )}
         </div>
       </div>
+      {editFormVisible && (
+        <AdminUpdateUserForm
+          user={selectedUser}
+          onUpdate={(id, updatedData) => handleUpdateUser(id, updatedData)}
+          onCancel={() => setEditFormVisible(false)}
+        />
+      )}
       <Footer />
     </div>
   );

@@ -103,9 +103,6 @@ Chart.register(ArcElement);
   };
 
    
-
-
-  // Define data for the pie chart
 // Define data for the pie chart
 const pieChartData = {
   labels: ["Total Hospitals", "Total Dealers", "Total Startups", "Total Users"],
@@ -137,7 +134,7 @@ const pieChartData = {
 
             <table className="stats-table">
               <tr>
-                <th className="header-cell" colSpan={3}>Dashboard Analytics</th>
+                <th className="header-cell" colSpan={4}>Dashboard Analytics</th>
               </tr>
               <tr><th> </th></tr>
               <tr><th> </th></tr>
@@ -151,6 +148,9 @@ const pieChartData = {
               <tr><th> </th></tr>
               <tr><th> </th></tr>
               <tr>
+                <td className="category-heading" colSpan="1">
+                  Total Users
+                </td>
                 <td className="category-heading" colSpan="1">
                   Total Healthcare Centres
                 </td>
@@ -162,6 +162,9 @@ const pieChartData = {
                 </td>
               </tr>
               <tr>
+                <td className="data-cell" colSpan="1">
+                  {totalUsers}
+                </td>
                 <td className="data-cell" colSpan="1">
                   {totalHospitals}
                 </td>
@@ -184,11 +187,11 @@ const pieChartData = {
               </tr> */}
             </table>
             </div>
-            {/* {chartData && (
+            {chartData && (
                 <div className="pie-chart-container">
                   <Pie data={chartData} />
                 </div>
-              )} */}
+              )}
         </div>
       </div>
       <Footer />
