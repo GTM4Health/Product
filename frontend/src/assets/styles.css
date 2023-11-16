@@ -1644,21 +1644,13 @@ form.hospital-f .hsubtn {
   color: #fff; /* Text color */
   padding: 20px;
   border-radius: 8px;
-  animation: fadeInOut 2.8s ease-in-out; /* Fade-in and fade-out animation */
 
   /* Additional styles for better aesthetics */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1000;
 }
 
-@keyframes fadeInOut {
-  0%, 100% {
-    opacity: 0; /* Start and end with opacity 0 */
-  }
-  10%, 90% {
-    opacity: 1; /* Fade in and stay visible for 80% of the time */
-  }
-}
+
 
 
 /* You can customize these colors as desired */

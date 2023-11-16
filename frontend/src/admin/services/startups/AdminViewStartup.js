@@ -141,11 +141,14 @@ const StartupPortal = () => {
 
 
 
+
   useEffect(() => {
     if (isAuthenticated) {
       fetchStartups();
+      if(searchQuery)
+        setShowNoRecordsPopup(filteredStartups.length === 0);
     }
-  }, [isAuthenticated, currentPage]);
+  }, [isAuthenticated, currentPage,filteredStartups]);
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -161,10 +164,7 @@ const StartupPortal = () => {
     );
   });
   
-  // Set the flag if no records are found
-  useEffect(() => {
-    setShowNoRecordsPopup(filteredStartups.length === 0);
-  }, [filteredStartups]);
+
 
   const NoRecordsPopup = () => (
     <div className="no-records-popup">
@@ -193,22 +193,30 @@ const StartupPortal = () => {
 // });
 
 
-  const fetchStartups = async () => {
-    let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Startups/startups-portal?`;
-  
-    const params = new URLSearchParams();
-    params.append('page', currentPage);
-    params.append('limit', pageSize);
-  
-    try {
-      const response = await axios.get(url + params.toString());
-      setStartups(response.data.startups);
-      setTotalRows(response.data.totalRows);
-      setTotalPages(response.data.totalPages);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+// Modify the fetchStartups function
+const fetchStartups = async () => {
+  let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Startups/startups-portal?`;
+
+  const params = new URLSearchParams();
+  params.append('page', currentPage);
+  params.append('limit', pageSize);
+
+  if (searchQuery) {
+    params.append('searchCriteria', searchCriteria);
+    params.append('searchQuery', searchQuery);
+  }
+
+  try {
+    const response = await axios.get(url + params.toString());
+    setStartups(response.data.startups);
+    setTotalRows(response.data.totalRows);
+    setTotalPages(response.data.totalPages);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
   
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
@@ -309,7 +317,6 @@ const StartupPortal = () => {
 
   // Update displayedStartups based on the search query
   const displayedStartups = searchQuery ? filteredStartups : startups;
-
 
   
   return (
