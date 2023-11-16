@@ -128,7 +128,7 @@ const AdminMenuBar = () => {
               </a>
             </div>
             <div className="og-tag">
-              <a href="/admin/dashboard/User-Dashboard" className="sub-menu-item menu-link">
+              <a href="/admin/dashboard/Pan-India-Dashboard" className="sub-menu-item menu-link">
                 <i className="fas fa-map-marked-alt sub-menu-icon"></i>
                 <span className="menu-text">Pan India Dashboard</span>
               </a>
