@@ -121,11 +121,20 @@ const AdminMenuBar = () => {
           <span className="menu-text">Dashboard</span>
           {isDashBoardMenuOpen && (
           <div className="sub-menu healthcare-menu og-tag">
-            <a href="/admin/dashboard/User-Dashboard" className="sub-menu-item menu-link">
-              <i className="fas fa-users sub-menu-icon"></i>
-              <span className="menu-text">User Dashboard</span>
-            </a>
+            <div className="og-tag">
+              <a href="/admin/dashboard/User-Dashboard" className="sub-menu-item menu-link">
+                <i className="fas fa-users sub-menu-icon"></i>
+                <span className="menu-text">User Dashboard</span>
+              </a>
+            </div>
+            <div className="og-tag">
+              <a href="/admin/dashboard/User-Dashboard" className="sub-menu-item menu-link">
+                <i className="fas fa-map-marked-alt sub-menu-icon"></i>
+                <span className="menu-text">Pan India Dashboard</span>
+              </a>
+            </div>
           </div>
+          
         )}
         </div>
       {/* </a> */}
