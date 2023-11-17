@@ -128,7 +128,7 @@ const MarketAccessAll = () => {
                   <th>State</th>
                   <th>City</th>
                   {/* <th>Doctor Name</th> */}
-                  <th>Specialization</th>
+                  <th>Speciality</th>
                   {/* <th>Contact Email</th>
                   <th>Contact Number</th> */}
                 </tr>
@@ -142,7 +142,8 @@ const MarketAccessAll = () => {
                     <td>{hospital.state}</td>
                     <td>{hospital.city}</td>
                     {/* <td>{hospital.docName}</td> */}
-                    <td>{hospital.docSpez}</td>
+                    {/* <td>{hospital.docSpez}</td> */}
+                    <td>{hospital.speciality}</td>
                     {/* <td>{hospital.mail}</td>
                     <td>{hospital.phone}</td> */}
                   </tr>
