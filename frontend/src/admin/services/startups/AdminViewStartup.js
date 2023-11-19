@@ -141,14 +141,13 @@ const StartupPortal = () => {
 
 
 
-
   useEffect(() => {
     if (isAuthenticated) {
       fetchStartups();
-      if(searchQuery)
-        setShowNoRecordsPopup(filteredStartups.length === 0);
+      setShowNoRecordsPopup(filteredStartups.length === 0);
     }
-  }, [isAuthenticated, currentPage,filteredStartups]);
+  }, [isAuthenticated, currentPage, pageSize, searchQuery, searchCriteria, filteredStartups]);
+  
 
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
@@ -164,13 +163,18 @@ const StartupPortal = () => {
     );
   });
   
+  
 
 
-  const NoRecordsPopup = () => (
-    <div className="no-records-popup">
-      <p>No records found for the given search criteria.</p>
-    </div>
-  );
+  const NoRecordsPopup = () => {
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setShowNoRecordsPopup(false);
+      }, 3000);
+  
+      return () => clearTimeout(timer); // Clear the timer on component unmount
+    }, []);
+  }
   
   
 
@@ -215,6 +219,7 @@ const fetchStartups = async () => {
     console.error(error);
   }
 };
+
 
 
   
@@ -366,32 +371,32 @@ const fetchStartups = async () => {
           
           </button>
 
-          <div class="search-container">
-              <label for="search-criteria">Search :</label>
-              <select
-                value={searchCriteria}
-                placeholder="Criteria"
-                onChange={(e) => setSearchCriteria(e.target.value)}
-                className="search-criteria w30"
-              >
-                <option value="startupName">Startup Name</option>
-                <option value="website">Website</option>
-                <option value="productStage">Product Stage</option>
-                <option value="domain">Domain</option>
-                <option value="progress">Progress</option>
-              </select>
-              <input
-                id="search-input"
-                type="text"
-                placeholder={`Enter ${capitalizeFirstLetter(searchCriteria)}`}
-                value={searchQuery}
-                className="search-input w30"
-                onChange={handleSearchInputChange}
-              />
-              <button className="search-button">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
+          <div className="search-container">
+            <label htmlFor="search-criteria">Search :</label>
+            <select
+              value={searchCriteria}
+              onChange={(e) => setSearchCriteria(e.target.value)}
+              className="search-criteria w30"
+            >
+              <option value="startupName">Startup Name</option>
+              <option value="website">Website</option>
+              <option value="productStage">Product Stage</option>
+              <option value="domain">Domain</option>
+              <option value="progress">Progress</option>
+            </select>
+            <input
+              id="search-input"
+              type="text"
+              placeholder={`Enter ${capitalizeFirstLetter(searchCriteria)}`}
+              value={searchQuery}
+              className="search-input w30"
+              onChange={handleSearchInputChange}
+            />
+            <button className="search-button" onClick={fetchStartups}>
+              <i className="fas fa-search"></i>
+            </button>
+          </div>
+
 
 
           <div className="page-jump w10">

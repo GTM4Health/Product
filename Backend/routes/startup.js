@@ -59,11 +59,15 @@ router.put('/update-startup/:id', async (req, res) => {
 });
 
 // Routes
+
+// Routes
 router.get(
   '/startups-portal/',
   [
     query('page').optional().isInt({ min: 1 }).toInt(),
     query('limit').optional().isInt({ min: 1 }).toInt(),
+    query('searchQuery').optional().isString(),
+    query('searchCriteria').optional().isString(),
   ],
   async (req, res) => {
     // Validate request query parameters
@@ -73,18 +77,20 @@ router.get(
     }
 
     try {
-      const { page = 1, limit = 10 } = req.query;
+      const { page = 1, limit = 10, searchQuery, searchCriteria } = req.query;
 
-      // Calculate skip value for pagination
       const skip = (parseInt(page) - 1) * parseInt(limit);
 
-      // Execute the query with pagination
-      const startups = await Startup.find()
+      let query = {};
+      if (searchQuery && searchCriteria) {
+        query[searchCriteria] = { $regex: new RegExp(searchQuery, 'i') };
+      }
+
+      const startups = await Startup.find(query)
         .skip(skip)
         .limit(parseInt(limit));
 
-      // Count total documents for pagination
-      const totalStartups = await Startup.countDocuments();
+      const totalStartups = await Startup.countDocuments(query);
 
       res.json({
         startups,

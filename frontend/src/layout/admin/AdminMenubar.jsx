@@ -289,16 +289,16 @@ const AdminMenuBar = () => {
         ref={editContentMenuRef}
       >
         <i className="fas fa-edit menu-icon"></i> {/* Icon for "Edit Content" */}
-        <span className="menu-text">Manage Content</span>
+        <span className="menu-text">Manage Market Insights Reports</span>
         {isEditContentMenuOpen && (
           <div className="sub-menu edit-content-menu">
             <a href="/admin/dashboard/Add-Content" className="sub-menu-item menu-link">
               <i className="fas fa-plus sub-menu-icon"></i>
-              <span className="menu-text">Add Content</span>
+              <span className="menu-text">Add Market Insights Reports</span>
             </a>
             <a href="/admin/dashboard/View-Content" className="sub-menu-item menu-link">
               <i className="fas fa-eye sub-menu-icon"></i>
-              <span className="menu-text">View Content</span>
+              <span className="menu-text">View Market Insights Reports</span>
             </a>
           </div>
         )}

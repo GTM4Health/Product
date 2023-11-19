@@ -37,7 +37,7 @@ const AddContent = () => {
       <AdminMenuBar />
       <div className="d-content">
         <div className="dashboard">
-          <h2 className="page-title">Add Content</h2>
+          <h2 className="page-title">Add Market Insight Reports</h2>
           <input type="file" onChange={handleFileChange} />
           <button onClick={handleUpload}>Upload PDF</button>
         </div>

@@ -27,7 +27,7 @@ const ViewContent = () => {
       <AdminMenuBar />
       <div className="d-content">
         <div className="dashboard">
-          <h2 className="page-title">View Content</h2>
+          <h2 className="page-title">View Market Insight Reports</h2>
           <ul className="pdf-list">
             {pdfFiles.map((pdfFile, index) => (
               <li key={index} className="pdf-item">

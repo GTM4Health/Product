@@ -3,7 +3,7 @@ import Footer from "../../../layout/pages/Footer"
 import AdminMenuBar from "../../../layout/admin/AdminMenubar";
 import useAuth from "../../../hooks/useAuth";
 import AdminHeader from "../../../layout/admin/AdminHeader";
-
+import specialitiesData from "../../../assets/specialities.json";
 import axios from "axios";
 import EditHospitalForm from "./AdminUpdateHosp"
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions";
@@ -29,6 +29,8 @@ const CityPortal = () => {
   const [selectedCity, setSelectedCity] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [displayedHospital, setDisplayedHospital] = useState(hospitals);
+  const [selectedSpeciality, setSelectedSpeciality] = useState("all");
+
 
 
 
@@ -36,11 +38,17 @@ const CityPortal = () => {
     if (isAuthenticated) {
       fetchHospitals();
     }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality]);
+  
 
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedState]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedSpeciality]);
+  
 
   const fetchHospitals = async () => {
     let url = `${process.env.REACT_APP_BASE_URL}/api/hospital-portal?`;
@@ -57,6 +65,11 @@ const CityPortal = () => {
       params.append('city', selectedCity);
     }
   
+    // Add the speciality parameter
+    if (selectedSpeciality !== 'all') {
+      params.append('speciality', selectedSpeciality);
+    }
+  
     try {
       const response = await axios.get(url + params.toString());
       setHospitals(response.data.hospitals);
@@ -66,6 +79,7 @@ const CityPortal = () => {
       console.error(error);
     }
   };
+  
   
   
   
@@ -139,9 +153,18 @@ const CityPortal = () => {
   const handleClearFilters = () => {
     setSelectedState("all");
     setSelectedCity("all");
+    setSelectedSpeciality("all"); // Reset speciality to "all"
     setCurrentPage(1);
+    fetchHospitals(); // Reload hospitals with cleared filters
   };
+  
 
+  const specialityOptions = specialitiesData.specialities.map((speciality, index) => (
+    <option key={index} value={speciality}>
+      {speciality}
+    </option>
+  ));
+  
   if (!isAuthenticated) {
     // Optional: Show a loading state or return null while checking authentication
     return null;
@@ -160,6 +183,11 @@ const CityPortal = () => {
       setDisplayedHospital(filteredHospitals);
     };
   
+    const handleSpecialityChange = (event) => {
+      setSelectedSpeciality(event.target.value);
+      setCurrentPage(1); // Assuming you want to reset the page when the speciality changes
+    };
+    
     const clearSearchResults = () => {
       setSearchQuery("");
       setDisplayedHospital(hospitals);
@@ -214,11 +242,24 @@ const CityPortal = () => {
                 </option>
               ))}
             </select>
-            <div className="page-jump">
+            <label className="f-label" htmlFor="speciality-select">
+                Speciality:
+              </label>
+                <select
+                  className="f-select"
+                  id="speciality-select"
+                  value={selectedSpeciality}
+                  onChange={handleSpecialityChange}
+                >
+                  <option value="all">All</option>
+                  {specialityOptions}
+              </select>
+            <div className="page-jump f-select">
               {/* <label htmlFor="page-selector">Go to Page:</label> */}
               <select
                 id="page-selector"
                 value={currentPage}
+                className="f-select"
                 onChange={(e) => setCurrentPage(parseInt(e.target.value))}
               >
                 {Array.from({ length: totalPages }, (_, index) => (
@@ -227,9 +268,8 @@ const CityPortal = () => {
                   </option>
                 ))}
               </select>
-            </div>
-
             <button onClick={handleClearFilters}>Clear Filters</button>
+          </div>
           </div>
           <div className="page-display">
             <h4 className="total-rows ft5">Total Healthcare Centers = {totalRows}</h4>
