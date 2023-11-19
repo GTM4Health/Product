@@ -297,7 +297,7 @@ const fetchStartups = async () => {
   
     // Use the PDFDownloadLink to generate and download the PDF
     return (
-      <Button>
+      <Button variant="primary" className="search-button">
       <PDFDownloadLink document={<MyDocument startupData={startupData} />} fileName="startup-list.pdf">
         {({ blob, url, loading, error }) => {
           if (loading) {
@@ -356,8 +356,8 @@ const fetchStartups = async () => {
               </i>
             </h4>
           </div>
-          <button>
-          <PDFDownloadLink document={<MyDocument startupData={startups} />} fileName="startup-list.pdf">
+          <button variant="primary"className="search-button"  block>
+          <PDFDownloadLink document={<MyDocument startupData={startups} />} fileName="startup-list.pdf" className="search-button" >
             {({ blob, url, loading, error }) => {
               if (loading) {
                 return 'Loading document...';
@@ -387,7 +387,7 @@ const fetchStartups = async () => {
             <input
               id="search-input"
               type="text"
-              placeholder={`Enter ${capitalizeFirstLetter(searchCriteria)}`}
+              placeholder={`Enter ${capitalizeFirstLetter(searchCriteria).split(/(?=[A-Z])/).join(' ')}`}
               value={searchQuery}
               className="search-input w30"
               onChange={handleSearchInputChange}

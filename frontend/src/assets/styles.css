@@ -1212,6 +1212,24 @@ form.hospital-f .hsubtn {
   margin-right: .6rem;
 }
 
+.pdf-button-container {
+  margin-bottom: 20px;
+}
+
+.f-button {
+  background-color: #0077b6;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.f-button:hover {
+  background-color: #005678;
+}
+
 .home-button {
   /* background-color: #007bff; */
   /* background-color: #4cf; */
