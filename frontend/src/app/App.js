@@ -40,6 +40,8 @@ import AdminSettings from './../common/AdminSettings';
 import MarketInsights from '../users/services/marketinsights/MarketInsights';
 import LandingPage2 from '../users/home/LandingPage2';
 import HomePage from '../users/home/HomePage';
+import PanIndiaDash from '../admin/pages/PanIndiaDash';
+
 //Entry Function into the Product
 export default function App() {
   return (
@@ -84,6 +86,7 @@ export default function App() {
         <Route path='/admin/dashboard/Save-Project' element={<AdminSaveProject />} />
         <Route path='/admin/dashboard/Add-Content' element={<AddContent />} />
         <Route path='/admin/dashboard/View-Content' element={<ViewContent />} />
+        <Route path='/admin/dashboard/Pan-India-Dashboard' element={<PanIndiaDash />} />
         <Route path='/admin/help' element={<AdminHelpPage />} />
         <Route path='/admin/settings' element={<AdminSettings />} />
         <Route path='/dashboard/Access-GTM-Partners' element={<PartnersPage />} />

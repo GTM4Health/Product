@@ -57,6 +57,32 @@ router.get(
   }
 );
 
+
+
+router.get('/state-centers', async (req, res) => {
+  try {
+    // const stateCenters = await HospitalModel.aggregate([
+    //   { $group: { _id: '$state', totalCenters: { $sum: 1 } } },
+    // ]);
+    const stateCenters = await Hospital.aggregate([
+      { $match: { state: { $ne: undefined, $ne: 'all' } } },
+      { $group: { _id: '$state', totalCenters: { $sum: 1 } } },
+    ]);
+    
+
+    const formattedData = stateCenters.map((entry, index) => ({
+      id: index + 1,
+      state: entry._id,
+      totalCenters: entry.totalCenters,
+    }));
+
+    res.json(formattedData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 module.exports = router;
 
 // router.get(

@@ -4,7 +4,7 @@ import axios from 'axios';
 import Footer from "../layout/pages/Footer";
 import LogoHeader from '../layout/admin/Logoheader';
 
-console.log("process.env", process.env.REACT_APP_BASE_URL);
+// console.log("process.env", process.env.REACT_APP_BASE_URL);
 
 const AdminLoginPage = () => {
   const [email, setEmail] = useState('');
