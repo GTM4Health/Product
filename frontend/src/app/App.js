@@ -41,6 +41,8 @@ import MarketInsights from '../users/services/marketinsights/MarketInsights';
 import LandingPage2 from '../users/home/LandingPage2';
 import HomePage from '../users/home/HomePage';
 import PanIndiaDash from '../admin/pages/PanIndiaDash';
+import CompetitiveIntelligence from '../admin/services/intel/AdminCompIntel';
+import AdminNotFoundPage from '../admin/services/logs/AdminAuditlogs';
 
 //Entry Function into the Product
 export default function App() {
@@ -90,7 +92,9 @@ export default function App() {
         <Route path='/admin/help' element={<AdminHelpPage />} />
         <Route path='/admin/settings' element={<AdminSettings />} />
         <Route path='/dashboard/Access-GTM-Partners' element={<PartnersPage />} />
+        <Route path='/admin/competitive-intelligence'element = {<CompetitiveIntelligence />} />
         <Route path='*' element={<NotFoundPage />} />
+        <Route path='/admin/audit-logs' element={<AdminNotFoundPage />} />
       </Routes>
     </Router>
   );
