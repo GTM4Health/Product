@@ -11,7 +11,8 @@ const AdminMenuBar = () => {
   const [isGTMMenuOpen, setIsGTMMenuOpen] = useState(false);
   const [isEditContentMenuOpen, setIsEditContentMenuOpen] = useState(false); // New state
   const [isAuditLogsOpen, setIsAuditLogsOpen] = useState (false);
-  
+  const [isCompetitiveIntelMenuOpen, setIsCompetitiveIntelMenuOpen] = useState(false);
+ 
   const navigate = useNavigate();
   const dashboardMenuRef=useRef(null)
   const healthcareMenuRef = useRef(null);
@@ -22,6 +23,7 @@ const AdminMenuBar = () => {
   const gtmMenuRef = useRef(null);
   const editContentMenuRef = useRef(null); 
   const auditLogsOpen = useRef(null);
+  const competitiveIntelMenuRef = useRef(null);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -51,6 +53,9 @@ const AdminMenuBar = () => {
       }
       if (isAuditLogsOpen.current && !isAuditLogsOpen.current.contains(event.target)){
         setIsAuditLogsOpen(false);
+      }
+      if (competitiveIntelMenuRef.current && !competitiveIntelMenuRef.current.contains(event.target)) {
+        setIsCompetitiveIntelMenuOpen(false);
       }
     };
 
@@ -105,6 +110,11 @@ const AdminMenuBar = () => {
     if (!isAuditLogsOpen) {
       navigate('/admin/audit-logs');
     }
+  };
+
+  const handleCompetitiveIntelMenuClick = () => {
+    setIsCompetitiveIntelMenuOpen(!isCompetitiveIntelMenuOpen);
+    navigate('/admin/competitive-intelligence');
   };
 
   return (
@@ -302,6 +312,29 @@ const AdminMenuBar = () => {
             </a>
           </div>
         )}
+      </div>
+      <div
+        className={`menu-item ad-menu-item ${
+          isCompetitiveIntelMenuOpen ? "active" : ""
+        }`}
+        onClick={handleCompetitiveIntelMenuClick}
+        ref={competitiveIntelMenuRef}
+      >
+        <i className="fas fa-chart-line menu-icon"></i>
+        <span className="menu-text">Competitive Intelligence</span>
+        {/* {isCompetitiveIntelMenuOpen && (
+          <div className="sub-menu competitive-intel-menu">
+            {/* Add sub-menu items as needed *
+            <a href="/admin/dashboard/Intel-Item-1" className="sub-menu-item menu-link">
+              <i className="fas fa-check sub-menu-icon"></i>
+              <span className="menu-text">Intel Item 1</span>
+            </a>
+            <a href="/admin/dashboard/Intel-Item-2" className="sub-menu-item menu-link">
+              <i className="fas fa-check sub-menu-icon"></i>
+              <span className="menu-text">Intel Item 2</span>
+            </a>
+          </div>
+        ) */}
       </div>
       <div 
             className={`menu-item ad-menu-item og-tag ${
