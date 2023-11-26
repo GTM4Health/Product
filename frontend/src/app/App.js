@@ -43,6 +43,7 @@ import HomePage from '../users/home/HomePage';
 import PanIndiaDash from '../admin/pages/PanIndiaDash';
 import CompetitiveIntelligence from '../admin/services/intel/AdminCompIntel';
 import AdminNotFoundPage from '../admin/services/logs/AdminAuditlogs';
+import AdminViewCI from '../admin/services/intel/AdminViewCI';
 
 //Entry Function into the Product
 export default function App() {
@@ -93,6 +94,7 @@ export default function App() {
         <Route path='/admin/settings' element={<AdminSettings />} />
         <Route path='/dashboard/Access-GTM-Partners' element={<PartnersPage />} />
         <Route path='/admin/competitive-intelligence'element = {<CompetitiveIntelligence />} />
+        <Route path='/admin/view-competitive-intelligence'element = {<AdminViewCI />} />
         <Route path='*' element={<NotFoundPage />} />
         <Route path='/admin/audit-logs' element={<AdminNotFoundPage />} />
       </Routes>

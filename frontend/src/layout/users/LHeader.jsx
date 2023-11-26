@@ -12,9 +12,9 @@ const NewHeader = () => {
         <div className="toolbar">
             <Scale /> 
             <div className="buttons">
-                <SignUpButton />
+                {/* <SignUpButton /> */}
                 <LoginButton />
-                {/* <RequestDemoButton /> */}
+                <RequestDemoButton />
                 {/* //deprecated */}
             </div>
       </div>

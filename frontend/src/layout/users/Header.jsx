@@ -12,9 +12,9 @@ const Header = () => {
         <div className="toolbar">
             <Logo /> 
             <div className="buttons">
-                <SignUpButton />
+                {/* <SignUpButton /> */}
                 <LoginButton />
-                {/* <RequestDemoButton /> */}
+                <RequestDemoButton />
                 {/* //deprecated */}
             </div>
       </div>
