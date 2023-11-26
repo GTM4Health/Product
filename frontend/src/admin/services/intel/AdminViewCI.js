@@ -5,7 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 import AdminHeader from '../../../layout/admin/AdminHeader';
 import axios from 'axios';
 
-const CompetitiveIntelligencePortal = () => {
+const AdminViewCI = () => {
   const isAuthenticated = useAuth();
   const [competitiveData, setCompetitiveData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -129,4 +129,4 @@ const CompetitiveIntelligencePortal = () => {
   );
 };
 
-export default CompetitiveIntelligencePortal;
+export default AdminViewCI;
