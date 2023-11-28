@@ -47,5 +47,46 @@ router.get('/competitive-intelligence', async (req, res) => {
   }
 });
 
+// Update competitive intelligence by ID
+router.put('/up-competitive-intelligence/update-intel/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { data } = req.body;
+
+    // Validate data here if necessary
+
+    const updatedIntel = await Intel.findByIdAndUpdate(id, data, { new: true });
+
+    if (!updatedIntel) {
+      return res.status(404).json({ error: 'Competitive Intelligence not found' });
+    }
+
+    res.json(updatedIntel);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Delete competitive intelligence by ID
+router.delete('del-competitive-intelligence/delete-intel/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedIntel = await Intel.findByIdAndDelete(id);
+
+    if (!deletedIntel) {
+      return res.status(404).json({ error: 'Competitive Intelligence not found' });
+    }
+
+    res.json({ message: 'Competitive Intelligence deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+module.exports = router;
+
 
 module.exports = router;

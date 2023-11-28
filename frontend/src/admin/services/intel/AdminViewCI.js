@@ -4,6 +4,7 @@ import AdminMenuBar from '../../../layout/admin/AdminMenubar';
 import useAuth from '../../../hooks/useAuth';
 import AdminHeader from '../../../layout/admin/AdminHeader';
 import axios from 'axios';
+import AdminUpdateIntel from './AdminUpdateCI';
 
 const AdminViewCI = () => {
   const isAuthenticated = useAuth();
@@ -12,6 +13,8 @@ const AdminViewCI = () => {
   const [pageSize, setPageSize] = useState(10);
   const [totalRows, setTotalRows] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [editFormVisible, setEditFormVisible] = useState(false);
+  const [selectedIntel, setSelectedIntel] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -25,7 +28,6 @@ const AdminViewCI = () => {
         params: {
           page: currentPage,
           limit: pageSize,
-          // Add other parameters if needed
         },
       });
       setCompetitiveData(response.data.competitiveData);
@@ -54,6 +56,43 @@ const AdminViewCI = () => {
     }
   };
 
+  const handleEditIntel = (intel) => {
+    setSelectedIntel(intel);
+    setEditFormVisible(true);
+  };
+
+  const handleUpdateIntel = async (id, updatedData) => {
+    try {
+      const requestData = {
+        data: updatedData,
+      };
+
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/up-competitive-intelligence/update-intel/${id}`, requestData);
+      setEditFormVisible(false);
+      setSelectedIntel(null);
+      fetchCompetitiveIntelligence();
+      console.log("Competitive Intelligence updated successfully");
+    } catch (error) {
+      console.error(error);
+      console.log("Error updating competitive intelligence");
+    }
+  };
+
+  const handleDeleteIntel = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this competitive intelligence?");
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/del-competitive-intelligence/delete-intel/${id}`);
+      setCompetitiveData(competitiveData.filter((intel) => intel._id !== id));
+      console.log("Competitive Intelligence deleted successfully");
+    } catch (error) {
+      console.error(error);
+      console.log("Error deleting competitive intelligence");
+    }
+  };
 
   return (
     <div className="page-view">
@@ -96,6 +135,7 @@ const AdminViewCI = () => {
                   <th>Domain/Product</th>
                   <th>Competitor Info</th>
                   {/* Add other fields as needed */}
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -105,6 +145,14 @@ const AdminViewCI = () => {
                     <td>{intel.domain}</td>
                     <td>{intel.competitorInfo}</td>
                     {/* Add other fields as needed */}
+                    <td>
+                      <button className="edit-button" onClick={() => handleEditIntel(intel)}>
+                        <i className="fas fa-pencil-alt"></i>
+                      </button>
+                      <button className="delete-button" onClick={() => handleDeleteIntel(intel._id)}>
+                        <i className="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -122,6 +170,16 @@ const AdminViewCI = () => {
               </button>
             )}
           </div>
+          {editFormVisible && (
+        <div>
+          {/* Pass the competitiveIntel object and update function to the AdminUpdateIntel component */}
+          <AdminUpdateIntel
+            competitiveIntel={selectedIntel}
+            onUpdate={(id, updatedData) => handleUpdateIntel(id, updatedData)}
+            onCancel={() => setEditFormVisible(false)}
+          />
+        </div>
+      )}
         </div>
       </div>
       <Footer />
