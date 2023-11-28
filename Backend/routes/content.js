@@ -54,6 +54,7 @@ router.get('/pdfs', async (req, res) => {
   });
   
   module.exports = router;
+
 // Retrieve content by ID route
 // router.get('/pdfs/:id', async (req, res) => {
 //   try {
