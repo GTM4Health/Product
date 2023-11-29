@@ -150,6 +150,7 @@ const StartupPortal = () => {
   
 
   const handleSearchInputChange = (event) => {
+    setCurrentPage(1)
     setSearchQuery(event.target.value);
   };
 

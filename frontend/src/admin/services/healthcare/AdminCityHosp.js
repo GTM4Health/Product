@@ -184,8 +184,9 @@ const CityPortal = () => {
     };
   
     const handleSpecialityChange = (event) => {
-      setSelectedSpeciality(event.target.value);
       setCurrentPage(1); // Assuming you want to reset the page when the speciality changes
+      setSelectedSpeciality(event.target.value);
+      
     };
     
     const clearSearchResults = () => {

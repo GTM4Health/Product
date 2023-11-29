@@ -7,6 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 import Menubar from "../../../layout/users/MenuBar";
 import axios from "axios";
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions"; // Importing getCityOptionsByState from cityOptions
+import specialitiesData from "../../../assets/specialities.json"
 
 const MarketAccess = () => {
   const isAuthenticated = useAuth();
@@ -19,17 +20,18 @@ const MarketAccess = () => {
   const [selectedState, setSelectedState] = useState("all"); // Include "All" option for the state filter
   const [selectedCity, setSelectedCity] = useState("all"); // Include "All" option for the city filter
   const [cityOptions, setCityOptions] = useState([]);
+  const [displayedHospital, setDisplayedHospital] = useState(hospitals);
+  const [selectedSpeciality, setSelectedSpeciality] = useState("all");
 
   useEffect(() => {
     if (isAuthenticated) {
       fetchHospitals();
     }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality]);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedState]);
-
 
   const fetchHospitals = async () => {
     let url = `${process.env.REACT_APP_BASE_URL}/api/hospital-portal?`;
@@ -46,6 +48,11 @@ const MarketAccess = () => {
       params.append('city', selectedCity);
     }
   
+    // Add the speciality parameter
+    if (selectedSpeciality !== 'all') {
+      params.append('speciality', selectedSpeciality);
+    }
+  
     try {
       const response = await axios.get(url + params.toString());
       setHospitals(response.data.hospitals);
@@ -55,6 +62,36 @@ const MarketAccess = () => {
       console.error(error);
     }
   };
+  // const fetchHospitals = async () => {
+  //   let url = `${process.env.REACT_APP_BASE_URL}/api/hospital-portal?`;
+  
+  //   const params = new URLSearchParams();
+  //   params.append('page', currentPage);
+  //   params.append('limit', pageSize);
+  
+  //   if (selectedState !== 'all') {
+  //     params.append('state', selectedState);
+  //   }
+  
+  //   if (selectedCity !== 'all') {
+  //     params.append('city', selectedCity);
+  //   }
+  
+  //   try {
+  //     const response = await axios.get(url + params.toString());
+  //     setHospitals(response.data.hospitals);
+  //     setTotalRows(response.data.totalRows);
+  //     setTotalPages(response.data.totalPages);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const specialityOptions = specialitiesData.specialities.map((speciality, index) => (
+    <option key={index} value={speciality}>
+      {speciality}
+    </option>
+  ));
   
 
   useEffect(() => {
@@ -91,14 +128,27 @@ const MarketAccess = () => {
   };
 
   const handleClearFilters = () => {
-    setSelectedState("All");
-    setSelectedCity("All");
+    setSelectedState("all");
+    setSelectedCity("all");
+    setSelectedSpeciality("all"); // Reset speciality to "all"
+    setCurrentPage(1);
+    fetchHospitals(); // Reload hospitals with cleared filters
   };
 
   if (!isAuthenticated) {
     // Optional: Show a loading state or return null while checking authentication
     return null;
   }
+
+  const handleSpecialityChange = (event) => {
+    setCurrentPage(1); // Assuming you want to reset the page when the speciality changes
+    setSelectedSpeciality(event.target.value);
+    
+  };
+
+  
+  const displayedHospitals = hospitals;
+
 
   return (
     <div className="page-view">
@@ -151,6 +201,18 @@ const MarketAccess = () => {
                 </option>
               ))}
             </select>
+            <label className="f-label" htmlFor="speciality-select">
+                Speciality:
+              </label>
+                <select
+                  className="f-select"
+                  id="speciality-select"
+                  value={selectedSpeciality}
+                  onChange={handleSpecialityChange}
+                >
+                  <option value="all">All</option>
+                  {specialityOptions}
+              </select>
             <div className="page-jump">
               {/* <label htmlFor="page-selector">Go to Page:</label> */}
               <select

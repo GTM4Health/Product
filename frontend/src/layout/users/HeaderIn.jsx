@@ -13,8 +13,8 @@ const HeaderIn = () => {
         <div className="toolbar">
             <Logo /> 
             <div className="buttons">
-                <SignUpButton />
                 <LoginButton />
+                <RequestDemoButton />
                 <HomeButton />
                 {/* <RequestDemoButton /> */}
                 {/* //deprecated */}

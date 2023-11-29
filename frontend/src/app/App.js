@@ -2,7 +2,6 @@
 // Has React routes of other pages
 // All Project Modules are being imported to this page.
 
-
 import React from 'react';
 import '../assets/styles.css';
 import Content from '../users/home/Content';
