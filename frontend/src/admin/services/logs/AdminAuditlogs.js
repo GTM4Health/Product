@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Header2 from '../../../layout/users/Header2';
+import AdminHeader from '../../../layout/admin/AdminHeader';
 import useAuth from '../../../hooks/useAuth';
 import Footer from '../../../layout/pages/Footer';
 
@@ -33,7 +33,7 @@ const AdminNotFoundPage = () => {
 
   return (
     <>
-    <Header2 user={user} />
+    <AdminHeader />
     <div className="not-found-page">
       <div className="not-found-content">
         <h5 className="not-found-title">Coming Soon!</h5>

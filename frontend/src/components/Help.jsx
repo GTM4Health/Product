@@ -9,7 +9,7 @@ const Help = () => {
 
   const handleHelp = () => {
     // Navigate to the help page
-    navigate("/help");
+    // navigate("/help");
   };
 
   return (

@@ -143,7 +143,7 @@ const DealerPortal = () => {
         <div className="dashboard">
           <AdminMenuBar />
           <div className="page-title">
-            <h1 className="page-title-child">MedTech-Companies</h1>
+            <h1 className="page-title-child">MedTech and Distribution Companies</h1>
           </div>
           <div className="filter-container">
             <label className="f-label" htmlFor="state-select">State:</label>

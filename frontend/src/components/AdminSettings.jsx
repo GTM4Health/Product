@@ -10,7 +10,7 @@ const AdminSettings = () => {
 
   const handleSettings = () => {
     // Navigate to the settings page
-    navigate("/admin/settings");
+    // navigate("/admin/settings");
   };
 
   return (

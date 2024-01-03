@@ -110,7 +110,7 @@ const PartnersPage = () => {
         <div className="dashboard">
           <MenuBar />
           <div className="page-title">
-            <h1 className="page-title-child">MedTech-Companies</h1>
+            <h1 className="page-title-child">MedTech and Distribution Companies</h1>
           </div>
           <a href="mailto:info@gtm4health.com">
             <p className="hdblue-tag">

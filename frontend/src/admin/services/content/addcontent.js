@@ -13,21 +13,33 @@ const AddContent = () => {
   };
 
   const handleUpload = async () => {
-    if (!selectedFile) return;
+    if (!selectedFile) {
+      // If no file is selected, reset and return
+      window.location.reload();
+      return;
+    }
 
     const formData = new FormData();
     formData.append("pdfFile", selectedFile);
 
     try {
+      // Use process.env.REACT_APP_BASE_URL directly here for better consistency
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/cont/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      alert("File uploaded successfully!");
+
+      // Display success message and reload the page after user confirmation
+      if (window.confirm("File uploaded successfully!")) {
+        window.location.reload();
+      }
+
+      // Reset selected file after successful upload
       setSelectedFile(null);
     } catch (error) {
       console.error("Error uploading file:", error);
+      // You might want to handle the error and provide appropriate user feedback here
     }
   };
 
@@ -40,6 +52,8 @@ const AddContent = () => {
           <h2 className="page-title">Add Market Insight Reports</h2>
           <input type="file" onChange={handleFileChange} />
           <button onClick={handleUpload}>Upload PDF</button>
+          {/* Display a message if no file is chosen */}
+          {/* {selectedFile === null && <p>No file chosen</p>} */}
         </div>
       </div>
       <Footer />

@@ -10,7 +10,7 @@ const Settings = () => {
 
   const handleSettings = () => {
     // Navigate to the settings page
-    navigate("/settings");
+    // navigate("/settings");
   };
 
   return (
