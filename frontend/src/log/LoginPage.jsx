@@ -1,15 +1,8 @@
-// Entire Login Page
-// User data is collected here.
-//
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import HeaderIn from '../layout/users/HeaderIn';
 import Footer from "../layout/pages/Footer";
-
-console.log("process.env", process.env.REACT_APP_BASE_URL);
-
 
 
 const LoginPage = () => {
@@ -31,17 +24,22 @@ const LoginPage = () => {
         password,
       });
 
+      // Update local storage with token and user data
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
 
+      // Extract and log additional login information
+      const { counter, lastLogin } = response.data.loginDetails;
+      console.log(`Login successful! Login Counter: ${counter}, Last Login: ${lastLogin}`);
+
+      // Navigate to the dashboard
       navigate('/dashboard');
     } catch (error) {
       console.error('Login failed', error);
       setPassword('');
     }
   };
-  
-  
+
   return (
     <div className='page-view'>
       <HeaderIn />

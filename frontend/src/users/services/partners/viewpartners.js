@@ -168,11 +168,11 @@ const PartnersPage = () => {
                   <th>Products Managed</th>
                   <th>State</th>
                   <th>City</th>
-                  <th>Address</th>
+                  {/* <th>Address</th>
                   <th>Pincode</th>
                   <th>Website</th>
                   <th>Contact Name</th>
-                  <th>Role</th>
+                  <th>Role</th> */}
                   {/* <th>Contact Email</th>
                   <th>Contact Number</th> */}
                 </tr>
@@ -185,11 +185,11 @@ const PartnersPage = () => {
                     <td>{dealer.products}</td>
                     <td>{dealer.state}</td>
                     <td>{dealer.city}</td>
-                    <td>{dealer.address}</td>
+                    {/* <td>{dealer.address}</td>
                     <td>{dealer.pincode}</td>
                     <td>{dealer.web}</td>
                     <td>{dealer.dealerName}</td>
-                    <td>{dealer.role}</td>
+                    <td>{dealer.role}</td> */}
                     {/* <td>{dealer.mail}</td>
                     <td>{dealer.phone}</td> */}
                   </tr>

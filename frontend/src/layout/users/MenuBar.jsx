@@ -1,6 +1,7 @@
 // User menu bar here.
 //
 import React, { useState, useRef, useEffect } from "react";
+import Dashboard from './../../users/home/Dashboard';
 
 const MenuBar = () => {
   const [isHealthcareCentresMenuOpen, setIsHealthcareCentresMenuOpen] = useState(false);
@@ -26,6 +27,12 @@ const MenuBar = () => {
 
   return (
     <div className="adbar usrbar">
+      <a href="/dashboard" className="menu-link">
+        <div className="menu-item">
+          <i className="fas fa-lightbulb menu-icon"></i>
+          <span className="menu-text">Dashboard</span>
+        </div>
+      </a>
       <div
         className={`menu-item ${
           isHealthcareCentresMenuOpen ? "active" : ""
@@ -78,18 +85,18 @@ const MenuBar = () => {
           <span className="menu-text">Bootcamp</span>
         </div>
       </a> */}
-      <a href="/dashboard/Healthcare-Domains" className="menu-link">
+      {/* <a href="/dashboard/Healthcare-Domains" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-medkit menu-icon"></i>
           <span className="menu-text">Purchase Products</span>
         </div>
       </a>
       <a href="/dashboard/Review-Products" className="menu-link">
-        <div className="menu-item"> {/*-btm*/}
+        <div className="menu-item"> {/*-btm*
           <i className="fas fa-star menu-icon"></i>
           <span className="menu-text">Review Products</span>
         </div>
-      </a>
+      </a> */}
     </div>
   );
 };

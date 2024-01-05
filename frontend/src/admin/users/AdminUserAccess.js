@@ -189,6 +189,8 @@ function AdminDashboard() {
                 <th>Email</th>
                 {/* <th>Phone</th>
                 <th>Role</th> */}
+                <th>Login Counter</th>
+                <th>Last Login</th>
                 <th>Activated Date & Time</th>
                 <th>Actions</th>
               </tr>
@@ -201,6 +203,8 @@ function AdminDashboard() {
                   <td>{user.email}</td>
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
+                  <td>{user.counter}</td>
+                  <td>{user.lastLogin}</td>
                   <td>{user.activationTime}</td>
                   <td>
                       <button className="edit-button" onClick={() => handleEditUser(user)}>
