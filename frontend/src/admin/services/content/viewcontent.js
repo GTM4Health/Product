@@ -7,6 +7,9 @@ import AdminHeader from "../../../layout/admin/AdminHeader";
 
 const ViewContent = () => {
   const [pdfFiles, setPdfFiles] = useState([]);
+  const [previewFileName, setPreviewFileName] = useState("");
+  const [editFileName, setEditFileName] = useState("");
+  const [editModalVisible, setEditModalVisible] = useState(false);
 
   useEffect(() => {
     const fetchPdfFiles = async () => {
@@ -21,6 +24,61 @@ const ViewContent = () => {
     fetchPdfFiles();
   }, []);
 
+  const handleDownload = async (fileName) => {
+    try {
+      // Replace 'download-endpoint' with your actual download API endpoint
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/download/${fileName}`, {
+        responseType: 'blob',
+      });
+
+      // Create a temporary anchor element to trigger the download
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', fileName);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error(`Error downloading file ${fileName}:`, error);
+    }
+  };
+
+  const handlePreview = (fileName) => {
+    setPreviewFileName(fileName);
+  };
+
+  const handleEdit = (fileName) => {
+    setEditFileName(fileName);
+    setEditModalVisible(true);
+  };
+
+  const handleEditName = async () => {
+    try {
+      // Replace 'edit-endpoint' with your actual edit API endpoint
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/edit/${editFileName}`, {
+        newFileName: editFileName,
+      });
+
+      // Close the modal and refresh the PDF files
+      setEditModalVisible(false);
+      setEditFileName("");
+      fetchPdfFiles();
+    } catch (error) {
+      console.error(`Error editing file name for ${editFileName}:`, error);
+    }
+  };
+
+  const handleDelete = async (fileName) => {
+    try {
+      // Replace 'delete-endpoint' with your actual delete API endpoint
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/delete/${fileName}`);
+      setPdfFiles(pdfFiles.filter((file) => file !== fileName));
+    } catch (error) {
+      console.error(`Error deleting file ${fileName}:`, error);
+    }
+  };
+
   return (
     <div className="page-view">
       <AdminHeader />
@@ -28,22 +86,99 @@ const ViewContent = () => {
       <div className="d-content">
         <div className="dashboard">
           <h2 className="page-title">View Market Insight Reports</h2>
-          <ul className="pdf-list">
-            {pdfFiles.map((pdfFile, index) => (
-              <li key={index} className="pdf-item">
-                <a
-                  href={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(pdfFile)}`} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pdf-link"
-                >
-                  {pdfFile}
-                </a>       
-              </li>
-            ))}
-          </ul>
+          <table className="user-table">
+            <thead>
+              <tr>
+                <th>Sl No.</th>
+                <th>File Name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pdfFiles.map((pdfFile, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <a
+                      href={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(pdfFile)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pdf-link"
+                    >
+                      {pdfFile}
+                    </a>
+                  </td>
+                  <td>
+                    <button onClick={() => handleDownload(pdfFile)}>
+                      <i className="fas fa-download"></i>
+                    </button>
+                    <button onClick={() => handlePreview(pdfFile)}>
+                      <i className="fas fa-eye"></i>
+                    </button>
+                    <button onClick={() => handleEdit(pdfFile)}>
+                      <i className="fas fa-edit"></i>
+                    </button>
+                    <button onClick={() => handleDelete(pdfFile)}>
+                      <i className="fas fa-trash"></i>
+                    </button>
+                    {/* Add more action buttons as needed */}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
+
+      {/* Edit Modal */}
+      {editModalVisible && (
+        <div className="edit-form">
+          <h2>Edit File</h2>
+          <form onSubmit={handleEditName}>
+            <div className="form-group">
+              <label htmlFor="newFileName">New File Name</label>
+              <input
+                type="text"
+                id="newFileName"
+                value={editFileName}
+                onChange={(e) => setEditFileName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="button-group">
+              <button type="submit" className="btn-primary">
+                <i className="fas fa-check"></i>
+              </button>
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={() => setEditModalVisible(false)}
+              >
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {/* Preview Modal */}
+      {previewFileName && (
+        <div className="preview-modal">
+          <div className="preview-modal-content">
+            <h3>File Preview</h3>
+            <iframe
+              title="File Preview"
+              src={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(previewFileName)}`}
+              width="100%"
+              height="500px"
+            ></iframe>
+            <button onClick={() => setPreviewFileName("")}>
+              <i className="fas fa-times"></i> Close Preview
+            </button>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );

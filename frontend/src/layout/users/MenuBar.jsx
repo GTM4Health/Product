@@ -1,16 +1,24 @@
 // User menu bar here.
 //
 import React, { useState, useRef, useEffect } from "react";
+
 import Dashboard from './../../users/home/Dashboard';
+import { useNavigate } from "react-router-dom";
 
 const MenuBar = () => {
   const [isHealthcareCentresMenuOpen, setIsHealthcareCentresMenuOpen] = useState(false);
+  const [isDashBoardMenuOpen,setIsDashBoardMenuOpen] = useState(false);
   const healthcareCentresMenuRef = useRef(null);
+  const dashBoardMenuRef=useRef(null)
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (healthcareCentresMenuRef.current && !healthcareCentresMenuRef.current.contains(event.target)) {
         setIsHealthcareCentresMenuOpen(false);
+      }
+      if (dashBoardMenuRef.current && !dashBoardMenuRef.current.contains(event.target)) {
+        setIsDashBoardMenuOpen(false);
       }
     };
 
@@ -25,14 +33,36 @@ const MenuBar = () => {
     setIsHealthcareCentresMenuOpen(!isHealthcareCentresMenuOpen);
   };
 
+  const handleDashboardMenuClick = () => {
+    setIsDashBoardMenuOpen(!isDashBoardMenuOpen);
+
+    if (!isDashBoardMenuOpen) {
+      navigate('/dashboard');
+    }
+  };
+
   return (
     <div className="adbar usrbar">
-      <a href="/dashboard" className="menu-link">
-        <div className="menu-item">
-          <i className="fas fa-lightbulb menu-icon"></i>
+      
+      <div
+        className={`menu-item ${
+          isDashBoardMenuOpen ? "active" : ""
+        }`}
+        onClick={handleDashboardMenuClick}
+        ref={dashBoardMenuRef}
+      >
+          <i className="fas fa-chart-bar menu-icon"></i>
           <span className="menu-text">Dashboard</span>
-        </div>
-      </a>
+          {isDashBoardMenuOpen && (
+          <div className="sub-menu healthcare-centres-menu">
+            <a href="/dashboard/Pan-India-Analysis" className="sub-menu-item menu-link">
+              <i className="fas fa-map-marked-alt sub-menu-icon"></i>
+              <span className="menu-text">Pan India Dashboard</span>
+            </a>
+          </div>
+          )}
+      </div>
+      
       <div
         className={`menu-item ${
           isHealthcareCentresMenuOpen ? "active" : ""

@@ -44,6 +44,7 @@ import PanIndiaDash from '../admin/pages/PanIndiaDash';
 import CompetitiveIntelligence from '../admin/services/intel/AdminCompIntel';
 import AdminNotFoundPage from '../admin/services/logs/AdminAuditlogs';
 import AdminViewCI from '../admin/services/intel/AdminViewCI';
+import PanIndia from '../users/home/PanIndia';
 
 //Entry Function into the Product
 export default function App() {
@@ -84,6 +85,7 @@ export default function App() {
         <Route path='/termsofuse' element={<Terms />} />
         <Route path='/privacypolicy' element={<Privacy />} />
         <Route path="/dashboard/Market-Access" element={<MarketAccess />} />
+        <Route path="/dashboard/Pan-India-Analysis" element={<PanIndia />} />
         <Route path='/dashboard/View-Healthcare-Centres-All' element={<MarketAccessAll />} />
         <Route path='/dashboard/Market-Insights' element={<MarketInsights />} />
         <Route path='/admin/dashboard/Save-Project' element={<AdminSaveProject />} />
