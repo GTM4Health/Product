@@ -69,7 +69,7 @@ router.put('/up-competitive-intelligence/update-intel/:id', async (req, res) => 
 });
 
 // Delete competitive intelligence by ID
-router.delete('del-competitive-intelligence/delete-intel/:id', async (req, res) => {
+router.delete('/del-competitive-intelligence/delete-intel/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -86,7 +86,6 @@ router.delete('del-competitive-intelligence/delete-intel/:id', async (req, res) 
   }
 });
 
-module.exports = router;
 
 
 module.exports = router;

@@ -9,6 +9,7 @@ const ViewContent = () => {
   const [pdfFiles, setPdfFiles] = useState([]);
   const [previewFileName, setPreviewFileName] = useState("");
   const [editFileName, setEditFileName] = useState("");
+  const [newFileName,setNewFileName]=useState(editFileName);
   const [editModalVisible, setEditModalVisible] = useState(false);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const ViewContent = () => {
   const handleDownload = async (fileName) => {
     try {
       // Replace 'download-endpoint' with your actual download API endpoint
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/download/${fileName}`, {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/cont/download/${fileName}`, {
         responseType: 'blob',
       });
 
@@ -55,24 +56,36 @@ const ViewContent = () => {
 
   const handleEditName = async () => {
     try {
-      // Replace 'edit-endpoint' with your actual edit API endpoint
-      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/edit/${editFileName}`, {
-        newFileName: editFileName,
-      });
-
-      // Close the modal and refresh the PDF files
+      const response = await axios.put(
+        `${process.env.REACT_APP_BASE_URL}/api/cont/edit/${editFileName}`,
+        { newFileName: newFileName },
+        { headers: { 'Content-Type': 'application/json' } }
+      );
+  
+      console.log('Edit Response:', response.data);
+  
+      // Update state and trigger page reload
       setEditModalVisible(false);
-      setEditFileName("");
-      fetchPdfFiles();
+      setEditFileName(newFileName);
+      setNewFileName("");
+  
+      // Reload the page after a short delay to allow state to update
+      setTimeout(() => {
+        window.location.reload();
+      }, 30000);
     } catch (error) {
       console.error(`Error editing file name for ${editFileName}:`, error);
     }
   };
+  
+  
+  
+  
 
   const handleDelete = async (fileName) => {
     try {
       // Replace 'delete-endpoint' with your actual delete API endpoint
-      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/delete/${fileName}`);
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/cont/delete/${fileName}`);
       setPdfFiles(pdfFiles.filter((file) => file !== fileName));
     } catch (error) {
       console.error(`Error deleting file ${fileName}:`, error);
@@ -112,9 +125,9 @@ const ViewContent = () => {
                     <button onClick={() => handleDownload(pdfFile)}>
                       <i className="fas fa-download"></i>
                     </button>
-                    <button onClick={() => handlePreview(pdfFile)}>
+                    {/* <button onClick={() => handlePreview(pdfFile)}>
                       <i className="fas fa-eye"></i>
-                    </button>
+                    </button> */}
                     <button onClick={() => handleEdit(pdfFile)}>
                       <i className="fas fa-edit"></i>
                     </button>
@@ -140,9 +153,9 @@ const ViewContent = () => {
               <input
                 type="text"
                 id="newFileName"
-                value={editFileName}
-                onChange={(e) => setEditFileName(e.target.value)}
-                required
+                value={newFileName}
+                onChange={(e) => setNewFileName(e.target.value)}
+                required                
               />
             </div>
             <div className="button-group">
@@ -161,7 +174,7 @@ const ViewContent = () => {
         </div>
       )}
 
-      {/* Preview Modal */}
+      {/* Preview Modal
       {previewFileName && (
         <div className="preview-modal">
           <div className="preview-modal-content">
@@ -177,7 +190,7 @@ const ViewContent = () => {
             </button>
           </div>
         </div>
-      )}
+      )} */}
 
       <Footer />
     </div>

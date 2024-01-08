@@ -85,9 +85,14 @@ const AdminViewCI = () => {
     }
 
     try {
-      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/del-competitive-intelligence/delete-intel/${id}`);
-      setCompetitiveData(competitiveData.filter((intel) => intel._id !== id));
-      console.log("Competitive Intelligence deleted successfully");
+      const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/del-competitive-intelligence/delete-intel/${id}`);
+      
+      if (response.status === 200) {
+        setCompetitiveData(competitiveData.filter((intel) => intel._id !== id));
+        console.log("Competitive Intelligence deleted successfully");
+      } else {
+        console.log("Error deleting competitive intelligence");
+      }
     } catch (error) {
       console.error(error);
       console.log("Error deleting competitive intelligence");

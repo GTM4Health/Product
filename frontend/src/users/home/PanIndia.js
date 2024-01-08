@@ -35,7 +35,7 @@ const PanIndia = () => {
 
   return (
     <div className="page-view">
-      <Header2 />
+      <Header2 user={user}/>
       <div className="d-content">
         <div className="dashboard">
           <MenuBar />
