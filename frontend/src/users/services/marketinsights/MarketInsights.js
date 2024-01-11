@@ -78,40 +78,34 @@ const MarketInsights = () => {
     <div className="page-view">
       <Header2 user={user} />
       <div className="d-content">
+      <Menubar />
         <div className="dashboard">
-          <Menubar />
-          <div className="page-title">
-            <h1 className="page-title-child underline">Market Insight Reports</h1>
-          </div>
-          <hr/>
-         
-          {/* <PdfViewer currentPage={currentPage} onLoadSuccess={handleDocumentLoadSuccess} />
-          <div className="page-navigation">
-            <button onClick={goToPreviousPage} disabled={currentPage === 1}>
-              Previous Page
-            </button>
-            <p>
-              Page {currentPage} of {numPages}
-            </p>
-            <button onClick={goToNextPage} disabled={currentPage === numPages}>
-              Next Page
-            </button>
-          </div> */}
-          <ul className="pdf-list">
-            {pdfFiles.map((pdfFile, index) => (
-              <li key={index} className="pdf-item">
-                <a
-                  href={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(pdfFile)}`} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pdf-link"
-                >
-                  {pdfFile}
-                </a>
-                <br ></br>       
-              </li>
-            ))}
-          </ul>
+          <h2 className="page-title">View Market Insight Reports</h2>
+          <table className="user-table">
+            <thead>
+              <tr>
+                <th>Sl No.</th>
+                <th>Market Insight Report</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pdfFiles.map((pdfFile, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <a
+                      href={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(pdfFile)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pdf-link"
+                    >
+                      {pdfFile}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
       <Footer />

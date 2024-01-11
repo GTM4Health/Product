@@ -1633,7 +1633,7 @@ form.hospital-f .hsubtn {
 }
 
 .usrbar{
-  height: 80vh;
+  height: 65vh;
 }
 
 .search-container {
@@ -1669,6 +1669,10 @@ form.hospital-f .hsubtn {
   z-index: 1000;
 }
 
+/* Add this style to limit Sl No. width */
+.user-table th td:first-child {
+  max-width: 4em; /* Adjust as needed */
+}
 
 
 
