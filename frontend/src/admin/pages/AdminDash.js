@@ -15,6 +15,7 @@ function AdminDashboard() {
   const [totalHospitals, setTotalHospitals] = useState(0);
   const [totalDealers, setTotalDealers] = useState(0);
   const [totalStartups, setTotalStartups] = useState(0);
+  const [totalReports, setTotalReports] = useState(0);
   const [chartData, setChartData] = useState(null);
   // Chart.register(PieElement);
 // Register the ArcElement
@@ -30,6 +31,7 @@ Chart.register(ArcElement);
     fetchHospitals();
     fetchDealers();
     fetchStartups();
+    fetchReports();
   }, [isAuthenticated]);
   
   useEffect(() => {
@@ -92,6 +94,16 @@ Chart.register(ArcElement);
       console.error(error);
     }
   };
+
+  const fetchReports = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs`);
+      setTotalReports(response.data.totalFiles);
+    } catch (error) {
+      console.error("Error fetching PDF files:", error);
+    }
+  };
+
   const updatedChartData = {
     labels: ["Total Hospitals", "Total Dealers", "Total Startups", "Total Users"],
     datasets: [
@@ -134,7 +146,7 @@ const pieChartData = {
 
             <table className="stats-table">
               <tr>
-                <th className="header-cell" colSpan={4}>Dashboard Analytics</th>
+                <th className="header-cell" colSpan={5}>Dashboard Analytics</th>
               </tr>
               <tr><th> </th></tr>
               <tr><th> </th></tr>
@@ -160,6 +172,9 @@ const pieChartData = {
                 <td className="category-heading" colSpan="1">
                   Total Startups
                 </td>
+                <td className="category-heading" colSpan="1">
+                  Total Market Insights Reports
+                </td>
               </tr>
               <tr>
                 <td className="data-cell" colSpan="1">
@@ -173,6 +188,9 @@ const pieChartData = {
                 </td>
                 <td className="data-cell" colSpan="1">
                   {totalStartups}                 
+                </td>
+                <td className="data-cell" colSpan="1">
+                  {totalReports}                 
                 </td>
               </tr>
               {/* <tr>

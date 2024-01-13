@@ -1670,9 +1670,13 @@ form.hospital-f .hsubtn {
 }
 
 /* Add this style to limit Sl No. width */
-.user-table th td:first-child {
-  max-width: 4em; /* Adjust as needed */
+.sl, user-table th td:first-child {
+  width: 1.8em; /* Adjust as needed */
 }
+
+/* .sl{
+  max-width: 4em; /* Adjust as needed *
+} */
 
 
 

@@ -85,18 +85,19 @@ const MenuBar = () => {
           </div>
         )}
       </div>
-      <a href="/dashboard/Market-Insights" className="menu-link">
-        <div className="menu-item">
-          <i className="fas fa-lightbulb menu-icon"></i>
-          <span className="menu-text">Market Insights Reports</span>
-        </div>
-      </a>
       <a href="/dashboard/Access-GTM-Partners" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-check-circle menu-icon"></i>
           <span className="menu-text">Access GTM Partners</span>
         </div>
       </a>
+      <a href="/dashboard/Market-Insights" className="menu-link">
+        <div className="menu-item">
+          <i className="fas fa-lightbulb menu-icon"></i>
+          <span className="menu-text">Market Insights Reports</span>
+        </div>
+      </a>
+
       {/* <a href="/dashboard/gtm-readiness-assessment" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-clipboard-list menu-icon"></i>
