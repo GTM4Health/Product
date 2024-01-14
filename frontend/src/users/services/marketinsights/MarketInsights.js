@@ -23,16 +23,35 @@ const PdfViewer = ({ currentPage, onLoadSuccess }) => {
 };
 
 
-  
-
-
-
 const MarketInsights = () => {
-  const isAuthenticated = useAuth();
-  const [user, setUser] = useState(null);
-  const [numPages, setNumPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
   const [pdfFiles, setPdfFiles] = useState([]);
+  const [editFileName, setEditFileName] = useState("");
+  const [newFileName, setNewFileName] = useState("");
+  const [newCategory, setNewCategory] = useState("");
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalFiles, setTotalFiles] = useState(0);
+  const [user, setUser] = useState("");
+  const isAuthenticated = useAuth("");
+
+  useEffect(() => {
+    const fetchPdfFiles = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/api/cont/pdfs?page=${currentPage}&limit=${pageSize}`
+        );
+        setPdfFiles(response.data.files);
+        setTotalFiles(response.data.totalFiles);
+        setTotalPages(response.data.totalPages);
+      } catch (error) {
+        console.error("Error fetching PDF files:", error);
+      }
+    };
+
+    fetchPdfFiles();
+  }, [isAuthenticated,currentPage, pageSize]);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -40,6 +59,7 @@ const MarketInsights = () => {
       setUser(storedUser);
     }
   }, []);
+
 
   const handleDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
@@ -57,18 +77,6 @@ const MarketInsights = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchPdfFiles = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs`);
-        setPdfFiles(response.data);
-      } catch (error) {
-        console.error("Error fetching PDF files:", error);
-      }
-    };
-
-    fetchPdfFiles();
-  }, []);
 
   if (!isAuthenticated) {
     return null;
@@ -80,18 +88,27 @@ const MarketInsights = () => {
       <div className="d-content">
       <Menubar />
         <div className="dashboard">
-          <h2 className="page-title">View Market Insight Reports</h2>
+          <div className="page-title">
+            <h1 className="page-title-child hdblue-tag">View Market Insight Reports</h1>
+          </div>
+          <div className="page-display">
+            <h4 className="total-rows ft5">Total Market Access Reports = {totalFiles}</h4>
+            <h4 className="total-rows right ft5">
+              <i>Displaying Page {currentPage} of {totalPages}</i>
+            </h4>
+          </div>
           <table className="user-table">
             <thead>
               <tr>
-                <th>Sl No.</th>
-                <th>Market Insight Report</th>
+                <th className="sl">Sl No.</th>
+                <th>Market Insights Reports</th>
+                <th>Category</th>
               </tr>
             </thead>
             <tbody>
               {pdfFiles.map((pdfFile, index) => (
                 <tr key={index}>
-                  <td>{index + 1}</td>
+                  <td>{`00${(currentPage - 1) * pageSize + index + 1}`.slice(-4)}</td>
                   <td>
                     <a
                       href={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(pdfFile)}`}
@@ -102,15 +119,29 @@ const MarketInsights = () => {
                       {pdfFile}
                     </a>
                   </td>
+                  <td>{pdfFile.category}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <div className="pagination-buttons">
+            {currentPage > 1 && (
+              <button className="prev-button" onClick={() => setCurrentPage(currentPage - 1)}>
+                &laquo; Prev
+              </button>
+            )}
+            {currentPage < totalPages && (
+              <button className="next-button" onClick={() => setCurrentPage(currentPage + 1)}>
+                Next &raquo;
+              </button>
+            )}
+          </div>
+          </div>
         </div>
-      </div>
       <Footer />
     </div>
   );
 };
 
 export default MarketInsights;
+

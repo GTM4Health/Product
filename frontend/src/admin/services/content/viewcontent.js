@@ -126,7 +126,7 @@ const ViewContent = () => {
                       {pdfFile}
                     </a>
                   </td>
-                  <td>{/* Display category here, you may fetch and display it from the backend */}</td>
+                  <td>{pdfFile.category}</td>
                   <td>
                     <button onClick={() => handleDownload(pdfFile)}>
                       <i className="fas fa-download"></i>

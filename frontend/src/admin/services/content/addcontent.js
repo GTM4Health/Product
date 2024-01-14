@@ -16,11 +16,6 @@ const AddContent = () => {
   // useEffect to fetch and set category options
   useEffect(() => {
     // You may load category options from an API or use a local JSON file
-    // For simplicity, let's assume categoryOptions.json has the required structure
-    // Replace with your actual path or API call logic
-    // axios.get("path/to/categoryOptions.json")
-    //   .then(response => setSelectedCategoryOptions(response.data))
-    //   .catch(error => console.error("Error fetching category options:", error));
 
     // Set the initial selected category to the first one in the options
     if (categoryOptions && categoryOptions.length > 0) {
