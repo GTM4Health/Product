@@ -89,7 +89,7 @@ const MarketInsights = () => {
       <Menubar />
         <div className="dashboard">
           <div className="page-title">
-            <h1 className="page-title-child hdblue-tag">View Market Insight Reports</h1>
+            <h1 className="page-title-child hdblue-tag reports">View Market Insight Reports</h1>
           </div>
           <div className="page-display">
             <h4 className="total-rows ft5">Total Market Access Reports = {totalFiles}</h4>

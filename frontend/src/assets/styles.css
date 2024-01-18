@@ -1674,6 +1674,10 @@ form.hospital-f .hsubtn {
   width: 1.8em; /* Adjust as needed */
 }
 
+.reports{
+  padding-top: 5rem;
+}
+
 /* .sl{
   max-width: 4em; /* Adjust as needed *
 } */
