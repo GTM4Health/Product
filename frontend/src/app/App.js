@@ -45,6 +45,8 @@ import CompetitiveIntelligence from '../admin/services/intel/AdminCompIntel';
 import AdminNotFoundPage from '../admin/services/logs/AdminAuditlogs';
 import AdminViewCI from '../admin/services/intel/AdminViewCI';
 import PanIndia from '../users/home/PanIndia';
+import NewCSRForm from '../admin/services/csr/addcsr';
+import CSRPortal from '../admin/services/csr/viewcsr';
 
 //Entry Function into the Product
 export default function App() {
@@ -99,6 +101,8 @@ export default function App() {
         <Route path='/admin/view-competitive-intelligence'element = {<AdminViewCI />} />
         <Route path='*' element={<NotFoundPage />} />
         <Route path='/admin/audit-logs' element={<AdminNotFoundPage />} />
+        <Route path='/admin/dashboard/Add-CSR-Foundation' element = {<NewCSRForm />} />
+        <Route path='/admin/dashboard/View-CSR-Foundation' element = {<NewCSRForm />} />
       </Routes>
     </Router>
   );

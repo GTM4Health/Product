@@ -12,6 +12,7 @@ const AdminMenuBar = () => {
   const [isEditContentMenuOpen, setIsEditContentMenuOpen] = useState(false); // New state
   const [isAuditLogsOpen, setIsAuditLogsOpen] = useState (false);
   const [isCompetitiveIntelMenuOpen, setIsCompetitiveIntelMenuOpen] = useState(false);
+  const [isCSRTabOpen, setIsCSRTabOpen] = useState(false);
  
   const navigate = useNavigate();
   const dashboardMenuRef=useRef(null)
@@ -24,6 +25,7 @@ const AdminMenuBar = () => {
   const editContentMenuRef = useRef(null); 
   const auditLogsOpen = useRef(null);
   const competitiveIntelMenuRef = useRef(null);
+  const csrtabMenuRef = useRef(null);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -56,6 +58,9 @@ const AdminMenuBar = () => {
       }
       if (competitiveIntelMenuRef.current && !competitiveIntelMenuRef.current.contains(event.target)) {
         setIsCompetitiveIntelMenuOpen(false);
+      }
+      if (csrtabMenuRef.current && !csrtabMenuRef.current.contains(event.target)) {
+        setIsCSRTabOpen(false);
       }
     };
 
@@ -115,6 +120,11 @@ const AdminMenuBar = () => {
   const handleCompetitiveIntelMenuClick = () => {
     setIsCompetitiveIntelMenuOpen(!isCompetitiveIntelMenuOpen);
     // navigate('/admin/competitive-intelligence');
+  };
+
+  
+  const handleCSRMenuClick = () => {
+    setIsCSRTabOpen (!isCSRTabOpen);
   };
 
   return (
@@ -262,6 +272,28 @@ const AdminMenuBar = () => {
             <a href="/admin/dashboard/View-Startups" className="sub-menu-item menu-link">
               <i className="fas fa-clipboard-list sub-menu-icon"></i>
               <span className="menu-text">View & Update Startups</span>
+            </a>
+          </div>
+        )}
+      </div>
+      <div
+        className={`menu-item ad-menu-item ${
+          isCSRTabOpen ? "active" : ""
+        }`}
+        onClick={handleCSRMenuClick}
+        ref={csrtabMenuRef}
+      >
+        <i className="fas fa-rocket menu-icon"></i>
+        <span className="menu-text">Manage CSRs & Foundation</span>
+        {isCSRTabOpen && (
+          <div className="sub-menu startups-menu">
+            <a href="/admin/dashboard/Add-CSR-Foundation" className="sub-menu-item menu-link">
+              <i className="fas fa-plus-circle sub-menu-icon"></i>
+              <span className="menu-text">Add CSRs & Foundation</span>
+            </a>
+            <a href="/admin/dashboard/View-CSR-Foundation" className="sub-menu-item menu-link">
+              <i className="fas fa-clipboard-list sub-menu-icon"></i>
+              <span className="menu-text">View CSRs & Foundation</span>
             </a>
           </div>
         )}
