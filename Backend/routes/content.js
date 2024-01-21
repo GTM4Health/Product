@@ -55,7 +55,7 @@ router.get('/pdfs', async (req, res) => {
     const totalFiles = await Content.countDocuments({});
     const totalPages = Math.ceil(totalFiles / limit);
 
-    const pdfFiles = await Content.find({}, 'filename')
+    const pdfFiles = await Content.find({}, 'filename category')
       .skip(startIndex)
       .limit(limit);
 
@@ -245,5 +245,4 @@ module.exports = router;
 //     res.status(500).json({ message: 'Failed to fetch content' });
 //   }
 // });
-
 

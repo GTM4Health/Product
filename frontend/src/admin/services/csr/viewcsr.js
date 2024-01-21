@@ -96,7 +96,7 @@ const MyDocument = ({ csrData }) => (
       <View style={styles.gap} />
       <View style={styles.table}>
         <View style={styles.tableRow}>
-          <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
+          <Text style={[styles.smallHeaderCell, styles.borderRight]}>#</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>CSR/Foundation Name</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>Website</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>Domain</Text>
@@ -123,6 +123,7 @@ const CSRPortal = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [showNoRecordsPopup, setShowNoRecordsPopup] = useState(false);
+  const [searchCriteria, setSearchCriteria] = useState("csrName");
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -155,7 +156,7 @@ const CSRPortal = () => {
   };
 
   const fetchCsrs = async () => {
-    let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/CSRs/csrs-portal?`;
+    let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/CSR/csrs-portal?`;
 
     const params = new URLSearchParams();
     params.append('page', currentPage);
@@ -255,7 +256,7 @@ const CSRPortal = () => {
               </i>
             </h4>
           </div>
-          <button variant="primary" className="search-button" block>
+          {/* <button variant="primary" className="search-button" block>
             <PDFDownloadLink document={<MyDocument csrData={csrs} />} fileName="csr-list.pdf" className="search-button">
               {({ blob, url, loading, error }) => {
                 if (loading) {
@@ -291,7 +292,7 @@ const CSRPortal = () => {
             <button className="search-button" onClick={fetchCsrs}>
               <i className="fas fa-search"></i>
             </button>
-          </div>
+          </div> */}
 
           <div className="page-jump w10">
             <label htmlFor="page-selector">Go to Page:</label>

@@ -102,7 +102,7 @@ export default function App() {
         <Route path='*' element={<NotFoundPage />} />
         <Route path='/admin/audit-logs' element={<AdminNotFoundPage />} />
         <Route path='/admin/dashboard/Add-CSR-Foundation' element = {<NewCSRForm />} />
-        <Route path='/admin/dashboard/View-CSR-Foundation' element = {<NewCSRForm />} />
+        <Route path='/admin/dashboard/View-CSR-Foundation' element = {<CSRPortal />} />
       </Routes>
     </Router>
   );
