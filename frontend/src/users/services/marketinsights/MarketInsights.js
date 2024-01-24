@@ -102,7 +102,7 @@ const MarketInsights = () => {
               <tr>
                 <th className="sl">Sl No.</th>
                 <th>Market Insights Reports</th>
-                <th>Category</th>
+                {/* <th>Category</th> */}
               </tr>
             </thead>
             <tbody>
@@ -119,7 +119,7 @@ const MarketInsights = () => {
                       {pdfFile}
                     </a>
                   </td>
-                  <td>{pdfFile.category}</td>
+                  {/* <td>{pdfFile.category}</td> */}
                 </tr>
               ))}
             </tbody>
