@@ -51,47 +51,28 @@ const CityPortal = () => {
   
   
 
-  const fetchHospitals = async () => {
-    let url = `${process.env.REACT_APP_BASE_URL}/api/hospital-portal?`;
-  
-    const params = new URLSearchParams();
-    params.append('page', currentPage);
-    params.append('limit', pageSize);
-  
-    if (selectedState !== 'all') {
-      params.append('state', selectedState);
-    }
-  
-    if (selectedCity !== 'all') {
-      params.append('city', selectedCity);
-    }
-  
-    // Add the speciality parameter
-    if (selectedSpeciality !== 'all') {
-      params.append('speciality', selectedSpeciality);
-    }
-  
-    try {
-      const response = await axios.get(url + params.toString());
-      setHospitals(response.data.hospitals);
-      setTotalRows(response.data.totalRows);
-      setTotalPages(response.data.totalPages);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
   // const fetchHospitals = async () => {
+  //   let url = `${process.env.REACT_APP_BASE_URL}/api/hospital-portal?`;
+  
   //   const params = new URLSearchParams();
   //   params.append('page', currentPage);
   //   params.append('limit', pageSize);
-  //   params.append('state', selectedState);
-  //   params.append('city', selectedCity);
-  //   params.append('speciality', selectedSpeciality);
-  //   params.append('search', searchQuery); // Add this line to include the search parameter
+  
+  //   if (selectedState !== 'all') {
+  //     params.append('state', selectedState);
+  //   }
+  
+  //   if (selectedCity !== 'all') {
+  //     params.append('city', selectedCity);
+  //   }
+  
+  //   // Add the speciality parameter
+  //   if (selectedSpeciality !== 'all') {
+  //     params.append('speciality', selectedSpeciality);
+  //   }
   
   //   try {
-  //     const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal?${params.toString()}`);
+  //     const response = await axios.get(url + params.toString());
   //     setHospitals(response.data.hospitals);
   //     setTotalRows(response.data.totalRows);
   //     setTotalPages(response.data.totalPages);
@@ -99,6 +80,25 @@ const CityPortal = () => {
   //     console.error(error);
   //   }
   // };
+  
+  const fetchHospitals = async () => {
+    const params = new URLSearchParams();
+    params.append('page', currentPage);
+    params.append('limit', pageSize);
+    params.append('state', selectedState);
+    params.append('city', selectedCity);
+    params.append('speciality', selectedSpeciality);
+    params.append('search', searchQuery); // Add this line to include the search parameter
+  
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal?${params.toString()}`);
+      setHospitals(response.data.hospitals);
+      setTotalRows(response.data.totalRows);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   
   
   
@@ -316,7 +316,7 @@ const CityPortal = () => {
             value={searchQuery}
             onChange={handleSearchInputChange}
           />
-          <button onClick={handleSearch}>Search</button>
+          {/* <button onClick={handleSearch}>Search</button> */}
           <button onClick={clearSearchResults}>Clear Search</button>
         </div>
           <div className="page-display">
