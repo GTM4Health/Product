@@ -231,6 +231,19 @@ const MarketAccess = () => {
               Clear Filters
             </button>
           </div>
+          {/* <div className="filter-container">
+          <button className="search-button">
+              <i className="fas fa-search"></i>
+            </button>
+          <input
+            type="text"
+            className="f-select"
+            placeholder="Search hospitals..."
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+          />
+          <button onClick={clearSearchResults}>Clear Search</button>
+        </div> */}
           <div className="page-display">
             <h4 className="total-rows ft5">Total Healthcare Centers = {totalRows}</h4>
             <h4 className="right ft5">

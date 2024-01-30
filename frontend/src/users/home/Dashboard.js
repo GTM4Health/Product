@@ -11,6 +11,7 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [totalHospitals, setTotalHospitals] = useState(0);
   const [totalDealers, setTotalDealers] = useState(0);
+  const [totalReports, setTotalReports] = useState(0);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -23,6 +24,7 @@ const Dashboard = () => {
     if (isAuthenticated) {
       fetchHospitals();
       fetchDealers();
+      fetchReports();
     }
   }, [isAuthenticated]);
 
@@ -48,6 +50,15 @@ const Dashboard = () => {
     }
   };
 
+  const fetchReports = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs`);
+      setTotalReports(response.data.totalFiles);
+    } catch (error) {
+      console.error("Error fetching PDF files:", error);
+    }
+  };
+
   if (!isAuthenticated) {
     return null;
   }
@@ -61,7 +72,7 @@ const Dashboard = () => {
           <div className="dashboard-content">
           <table className="stats-table">
               <tr>
-                <th className="header-cell" colSpan={2}>Dashboard Analytics</th>
+                <th className="header-cell" colSpan={3}>Dashboard Analytics</th>
               </tr>
               <tr>
                 <td className="category-heading" colSpan="1">
@@ -70,6 +81,9 @@ const Dashboard = () => {
                 <td className="category-heading" colSpan="1">
                   Total MedTech-Companies
                 </td>
+                <td className="category-heading" colSpan="1">
+                  Total Market Insights Reports
+                </td>
               </tr>
               <tr>
                 <td className="data-cell" colSpan="1">
@@ -77,6 +91,9 @@ const Dashboard = () => {
                 </td>
                 <td className="data-cell" colSpan="1">
                   {totalDealers}                 
+                </td>
+                <td className="data-cell" colSpan="1">
+                  {totalReports}                 
                 </td>
               </tr>
               {/* <tr>
