@@ -22,39 +22,29 @@ const MarketAccess = () => {
   const [cityOptions, setCityOptions] = useState([]);
   const [displayedHospital, setDisplayedHospital] = useState(hospitals);
   const [selectedSpeciality, setSelectedSpeciality] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) {
       fetchHospitals();
     }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality]);
+  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery]);
 
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedState]);
 
   const fetchHospitals = async () => {
-    let url = `${process.env.REACT_APP_BASE_URL}/api/hospital-portal?`;
-  
     const params = new URLSearchParams();
     params.append('page', currentPage);
     params.append('limit', pageSize);
-  
-    if (selectedState !== 'all') {
-      params.append('state', selectedState);
-    }
-  
-    if (selectedCity !== 'all') {
-      params.append('city', selectedCity);
-    }
-  
-    // Add the speciality parameter
-    if (selectedSpeciality !== 'all') {
-      params.append('speciality', selectedSpeciality);
-    }
+    params.append('state', selectedState);
+    params.append('city', selectedCity);
+    params.append('speciality', selectedSpeciality);
+    params.append('search', searchQuery); // Add this line to include the search parameter
   
     try {
-      const response = await axios.get(url + params.toString());
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal?${params.toString()}`);
       setHospitals(response.data.hospitals);
       setTotalRows(response.data.totalRows);
       setTotalPages(response.data.totalPages);
@@ -146,6 +136,35 @@ const MarketAccess = () => {
     
   };
 
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearch = async () => {
+    const params = new URLSearchParams();
+    params.append('page', currentPage);
+    params.append('limit', pageSize);
+    params.append('state', selectedState);
+    params.append('city', selectedCity);
+    params.append('speciality', selectedSpeciality);
+    params.append('search', searchQuery); // Add this line to include the search parameter
+  
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal?${params.toString()}`);
+      setHospitals(response.data.hospitals);
+      setTotalRows(response.data.totalRows);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  
+  const clearSearchResults = () => {
+    setSearchQuery("");
+    setDisplayedHospital(hospitals);
+  };
+
   
   const displayedHospitals = hospitals;
 
@@ -231,7 +250,7 @@ const MarketAccess = () => {
               Clear Filters
             </button>
           </div>
-          {/* <div className="filter-container">
+          <div className="filter-container">
           <button className="search-button">
               <i className="fas fa-search"></i>
             </button>
@@ -243,7 +262,7 @@ const MarketAccess = () => {
             onChange={handleSearchInputChange}
           />
           <button onClick={clearSearchResults}>Clear Search</button>
-        </div> */}
+        </div>
           <div className="page-display">
             <h4 className="total-rows ft5">Total Healthcare Centers = {totalRows}</h4>
             <h4 className="right ft5">

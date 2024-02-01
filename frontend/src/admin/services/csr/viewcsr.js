@@ -7,6 +7,7 @@ import { PDFViewer, PDFDownloadLink, Document, Page, Text, View, StyleSheet, Ima
 import axios from "axios";
 import { Button } from "bootstrap";
 import logo from "../../../images/newlogo.png";
+import EditCSRForm from "./updatecsr";
 
 // Styles for the PDF
 const styles = StyleSheet.create({
@@ -124,6 +125,8 @@ const CSRPortal = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showNoRecordsPopup, setShowNoRecordsPopup] = useState(false);
   const [searchCriteria, setSearchCriteria] = useState("csrName");
+  const [editFormVisible, setEditFormVisible] = useState(false);
+  const [selectedCSR, setSelectedCSR] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -191,6 +194,45 @@ const CSRPortal = () => {
       setCurrentPage(prevPage => prevPage + 1);
     }
   };
+
+  const handleEditCSR = (csr) => {
+    setSelectedCSR(csr);
+    setEditFormVisible(true);
+  };
+
+  const handleUpdateCSR = async (id, updatedData) => {
+    try {
+      const requestData = {
+        data: updatedData,
+      };
+
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/CSR/update-csr/${id}`, requestData);
+      setEditFormVisible(false);
+      setSelectedCSR(null);
+      fetchCsrs();
+      console.log("CSR/Foundation updated successfully");
+    } catch (error) {
+      console.error(error);
+      console.log("Error updating CSR/Foundation");
+    }
+  };
+
+  const handleDeleteCSR = async (id) => {
+    const confirmed = window.confirm("Are you sure you want to delete this CSR/Foundation?");
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/CSR/delete-csr/${id}`);
+      setCsrs(csrs.filter((csr) => csr._id !== id));
+      console.log("CSR/Foundation deleted successfully");
+    } catch (error) {
+      console.error(error);
+      console.log("Error deleting CSR/Foundation");
+    }
+  };
+
 
   const generatePDF = () => {
     console.log("Generating PDF...");
@@ -328,12 +370,26 @@ const CSRPortal = () => {
                     <td>{csr.website}</td>
                     <td>{csr.domain}</td>
                     <td>
-                      {/* Add your action buttons here */}
+                      <button onClick={() => handleEditCSR(csr)}>
+                        <i className="fas fa-edit"></i>
+                      </button>
+                      <button onClick={() => handleDeleteCSR(csr._id)}>
+                        <i className="fas fa-trash"></i>
+                      </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            {editFormVisible && (
+            <EditCSRForm
+              csr={selectedCSR}
+              onCancel={() => setEditFormVisible(false)}
+              onUpdate={(id, updatedData) =>
+                handleUpdateCSR(id, updatedData)
+              }
+            />
+          )}
           </div>
           <div className="pagination-buttons">
             {!isFirstPage && (

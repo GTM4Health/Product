@@ -77,4 +77,38 @@ router.get('/all-csrs', async (req, res) => {
   }
 });
 
+// DELETE a CSR/Foundation by ID
+router.delete('/delete-csr/:id', async (req, res) => {
+  try {
+    const deletedCSR = await CSR.findByIdAndDelete(req.params.id);
+    if (!deletedCSR) {
+      return res.status(404).json({ message: 'CSR/Foundation not found' });
+    }
+    return res.status(200).json({ message: 'CSR/Foundation deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Update a CSR/Foundation by ID
+router.put('/update-csr/:id', async (req, res) => {
+  const { id } = req.params;
+  const updatedData = req.body.data;
+
+  try {
+    const updatedCSR = await CSR.findByIdAndUpdate(
+      id,
+      updatedData,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.json(updatedCSR);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 module.exports = router;
