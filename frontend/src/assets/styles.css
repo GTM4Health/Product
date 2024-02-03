@@ -19,6 +19,7 @@
   background-color: #dde6ed;
   padding: 1rem;
   padding-right: 1.8rem;
+  z-index: 999999;
 }
 
 .buttons {
@@ -979,12 +980,14 @@ form.hospital-f .hsubtn {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  z-index : 9999;
 }
 
 
 
 .user-menu-item:hover {
   background-color: #555;
+  z-index : 9999;
 }
 
 .user-menu-item i {
@@ -1029,6 +1032,7 @@ form.hospital-f .hsubtn {
 .user-menu-items.open {
   transform: scaleY(1);
   opacity: 1;
+  z-index : 9999;
 }
 
 .user-menu-items.closed {

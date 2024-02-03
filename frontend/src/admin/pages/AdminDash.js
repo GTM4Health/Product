@@ -17,6 +17,7 @@ function AdminDashboard() {
   const [totalStartups, setTotalStartups] = useState(0);
   const [totalReports, setTotalReports] = useState(0);
   const [chartData, setChartData] = useState(null);
+  const [totalCSRs, setTotalCSRs] = useState(0);
   // Chart.register(PieElement);
 // Register the ArcElement
 Chart.register(ArcElement);
@@ -32,6 +33,7 @@ Chart.register(ArcElement);
     fetchDealers();
     fetchStartups();
     fetchReports();
+    fetchCSRs();
   }, [isAuthenticated]);
   
   useEffect(() => {
@@ -57,6 +59,17 @@ Chart.register(ArcElement);
         `${process.env.REACT_APP_BASE_URL}/api/users`
       );
       setTotalUsers(response.data.totalRows);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const fetchCSRs = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/CSR/csrs-portal`
+      );
+      setTotalCSRs(response.data.totalRows);
     } catch (error) {
       console.error(error);
     }
@@ -146,7 +159,7 @@ const pieChartData = {
 
             <table className="stats-table">
               <tr>
-                <th className="header-cell" colSpan={5}>Dashboard Analytics</th>
+                <th className="header-cell" colSpan={6}>Dashboard Analytics</th>
               </tr>
               <tr><th> </th></tr>
               <tr><th> </th></tr>
@@ -175,6 +188,9 @@ const pieChartData = {
                 <td className="category-heading" colSpan="1">
                   Total Market Insights Reports
                 </td>
+                <td className="category-heading" colSpan="1">
+                  Total CSRs & Foundations
+                </td>
               </tr>
               <tr>
                 <td className="data-cell" colSpan="1">
@@ -191,6 +207,9 @@ const pieChartData = {
                 </td>
                 <td className="data-cell" colSpan="1">
                   {totalReports}                 
+                </td>
+                <td className="data-cell" colSpan="1">
+                  {totalCSRs}                 
                 </td>
               </tr>
               {/* <tr>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import startupOptions from "../../../assets/startupOptions";
 
 const EditCSRForm = ({ csr, onUpdate, onCancel }) => {
   const [csrName, setCSRName] = useState(csr.csrName);
@@ -51,14 +52,19 @@ const EditCSRForm = ({ csr, onUpdate, onCancel }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="domain">Domain</label>
-          <input
-            type="text"
-            id="domain"
-            value={domain}
-            onChange={(e) => setDomain(e.target.value)}
-            placeholder="Domain"
-          />
+              <label htmlFor="domain">Domain:</label>
+              <select
+                  id="domain"
+                  value={domain}
+                  onChange={(e) => setDomain(e.target.value)}
+                  
+                >
+                  {startupOptions.domainOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+              </select>
         </div>
         <div className="form-group">
           <label htmlFor="progress">CSR/Foundation Progress :</label>

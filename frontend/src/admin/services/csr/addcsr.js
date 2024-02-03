@@ -4,6 +4,7 @@ import Footer from "../../../layout/pages/Footer";
 import AdminMenuBar from "../../../layout/admin/AdminMenubar";
 import useAuth from "../../../hooks/useAuth";
 import AdminHeader from "../../../layout/admin/AdminHeader";
+import startupOptions from "../../../assets/startupOptions";
 
 const NewCSRForm = () => {
   const [csrName, setCSRName] = useState("");
@@ -89,14 +90,18 @@ const NewCSRForm = () => {
               {/* Domain */}
               <div className="form-group">
                 <label htmlFor="domain">Domain:</label>
-                <input
-                  type="text"
+                <select
                   id="domain"
                   value={domain}
                   onChange={(e) => setDomain(e.target.value)}
-                  placeholder="Domain"
                   className="form-outline"
-                />
+                >
+                  {startupOptions.domainOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
               </div>
               <button type="submit" className="hsubtn login-btn">
                 Submit
