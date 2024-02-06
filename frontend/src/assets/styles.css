@@ -1204,6 +1204,7 @@ form.hospital-f .hsubtn {
   display: flex;
   flex-direction: row;
   font-size: 1.35rem;
+  margin-top: 10px;
 }
 
 .f-select{
@@ -1215,6 +1216,7 @@ form.hospital-f .hsubtn {
 .f-label{
   gap: 3rem;
   margin-right: .6rem;
+  padding-left: .6rem;
 }
 
 .pdf-button-container {
@@ -1680,6 +1682,37 @@ form.hospital-f .hsubtn {
 
 .reports{
   padding-top: 5rem;
+}
+
+.clear-btn {
+  background: #34d991;
+  background-image: -webkit-linear-gradient(top, #34d991, #2b3bb8);
+  background-image: -moz-linear-gradient(top, #34d991, #2b3bb8);
+  background-image: -ms-linear-gradient(top, #34d991, #2b3bb8);
+  background-image: -o-linear-gradient(top, #34d991, #2b3bb8);
+  background-image: linear-gradient(to bottom, #34d991, #2b3bb8);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+
+.clear-btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.f-btn{
+  width: 20%;
 }
 
 /* .sl{

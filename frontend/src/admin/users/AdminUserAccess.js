@@ -7,6 +7,7 @@ import AdminUpdateUserForm from "./AdminUpdateUsers";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 
+
 function AdminDashboard() {
   const isAuthenticated = useAuth();
   const [users, setUsers] = useState([]);
@@ -189,6 +190,11 @@ function AdminDashboard() {
                 <th>Email</th>
                 {/* <th>Phone</th>
                 <th>Role</th> */}
+                {/* <th>Dashboard Privileges</th> 
+                <th>Hospitals Privileges</th>
+                <th>Partners Privileges</th>
+                <th>Reports Privileges</th>
+                <th>Foundations Privileges</th> */}
                 <th>Login Counter</th>
                 <th>Last Login</th>
                 <th>Activated Date & Time</th>
@@ -201,6 +207,11 @@ function AdminDashboard() {
                   <td>{(currentPage - 1) * pageSize + index + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
+                  {/*  <td>{user.privileges.accessDashboard ?   'Granted'  : 'Restricted'}</td> 
+                  <td>{user.privileges.accessHospitals ?   'Granted'  : 'Restricted'}</td>
+                  <td>{user.privileges.accessGtmPartners ? 'Yes' : 'No'}</td>
+                  <td>{user.privileges.accessMarketInsights ? 'Yes' : 'No'}</td>
+                  <td>{user.privileges.accessCsrsFoundations ? 'Yes' : 'No'}</td> */}
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
                   <td>{user.counter}</td>

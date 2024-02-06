@@ -1,4 +1,3 @@
-// AdminUpdateUserForm.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -6,16 +5,41 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
 
+  // Adding state for privileges
+  const [privileges, setPrivileges] = useState({
+    accessHospitals: user.privileges.accessHospitals || false,
+    accessGtmPartners: user.privileges.accessGtmPartners || false,
+    accessMarketInsights: user.privileges.accessMarketInsights || false,
+    accessCsrsFoundations: user.privileges.accessCsrsFoundations || false,
+  });
+
   useEffect(() => {
     setName(user.name);
     setEmail(user.email);
+
+    // Update privileges state when user changes
+    setPrivileges({
+      accessHospitals: user.privileges.accessHospitals || false,
+      accessGtmPartners: user.privileges.accessGtmPartners || false,
+      accessMarketInsights: user.privileges.accessMarketInsights || false,
+      accessCsrsFoundations: user.privileges.accessCsrsFoundations || false,
+    });
   }, [user]);
+
+  const handlePrivilegeChange = (privilege) => {
+    setPrivileges((prevPrivileges) => ({
+      ...prevPrivileges,
+      [privilege]: !prevPrivileges[privilege],
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedData = {
       name,
       email,
+      // Include privileges in the updated data
+      privileges,
     };
     onUpdate(user._id, updatedData);
   };
@@ -46,6 +70,44 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
             required
           />
         </div>
+
+        {/* Section for handling privileges */}
+        {/* <div className="privileges-section">
+          <h3>Privileges</h3>
+          <label>
+            <input
+              type="checkbox"
+              checked={privileges.accessHospitals}
+              onChange={() => handlePrivilegeChange("accessHospitals")}
+            />
+            Access Hospitals
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={privileges.accessGtmPartners}
+              onChange={() => handlePrivilegeChange("accessGtmPartners")}
+            />
+            Access GTM Partners
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={privileges.accessMarketInsights}
+              onChange={() => handlePrivilegeChange("accessMarketInsights")}
+            />
+            Access Market Insights
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={privileges.accessCsrsFoundations}
+              onChange={() => handlePrivilegeChange("accessCsrsFoundations")}
+            />
+            Access CSRs/Foundations
+          </label>
+        </div> */}
+
         <div className="button-group">
           <button type="submit" className="btn-primary">
             Update

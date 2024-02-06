@@ -288,8 +288,24 @@ const CityPortal = () => {
                   <option value="all">All</option>
                   {specialityOptions}
               </select>
-            <div className="page-jump f-select">
-              {/* <label htmlFor="page-selector">Go to Page:</label> */}
+            <button onClick={handleClearFilters} className="clear-btn f-btn">Clear Filters</button>
+          
+          </div>
+          <div className="filter-container">
+          <button className="search-button">
+              <i className="fas fa-search"></i>
+          </button>
+          <input
+            type="text"
+            className="f-select"
+            placeholder="Search hospitals..."
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+          />
+          {/* <button onClick={handleSearch}>Search</button> */}
+          <button onClick={clearSearchResults} className="clear-btn">Clear Search</button>
+          <div className="page-jump f-select">
+              <label htmlFor="page-selector" className="f-label">Go to Page:</label>
               <select
                 id="page-selector"
                 value={currentPage}
@@ -302,22 +318,7 @@ const CityPortal = () => {
                   </option>
                 ))}
               </select>
-            <button onClick={handleClearFilters}>Clear Filters</button>
-          </div>
-          </div>
-          <div className="filter-container">
-          <button className="search-button">
-              <i className="fas fa-search"></i>
-            </button>
-          <input
-            type="text"
-            className="f-select"
-            placeholder="Search hospitals..."
-            value={searchQuery}
-            onChange={handleSearchInputChange}
-          />
-          {/* <button onClick={handleSearch}>Search</button> */}
-          <button onClick={clearSearchResults}>Clear Search</button>
+              </div>
         </div>
           <div className="page-display">
             <h4 className="total-rows ft5">Total Healthcare Centers = {totalRows}</h4>
