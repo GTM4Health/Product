@@ -192,28 +192,18 @@ const MarketAccess = () => {
             </p>
           </a>
           <div className="filter-container">
-            <label className="f-label" htmlFor="stateFilter">State:</label>
-            <select
-              id="stateFilter"
-              value={selectedState}
-              className="f-select"
-              onChange={handleStateChange}
-            >
-              <option value="All">All</option>
+          <label className="f-label"  htmlFor="state-select">State:</label>
+            <select className="f-select" id="state-select" value={selectedState} onChange={handleStateChange}>
+              <option value="all">All</option>
               {stateOptions.map((state) => (
                 <option key={state.value} value={state.value}>
                   {state.label}
                 </option>
               ))}
             </select>
-            <label className="f-label" htmlFor="cityFilter">City:</label>
-            <select
-              id="cityFilter"
-              value={selectedCity}
-              className="f-select"
-              onChange={handleCityChange}
-            >
-              <option value="All">All</option>
+            <label className="f-label"  htmlFor="city-select">City:</label>
+            <select className="f-select"  id="city-select" value={selectedCity} onChange={handleCityChange}>
+              <option value="all">All</option>
               {getCityOptionsByState(selectedState).map((city) => (
                 <option key={city.value} value={city.value}>
                   {city.label}
@@ -232,11 +222,28 @@ const MarketAccess = () => {
                   <option value="all">All</option>
                   {specialityOptions}
               </select>
-            <div className="page-jump">
-              {/* <label htmlFor="page-selector">Go to Page:</label> */}
+            <button onClick={handleClearFilters} className="clear-btn f-btn">Clear Filters</button>
+          
+          </div>
+          <div className="filter-container">
+          <button className="search-button">
+              <i className="fas fa-search"></i>
+          </button>
+          <input
+            type="text"
+            className="f-select"
+            placeholder="Search hospitals..."
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+          />
+          {/* <button onClick={handleSearch}>Search</button> */}
+          <button onClick={clearSearchResults} className="clear-btn">Clear Search</button>
+          <div className="page-jump f-select">
+              <label htmlFor="page-selector" className="f-label">Go to Page:</label>
               <select
                 id="page-selector"
                 value={currentPage}
+                className="f-select"
                 onChange={(e) => setCurrentPage(parseInt(e.target.value))}
               >
                 {Array.from({ length: totalPages }, (_, index) => (
@@ -245,23 +252,7 @@ const MarketAccess = () => {
                   </option>
                 ))}
               </select>
-            </div>
-            <button onClick={handleClearFilters}>
-              Clear Filters
-            </button>
-          </div>
-          <div className="filter-container">
-          <button className="search-button">
-              <i className="fas fa-search"></i>
-            </button>
-          <input
-            type="text"
-            className="f-select"
-            placeholder="Search hospitals..."
-            value={searchQuery}
-            onChange={handleSearchInputChange}
-          />
-          <button onClick={clearSearchResults}>Clear Search</button>
+              </div>
         </div>
           <div className="page-display">
             <h4 className="total-rows ft5">Total Healthcare Centers = {totalRows}</h4>

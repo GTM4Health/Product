@@ -92,7 +92,7 @@ const MarketInsights = () => {
             <h1 className="page-title-child hdblue-tag reports">View Market Insight Reports</h1>
           </div>
           <div className="page-display">
-            <h4 className="total-rows ft5">Total Market Access Reports = {totalFiles}</h4>
+            <h4 className="total-rows ft5">Total Market Insights Reports = {totalFiles}</h4>
             <h4 className="total-rows right ft5">
               <i>Displaying Page {currentPage} of {totalPages}</i>
             </h4>
