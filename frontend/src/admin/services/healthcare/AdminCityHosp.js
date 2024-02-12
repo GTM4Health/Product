@@ -7,7 +7,137 @@ import specialitiesData from "../../../assets/specialities.json";
 import axios from "axios";
 import EditHospitalForm from "./AdminUpdateHosp"
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions";
-import { Document, Page, pdfjs } from "react-pdf";
+import { Button } from "bootstrap"; // Assuming you're using Bootstrap for buttons
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'; // Import PDF generation dependencies
+import logo from "../../../images/newlogo.png"; // Import logo for PDF
+
+
+// Styles for the PDF
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'column',
+    padding: 12,
+  },
+  header: {
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  table: {
+    display: 'table',
+    width: '100%',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRightColor: 'black',
+    borderBottomColor: 'black',
+    marginTop: 40, // Add margin to create a gap
+  },
+  tableRow: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+  },
+  tableCell: {
+    flex: 1,
+    padding: 4,
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  headerCell: {
+    flex: 1,
+    padding: 4,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    backgroundColor: '#0077b6',
+    color: 'white',
+    fontSize: 16,
+  },
+  smallHeaderCell:{
+    textAlign: 'center',
+    fontWeight: 'bold',
+    backgroundColor: '#0077b6',
+    color: 'white',
+    fontSize: 14,
+  },
+  smallCell:{
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 14,
+    padding: 6,
+  },
+  borderRight: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  logoContainer: {
+    position: 'absolute',
+    top: 30, // Adjust the top value to create space between the logo and the table
+    right: 30,
+  },
+  gap: {
+    height: 40, // Adjust the height to create a gap below the logo
+  },
+  section: {
+    margin: 4,
+    padding: 2,
+    flexGrow: 1,
+  },
+  logo: {
+    width: 200,
+    height: 80,
+  },
+});
+
+const MyDocument = ({ hospitalData }) => (
+  <Document>
+    <Page style={styles.page}>
+      <Text style={styles.header}>Hospital List</Text>
+      <View style={styles.logoContainer}>
+          <Image src={logo} style={styles.logo} />
+      </View>
+      <View style={styles.gap} />
+      <View style={styles.table}>
+        <View style={styles.tableRow}>
+          <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Hospital Name</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Infrastructure & Services</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>State</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>City</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Address</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Pincode</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Contact Name</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Role</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Contact Email</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Specialization</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Last-Connected</Text>
+        </View>
+        {hospitalData.map((hospital, index) => (
+          <View style={styles.tableRow} key={hospital._id}>
+            <Text style={[styles.smallCell, styles.borderRight]}>{index + 1}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.name}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.infraSer}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.state}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.city}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.address}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.pincode}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docName}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docSpez}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.mail}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.speciality}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.lastConnected}</Text>
+          </View>
+        ))}
+      </View>
+    </Page>
+  </Document>
+);
+
+
+
 
 
 const CityPortal = () => {
@@ -24,7 +154,9 @@ const CityPortal = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [displayedHospital, setDisplayedHospital] = useState(hospitals);
   const [selectedSpeciality, setSelectedSpeciality] = useState("all");
-
+  const hospitalData = hospitals.map((hospital, index) => ({
+    ...hospital,
+  }));
 
 
 
@@ -247,6 +379,17 @@ const CityPortal = () => {
                 Healthcare Centres List - City Wise
             </h1>
           </div>
+          <PDFDownloadLink document={<MyDocument hospitalData={hospitalData} />} fileName="hospital-list.pdf">
+      {({ blob, url, loading, error }) => {
+        if (loading) {
+          return 'Loading document...';
+        }
+        if (error) {
+          return 'Error generating PDF';
+        }
+        return 'Download PDF';
+      }}
+    </PDFDownloadLink>
           <div className="filter-container">
               {/* <div className="search-container">
                 <input

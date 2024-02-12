@@ -36,6 +36,25 @@ router.put("/update-user/:id", async (req, res) => {
   }
 });
 
+// Update a user with privileges
+// router.put("/update-user/:id", async (req, res) => {
+//   const { id } = req.params;
+
+//   try {
+//     // Ensure that only privileges are updated
+//     const updatedUser = await User.findByIdAndUpdate(
+//       id,
+//       { privileges: req.body.data.privileges },
+//       { new: true }
+//     );
+
+//     res.json({ user: updatedUser, message: 'User privileges updated successfully' });
+//   } catch (error) {
+//     console.error('Failed to update user privileges', error);
+//     res.status(500).json({ error: 'Failed to update user privileges' });
+//   }
+// });
+
 // Delete a user
 router.delete("/delete-user/:id", async (req, res) => {
   const { id } = req.params;

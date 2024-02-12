@@ -1,5 +1,3 @@
-// PanIndiaDash.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminHeader from '../../layout/admin/AdminHeader';
@@ -16,7 +14,9 @@ const PanIndiaDash = () => {
   const fetchStateCenters = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers`);
-      setStateCenters(response.data);
+      // Sort the stateCenters array based on the totalCenters value in descending order
+      const sortedStateCenters = response.data.sort((a, b) => b.totalCenters - a.totalCenters);
+      setStateCenters(sortedStateCenters);
     } catch (error) {
       console.error(error);
     }
@@ -41,9 +41,9 @@ const PanIndiaDash = () => {
                 </tr>
               </thead>
               <tbody>
-                {stateCenters.map((entry) => (
+                {stateCenters.map((entry, index) => (
                   <tr key={entry.id}>
-                    <td>{entry.id}</td>
+                    <td>{index + 1}</td>
                     <td>{entry.state}</td>
                     <td>{entry.totalCenters}</td>
                   </tr>

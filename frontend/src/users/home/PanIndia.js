@@ -27,12 +27,13 @@ const PanIndia = () => {
   const fetchStateCenters = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers`);
-      setStateCenters(response.data);
+      // Sort the stateCenters array based on the totalCenters value in descending order
+      const sortedStateCenters = response.data.sort((a, b) => b.totalCenters - a.totalCenters);
+      setStateCenters(sortedStateCenters);
     } catch (error) {
       console.error(error);
     }
   };
-
   return (
     <div className="page-view">
       <Header2 user={user}/>
@@ -70,3 +71,5 @@ const PanIndia = () => {
 };
 
 export default PanIndia;
+
+

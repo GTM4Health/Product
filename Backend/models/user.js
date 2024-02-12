@@ -42,6 +42,13 @@ const userSchema = new mongoose.Schema({
     type: String, // Change the type to String to store formatted time
     default: () => moment().utcOffset('+05:30').format('DD-MMM-YYYY, hh:mm:ss A'), // Set default value using moment.js
   },
+  privileges: {
+    accessDashboard: { type: Boolean, default: true },
+    accessHospitals: { type: Boolean, default: false },
+    accessGtmPartners: { type: Boolean, default: false },
+    accessMarketInsights: { type: Boolean, default: false },
+    accessCsrsFoundations: { type: Boolean, default: false },
+  },
 });
 
 userSchema.methods.recordLogin = async function () {
