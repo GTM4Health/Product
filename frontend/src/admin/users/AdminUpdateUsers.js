@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Dashboard from './../../users/home/Dashboard';
 
 const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
   const [name, setName] = useState(user.name);
@@ -7,6 +8,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
 
   // Adding state for privileges
   const [privileges, setPrivileges] = useState({
+    accessDashboard: user.privileges.accessDashboard || false;
     accessHospitals: user.privileges.accessHospitals || false,
     accessGtmPartners: user.privileges.accessGtmPartners || false,
     accessMarketInsights: user.privileges.accessMarketInsights || false,
@@ -19,6 +21,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
 
     // Update privileges state when user changes
     setPrivileges({
+      accessDashboard: user.privileges.accessDashboard || false,
       accessHospitals: user.privileges.accessHospitals || false,
       accessGtmPartners: user.privileges.accessGtmPartners || false,
       accessMarketInsights: user.privileges.accessMarketInsights || false,
@@ -72,8 +75,16 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
         </div>
 
         {/* Section for handling privileges */}
-        {/* <div className="privileges-section">
-          <h3>Privileges</h3>
+        <div className="privileges-section">
+          <h2>Access Privileges</h2>
+          <label>
+            <input
+              type="checkbox"
+              checked={privileges.accessDashboard}
+              onChange={() => handlePrivilegeChange("accessDashboard")}
+            />
+            Access Dashboard
+          </label>
           <label>
             <input
               type="checkbox"
@@ -106,7 +117,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
             />
             Access CSRs/Foundations
           </label>
-        </div> */}
+        </div>
 
         <div className="button-group">
           <button type="submit" className="btn-primary">

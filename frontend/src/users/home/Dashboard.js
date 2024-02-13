@@ -26,6 +26,7 @@ const Dashboard = () => {
       fetchHospitals();
       fetchDealers();
       fetchReports();
+      fetchCSRs();
     }
   }, [isAuthenticated]);
 
