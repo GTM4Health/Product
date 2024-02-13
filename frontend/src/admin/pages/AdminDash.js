@@ -141,8 +141,8 @@ const pieChartData = {
 
 
     // Debugging: Log the value of totalUsers and pieChartData
-    console.log("totalUsers:", totalUsers);
-    console.log("pieChartData:", pieChartData);
+    // console.log("totalUsers:", totalUsers);
+    // console.log("pieChartData:", pieChartData);
 
 
 

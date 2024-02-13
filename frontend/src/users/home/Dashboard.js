@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [totalHospitals, setTotalHospitals] = useState(0);
   const [totalDealers, setTotalDealers] = useState(0);
   const [totalReports, setTotalReports] = useState(0);
+  const [totalCSRs, setTotalCSRs] = useState(0);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -50,6 +51,17 @@ const Dashboard = () => {
     }
   };
 
+  const fetchCSRs = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/CSR/csrs-portal`
+      );
+      setTotalCSRs(response.data.totalRows);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const fetchReports = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs`);
@@ -72,7 +84,7 @@ const Dashboard = () => {
           <div className="dashboard-content">
           <table className="stats-table">
               <tr>
-                <th className="header-cell" colSpan={3}>Dashboard Analytics</th>
+                <th className="header-cell" colSpan={4}>Dashboard Analytics</th>
               </tr>
               <tr>
                 <td className="category-heading" colSpan="1">
@@ -84,6 +96,9 @@ const Dashboard = () => {
                 <td className="category-heading" colSpan="1">
                   Total Market Insights Reports
                 </td>
+                <td className="category-heading" colSpan="1">
+                  Total CSRs & Foundations
+                </td>
               </tr>
               <tr>
                 <td className="data-cell" colSpan="1">
@@ -94,6 +109,9 @@ const Dashboard = () => {
                 </td>
                 <td className="data-cell" colSpan="1">
                   {totalReports}                 
+                </td>
+                <td className="data-cell" colSpan="1">
+                  {totalCSRs}                 
                 </td>
               </tr>
               {/* <tr>
