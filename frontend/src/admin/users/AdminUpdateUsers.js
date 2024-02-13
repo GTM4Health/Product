@@ -8,7 +8,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
 
   // Adding state for privileges
   const [privileges, setPrivileges] = useState({
-    accessDashboard: user.privileges.accessDashboard || false;
+    accessDashboard: user.privileges.accessDashboard || false,
     accessHospitals: user.privileges.accessHospitals || false,
     accessGtmPartners: user.privileges.accessGtmPartners || false,
     accessMarketInsights: user.privileges.accessMarketInsights || false,
