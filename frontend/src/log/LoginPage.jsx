@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import HeaderIn from '../layout/users/HeaderIn';
 import Footer from "../layout/pages/Footer";
 
-
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // State to hold error message
+  const [successMessage, setSuccessMessage] = useState(''); // State to hold success message
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (successMessage) {
+      const timeout = setTimeout(() => {
+        navigate('/dashboard');
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [successMessage, navigate]);
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -32,12 +42,60 @@ const LoginPage = () => {
       const { counter, lastLogin } = response.data.loginDetails;
       console.log(`Login successful! Login Counter: ${counter}, Last Login: ${lastLogin}`);
 
-      // Navigate to the dashboard
-      navigate('/dashboard');
+      // Set success message
+      setSuccessMessage('Login successful!');
     } catch (error) {
       console.error('Login failed', error);
       setPassword('');
+
+      // Set the error message based on the error response
+      if (error.response && error.response.data.error) {
+        setErrorMessage(error.response.data.error);
+      }
     }
+  };
+
+  const handleRenew = () => {
+    // Define the logic to handle subscription renewal here
+    console.log('Renew subscription logic goes here');
+  };
+
+  const renderPopup = () => {
+    if (errorMessage.includes('Invalid email or password')) {
+      return (
+        <div className="popup failure">
+          Incorrect email or password. Please check your credentials and try again.
+          <br />
+          <button onClick={() => setErrorMessage('')}>Try Again</button>
+        </div>
+      );
+    } else if (errorMessage.includes('Subscription expired')) {
+      return (
+        <div className="popup failure">
+          Your account has expired. Please renew your subscription to continue using our services.
+          <br />
+          <button onClick={handleRenew}>Renew Subscription</button>
+        </div>
+      );
+    } else if (errorMessage) {
+      return (
+        <div className="popup failure">
+          {errorMessage}
+          <br />
+          <button onClick={() => setErrorMessage('')}>Close</button>
+        </div>
+      );
+    } else if (successMessage) {
+      return (
+        <div className="popup success">
+          {successMessage}
+          <br />
+          <button onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
+        </div>
+        
+      );
+    }
+    return null;
   };
 
   return (
@@ -77,6 +135,8 @@ const LoginPage = () => {
             </div>
           </div>
         </form>
+        {/* Render the popup */}
+        {renderPopup()}
       </div>
       <Footer />
     </div>

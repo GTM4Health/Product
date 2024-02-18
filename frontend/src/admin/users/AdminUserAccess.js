@@ -198,6 +198,7 @@ function AdminDashboard() {
                 <th>Login Counter</th>
                 <th>Last Login</th>
                 <th>Activated Date & Time</th>
+                <th>End of Subscription</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -222,6 +223,7 @@ function AdminDashboard() {
                   <td>{user.counter}</td>
                   <td>{user.lastLogin}</td>
                   <td>{user.activationTime}</td>
+                  <td>{user.endDate}</td>
                   <td>
                       <button className="edit-button" onClick={() => handleEditUser(user)}>
                         <i className="fas fa-pencil-alt"></i>

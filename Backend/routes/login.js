@@ -29,6 +29,11 @@ router.post('/', async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
+    // Check if the subscription end date is valid
+    if (user.endDate && new Date() > user.endDate) {
+      return res.status(401).json({ error: 'Subscription expired' });
+    }
+
     // Record login details (new feature from user.js model)
     await user.recordLogin();
 

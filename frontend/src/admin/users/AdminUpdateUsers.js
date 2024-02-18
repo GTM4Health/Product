@@ -5,6 +5,7 @@ import Dashboard from './../../users/home/Dashboard';
 const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
+  const [endDate, setEndDate] = useState(user.endDate || "");
 
   // Adding state for privileges
   const [privileges, setPrivileges] = useState({
@@ -18,6 +19,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
   useEffect(() => {
     setName(user.name);
     setEmail(user.email);
+    setEndDate(user.endDate);
 
     // Update privileges state when user changes
     setPrivileges({
@@ -41,6 +43,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
     const updatedData = {
       name,
       email,
+      endDate,
       // Include privileges in the updated data
       privileges,
     };
@@ -72,6 +75,18 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
             placeholder="Email Address"
             required
           />
+        </div>
+        <div className="form-group">
+            <label htmlFor="endDate">End Date of Subscription:</label>
+            <label htmlFor="endDate">Current : {endDate}</label>
+            <input
+              type="date"
+              id="endDate"
+              name="endDate"
+              value={endDate}
+              placeholder="End Date"
+              onChange={(e) => setEndDate(e.target.value)}
+            />
         </div>
 
         {/* Section for handling privileges */}
