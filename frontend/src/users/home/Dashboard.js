@@ -4,6 +4,7 @@ import Footer from "../../layout/pages/Footer";
 import Header2 from "../../layout/users/Header2";
 import useAuth from "../../hooks/useAuth";
 import MenuBar from "../../layout/users/MenuBar";
+import Subscription from "../../common/Subscribe";
 
 
 const Dashboard = () => {
@@ -14,11 +15,16 @@ const Dashboard = () => {
   const [totalReports, setTotalReports] = useState(0);
   const [totalCSRs, setTotalCSRs] = useState(0);
 
+
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
       setUser(storedUser);
     }
+    console.log(user)
+    // if(![user.privileges.accessDashboard]){
+    //   return <Subscription />;
+    // }
   }, []);
 
   useEffect(() => {
@@ -28,6 +34,7 @@ const Dashboard = () => {
       fetchReports();
       fetchCSRs();
     }
+
   }, [isAuthenticated]);
 
   const fetchHospitals = async () => {

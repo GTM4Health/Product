@@ -4,6 +4,7 @@ import Footer from "../../../layout/pages/Footer"
 import AdminMenuBar from "../../../layout/admin/AdminMenubar";
 import useAuth from '../../../hooks/useAuth';
 import AdminHeader from "../../../layout/admin/AdminHeader";
+import Categories from "../../../assets/healthcareCategories.json";
 
 import { stateOptions, getCityOptionsByState } from '../../../assets/cityOptions';
 import specialitiesData from '../../../assets/specialities.json'; // Import the specialities data
@@ -22,6 +23,7 @@ const AdminHospital = () => {
   const [hospitalStatus, setHospitalStatus] = useState(null);
   const [pincode, setPincode] = useState(''); 
   const [address,setAddress] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -44,6 +46,7 @@ const AdminHospital = () => {
         lastConnected,
         pincode,
         address,
+        category,
       });
       setName('');
       setCity('');
@@ -58,6 +61,7 @@ const AdminHospital = () => {
       setPincode('');
       setHospitalStatus('success');
       setAddress('');
+      setCategory('');
       // Clear the success message after 2 seconds
       setTimeout(() => {
         setHospitalStatus(null);
@@ -104,6 +108,15 @@ const AdminHospital = () => {
       </option>
     ));
   };
+
+  const renderCategoryOptions = () => {
+    return Categories.map((category) => (
+      <option key={category} value={category}>
+        {category}
+      </option>
+    ));
+  };
+  
 
   return (
     <div className="page-view">
@@ -182,6 +195,20 @@ const AdminHospital = () => {
                   placeholder="Infrastructure & Services"
                   className="form-outline textarea"
                 ></textarea>
+              </div>
+              <div className="form-group">
+                <label className='f-label' htmlFor="speciality">Categories :</label>
+                <select
+                  id="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="form-outline f-select wd50"
+                >
+                  <option value="" disabled hidden>
+                    Select Category
+                  </option>
+                  {renderCategoryOptions()}
+                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="addrx">Address :</label>

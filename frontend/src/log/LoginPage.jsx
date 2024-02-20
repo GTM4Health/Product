@@ -15,7 +15,7 @@ const LoginPage = () => {
     if (successMessage) {
       const timeout = setTimeout(() => {
         navigate('/dashboard');
-      }, 3000);
+      }, 2600);
 
       return () => clearTimeout(timeout);
     }
@@ -58,6 +58,7 @@ const LoginPage = () => {
   const handleRenew = () => {
     // Define the logic to handle subscription renewal here
     console.log('Renew subscription logic goes here');
+    navigate('/');
   };
 
   const renderPopup = () => {
@@ -90,7 +91,7 @@ const LoginPage = () => {
         <div className="popup success">
           {successMessage}
           <br />
-          <button onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
+          {/* <button onClick={() => navigate('/dashboard')}>Go to Dashboard</button> */}
         </div>
         
       );
