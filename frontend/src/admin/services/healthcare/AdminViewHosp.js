@@ -9,6 +9,7 @@ import EditHospitalForm from "./AdminUpdateHosp";
 
 
 
+
 const HospitalPortal = () => {
   const isAuthenticated = useAuth();
   const [hospitals, setHospitals] = useState([]);
@@ -146,6 +147,7 @@ const HospitalPortal = () => {
                   <th>Sl No.</th>
                   <th>Name</th>
                   <th>Infrastructure & Services</th>
+                  <th>Category</th>
                   <th>State</th>
                   <th>City</th>
                   <th>Address</th>
@@ -165,6 +167,7 @@ const HospitalPortal = () => {
                     <td>{(currentPage - 1) * pageSize + index + 1}</td>
                     <td>{hospital.name}</td>
                     <td>{hospital.infraSer}</td>
+                    <td>{hospital.category}</td>
                     <td>{hospital.state}</td>
                     <td>{hospital.city}</td>
                     <td>{hospital.address}</td>

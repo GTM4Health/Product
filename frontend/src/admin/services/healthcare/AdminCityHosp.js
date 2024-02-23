@@ -12,6 +12,7 @@ import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '
 import logo from "../../../images/newlogo.png"; // Import logo for PDF
 
 
+
 // Styles for the PDF
 const styles = StyleSheet.create({
   page: {
@@ -490,6 +491,7 @@ const CityPortal = () => {
                   <th>Sl No.</th>
                   <th>Name</th>
                   <th>Infrastructure & Services</th>
+                  <th>Category</th>
                   <th>State</th>
                   <th>City</th>
                   <th>Address</th>
@@ -509,6 +511,7 @@ const CityPortal = () => {
                     <td>{(currentPage - 1) * pageSize + index + 1}</td>
                     <td>{hospital.name}</td>
                     <td>{hospital.infraSer}</td>
+                    <td>{hospital.category}</td>
                     <td>{hospital.state}</td>
                     <td>{hospital.city}</td>
                     <td>{hospital.address}</td>

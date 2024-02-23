@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
     // Return the token, user details, and additional login information
     res.json({
       token,
-      user: { name: user.name, email: user.email},
+      user: { name: user.name, email: user.email, privileges:user.privileges},
       loginDetails: { counter: user.counter, lastLogin: user.lastLogin },
     });
   } catch (error) {
