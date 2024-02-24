@@ -16,6 +16,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
   const [lastConnected, setLastConnected] = useState(hospital.lastConnected);
   const [address, setAddress] = useState(hospital.address);
   const [pincode, setPincode] = useState(hospital.pincode);
+  const [category, setCategory] = useState(hospital.category);
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -35,6 +36,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     setLastConnected(hospital.lastConnected || ""); // Set initial value if not present
     setPincode(hospital.pincode || "");
     setAddress(hospital.address || "");
+    setCategory(hospital.category || "");
   }, [hospital]);
 
   const handleSubmit = (e) => {
@@ -51,7 +53,8 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
       speciality,
       lastConnected,
       pincode,
-      address
+      address,
+      category
     };
     onUpdate(hospital._id, updatedData);
   };
@@ -82,6 +85,15 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
       </option>
     ));
   };
+
+  const renderCategoryOptions = () => {
+    return Categories.map((category) => (
+      <option key={category} value={category}>
+        {category}
+      </option>
+    ));
+  };
+  
 
   return (
     <div className="edit-form">
@@ -119,6 +131,20 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
             </option>
             {renderCityOptions()}
           </select>
+        </div>
+        <div className="form-group">
+            <label className='f-label' htmlFor="speciality">Categories :</label>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="form-outline f-select wd50"
+            >
+              <option value="" disabled hidden>
+                Select Category
+              </option>
+              {renderCategoryOptions()}
+            </select>
         </div>
         <div className="form-group">
             <label htmlFor="addrx">Address :</label>

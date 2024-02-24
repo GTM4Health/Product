@@ -10,8 +10,7 @@ import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions
 import { Button } from "bootstrap"; // Assuming you're using Bootstrap for buttons
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'; // Import PDF generation dependencies
 import logo from "../../../images/newlogo.png"; // Import logo for PDF
-
-
+import Categories from "../../../assets/healthcareCategories.json";
 
 // Styles for the PDF
 const styles = StyleSheet.create({
