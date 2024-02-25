@@ -281,6 +281,7 @@ const MarketAccess = () => {
                   <th>Infrastructure & Services</th>
                   <th>State</th>
                   <th>City</th>
+                  <th>Category</th>
                   {/* <th>Doctor Name</th> */}
                   <th>Speciality</th>
                   {/* <th>Contact Email</th>
@@ -295,6 +296,7 @@ const MarketAccess = () => {
                     <td>{hospital.infraSer}</td>
                     <td>{hospital.state}</td>
                     <td>{hospital.city}</td>
+                    <th>{hospital.category}</th>
                     {/* <td>{hospital.docName}</td> */}
                     {/* <td>{hospital.docSpez}</td> */}
                     <td>{hospital.speciality}</td>

@@ -12,6 +12,10 @@ import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '
 import logo from "../../../images/newlogo.png"; // Import logo for PDF
 import Categories from "../../../assets/healthcareCategories.json";
 
+// "Military Hospital",
+// "Optical Store",
+// "Veterinary Clinic",
+// "Eye Care Center",
 // Styles for the PDF
 const styles = StyleSheet.create({
   page: {
@@ -154,6 +158,7 @@ const CityPortal = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [displayedHospital, setDisplayedHospital] = useState(hospitals);
   const [selectedSpeciality, setSelectedSpeciality] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all")
   const hospitalData = hospitals.map((hospital, index) => ({
     ...hospital,
   }));
@@ -166,7 +171,7 @@ const CityPortal = () => {
     if (isAuthenticated) {
       fetchHospitals();
     }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery]);
+  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery, selectedCategory]);
   
   useEffect(() => {
     setDisplayedHospital(hospitals); // Update displayed hospitals when hospitals change
@@ -174,11 +179,8 @@ const CityPortal = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedState]);
+  }, [selectedState, selectedCity, selectedCategory, selectedSpeciality, searchQuery]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedSpeciality]);
 
   
   
@@ -220,6 +222,7 @@ const CityPortal = () => {
     params.append('state', selectedState);
     params.append('city', selectedCity);
     params.append('speciality', selectedSpeciality);
+    params.append('category', selectedCategory);
     params.append('search', searchQuery); // Add this line to include the search parameter
   
     try {
@@ -307,6 +310,7 @@ const CityPortal = () => {
     setSelectedState("all");
     setSelectedCity("all");
     setSelectedSpeciality("all"); // Reset speciality to "all"
+    setSelectedCategory("all")
     setCurrentPage(1);
     fetchHospitals(); // Reload hospitals with cleared filters
   };
@@ -317,6 +321,13 @@ const CityPortal = () => {
       {speciality}
     </option>
   ));
+
+  const catOptions = Categories.map((speciality, index) => (
+    <option key={index} value={speciality}>
+      {speciality}
+    </option>
+  ));
+
   
   if (!isAuthenticated) {
     // Optional: Show a loading state or return null while checking authentication
@@ -336,7 +347,8 @@ const CityPortal = () => {
       params.append('state', selectedState);
       params.append('city', selectedCity);
       params.append('speciality', selectedSpeciality);
-      params.append('search', searchQuery); // Add this line to include the search parameter
+      params.append('category', selectedCategory);
+      params.append('search', searchQuery); 
     
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal?${params.toString()}`);
@@ -353,7 +365,12 @@ const CityPortal = () => {
       setSelectedSpeciality(event.target.value);
       
     };
-    
+
+    const handleCategoryChange = (event) => {
+      setCurrentPage(1); // Assuming you want to reset the page when the speciality changes
+      setSelectedCategory(event.target.value);
+    };
+
     const clearSearchResults = () => {
       setSearchQuery("");
       setDisplayedHospital(hospitals);
@@ -379,7 +396,8 @@ const CityPortal = () => {
                 Healthcare Centres List - City Wise
             </h1>
           </div>
-          <PDFDownloadLink document={<MyDocument hospitalData={hospitalData} />} fileName="hospital-list.pdf">
+          
+          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={hospitalData} />} fileName="hospital-list.pdf">
       {({ blob, url, loading, error }) => {
         if (loading) {
           return 'Loading document...';
@@ -431,8 +449,22 @@ const CityPortal = () => {
                   <option value="all">All</option>
                   {specialityOptions}
               </select>
-            <button onClick={handleClearFilters} className="clear-btn f-btn">Clear Filters</button>
-          
+            {/* <button onClick={handleClearFilters} className="clear-btn f-btn">Clear Filters</button>    */}
+          </div>
+          <div className="filter-container">
+          <label className="f-label" htmlFor="speciality-select">
+              Category:
+              </label>
+                <select
+                  className="f-select"
+                  id="speciality-select"
+                  value={selectedCategory}
+                  onChange={handleCategoryChange}
+                >
+                  <option value="all">All</option>
+                  {catOptions}
+              </select>
+            <button onClick={handleClearFilters} className="clear-btn">Clear Filters</button>    
           </div>
           <div className="filter-container">
           <button className="search-button">

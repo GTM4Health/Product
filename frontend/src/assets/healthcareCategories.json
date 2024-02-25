@@ -1,11 +1,15 @@
 [
-      "Hospitals",
+      "Hospital",
       "Nursing Home",
       "Clinic",
       "Diagnostic Centre",
       "Radiology Centre",
       "Primary Healthcare Centre",
       "Govt Hospital",
+      "Pvt Medical College",
+      "Govt Medical College",
+      "Pharmacy Centre",
+      "Dental Clinic",
       "To Be Defined"
 ]
   

@@ -16,6 +16,7 @@ router.get(
     query('state').optional().trim(),
     query('city').optional().trim(),
     query('speciality').optional().trim(),
+    query('category').optional().trim(),
     query('search').optional().trim(),
   ],
   async (req, res) => {
@@ -25,7 +26,7 @@ router.get(
     }
 
     try {
-      const { page = 1, limit = 10, state, city, speciality, search } = req.query;
+      const { page = 1, limit = 10, state, city, speciality, search, category } = req.query;
 
       const conditions = {};
       if (state && state !== 'all') {
@@ -40,6 +41,9 @@ router.get(
       if (search) {
         // Add a search condition for the hospital name
         conditions.name = { $regex: new RegExp(search, 'i') };
+      }
+      if (category && category !== 'all') {
+        conditions.category = category;
       }
 
       const totalHospitals = await Hospital.countDocuments(conditions);

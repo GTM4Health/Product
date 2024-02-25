@@ -15,7 +15,7 @@ const LoginPage = () => {
     if (successMessage) {
       const timeout = setTimeout(() => {
         navigate('/dashboard');
-      }, 2600);
+      }, 0);
 
       return () => clearTimeout(timeout);
     }
