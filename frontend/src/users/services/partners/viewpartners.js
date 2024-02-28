@@ -139,6 +139,20 @@ const PartnersPage = () => {
               ))}
             </select>
           </div>
+          <div className="page-jump w10">
+              <label htmlFor="page-selector">Go to Page:</label>
+              <select
+                id="page-selector"
+                value={currentPage}
+                onChange={(e) => setCurrentPage(parseInt(e.target.value))}
+              >
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <option key={index + 1} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
           <div className="page-display">
             <h4 className="total-rows">Total MedTech-Companies = {totalRows}</h4>
             <h4 className="right">
