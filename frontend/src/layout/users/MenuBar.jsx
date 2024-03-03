@@ -74,10 +74,10 @@ const MenuBar = () => {
         <span className="menu-text">Market Access</span>
         {isHealthcareCentresMenuOpen && (
           <div className="sub-menu healthcare-centres-menu">
-            <a href="/dashboard/View-Healthcare-Centres-All" className="sub-menu-item menu-link">
+            {/* <a href="/dashboard/View-Healthcare-Centres-All" className="sub-menu-item menu-link">
               <i className="fas fa-hospital sub-menu-icon"></i>
               <span className="menu-text">View All Healthcare Centres</span>
-            </a>
+            </a> */}
             <a href="/dashboard/Market-Access" className="sub-menu-item menu-link">
               <i className="fas fa-map-marked-alt sub-menu-icon"></i>
               <span className="menu-text">View Healthcare Centres - City Wise</span>

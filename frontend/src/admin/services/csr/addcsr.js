@@ -19,10 +19,12 @@ const NewCSRForm = () => {
         csrName,
         website,
         domain,
+        ser,
       });
       setCSRName("");
       setWebsite("");
       setDomain("");
+      setSer("");
       setCSRStatus("success");
 
       // Clear the success message after 2 seconds
@@ -102,6 +104,16 @@ const NewCSRForm = () => {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="infraSer">Services :</label>
+                <textarea
+                  id="infraSer"
+                  value={ser}
+                  onChange={(e) => setSer(e.target.value)}
+                  placeholder="CSR/Foundation Services "
+                  className="form-outline textarea"
+                ></textarea>
               </div>
               <button type="submit" className="hsubtn login-btn">
                 Submit

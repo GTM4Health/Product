@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import Footer from "../../../layout/pages/Footer"
 import AdminMenuBar from "../../../layout/admin/AdminMenubar";
@@ -24,6 +24,27 @@ const AdminHospital = () => {
   const [pincode, setPincode] = useState(''); 
   const [address,setAddress] = useState('');
   const [category, setCategory] = useState('');
+  const [hospitalNames, setHospitalNames] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    // Fetch hospital names from the backend when the component mounts
+    const fetchHospitalNames = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal`, {
+          params: {
+            search: searchQuery // Send the search query as a parameter
+          }
+        });
+        setHospitalNames(response.data.hospitals.map(hospital => hospital.name));
+      } catch (error) {
+        console.error('Error fetching hospital names:', error);
+      }
+    };
+  
+    fetchHospitalNames();
+  }, [searchQuery]); // Trigger the effect whenever searchQuery changes
+  
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -47,7 +68,10 @@ const AdminHospital = () => {
         pincode,
         address,
         category,
+        searchQuery,
+        hospitalNames,
       });
+      setSearchQuery('');
       setName('');
       setCity('');
       setInfraSer('');
@@ -62,6 +86,7 @@ const AdminHospital = () => {
       setHospitalStatus('success');
       setAddress('');
       setCategory('');
+      setHospitalNames('');
       // Clear the success message after 2 seconds
       setTimeout(() => {
         setHospitalStatus(null);
@@ -174,6 +199,38 @@ const AdminHospital = () => {
                   />
                 </div>
               </div>
+              <div className="form-group">
+                <label htmlFor="search">Search Hospital:</label>
+                <input
+                  type="text"
+                  id="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search hospital by name"
+                  className="form-outline"
+                />
+{hospitalNames.length > 0 && (
+  <div className="form-group">
+    <label htmlFor="hospital">Found Hospital:</label>
+    <div
+      id="hospital"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      className="form-outline"
+    >
+      <option value="" disabled hidden>
+        Select Hospital
+      </option>
+      {hospitalNames.map((hospital, index) => (
+        <option key={index} value={hospital}>
+          {hospital}
+        </option>
+      ))}
+    </div>
+  </div>
+)}
+              </div>
+                              {/* Dropdown Menu */}
               <div className="form-group">
                 <label htmlFor="name">Centre Name* :</label>
                 <input

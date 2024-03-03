@@ -92,6 +92,17 @@ router.get('/state-centers', async (req, res) => {
   }
 });
 
+// Fetch all hospitals
+router.get("/", async (req, res) => {
+  try {
+    const hospitals = await Hospital.find();
+    res.json({ hospitals });
+  } catch (error) {
+    console.error('Failed to fetch hospital data', error);
+    res.status(500).json({ error: 'Failed to fetch hospital data' });
+  }
+});
+
 module.exports = router;
 
 // router.get(
@@ -147,17 +158,8 @@ module.exports = router;
 //   }
 // );
 
-module.exports = router;
+// module.exports = router;
 
-// Fetch all hospitals
-// router.get("/", async (req, res) => {
-//   try {
-//     const hospitals = await Hospital.find();
-//     res.json({ hospitals });
-//   } catch (error) {
-//     console.error('Failed to fetch hospital data', error);
-//     res.status(500).json({ error: 'Failed to fetch hospital data' });
-//   }
-// });
+
 
 

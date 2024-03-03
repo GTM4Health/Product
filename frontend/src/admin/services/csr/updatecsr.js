@@ -7,12 +7,14 @@ const EditCSRForm = ({ csr, onUpdate, onCancel }) => {
   const [website, setWebsite] = useState(csr.website);
   const [domain, setDomain] = useState(csr.domain);
   const [progress, setProgress] = useState(csr.progress);
+  const [ser, setSer] = useState(csr.ser);
 
   useEffect(() => {
     setCSRName(csr.csrName);
     setWebsite(csr.website);
     setDomain(csr.domain);
     setProgress(csr.progress);
+    setSer(csr.ser)
   }, [csr]);
 
   const handleSubmit = (e) => {
@@ -22,6 +24,7 @@ const EditCSRForm = ({ csr, onUpdate, onCancel }) => {
       website,
       domain,
       progress,
+      ser,
     };
     onUpdate(csr._id, updatedData);
   };
@@ -75,6 +78,16 @@ const EditCSRForm = ({ csr, onUpdate, onCancel }) => {
             placeholder="CSR/Foundation Progress"
             className="form-outline textarea"
           ></textarea>
+        </div>
+        <div className="form-group">
+                <label htmlFor="infraSer">Services :</label>
+                <textarea
+                  id="infraSer"
+                  value={ser}
+                  onChange={(e) => setSer(e.target.value)}
+                  placeholder="CSR/Foundation Services "
+                  className="form-outline textarea"
+                ></textarea>
         </div>
         <div className="button-group">
           <button type="submit" className="btn-primary">
