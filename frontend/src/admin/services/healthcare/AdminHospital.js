@@ -199,7 +199,7 @@ const AdminHospital = () => {
                   />
                 </div>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="search">Search Hospital:</label>
                 <input
                   type="text"
@@ -228,8 +228,8 @@ const AdminHospital = () => {
       ))}
     </div>
   </div>
-)}
-              </div>
+
+              </div>)} */}
                               {/* Dropdown Menu */}
               <div className="form-group">
                 <label htmlFor="name">Centre Name* :</label>
