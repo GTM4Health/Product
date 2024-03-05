@@ -29,23 +29,11 @@ router.post('/', async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    // Check if the subscription end date is valid
-    if (user.endDate && new Date() > user.endDate) {
-      return res.status(401).json({ error: 'Subscription expired' });
-    }
-
-    // Record login details (new feature from user.js model)
-    await user.recordLogin();
-
     // Create a JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
 
-    // Return the token, user details, and additional login information
-    res.json({
-      token,
-      user: { name: user.name, email: user.email, privileges:user.privileges},
-      loginDetails: { counter: user.counter, lastLogin: user.lastLogin },
-    });
+    // Return the token and user details
+    res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
   } catch (error) {
     console.error('Login failed', error);
     res.status(500).json({ error: 'Login failed' });
@@ -53,5 +41,4 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
-
 

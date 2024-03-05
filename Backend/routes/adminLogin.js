@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
 
   try {
     // Verify admin credentials
-    if (email === 'admin@gtmscale.in' && password === 'GTMScale123$') {
+    if (email === 'a@a' && password === '123') {
       console.log('Admin credentials verified');
 
       // Store the admin login date

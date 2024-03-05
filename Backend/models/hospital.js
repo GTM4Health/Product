@@ -43,9 +43,6 @@ const hospitalSchema = new mongoose.Schema({
   address: {
     type: String,
   },
-  category: {
-    type: String,
-  }
 });
 
 module.exports = mongoose.model('Hospital', hospitalSchema);

@@ -6,8 +6,8 @@ const Hospital = require('../models/hospital');
 router.post('/', async (req, res) => {
   try {
     console.log('Hospital creation request received');
-    const { name, city, state, infraSer, docName, docSpez, mail, phone, speciality, lastConnected, pincode, address, category } = req.body;
-    const hospital = new Hospital({ name, city, state, infraSer, docName, docSpez, mail, phone, speciality, lastConnected, pincode, address, category });
+    const { name, city, state, infraSer, docName, docSpez, mail, phone, speciality, lastConnected, pincode, address } = req.body;
+    const hospital = new Hospital({ name, city, state, infraSer, docName, docSpez, mail, phone, speciality, lastConnected, pincode, address });
     const savedHospital = await hospital.save();
     res.status(201).json({ message: 'Hospital created successfully' });
   } catch (error) {

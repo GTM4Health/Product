@@ -31,38 +31,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
-  counter: {
-    type: Number, // Change the type to Number for login counter
-    default: 0,
-  },
-  lastLogin: {
-    type: String,
-  },
   activationTime: {
     type: String, // Change the type to String to store formatted time
-    default: () => moment().utcOffset('+05:30').format('DD-MMM-YYYY, hh:mm:ss A'), // Set default value using moment.js
-  },
-  privileges: {
-    accessDashboard: { type: Boolean, default: true },
-    accessHospitals: { type: Boolean, default: false },
-    accessGtmPartners: { type: Boolean, default: false },
-    accessMarketInsights: { type: Boolean, default: false },
-    accessCsrsFoundations: { type: Boolean, default: false },
-  },
-  endDate: {
-    type: Date, // Assuming the end date will be a Date type
+    default: () => moment().utcOffset('+05:30').format('DD-MM-YYYY, hh:mm:ss A'), // Set default value using moment.js
   },
 });
-
-userSchema.methods.recordLogin = async function () {
-  try {
-    this.counter += 1;
-    this.lastLogin = moment().utcOffset('+05:30').format('DD-MMM-YYYY, hh:mm:ss A');
-    await this.save();
-  } catch (error) {
-    throw error;
-  }
-};
 
 // Before saving the user, hash the password if it has been modified
 userSchema.pre('save', async function (next) {
