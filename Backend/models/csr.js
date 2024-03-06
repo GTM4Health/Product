@@ -11,6 +11,12 @@ const csrSchema = new mongoose.Schema({
   domain: {
     type: String,
   },
+  progress: {
+    type: String,
+  },
+  ser: {
+    type: String,
+  }
 });
 
 module.exports = mongoose.model('CSR', csrSchema);

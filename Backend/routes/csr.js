@@ -13,6 +13,8 @@ router.post('/', async (req, res) => {
       csrName,
       website,
       domain,
+      progress,
+      ser,
     });
 
     const savedCSR = await csr.save();
