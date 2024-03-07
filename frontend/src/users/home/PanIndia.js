@@ -53,9 +53,9 @@ const PanIndia = () => {
                 </tr>
               </thead>
               <tbody>
-                {stateCenters.map((entry) => (
+              {stateCenters.map((entry, index) => (
                   <tr key={entry.id}>
-                    <td>{entry.id}</td>
+                    <td>{index + 1}</td>
                     <td>{entry.state}</td>
                     <td>{entry.totalCenters}</td>
                   </tr>

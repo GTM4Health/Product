@@ -280,7 +280,7 @@ const ViewCSRPortal = () => {
                 return 'Generate PDF';
               }}
             </PDFDownloadLink>
-          </button>
+          </button> */}
 
           <div className="search-container">
             <label htmlFor="search-criteria">Search :</label>
@@ -304,7 +304,7 @@ const ViewCSRPortal = () => {
             <button className="search-button" onClick={fetchCsrs}>
               <i className="fas fa-search"></i>
             </button>
-          </div> */}
+          </div> 
 
           <div className="page-jump w10">
             <label htmlFor="page-selector">Go to Page:</label>
