@@ -1,7 +1,5 @@
 {
   "productStageOptions": [
-      "Alpha Testing",
-      "Beta Testing",
       "Clinical Research",
       "Clinic Software",
       "Commercial Launch",
@@ -20,10 +18,7 @@
       "Standard Product Stage",
       "User Feedback",
       "Usability Testing",
-      "Validation Testing",
-      "Version 1.0",
-      "Version 2.0",
-      "Version 3.0"
+      "Validation Testing"
   ],
   "domainOptions": [
       "AI in Healthcare",
