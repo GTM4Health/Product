@@ -1,45 +1,48 @@
-// PanIndia.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import AdminHeader from '../../layout/admin/AdminHeader';
+import AdminMenuBar from '../../layout/admin/AdminMenubar';
+import Footer from '../../layout/pages/Footer';
 
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Footer from "../../layout/pages/Footer";
-import Header2 from "../../layout/users/Header2";
-import useAuth from "../../hooks/useAuth";
-import MenuBar from "../../layout/users/MenuBar";
-
-const PanIndia = () => {
+const PanIndiaDash = () => {
   const [stateCenters, setStateCenters] = useState([]);
-  const isAuthenticated = useAuth();
-  const [user, setUser] = useState(null);
+  const [selectedState, setSelectedState] = useState('');
+  const [cities, setCities] = useState([]);
 
   useEffect(() => {
-    if(isAuthenticated)
-        fetchStateCenters();
-  }, [isAuthenticated]);
-
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setUser(storedUser);
-    }
+    fetchStateCenters();
   }, []);
 
   const fetchStateCenters = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers`);
-      // Sort the stateCenters array based on the totalCenters value in descending order
       const sortedStateCenters = response.data.sort((a, b) => b.totalCenters - a.totalCenters);
       setStateCenters(sortedStateCenters);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const fetchCities = async (state) => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers/${state}/cities`);
+      setCities(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleStateClick = (state) => {
+    setSelectedState(state);
+    fetchCities(state);
+  };
+
   return (
     <div className="page-view">
-      <Header2 user={user}/>
+      <AdminHeader />
       <div className="d-content">
         <div className="dashboard">
-          <MenuBar />
+          <AdminMenuBar />
           <div className="page-title">
             <h1 className="page-title-child hdblue-tag">Pan India Dashboard Analytics</h1>
           </div>
@@ -53,8 +56,8 @@ const PanIndia = () => {
                 </tr>
               </thead>
               <tbody>
-              {stateCenters.map((entry, index) => (
-                  <tr key={entry.id}>
+                {stateCenters.map((entry, index) => (
+                  <tr key={entry.id} onClick={() => handleStateClick(entry.state)}>
                     <td>{index + 1}</td>
                     <td>{entry.state}</td>
                     <td>{entry.totalCenters}</td>
@@ -62,6 +65,32 @@ const PanIndia = () => {
                 ))}
               </tbody>
             </table>
+            {selectedState && (
+              <div>
+                {/* <h2>{selectedState}</h2> */}
+                <table>
+                  <thead>
+                    <tr>
+                      {/*<th>#</th>
+                      <th>City</th>
+                      <th>Total # of Centres</th>
+                      */}
+                    </tr> 
+                  </thead>
+                  <tbody>
+                    {cities.map((city, index) => (
+                      <tr key={index}>
+                      {/*
+                         <td>{index + 1}</td>
+                        <td>{city._id}</td>
+                        <td>{city.totalCenters}</td> */}
+                        {console.log(index + 1,city._id,city.totalCenters)}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -70,6 +99,4 @@ const PanIndia = () => {
   );
 };
 
-export default PanIndia;
-
-
+export default PanIndiaDash;
