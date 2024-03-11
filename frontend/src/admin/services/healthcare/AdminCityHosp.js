@@ -97,42 +97,42 @@ const styles = StyleSheet.create({
 const MyDocument = ({ hospitalData }) => (
   <Document>
     <Page style={styles.page}>
-      <Text style={styles.header}>Hospital List</Text>
+      <Text style={styles.header}>Healthcare Centre List</Text>
       <View style={styles.logoContainer}>
           <Image src={logo} style={styles.logo} />
       </View>
       <View style={styles.gap} />
       <View style={styles.table}>
         <View style={styles.tableRow}>
-          <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
+          <Text style={[styles.smallHeaderCell, styles.borderRight]}>#</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>Hospital Name</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Infrastructure & Services</Text>
+          {/* <Text style={[styles.headerCell, styles.borderRight]}>Infrastructure & Services</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>State</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>City</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>Address</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Pincode</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Pincode</Text> */}
           <Text style={[styles.headerCell, styles.borderRight]}>Contact Name</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Role</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Contact Email</Text>
+          {/* <Text style={[styles.headerCell, styles.borderRight]}>Role</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Contact Email</Text> */}
           <Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Specialization</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Last-Connected</Text>
+          {/* <Text style={[styles.headerCell, styles.borderRight]}>Specialization</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Last-Connected</Text> */}
         </View>
         {hospitalData.map((hospital, index) => (
           <View style={styles.tableRow} key={hospital._id}>
             <Text style={[styles.smallCell, styles.borderRight]}>{index + 1}</Text>
             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.name}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.infraSer}</Text>
+            {/* <Text style={[styles.tableCell, styles.borderRight]}>{hospital.infraSer}</Text>
             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.state}</Text>
             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.city}</Text>
             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.address}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.pincode}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.pincode}</Text> */}
             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docName}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docSpez}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.mail}</Text>
+            {/* <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docSpez}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.mail}</Text> */}
             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.speciality}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.lastConnected}</Text>
+            {/* <Text style={[styles.tableCell, styles.borderRight]}>{hospital.speciality}</Text>
+            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.lastConnected}</Text> */}
           </View>
         ))}
       </View>

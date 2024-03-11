@@ -48,6 +48,7 @@ import PanIndia from '../users/home/PanIndia';
 import NewCSRForm from '../admin/services/csr/addcsr';
 import CSRPortal from '../admin/services/csr/viewcsr';
 import ViewCSRPortal from '../users/services/csrs/CSRAccess';
+import StateDetails from '../admin/pages/StateDetails';
 
 //Entry Function into the Product
 export default function App() {
@@ -104,6 +105,7 @@ export default function App() {
         <Route path='/admin/audit-logs' element={<AdminNotFoundPage />} />
         <Route path='/admin/dashboard/Add-CSR-Foundation' element = {<NewCSRForm />} />
         <Route path='/admin/dashboard/View-CSR-Foundation' element = {<CSRPortal />} />
+        <Route path="/state-details/:state" element={<StateDetails />} />
         <Route path='/dashboard/CSRs-Foundations' element = {<ViewCSRPortal />} />
       </Routes>
     </Router>

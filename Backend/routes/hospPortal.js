@@ -92,6 +92,23 @@ router.get('/state-centers', async (req, res) => {
   }
 });
 
+router.get('/state-centers/:state/cities', async (req, res) => {
+  try {
+    const state = req.params.state;
+    const cities = await Hospital.aggregate([
+      { $match: { state: state } },
+      { $group: { _id: '$city', totalCenters: { $sum: 1 } } },
+    ]);
+
+    res.json(cities);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
 // Fetch all hospitals
 router.get("/", async (req, res) => {
   try {
