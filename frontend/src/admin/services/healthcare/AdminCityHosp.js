@@ -26,6 +26,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     marginTop: 110,
+    textAlign: 'center',
+  },
+  smallHeader: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
   },
   table: {
     display: 'table',
@@ -55,6 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0077b6',
     color: 'white',
     fontSize: 16,
+    textAlign: 'center',
   },
   smallHeaderCell:{
     textAlign: 'center',
@@ -97,7 +104,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const MyDocument = ({ hospitalData }) => (
+const MyDocument = ({ hospitalData, State, City }) => (
   <Document>
     <Page style={styles.page}>
       <View style={styles.logoContainer}>
@@ -105,6 +112,7 @@ const MyDocument = ({ hospitalData }) => (
       </View>
       <Text style={styles.header}>Healthcare Centre List</Text>
       <View style={styles.gap} />
+      <Text style={styles.smallHeader}>State : {State}                                                  City : {City}</Text>
       <View style={styles.table}>
         <View style={styles.tableRow}>
           <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
@@ -400,7 +408,7 @@ const CityPortal = () => {
             </h1>
           </div>
           
-          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={hospitalData} />} fileName="hospital-list.pdf">
+          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={hospitalData} State={selectedState} City={selectedCity} />} fileName="hospital-list.pdf">
       {({ blob, url, loading, error }) => {
         if (loading) {
           return 'Loading document...';
