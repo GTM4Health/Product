@@ -116,7 +116,7 @@ const MyDocument = ({ hospitalData, State, City }) => (
       <View style={styles.table}>
         <View style={styles.tableRow}>
           <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Hospital Name</Text>
+          <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
           {/* <Text style={[styles.headerCell, styles.borderRight]}>Infrastructure & Services</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>State</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>City</Text>
