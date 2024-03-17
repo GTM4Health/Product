@@ -98,6 +98,7 @@ router.get('/state-centers/:state/cities', async (req, res) => {
     const cities = await Hospital.aggregate([
       { $match: { state: state } },
       { $group: { _id: '$city', totalCenters: { $sum: 1 } } },
+      { $sort: { totalCenters: -1 } } // Add this line to sort in descending order
     ]);
 
     res.json(cities);
@@ -106,6 +107,7 @@ router.get('/state-centers/:state/cities', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 
 

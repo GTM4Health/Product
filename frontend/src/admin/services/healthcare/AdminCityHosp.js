@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    marginBottom: 10,
+    marginBottom: 20,
+    marginTop: 110,
   },
   table: {
     display: 'table',
@@ -61,12 +62,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#0077b6',
     color: 'white',
     fontSize: 14,
+    width: 30,
   },
   smallCell:{
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 14,
     padding: 6,
+    width: 30,
   },
   borderRight: {
     textAlign: 'center',
@@ -97,14 +100,14 @@ const styles = StyleSheet.create({
 const MyDocument = ({ hospitalData }) => (
   <Document>
     <Page style={styles.page}>
-      <Text style={styles.header}>Healthcare Centre List</Text>
       <View style={styles.logoContainer}>
           <Image src={logo} style={styles.logo} />
       </View>
+      <Text style={styles.header}>Healthcare Centre List</Text>
       <View style={styles.gap} />
       <View style={styles.table}>
         <View style={styles.tableRow}>
-          <Text style={[styles.smallHeaderCell, styles.borderRight]}>#</Text>
+          <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>Hospital Name</Text>
           {/* <Text style={[styles.headerCell, styles.borderRight]}>Infrastructure & Services</Text>
           <Text style={[styles.headerCell, styles.borderRight]}>State</Text>

@@ -9,6 +9,10 @@ import { Button } from "bootstrap";
 import logo from "../../../images/newlogo.png";
 import EditCSRForm from "./updatecsr";
 
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 // Styles for the PDF
 const styles = StyleSheet.create({
   page: {
@@ -214,8 +218,11 @@ const CSRPortal = () => {
     } catch (error) {
       console.error(error);
       console.log("Error updating CSR/Foundation");
+
     }
   };
+
+
 
   const handleDeleteCSR = async (id) => {
     const confirmed = window.confirm("Are you sure you want to delete this CSR/Foundation?");
@@ -262,6 +269,9 @@ const CSRPortal = () => {
       </Button>
     );
   };
+
+  // Calculate the placeholder value
+
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -326,7 +336,7 @@ const CSRPortal = () => {
             <input
               id="search-input"
               type="text"
-              placeholder={`Enter ${capitalizeFirstLetter(searchCriteria).split(/(?=[A-Z])/).join(' ')}`}
+              placeholder = {(searchCriteria !== 'csrName') ? `Enter ${capitalizeFirstLetter(searchCriteria).split(/(?=[A-Z])/).join(' ')}` : 'Enter CSR/Foundation Name'}
               value={searchQuery}
               className="search-input w30"
               onChange={handleSearchInputChange}
