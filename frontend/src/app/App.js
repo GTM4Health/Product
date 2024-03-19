@@ -49,6 +49,7 @@ import NewCSRForm from '../admin/services/csr/addcsr';
 import CSRPortal from '../admin/services/csr/viewcsr';
 import ViewCSRPortal from '../users/services/csrs/CSRAccess';
 import StateDetails from '../admin/pages/StateDetails';
+import Subscription from '../common/Subscribe';
 
 //Entry Function into the Product
 export default function App() {
@@ -100,6 +101,7 @@ export default function App() {
         <Route path='/admin/settings' element={<AdminSettings />} />
         <Route path='/dashboard/Access-GTM-Partners' element={<PartnersPage />} />
         <Route path='/admin/competitive-intelligence'element = {<CompetitiveIntelligence />} />
+        <Route path='/dashboard/Subscription'element = {<Subscription />} />
         <Route path='/admin/view-competitive-intelligence'element = {<AdminViewCI />} />
         <Route path='*' element={<NotFoundPage />} />
         <Route path='/admin/audit-logs' element={<AdminNotFoundPage />} />

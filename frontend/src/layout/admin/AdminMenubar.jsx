@@ -175,12 +175,12 @@ const AdminMenuBar = () => {
               <span className="menu-text">Add Healthcare Centres</span>
             </a>
             </div>
-            <a href="/admin/dashboard/View-Hospital" className="sub-menu-item menu-link og-tag">
+            {/* <a href="/admin/dashboard/View-Hospital" className="sub-menu-item menu-link og-tag">
               <i className="fas fa-eye sub-menu-icon"></i>
               <span className="menu-text">
                 View & Update All Healthcare Centres
               </span>
-            </a>
+            </a> */}
             <a href="/admin/dashboard/City-Hospital" className="sub-menu-item menu-link og-tag">
               <i className="fas fa-map-marked-alt sub-menu-icon"></i>
               <span className="menu-text">

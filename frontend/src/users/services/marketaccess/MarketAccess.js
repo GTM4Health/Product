@@ -8,6 +8,7 @@ import Menubar from "../../../layout/users/MenuBar";
 import axios from "axios";
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions"; // Importing getCityOptionsByState from cityOptions
 import specialitiesData from "../../../assets/specialities.json"
+import { useNavigate } from "react-router-dom";
 
 const MarketAccess = () => {
   const isAuthenticated = useAuth();
@@ -23,11 +24,19 @@ const MarketAccess = () => {
   const [displayedHospital, setDisplayedHospital] = useState(hospitals);
   const [selectedSpeciality, setSelectedSpeciality] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   if (user && user.privileges && isAuthenticated) {
+  //     fetchHospitals();
+  //   } else if (user && !(user.privileges) && isAuthenticated) {
+  //     navigate("/dashboard/Subscription");
+  //   }
+  // }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery]);
+  
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchHospitals();
-    }
+    if (isAuthenticated) 
+        fetchHospitals();
   }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery]);
 
   useEffect(() => {
@@ -183,6 +192,7 @@ const MarketAccess = () => {
                 Healthcare Centres List - City Wise
             </h1>
           </div>
+          {/* {console.log(user)} */}
           {/* Create a clickable link that redirects to an email */}
           <a href="mailto:info@gtm4health.com">
             <p className="hdblue-tag">

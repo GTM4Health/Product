@@ -137,6 +137,7 @@ const LoginPage = () => {
           </div>
         </form>
         {/* Render the popup */}
+        
         {renderPopup()}
       </div>
       <Footer />

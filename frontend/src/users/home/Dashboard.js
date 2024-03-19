@@ -89,6 +89,7 @@ const Dashboard = () => {
       <div className="d-content page-view">
         <div className="dashboard">
           <MenuBar />
+          
           <div className="dashboard-content">
           <table className="stats-table">
               <tr>
@@ -122,6 +123,7 @@ const Dashboard = () => {
                   {totalCSRs}                 
                 </td>
               </tr>
+              {console.log(user)}
               {/* <tr>
                 <td className="category-heading" colSpan="1">
                   Total MedTech-Companies
@@ -132,6 +134,7 @@ const Dashboard = () => {
                   {totalDealers}                 
                 </td>
               </tr> */}
+              
             </table>
           </div>
         </div>

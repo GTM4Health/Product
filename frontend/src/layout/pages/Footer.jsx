@@ -4,6 +4,9 @@
 import React from 'react';
 import Logo from '../../components/Logo';
 import imgP from "../../images/newlogo.png";
+import PrivacyPDF from "../../assets/GTMScale_Privacy_Policy.pdf"
+import TnC from "../../assets/GTMScale_Terms_&_Conditions.pdf"
+import AdminDashHomeButton from './../../components/AdminDashHome';
 
 const Footer = () => {
   return (
@@ -36,10 +39,10 @@ const Footer = () => {
             <h2>About</h2>
           </span>
           <span className="footer-text">
-            <h2>Copyright Policy</h2>
+            <h2><a href={PrivacyPDF} target="_blank">Privacy</a></h2> 
           </span>
           <span className="footer-text">
-            <h2>Terms and Conditions</h2>
+            <h2><a href={TnC} target="_blank">Terms and Conditions</a></h2> 
           </span>
         </div>
       </div>
