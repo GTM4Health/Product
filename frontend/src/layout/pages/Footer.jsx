@@ -17,8 +17,8 @@ const Footer = () => {
           <div className="image">
             <img src={imgP} alt="logoH" className="logo" />
           </div>
-            <h1>&copy; 2023 GTM4Health</h1>
-            <h3>V1.5.3</h3>
+            <h1>&copy; 2024 GTM4Health</h1>
+            <h3>V1.5.4</h3>
           </span>
           <div className="social-icons">
              <a href="https://www.facebook.com/gtm4health" target="_blank">
@@ -39,10 +39,10 @@ const Footer = () => {
             <h2>About</h2>
           </span>
           <span className="footer-text">
-            <h2><a href={PrivacyPDF} target="_blank">Privacy</a></h2> 
+            <h2><a href={PrivacyPDF} className="footer-link" target="_blank">Privacy Policy</a></h2> 
           </span>
           <span className="footer-text">
-            <h2><a href={TnC} target="_blank">Terms and Conditions</a></h2> 
+            <h2><a href={TnC} className="footer-link" target="_blank">Terms and Conditions</a></h2> 
           </span>
         </div>
       </div>

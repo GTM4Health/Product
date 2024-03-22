@@ -41,9 +41,19 @@ router.post('/', async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
 
     // Return the token, user details, and additional login information
+
+
     res.json({
       token,
-      user: { name: user.name, email: user.email, privileges:user.privileges},
+      user: { 
+        name: user.name, 
+        email: user.email, 
+        privileges:user.privileges.accessHospitals, 
+        dashPriveleges : user.privileges.accessDashboard,
+        gtmPriveleges : user.privileges.accessGtmPartners,
+        marketPriveleges : user.privileges.accessMarketInsights,
+        csrPriveleges : user.privileges.accessCsrsFoundations
+      },
       loginDetails: { counter: user.counter, lastLogin: user.lastLogin },
     });
   } catch (error) {

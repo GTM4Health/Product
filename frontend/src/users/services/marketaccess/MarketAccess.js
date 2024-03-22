@@ -26,18 +26,18 @@ const MarketAccess = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (user && user.privileges && isAuthenticated) {
-  //     fetchHospitals();
-  //   } else if (user && !(user.privileges) && isAuthenticated) {
-  //     navigate("/dashboard/Subscription");
-  //   }
-  // }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery]);
-  
   useEffect(() => {
-    if (isAuthenticated) 
-        fetchHospitals();
+    if (user && user.privileges && isAuthenticated) {
+      fetchHospitals();
+    } else if (user && !(user.privileges) && isAuthenticated) {
+      navigate("/dashboard/Subscription");
+    }
   }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery]);
+  
+  // useEffect(() => {
+  //   if (isAuthenticated) 
+  //       fetchHospitals();
+  // }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery]);
 
   useEffect(() => {
     setCurrentPage(1);

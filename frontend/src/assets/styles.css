@@ -1715,6 +1715,12 @@ form.hospital-f .hsubtn {
   width: 20%;
 }
 
+.footer-link {
+  color: inherit; /* or specify the desired color */
+  text-decoration: none; /* optionally remove underline */
+}
+
+
 /* .sl{
   max-width: 4em; /* Adjust as needed *
 } */

@@ -38,7 +38,7 @@ const Subscription = () => {
     <Header2 user={user} />
     <div className="not-found-page">
       <div className="not-found-content">
-        <h5 className="not-found-title">Selected Feature is available for Paid Users !</h5>
+        <h5 className="not-found-title">Select Feature is available for Paid Users !</h5>
         <p className="not-found-description">
           {randomQuote}
         </p>
