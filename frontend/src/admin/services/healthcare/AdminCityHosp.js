@@ -112,7 +112,8 @@ const MyDocument = ({ hospitalData, State, City }) => (
       </View>
       <Text style={styles.header}>Healthcare Centre List</Text>
       <View style={styles.gap} />
-      <Text style={styles.smallHeader}>State : {State}                                                  City : {City}</Text>
+      <Text style={styles.smallHeader}>State : {State === 'all' && 'All'} {State !== 'all' && State}                City : {City === 'all' && 'All'} {City !== 'all' && City}</Text>
+
       <View style={styles.table}>
         <View style={styles.tableRow}>
           <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>

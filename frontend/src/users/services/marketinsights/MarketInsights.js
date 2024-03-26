@@ -6,6 +6,7 @@ import Menubar from "../../../layout/users/MenuBar";
 import { pdfjs, Document, Page } from "react-pdf";
 import axios from "axios";
 import "react-pdf/dist/esm/Page/TextLayer.css";
+import { useNavigate } from "react-router-dom";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -35,22 +36,17 @@ const MarketInsights = () => {
   const [totalFiles, setTotalFiles] = useState(0);
   const [user, setUser] = useState("");
   const isAuthenticated = useAuth("");
+  const navigate = useNavigate();
+
+
 
   useEffect(() => {
-    const fetchPdfFiles = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/api/cont/pdfs?page=${currentPage}&limit=${pageSize}`
-        );
-        setPdfFiles(response.data.files);
-        setTotalFiles(response.data.totalFiles);
-        setTotalPages(response.data.totalPages);
-      } catch (error) {
-        console.error("Error fetching PDF files:", error);
-      }
-    };
 
+    if (user && user.marketPriveleges && isAuthenticated) {
     fetchPdfFiles();
+  } else if (user && !(user.marketPriveleges) && isAuthenticated) {
+    navigate("/dashboard/Subscription");
+  }
   }, [isAuthenticated,currentPage, pageSize]);
 
   useEffect(() => {
@@ -60,6 +56,18 @@ const MarketInsights = () => {
     }
   }, []);
 
+  const fetchPdfFiles = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/cont/pdfs?page=${currentPage}&limit=${pageSize}`
+      );
+      setPdfFiles(response.data.files);
+      setTotalFiles(response.data.totalFiles);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error("Error fetching PDF files:", error);
+    }
+  };
 
   const handleDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);

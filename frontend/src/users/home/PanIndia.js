@@ -1,17 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AdminHeader from '../../layout/admin/AdminHeader';
-import AdminMenuBar from '../../layout/admin/AdminMenubar';
 import Footer from '../../layout/pages/Footer';
+import { useNavigate } from 'react-router-dom';
+import useAuth from "../../hooks/useAuth";
+import Header2 from './../../layout/users/Header2';
+import MenuBar from '../../layout/users/MenuBar';
 
 const PanIndiaDash = () => {
   const [stateCenters, setStateCenters] = useState([]);
   const [selectedState, setSelectedState] = useState('');
+  const [user, setUser] = useState(null);
   const [cities, setCities] = useState([]);
+  const isAuthenticated = useAuth();
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   fetchStateCenters();
+  // }, []);
 
   useEffect(() => {
-    fetchStateCenters();
-  }, []);
+    if (user && user.dashPriveleges  && isAuthenticated) {
+      fetchStateCenters();
+    } else if (user && !(user.dashPriveleges ) && isAuthenticated) {
+      navigate("/dashboard/Subscription");
+    }
+  }, [isAuthenticated]);
 
   const fetchStateCenters = async () => {
     try {
@@ -32,6 +45,13 @@ const PanIndiaDash = () => {
     }
   };
 
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []); 
+
   const handleStateClick = (state) => {
     setSelectedState(state);
     fetchCities(state);
@@ -39,10 +59,10 @@ const PanIndiaDash = () => {
 
   return (
     <div className="page-view">
-      <AdminHeader />
+      <Header2 user={user}/>
       <div className="d-content">
         <div className="dashboard">
-          <AdminMenuBar />
+          <MenuBar />
           <div className="page-title">
             <h1 className="page-title-child hdblue-tag">Pan India Dashboard Analytics</h1>
           </div>

@@ -51,6 +51,7 @@ router.get(
       const skip = (parseInt(page) - 1) * parseInt(limit);
 
       const hospitals = await Hospital.find(conditions)
+        .sort({ name: 1 })
         .skip(skip)
         .limit(parseInt(limit));
 

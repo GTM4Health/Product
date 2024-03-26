@@ -8,6 +8,7 @@ import axios from "axios";
 import { Button } from "bootstrap";
 import logo from "../../../images/newlogo.png";
 import EditCSRForm from "./updatecsr";
+import { useNavigate } from "react-router-dom";
 
 // Styles for the PDF
 const styles = StyleSheet.create({
@@ -127,11 +128,21 @@ const CSRPortal = () => {
   const [searchCriteria, setSearchCriteria] = useState("csrName");
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedCSR, setSelectedCSR] = useState(null);
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     fetchCsrs();
+  //     setShowNoRecordsPopup(filteredCsrs.length === 0);
+  //   }
+  // }, [isAuthenticated, currentPage, pageSize, searchQuery, filteredCsrs]);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (user && user.csrPriveleges && isAuthenticated) {
       fetchCsrs();
       setShowNoRecordsPopup(filteredCsrs.length === 0);
+    } else if (user && !(user.csrPriveleges) && isAuthenticated) {
+      navigate("/dashboard/Subscription");
     }
   }, [isAuthenticated, currentPage, pageSize, searchQuery, filteredCsrs]);
 

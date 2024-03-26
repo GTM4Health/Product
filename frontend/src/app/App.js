@@ -59,15 +59,7 @@ export default function App() {
         <Route path="/" element={<Home3 />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard"element={<Dashboard />} />
-        {/* <Route
-          path="/dashboard*"
-          element={
-            <PrivateRoute
-              element={<Dashboard />}
-            /> /* Wrap PrivateRoute inside the element prop */
-          }
-        {/* /> Use PrivateRoute for the dashboard */} 
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path='/admin' element={<AdminLoginPage />} />
         <Route path='/admin/dashboard/Features' element={<AdminFeatures />} />
         <Route path='/admin/dashboard' element={<AdminDashboard />} />

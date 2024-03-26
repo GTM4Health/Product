@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions";
 import Header2 from "../../../layout/users/Header2";
 import MenuBar from "../../../layout/users/MenuBar";
+import { useNavigate } from "react-router-dom";
 
 
 const PartnersPage = () => {
@@ -18,12 +19,22 @@ const PartnersPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [selectedState, setSelectedState] = useState("all");
   const [selectedCity, setSelectedCity] = useState("all");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) {
+
+    if (user && user.gtmPriveleges  && isAuthenticated) {
       fetchDealers();
-    }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+  } else if (user && !(user.gtmPriveleges ) && isAuthenticated) {
+    navigate("/dashboard/Subscription");
+  }
+}, [isAuthenticated, currentPage, selectedState, selectedCity]);
+
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     fetchDealers();
+  //   }
+  // }, [isAuthenticated, currentPage, selectedState, selectedCity]);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));

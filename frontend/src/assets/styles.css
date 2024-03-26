@@ -528,7 +528,7 @@ button[type="submit"]:hover {
 }
 
 .ht-bar{
-  height: 144vh;
+  height: 165vh;
 }
 
 .menu-item {
@@ -1685,12 +1685,13 @@ form.hospital-f .hsubtn {
 }
 
 .clear-btn {
-  background: #34d991;
+  /* background: #34d991;
   background-image: -webkit-linear-gradient(top, #34d991, #2b3bb8);
   background-image: -moz-linear-gradient(top, #34d991, #2b3bb8);
   background-image: -ms-linear-gradient(top, #34d991, #2b3bb8);
   background-image: -o-linear-gradient(top, #34d991, #2b3bb8);
-  background-image: linear-gradient(to bottom, #34d991, #2b3bb8);
+  background-image: linear-gradient(to bottom, #34d991, #2b3bb8); */
+  background-color: #0077b6;
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px;

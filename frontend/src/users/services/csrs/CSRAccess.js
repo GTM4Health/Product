@@ -7,9 +7,10 @@ import { Button } from "bootstrap";
 import logo from "../../../images/newlogo.png";
 import Header2 from '../../../layout/users/Header2';
 import MenuBar from "../../../layout/users/MenuBar";
+import { useNavigate } from "react-router-dom";
 
 
-// Styles for the PDF
+// Styles for the PDF --org
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
@@ -126,14 +127,19 @@ const ViewCSRPortal = () => {
   const [showNoRecordsPopup, setShowNoRecordsPopup] = useState(false);
   const [searchCriteria, setSearchCriteria] = useState("csrName");
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
 
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (user && user.csrPriveleges && isAuthenticated) {
       fetchCsrs();
       setShowNoRecordsPopup(filteredCsrs.length === 0);
+    } else if (user && !(user.csrPriveleges) && isAuthenticated) {
+      navigate("/dashboard/Subscription");
     }
   }, [isAuthenticated, currentPage, pageSize, searchQuery, filteredCsrs]);
+  
 
   const handleSearchInputChange = (event) => {
     setCurrentPage(1);
@@ -296,7 +302,7 @@ const ViewCSRPortal = () => {
             <input
               id="search-input"
               type="text"
-              placeholder={`Enter ${capitalizeFirstLetter(searchCriteria).split(/(?=[A-Z])/).join(' ')}`}
+              placeholder = {(searchCriteria !== 'csrName') ? `Enter ${capitalizeFirstLetter(searchCriteria).split(/(?=[A-Z])/).join(' ')}` : 'Enter CSR/Foundation Name'}
               value={searchQuery}
               className="search-input w30"
               onChange={handleSearchInputChange}
