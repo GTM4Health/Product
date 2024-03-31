@@ -153,6 +153,12 @@ const AdminMenuBar = () => {
                 <span className="menu-text">Pan India Dashboard</span>
               </a>
             </div>
+            <div className="og-tag">
+              <a href="/admin/dashboard/Eval-PDF" className="sub-menu-item menu-link">
+                <i className="fas fa-map-marked-alt sub-menu-icon"></i>
+                <span className="menu-text">Evaluate Bills</span>
+              </a>
+            </div>
           </div>
           
         )}
@@ -251,7 +257,12 @@ const AdminMenuBar = () => {
               <i className="fas fa-edit sub-menu-icon"></i>
               <span className="menu-text">View & Update Products</span>
             </a>
+            <a href="/admin/dashboard/Admin-Bill" className="sub-menu-item menu-link">
+              <i className="fas fa-file-invoice sub-menu-icon"></i>
+              <span className="menu-text">Generate Bill</span>
+            </a>
           </div>
+
         )}
       </div>
       <div

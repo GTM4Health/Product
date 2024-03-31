@@ -50,6 +50,8 @@ import CSRPortal from '../admin/services/csr/viewcsr';
 import ViewCSRPortal from '../users/services/csrs/CSRAccess';
 import StateDetails from '../admin/pages/StateDetails';
 import Subscription from '../common/Subscribe';
+import BillingForm from '../admin/pages/EvalPDF';
+import AdminBill from '../admin/services/products/AdminBill';
 
 //Entry Function into the Product
 export default function App() {
@@ -101,6 +103,8 @@ export default function App() {
         <Route path='/admin/dashboard/View-CSR-Foundation' element = {<CSRPortal />} />
         <Route path="/state-details/:state" element={<StateDetails />} />
         <Route path='/dashboard/CSRs-Foundations' element = {<ViewCSRPortal />} />
+        <Route path='/admin/dashboard/Eval-PDF' element = {<BillingForm />} />
+        <Route path='/admin/dashboard/Admin-Bill' element = {<AdminBill />} />
       </Routes>
     </Router>
   );

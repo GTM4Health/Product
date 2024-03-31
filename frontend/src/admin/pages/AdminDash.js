@@ -127,7 +127,7 @@ Chart.register(ArcElement);
     ],
   };
 
-   
+
 // Define data for the pie chart
 const pieChartData = {
   labels: ["Total Hospitals", "Total Dealers", "Total Startups", "Total Users"],
@@ -209,7 +209,7 @@ const pieChartData = {
                   {totalReports}                 
                 </td>
                 <td className="data-cell" colSpan="1">
-                  {totalCSRs}                 
+                  {totalCSRs}
                 </td>
               </tr>
               {/* <tr>
@@ -219,7 +219,7 @@ const pieChartData = {
               </tr>
               <tr>
                 <td className="data-cell" colSpan="1">
-                  {totalDealers}                 
+                  {totalDealers}
                 </td>
               </tr> */}
             </table>

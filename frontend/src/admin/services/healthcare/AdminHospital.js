@@ -26,6 +26,7 @@ const AdminHospital = () => {
   const [category, setCategory] = useState('');
   const [hospitalNames, setHospitalNames] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  
 
   useEffect(() => {
     // Fetch hospital names from the backend when the component mounts
@@ -199,7 +200,7 @@ const AdminHospital = () => {
                   />
                 </div>
               </div>
-              {/* <div className="form-group">
+              <div className="form-group">
                 <label htmlFor="search">Search Hospital:</label>
                 <input
                   type="text"
@@ -209,27 +210,28 @@ const AdminHospital = () => {
                   placeholder="Search hospital by name"
                   className="form-outline"
                 />
-{hospitalNames.length > 0 && (
+{hospitalNames.length > 0 && searchQuery.length >0 && (
   <div className="form-group">
     <label htmlFor="hospital">Found Hospital:</label>
-    <div
+    <select
       id="hospital"
       value={name}
       onChange={(e) => setName(e.target.value)}
       className="form-outline"
     >
       <option value="" disabled hidden>
-        Select Hospital
+        Found Hospital
       </option>
       {hospitalNames.map((hospital, index) => (
         <option key={index} value={hospital}>
           {hospital}
         </option>
       ))}
-    </div>
+    </select>
   </div>
 
-              </div>)} */}
+              )}
+              </div>
                               {/* Dropdown Menu */}
               <div className="form-group">
                 <label htmlFor="name">Centre Name* :</label>
