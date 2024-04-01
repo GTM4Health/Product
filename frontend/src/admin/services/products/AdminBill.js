@@ -1,8 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminMenuBar from "../../../layout/admin/AdminMenubar";
 import useAuth from "../../../hooks/useAuth";
 import AdminHeader from "../../../layout/admin/AdminHeader";
+import InvoicePDF from './Invoice';
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'; 
+
+
+// Create styles
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'column',
+    padding: 10,
+  },
+  section: {
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  headerItem: {
+    fontSize: 12,
+  },
+  bodyItem: {
+    fontSize: 12,
+    marginBottom: 5,
+  },
+  footer: {
+    marginTop: 10,
+  },
+});
+
+// Invoice PDF component
+const MyDocument = ({ data }) => {
+  const { date, customerName, address, productName, unitCost, quantity, total, igst, finalTotal } = data;
+
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+          <Text style={styles.title}>Billing</Text>
+          <View style={styles.header}>
+            <Text style={styles.headerItem}>Date: {date}</Text>
+            <Text style={styles.headerItem}>Customer Name: {customerName}</Text>
+          </View>
+          <Text style={styles.headerItem}>Address: {address}</Text>
+        </View>
+        <View style={styles.section}>
+          <Text style={styles.title}>Body</Text>
+          <Text style={styles.bodyItem}>Product Name: {productName}</Text>
+          <Text style={styles.bodyItem}>Unit Cost: {unitCost}</Text>
+          <Text style={styles.bodyItem}>Quantity: {quantity}</Text>
+          <Text style={styles.bodyItem}>Total: {total}</Text>
+          <Text style={styles.bodyItem}>IGST: {igst}</Text>
+          <Text style={styles.bodyItem}>Total with GST: {total * (igst+100) /100}</Text>
+          <Text style={styles.bodyItem}>Final Total: {total * (igst+100) /100}</Text>
+        </View>
+        <View style={styles.footer}>
+          <Text>Invoice billed successfully</Text>
+        </View>
+      </Page>
+    </Document>
+  );
+};
 
 const Bill = () => {
   const [date, setDate] = useState('');
@@ -11,11 +78,49 @@ const Bill = () => {
   const [productName, setProductName] = useState('');
   const [unitCost, setUnitCost] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [total, setTotal] = useState('');
   const [igst, setIGST] = useState('');
+  const [total, setTotal] = useState('');
   const [totalWithGST, setTotalWithGST] = useState('');
   const [finalTotal, setFinalTotal] = useState('');
   const [billStatus, setBillStatus] = useState(null);
+
+  useEffect(() => {
+    // Calculate total
+    const calculateTotal = () => {
+      const calculatedTotal = parseFloat(unitCost) * parseFloat(quantity);
+      setTotal(calculatedTotal || '');
+    };
+
+    // Calculate total with GST
+    const calculateTotalWithGST = () => {
+      const calculatedTotalWithGST = parseFloat(total) + (parseFloat(total) * parseFloat(igst) / 100);
+      setTotalWithGST(calculatedTotalWithGST || '');
+    };
+
+    // Calculate final total
+    const calculateFinalTotal = () => {
+      setFinalTotal(parseFloat(totalWithGST) || '');
+    };
+
+    calculateTotal();
+    calculateTotalWithGST();
+    calculateFinalTotal();
+  }, [unitCost, quantity, igst]);
+
+  const handlePrintInvoice = () => {
+    const data = { date, customerName, address, productName, unitCost, quantity, total, igst, finalTotal };
+    const invoicePdfContent = <InvoicePDF data={data} />;
+
+    // Create a blob URL for the PDF content
+    const pdfBlob = new Blob([invoicePdfContent], { type: 'application/pdf' });
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+  
+    // Open a new window or tab with the PDF content
+    window.open(pdfUrl, '_blank');
+  
+    // Release the object URL after opening the window/tab
+    URL.revokeObjectURL(pdfUrl);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,8 +143,8 @@ const Bill = () => {
       setProductName('');
       setUnitCost('');
       setQuantity('');
-      setTotal('');
       setIGST('');
+      setTotal('');
       setTotalWithGST('');
       setFinalTotal('');
       setBillStatus('success');
@@ -152,7 +257,7 @@ const Bill = () => {
                   type="number"
                   id="total"
                   value={total}
-                  onChange={(e) => setTotal(parseFloat(e.target.value))}
+                  readOnly
                   placeholder="Total"
                   className="form-outline"
                 />
@@ -174,7 +279,7 @@ const Bill = () => {
                   type="number"
                   id="totalWithGST"
                   value={totalWithGST}
-                  onChange={(e) => setTotalWithGST(parseFloat(e.target.value))}
+                  readOnly
                   placeholder="Total with GST"
                   className="form-outline"
                 />
@@ -185,11 +290,27 @@ const Bill = () => {
                   type="number"
                   id="finalTotal"
                   value={finalTotal}
-                  onChange={(e) => setFinalTotalparseFloat(e.target.value)}
+                  readOnly
                   placeholder="Final Total"
                   className="form-outline"
                 />
               </div>
+              {/* <button onClick={handlePrintInvoice}>Print Invoice</button> Button to trigger printing */}
+              <PDFDownloadLink
+                document={<MyDocument data={{ date, customerName, address, productName, unitCost, quantity, total, igst, finalTotal }} />}
+                fileName="bill.pdf"
+              >
+                {({ blob, url, loading, error }) => {
+                  if (loading) {
+                    return 'Loading document...';
+                  }
+                  if (error) {
+                    return 'Error generating PDF';
+                  }
+                  return 'Download PDF';
+                }}
+              </PDFDownloadLink>
+            
               <button type="submit" className="hsubtn login-btn">
                 Submit
               </button>
