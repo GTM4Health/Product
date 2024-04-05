@@ -7,9 +7,9 @@ import Header from "../../layout/users/Header";
 import Land2 from "../../images/Land2.png";
 import Intended from "../../images/Intended.png";
 import Benefits from "../../images/Benefits.png";
-//import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap CSS.// Import the CSS file you added.
+// import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap CSS.// Import the CSS file you added.
 
-
+import HeaderR from "./../../layout/users/HeaderR";
 const LandingPage2 = () => {
   return (
     <div className="page-view">
@@ -78,4 +78,3 @@ export default LandingPage2;
 //   );
 // };
 
-// export default LandingPage2;

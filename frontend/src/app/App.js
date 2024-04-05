@@ -113,11 +113,11 @@ export default function App() {
 //Landing Page
 function Home() {
   return (
-    <div className="landing-page">
-      <div className="content">
+    // <div className="landing-page">
+    //   <div className="content">
         <LandingPage2 />
-      </div>
-    </div>
+    //   </div>
+    // </div>
   );
 }
 

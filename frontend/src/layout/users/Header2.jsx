@@ -23,7 +23,7 @@ const Header2 = ({ user }) => {
       <Logo />
       <div className="buttons">
         <div className="search-bar">
-          <i className="fas fa-search fa-2x search-icon"></i>
+          {/* <i className="fas fa-search fa-2x search-icon"></i> */}
         </div>
         <DashHomeButton />
         <div className="user-menu">

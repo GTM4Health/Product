@@ -3,9 +3,8 @@ import axios from 'axios';
 import AdminMenuBar from "../../../layout/admin/AdminMenubar";
 import useAuth from "../../../hooks/useAuth";
 import AdminHeader from "../../../layout/admin/AdminHeader";
-import InvoicePDF from './Invoice';
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'; 
-
+import Footer from '../../../layout/pages/Footer';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
 
 // Invoice PDF component
 const MyDocument = ({ data }) => {
-  const { date, customerName, address, productName, unitCost, quantity, total, igst, finalTotal } = data;
+  const { date, customerName, address, productName, unitCost, quantity, total, igst, cgst, sgst, totalWithGST, finalTotal } = data;
 
   return (
     <Document>
@@ -59,9 +58,11 @@ const MyDocument = ({ data }) => {
           <Text style={styles.bodyItem}>Unit Cost: {unitCost}</Text>
           <Text style={styles.bodyItem}>Quantity: {quantity}</Text>
           <Text style={styles.bodyItem}>Total: {total}</Text>
+          <Text style={styles.bodyItem}>CGST: {cgst}</Text>
+          <Text style={styles.bodyItem}>SGST: {sgst}</Text>
           <Text style={styles.bodyItem}>IGST: {igst}</Text>
-          <Text style={styles.bodyItem}>Total with GST: {total * (igst+100) /100}</Text>
-          <Text style={styles.bodyItem}>Final Total: {total * (igst+100) /100}</Text>
+          <Text style={styles.bodyItem}>Final Total: {totalWithGST}</Text>
+          {/* <Text style={styles.bodyItem}>Final Total: {finalTotal}</Text> */}
         </View>
         <View style={styles.footer}>
           <Text>Invoice billed successfully</Text>
@@ -79,48 +80,40 @@ const Bill = () => {
   const [unitCost, setUnitCost] = useState('');
   const [quantity, setQuantity] = useState('');
   const [igst, setIGST] = useState('');
+  const [cgst, setCGST] = useState('');
+  const [sgst, setSGST] = useState('');
   const [total, setTotal] = useState('');
   const [totalWithGST, setTotalWithGST] = useState('');
   const [finalTotal, setFinalTotal] = useState('');
   const [billStatus, setBillStatus] = useState(null);
 
   useEffect(() => {
-    // Calculate total
     const calculateTotal = () => {
       const calculatedTotal = parseFloat(unitCost) * parseFloat(quantity);
       setTotal(calculatedTotal || '');
     };
 
-    // Calculate total with GST
     const calculateTotalWithGST = () => {
-      const calculatedTotalWithGST = parseFloat(total) + (parseFloat(total) * parseFloat(igst) / 100);
+      let totalGST = 0;
+        if (igst)
+          totalGST += parseFloat(igst);
+        if (cgst) 
+          totalGST += parseFloat(cgst);
+        if (sgst) 
+          totalGST += parseFloat(sgst);
+      const calculatedTotalWithGST = parseFloat(total) + (parseFloat(total) * totalGST / 100);
       setTotalWithGST(calculatedTotalWithGST || '');
+      setFinalTotal(calculatedTotalWithGST || '');
     };
 
-    // Calculate final total
-    const calculateFinalTotal = () => {
-      setFinalTotal(parseFloat(totalWithGST) || '');
-    };
+    // const calculateFinalTotal = () => {
+    //   setFinalTotal(parseFloat(totalWithGST) || '');
+    // };
 
     calculateTotal();
     calculateTotalWithGST();
-    calculateFinalTotal();
-  }, [unitCost, quantity, igst]);
-
-  const handlePrintInvoice = () => {
-    const data = { date, customerName, address, productName, unitCost, quantity, total, igst, finalTotal };
-    const invoicePdfContent = <InvoicePDF data={data} />;
-
-    // Create a blob URL for the PDF content
-    const pdfBlob = new Blob([invoicePdfContent], { type: 'application/pdf' });
-    const pdfUrl = URL.createObjectURL(pdfBlob);
-  
-    // Open a new window or tab with the PDF content
-    window.open(pdfUrl, '_blank');
-  
-    // Release the object URL after opening the window/tab
-    URL.revokeObjectURL(pdfUrl);
-  };
+    // calculateFinalTotal();
+  }, [unitCost, quantity, igst, cgst, sgst]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -134,6 +127,8 @@ const Bill = () => {
         quantity,
         total,
         igst,
+        cgst,
+        sgst,
         totalWithGST,
         finalTotal
       });
@@ -144,12 +139,13 @@ const Bill = () => {
       setUnitCost('');
       setQuantity('');
       setIGST('');
+      setCGST('');
+      setSGST('');
       setTotal('');
       setTotalWithGST('');
       setFinalTotal('');
       setBillStatus('success');
 
-      // Clear the success message after 2 seconds
       setTimeout(() => {
         setBillStatus(null);
       }, 1000);
@@ -157,7 +153,6 @@ const Bill = () => {
       console.error(error);
       console.log('Error response:', error.response);
       setBillStatus('failure');
-      // show an error message or perform any other error handling
     }
   };
 
@@ -263,6 +258,28 @@ const Bill = () => {
                 />
               </div>
               <div className="form-group">
+                <label htmlFor="cgst">CGST:</label>
+                <input
+                  type="number"
+                  id="cgst"
+                  value={cgst}
+                  onChange={(e) => setCGST(parseFloat(e.target.value))}
+                  placeholder="CGST"
+                  className="form-outline"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="sgst">SGST:</label>
+                <input
+                  type="number"
+                  id="sgst"
+                  value={sgst}
+                  onChange={(e) => setSGST(parseFloat(e.target.value))}
+                  placeholder="SGST"
+                  className="form-outline"
+                />
+              </div>
+              <div className="form-group">
                 <label htmlFor="igst">IGST:</label>
                 <input
                   type="number"
@@ -274,7 +291,7 @@ const Bill = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="totalWithGST">Total with GST:</label>
+                <label htmlFor="totalWithGST">Final Total:</label>
                 <input
                   type="number"
                   id="totalWithGST"
@@ -284,7 +301,7 @@ const Bill = () => {
                   className="form-outline"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="finalTotal">Final Total:</label>
                 <input
                   type="number"
@@ -294,10 +311,9 @@ const Bill = () => {
                   placeholder="Final Total"
                   className="form-outline"
                 />
-              </div>
-              {/* <button onClick={handlePrintInvoice}>Print Invoice</button> Button to trigger printing */}
+              </div> */}
               <PDFDownloadLink
-                document={<MyDocument data={{ date, customerName, address, productName, unitCost, quantity, total, igst, finalTotal }} />}
+                document={<MyDocument data={{ date, customerName, address, productName, unitCost, quantity, total, igst, cgst, sgst, totalWithGST, finalTotal }} />}
                 fileName="bill.pdf"
               >
                 {({ blob, url, loading, error }) => {
@@ -310,7 +326,6 @@ const Bill = () => {
                   return 'Download PDF';
                 }}
               </PDFDownloadLink>
-            
               <button type="submit" className="hsubtn login-btn">
                 Submit
               </button>
@@ -318,6 +333,7 @@ const Bill = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

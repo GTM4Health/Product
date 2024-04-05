@@ -28,7 +28,7 @@ const AdminHeader = () => {
       <Logo />
       <div className="buttons">
         <div className="search-bar">
-          <i className="fas fa-search fa-2x search-icon"></i>
+          {/* <i className="fas fa-search fa-2x search-icon"></i> */}
         </div>
         <AdminDashHomeButton />
         <div className="user-menu">

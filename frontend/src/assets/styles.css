@@ -1721,10 +1721,82 @@ form.hospital-f .hsubtn {
   text-decoration: none; /* optionally remove underline */
 }
 
+/* Media query for devices with a maximum width of 600px */
+@media (max-width: 600px) {
+  /* Adjustments for smaller devices */
+  .logo {
+    width: 100px; /* Adjust the width of the logo for smaller screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0; /* Remove the margin */
+    float: none; /* Remove float */
+    zoom: 1; /* Remove zoom */
+  }
+
+  .toolbar {
+    flex-direction: column; /* Stack toolbar items vertically */
+    padding: 0.5rem; /* Adjust padding */
+  }
+
+  .buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Add gap between buttons */
+  }
+
+  .card {
+    width: 90%; /* Adjust card width for smaller screens */
+    margin: 1rem auto; /* Center align the cards */
+  }
+
+  /* Additional adjustments for specific elements if needed */
+}
 
 /* .sl{
   max-width: 4em; /* Adjust as needed *
 } */
+
+/* Existing styles... */
+
+/* Media query for devices with a maximum width of 600px */
+@media (max-width: 600px) {
+  /* Adjustments for smaller devices */
+  .logo {
+    width: 100px; /* Adjust the width of the logo for smaller screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0; /* Remove the margin */
+    float: none; /* Remove float */
+    zoom: 1; /* Remove zoom */
+  }
+
+  .toolbar {
+    flex-direction: column; /* Stack toolbar items vertically */
+    padding: 0.5rem; /* Adjust padding */
+  }
+
+  .buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Add gap between buttons */
+  }
+
+  .card {
+    width: 90%; /* Adjust card width for smaller screens */
+    margin: 1rem auto; /* Center align the cards */
+  }
+
+  /* Additional adjustments for specific elements if needed */
+
+  /* Footer adjustments */
+  footer {
+    text-align: center; /* Center align the content inside the footer */
+    padding: 1rem 0; /* Adjust padding */
+    bottom: 0;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 
 
