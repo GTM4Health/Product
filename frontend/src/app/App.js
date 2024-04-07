@@ -79,7 +79,7 @@ export default function App() {
         <Route path='admin/dashboard/Create-Project' element={<CreateProject />} />
         <Route path='admin/dashboard/Update-Project' element={<UpdateProject />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/mr-2' element={<LandingPage3 />} />
+        <Route path='/home-mr2' element={<HomeMR />} />
         <Route path='/home-2' element = {<Home2 />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/settings" element={<SettingsPage />} />
@@ -112,14 +112,24 @@ export default function App() {
   );
 }
 
+function HomeMR(){
+  return (
+    <div className="landing-page">
+      <div className="content">
+        <LandingPage3 />
+       </div>
+     </div>
+  ); 
+}
+
 //Landing Page
 function Home() {
   return (
-    // <div className="landing-page">
-    //   <div className="content">
+    <div className="landing-page">
+      <div className="content">
         <LandingPage2 />
-    //   </div>
-    // </div>
+       </div>
+     </div>
   );
 }
 
