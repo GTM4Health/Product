@@ -100,7 +100,7 @@ const Dashboard = () => {
                   Total Healthcare Centres
                 </td>
                 <td className="category-heading" colSpan="1">
-                  Total MedTech-Companies
+                  Total Distribution-Companies
                 </td>
                 <td className="category-heading" colSpan="1">
                   Total Market Insights Reports

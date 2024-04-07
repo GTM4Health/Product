@@ -30,7 +30,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap 
 
 // export default LandingPage2;
 
-const LandingPage2 = () => {
+const LandingPage3 = () => {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -78,4 +78,4 @@ const LandingPage2 = () => {
   );
 };
 
-export default LandingPage2;
+export default LandingPage3;

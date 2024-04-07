@@ -52,6 +52,7 @@ import StateDetails from '../admin/pages/StateDetails';
 import Subscription from '../common/Subscribe';
 import BillingForm from '../admin/pages/EvalPDF';
 import AdminBill from '../admin/services/products/AdminBill';
+import LandingPage3 from '../users/home/LP3';
 
 //Entry Function into the Product
 export default function App() {
@@ -78,6 +79,7 @@ export default function App() {
         <Route path='admin/dashboard/Create-Project' element={<CreateProject />} />
         <Route path='admin/dashboard/Update-Project' element={<UpdateProject />} />
         <Route path='/home' element={<Home />} />
+        <Route path='/mr-2' element={<LandingPage3 />} />
         <Route path='/home-2' element = {<Home2 />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/settings" element={<SettingsPage />} />
