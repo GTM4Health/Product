@@ -53,6 +53,8 @@ import Subscription from '../common/Subscribe';
 import BillingForm from '../admin/pages/EvalPDF';
 import AdminBill from '../admin/services/products/AdminBill';
 import LandingPage3 from '../users/home/LP3';
+import LandingPage4 from '../users/home/Mr-Home';
+import LandingPage5 from '../users/home/mrLand5';
 
 //Entry Function into the Product
 export default function App() {
@@ -79,7 +81,9 @@ export default function App() {
         <Route path='admin/dashboard/Create-Project' element={<CreateProject />} />
         <Route path='admin/dashboard/Update-Project' element={<UpdateProject />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/home-mr2' element={<HomeMR />} />
+        <Route path='/home-mr' element={<HomeMR />} />
+        <Route path='/home-mr2' element={<HomeMR2 />} />
+        <Route path='/home-mr3' element={<HomeMR3 />} />
         <Route path='/home-2' element = {<Home2 />} />
         <Route path="/help" element={<HelpPage />} />
         <Route path="/settings" element={<SettingsPage />} />
@@ -112,11 +116,31 @@ export default function App() {
   );
 }
 
-function HomeMR(){
+function HomeMR2(){
   return (
     <div className="landing-page">
       <div className="content">
         <LandingPage3 />
+       </div>
+     </div>
+  ); 
+}
+
+function HomeMR(){
+  return (
+    <div className="landing-page">
+      <div className="content">
+        <LandingPage4 />
+       </div>
+     </div>
+  ); 
+}
+
+function HomeMR3(){
+  return (
+    <div className="landing-page">
+      <div className="content">
+        <LandingPage5 />
        </div>
      </div>
   ); 
