@@ -103,6 +103,12 @@ const MenuBar = () => {
           <span className="menu-text">CSRs & Foundations</span>
         </div>
       </a> 
+      <a href="/dashboard/Sales-Tracker" className="menu-link">
+        <div className="menu-item">
+          <i className="fas fa-clipboard-list menu-icon"></i>
+          <span className="menu-text">Sales Tracker</span>
+        </div>
+      </a> 
       {/* <a href="/dashboard/gtm-readiness-assessment" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-clipboard-list menu-icon"></i>

@@ -14,6 +14,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
     accessGtmPartners: user.privileges.accessGtmPartners || false,
     accessMarketInsights: user.privileges.accessMarketInsights || false,
     accessCsrsFoundations: user.privileges.accessCsrsFoundations || false,
+    accessSales : user.privileges.accessSales || false,
   });
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
       accessGtmPartners: user.privileges.accessGtmPartners || false,
       accessMarketInsights: user.privileges.accessMarketInsights || false,
       accessCsrsFoundations: user.privileges.accessCsrsFoundations || false,
+      accessSales : user.privileges.accessSales || false,
     });
   }, [user]);
 
@@ -131,6 +133,14 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
               onChange={() => handlePrivilegeChange("accessCsrsFoundations")}
             />
             Access CSRs/Foundations
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={privileges.accessSales}
+              onChange={() => handlePrivilegeChange("accessSales")}
+            />
+            Access Sales Tracker
           </label>
         </div>
 

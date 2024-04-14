@@ -195,6 +195,7 @@ function AdminDashboard() {
                 <th>Partners Privileges</th>
                 <th>Reports Privileges</th>
                 <th>Foundations Privileges</th>
+                <th>Sales Tracker Privileges</th>
                 <th>Login Counter</th>
                 <th>Last Login</th>
                 <th>Activated Date & Time</th>
@@ -218,6 +219,7 @@ function AdminDashboard() {
                   <td>{user.privileges.accessGtmPartners ? 'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.accessMarketInsights ? 'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.accessCsrsFoundations ? 'Granted' : 'Restricted'}</td>
+                  <td>{user.privileges.accessSales ? 'Granted' : 'Restricted'}</td>
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
                   <td>{user.counter}</td>

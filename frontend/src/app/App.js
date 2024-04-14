@@ -55,6 +55,8 @@ import AdminBill from '../admin/services/products/AdminBill';
 import LandingPage3 from '../users/home/LP3';
 import LandingPage4 from '../users/home/Mr-Home';
 import LandingPage5 from '../users/home/mrLand5';
+import UserStateDetails from '../users/home/uStateDetails';
+import SalesForm from '../users/services/sales/sales';
 
 //Entry Function into the Product
 export default function App() {
@@ -100,14 +102,16 @@ export default function App() {
         <Route path='/admin/help' element={<AdminHelpPage />} />
         <Route path='/admin/settings' element={<AdminSettings />} />
         <Route path='/dashboard/Access-GTM-Partners' element={<PartnersPage />} />
-        <Route path='/admin/competitive-intelligence'element = {<CompetitiveIntelligence />} />
-        <Route path='/dashboard/Subscription'element = {<Subscription />} />
-        <Route path='/admin/view-competitive-intelligence'element = {<AdminViewCI />} />
+        <Route path='/admin/competitive-intelligence' element = {<CompetitiveIntelligence />} />
+        <Route path='/dashboard/Subscription' element = {<Subscription />} />
+        <Route path="/dashboard/Sales-Tracker" element={<SalesForm />} />
+        <Route path='/admin/view-competitive-intelligence' element = {<AdminViewCI />} />
         <Route path='*' element={<NotFoundPage />} />
         <Route path='/admin/audit-logs' element={<AdminNotFoundPage />} />
         <Route path='/admin/dashboard/Add-CSR-Foundation' element = {<NewCSRForm />} />
         <Route path='/admin/dashboard/View-CSR-Foundation' element = {<CSRPortal />} />
         <Route path="/state-details/:state" element={<StateDetails />} />
+        <Route path="/dashboard/state-details/:state" element={<UserStateDetails />} />
         <Route path='/dashboard/CSRs-Foundations' element = {<ViewCSRPortal />} />
         <Route path='/admin/dashboard/Eval-PDF' element = {<BillingForm />} />
         <Route path='/admin/dashboard/Admin-Bill' element = {<AdminBill />} />
