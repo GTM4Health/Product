@@ -57,6 +57,7 @@ const contentRouter = require('./routes/content');
 const intelRouter = require ('./routes/intel');
 const csrRouter = require('./routes/csr');
 const billRouter = require('./routes/bill');
+const salesRouter = require('./routes/sales')
 
 // Use routes
 app.use('/api/signup', signupRouter);
@@ -73,7 +74,7 @@ app.use('/api/hospital-portal',hospitalPortalRouter);
 app.use('/api/cont', contentRouter);
 app.use('/api/admin/dashboard', intelRouter);
 app.use('/api/admin/dashboard/Billings', billRouter);
-
+app.use('/api/admin/dashboard/Sales', salesRouter);
 
 
 // Start the server

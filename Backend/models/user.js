@@ -48,6 +48,7 @@ const userSchema = new mongoose.Schema({
     accessGtmPartners: { type: Boolean, default: false },
     accessMarketInsights: { type: Boolean, default: false },
     accessCsrsFoundations: { type: Boolean, default: false },
+    accessSales : {type: Boolean, default:false}
   },
   endDate: {
     type: Date, // Assuming the end date will be a Date type

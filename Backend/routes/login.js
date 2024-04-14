@@ -52,7 +52,8 @@ router.post('/', async (req, res) => {
         dashPriveleges : user.privileges.accessDashboard,
         gtmPriveleges : user.privileges.accessGtmPartners,
         marketPriveleges : user.privileges.accessMarketInsights,
-        csrPriveleges : user.privileges.accessCsrsFoundations
+        csrPriveleges : user.privileges.accessCsrsFoundations,
+        salesPriveleges : user.privileges.accessSales
       },
       loginDetails: { counter: user.counter, lastLogin: user.lastLogin },
     });
