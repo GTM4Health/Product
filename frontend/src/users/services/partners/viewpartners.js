@@ -19,6 +19,7 @@ const PartnersPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [selectedState, setSelectedState] = useState("all");
   const [selectedCity, setSelectedCity] = useState("all");
+  const navigate = useNavigate();
 
 
   useEffect(() => {

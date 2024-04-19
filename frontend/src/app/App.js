@@ -57,6 +57,7 @@ import LandingPage4 from '../users/home/Mr-Home';
 import LandingPage5 from '../users/home/mrLand5';
 import UserStateDetails from '../users/home/uStateDetails';
 import SalesForm from '../users/services/sales/sales';
+import ViewSales from '../users/services/sales/viewsales';
 
 //Entry Function into the Product
 export default function App() {
@@ -115,6 +116,7 @@ export default function App() {
         <Route path='/dashboard/CSRs-Foundations' element = {<ViewCSRPortal />} />
         <Route path='/admin/dashboard/Eval-PDF' element = {<BillingForm />} />
         <Route path='/admin/dashboard/Admin-Bill' element = {<AdminBill />} />
+        <Route path='/dashboard/View-Sales-Progress' element = {<ViewSales />}  /> 
       </Routes>
     </Router>
   );

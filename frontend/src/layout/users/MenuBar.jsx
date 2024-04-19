@@ -8,8 +8,10 @@ import { useNavigate } from "react-router-dom";
 const MenuBar = () => {
   const [isHealthcareCentresMenuOpen, setIsHealthcareCentresMenuOpen] = useState(false);
   const [isDashBoardMenuOpen,setIsDashBoardMenuOpen] = useState(false);
+  const [isSalesMenuOpen, setIsSalesMenuOpen] = useState(false);
   const healthcareCentresMenuRef = useRef(null);
-  const dashBoardMenuRef=useRef(null)
+  const dashBoardMenuRef=useRef(null);
+  const salesMenuRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +21,9 @@ const MenuBar = () => {
       }
       if (dashBoardMenuRef.current && !dashBoardMenuRef.current.contains(event.target)) {
         setIsDashBoardMenuOpen(false);
+      }
+      if(salesMenuRef.current && !salesMenuRef.current.contains(event.target)){
+        setIsSalesMenuOpen(false);
       }
     };
 
@@ -41,9 +46,12 @@ const MenuBar = () => {
     }
   };
 
+  const handleSalesMenuClick = () => {
+    setIsSalesMenuOpen(!isSalesMenuOpen);
+  };
+
   return (
-    <div className="adbar usrbar">
-      
+    <div className="adbar usrbar"> 
       <div
         className={`menu-item ${
           isDashBoardMenuOpen ? "active" : ""
@@ -103,12 +111,28 @@ const MenuBar = () => {
           <span className="menu-text">CSRs & Foundations</span>
         </div>
       </a> 
-      <a href="/dashboard/Sales-Tracker" className="menu-link">
-        <div className="menu-item">
-          <i className="fas fa-clipboard-list menu-icon"></i>
-          <span className="menu-text">Sales Tracker</span>
+      <div
+        className={`menu-item ${
+          isSalesMenuOpen ? "active" : ""
+        }`}
+        onClick={handleSalesMenuClick}
+        ref={salesMenuRef}
+      >
+        <i className="fas fa-chart-line menu-icon"></i>
+        <span className="menu-text">Sales Tracker</span>
+        {isSalesMenuOpen && (
+          <div className="sub-menu healthcare-centres-menu">
+            <a href="/dashboard/View-Sales-Progress" className="sub-menu-item menu-link">
+                <i className="fas fa-hospital sub-menu-icon"></i>
+                <span className="menu-text">View Sales Progress</span>
+            </a>
+            <a href="/dashboard/Sales-Tracker" className="sub-menu-item menu-link">
+                <i className="fas fa-clipboard-list menu-icon"></i>
+                <span className="menu-text">Sales Tracker Form</span>
+            </a> 
         </div>
-      </a> 
+        )}
+      </div>
       {/* <a href="/dashboard/gtm-readiness-assessment" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-clipboard-list menu-icon"></i>

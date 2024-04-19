@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
       status,
       finalStatus,
       reportsBetweenDates,
-      includeReports,
+      reportDate,
     } = req.body;
 
     const sales = new Sales({
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
       status,
       finalStatus,
       reportsBetweenDates,
-      includeReports,
+      reportDate,
     });
     const savedSales = await sales.save();
     res.status(201).json({ message: 'Sales entry created successfully' });
@@ -63,6 +63,27 @@ router.put('/update-sales/:id', async (req, res) => {
     res.json(updatedSales);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+});
+
+// GET sales data with pagination
+router.get('/get-sales', async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+  try {
+    const sales = await Sales.find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+    const count = await Sales.countDocuments();
+    res.status(200).json({
+      sales,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+      totalRows: count,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
   }
 });
 

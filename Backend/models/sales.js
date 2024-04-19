@@ -23,9 +23,8 @@ const salesSchema = new mongoose.Schema({
     type: String,
     default: false,
   },
-  includeReports: {
-    type: Boolean,
-    default: false,
+  reportDate: {
+    type: String,
   },
 });
 
