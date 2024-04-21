@@ -122,14 +122,14 @@ const MenuBar = () => {
         <span className="menu-text">Sales Tracker</span>
         {isSalesMenuOpen && (
           <div className="sub-menu healthcare-centres-menu">
-            <a href="/dashboard/View-Sales-Progress" className="sub-menu-item menu-link">
-                <i className="fas fa-hospital sub-menu-icon"></i>
-                <span className="menu-text">View Sales Progress</span>
-            </a>
             <a href="/dashboard/Sales-Tracker" className="sub-menu-item menu-link">
                 <i className="fas fa-clipboard-list menu-icon"></i>
                 <span className="menu-text">Sales Tracker Form</span>
             </a> 
+            <a href="/dashboard/View-Sales-Progress" className="sub-menu-item menu-link">
+                <i className="fas fa-hospital sub-menu-icon"></i>
+                <span className="menu-text">View Sales Progress</span>
+            </a>
         </div>
         )}
       </div>

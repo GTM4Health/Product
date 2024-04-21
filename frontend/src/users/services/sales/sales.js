@@ -6,6 +6,7 @@ import Header2 from '../../../layout/users/Header2';
 import MenuBar from '../../../layout/users/MenuBar';
 import useAuth from '../../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import finalStatusOptions from "../../../assets/FinalStatus.json"
 
 const SalesForm = () => {
   const [user, setUser] = useState('');
@@ -32,6 +33,13 @@ const SalesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Convert report date to the desired format
+      const formattedReportDate = new Date(reportDate).toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      }).split(' ').join('-');
+      
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Sales`, {
         leadName,
         healthcareCentreName,
@@ -40,7 +48,7 @@ const SalesForm = () => {
         status,
         finalStatus,
         reportsBetweenDates,
-        reportDate // Include report date when submitting
+        reportDate: formattedReportDate // Include formatted report date when submitting
       });
       // Clear form fields after successful submission
       setLeadName('');
@@ -56,7 +64,7 @@ const SalesForm = () => {
       setTimeout(() => {
         setSalesStatus(null);
       }, 1500);
-
+  
     } catch (error) {
       console.error('Error:', error);
       setSalesStatus('failure');
@@ -168,11 +176,11 @@ const SalesForm = () => {
                   value={finalStatus}
                   onChange={(e) => setFinalStatus(e.target.value)}
                 >
-                  <option value="No Requirement">No Requirement</option>
-                  <option value="Our Cost is higher">Our Cost is higher</option>
-                  <option value="Closed Sales">Closed Sales</option>
-                  <option value="Lost to Competition">Lost to Competition</option>
-                  <option value="On hold">On hold</option>
+                 {finalStatusOptions.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="form-group">
@@ -184,7 +192,9 @@ const SalesForm = () => {
                   onChange={(e) => setReportsBetweenDates(e.target.value)}
                 />
               </div>
-              <button type="submit">Submit</button>
+              <button type="submit" className="hsubtn login-btn">
+                Submit
+              </button>
             </form>
           </div>
         </div>

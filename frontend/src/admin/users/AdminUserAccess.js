@@ -6,6 +6,7 @@ import AdminHeader from "../../layout/admin/AdminHeader";
 import AdminUpdateUserForm from "./AdminUpdateUsers";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
+const moment = require('moment');
 
 
 function AdminDashboard() {
@@ -225,7 +226,7 @@ function AdminDashboard() {
                   <td>{user.counter}</td>
                   <td>{user.lastLogin}</td>
                   <td>{user.activationTime}</td>
-                  <td>{user.endDate}</td>
+                  <td>{moment(user.endDate).format('DD-MMM-YYYY')}</td>
                   <td>
                       <button className="edit-button" onClick={() => handleEditUser(user)}>
                         <i className="fas fa-pencil-alt"></i>

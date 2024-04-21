@@ -110,7 +110,7 @@ const ViewSales = () => {
                 <tbody>
                   {salesData.map((sale, index) => (
                     <tr key={index}>
-                      <td>{index}</td>
+                      <td>{index+1}</td>
                       <td>{sale.leadName}</td>
                       <td>{sale.healthcareCentreName}</td>
                       <td>{sale.email}</td>

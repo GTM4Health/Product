@@ -7,6 +7,8 @@ import axios from 'axios';
 import HeaderIn from '../layout/users/HeaderIn';
 import Footer from "../layout/pages/Footer";
 import rolesData from '../assets/roles.json';
+import PrivacyPDF from "../assets/GTMScale_Privacy_Policy.pdf";
+import TnC from "../assets/GTMScale_Terms_&_Conditions.pdf"
 
 
 const Signup = () => {
@@ -177,11 +179,13 @@ const Signup = () => {
               />
               <label htmlFor="termsAndConditions">
                 I agree to the {' '}
-                <a href="/termsofuse" className="highlight-link">
+                {/* <a href="/termsofuse" className="highlight-link"> */}
+                <a href={PrivacyPDF} className="highlight-link" target="_blank">
                   Terms of Use
                 </a>
                 {' '}and{' '} 
-                <a href="/privacypolicy" className="highlight-link">
+                {/* <a href="/privacypolicy" className="highlight-link"> */}
+                <a href={TnC} className="highlight-link" target="_blank">
                   Privacy Policy
                 </a>
                 {' '}of GTM4Health Platform*
