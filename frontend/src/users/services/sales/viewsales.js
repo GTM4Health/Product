@@ -23,7 +23,7 @@ const ViewSales = () => {
     } else if (user && !(user.salesPriveleges) && isAuthenticated) {
       navigate("/dashboard/Subscription");
     }
-  }, [isAuthenticatedd, currentPage]);
+  }, [isAuthenticated, currentPage]);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));

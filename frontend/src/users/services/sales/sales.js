@@ -6,7 +6,7 @@ import Header2 from '../../../layout/users/Header2';
 import MenuBar from '../../../layout/users/MenuBar';
 import useAuth from '../../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import finalStatusOptions from "../../../assets/FinalStatus.json"
+import finalStatusOptions from "../../../assets/SalesStatus.json"
 
 const SalesForm = () => {
   const [user, setUser] = useState('');
