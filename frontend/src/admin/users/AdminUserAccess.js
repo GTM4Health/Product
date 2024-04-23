@@ -226,7 +226,8 @@ function AdminDashboard() {
                   <td>{user.counter}</td>
                   <td>{user.lastLogin}</td>
                   <td>{user.activationTime}</td>
-                  <td>{moment(user.endDate).format('DD-MMM-YYYY')}</td>
+                  <td>{user.endDate ? moment(user.endDate).format('DD-MMM-YYYY') : ''}</td>
+
                   <td>
                       <button className="edit-button" onClick={() => handleEditUser(user)}>
                         <i className="fas fa-pencil-alt"></i>

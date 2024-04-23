@@ -80,7 +80,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
         </div>
         <div className="form-group">
             <label htmlFor="endDate">End Date of Subscription:</label>
-            <label htmlFor="endDate">Current : {endDate}</label>
+            {/* <label htmlFor="endDate">Current : {endDate}</label> */}
             <input
               type="date"
               id="endDate"
@@ -91,58 +91,98 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
             />
         </div>
 
-        {/* Section for handling privileges */}
+  
         <div className="privileges-section">
-          <h2>Access Privileges</h2>
-          <label>
-            <input
-              type="checkbox"
-              checked={privileges.accessDashboard}
-              onChange={() => handlePrivilegeChange("accessDashboard")}
-            />
-            Access Dashboard
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={privileges.accessHospitals}
-              onChange={() => handlePrivilegeChange("accessHospitals")}
-            />
-            Access Hospitals
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={privileges.accessGtmPartners}
-              onChange={() => handlePrivilegeChange("accessGtmPartners")}
-            />
-            Access GTM Partners
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={privileges.accessMarketInsights}
-              onChange={() => handlePrivilegeChange("accessMarketInsights")}
-            />
-            Access Market Insights
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={privileges.accessCsrsFoundations}
-              onChange={() => handlePrivilegeChange("accessCsrsFoundations")}
-            />
-            Access CSRs/Foundations
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={privileges.accessSales}
-              onChange={() => handlePrivilegeChange("accessSales")}
-            />
-            Access Sales Tracker
-          </label>
-        </div>
+              <h3>Access Privileges</h3>
+              <table className="privileges-table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={privileges.accessDashboard}
+                        onChange={() => handlePrivilegeChange("accessDashboard")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                        Access Dashboard
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={privileges.accessHospitals}
+                        onChange={() => handlePrivilegeChange("accessHospitals")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                        Access Hospitals
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={privileges.accessGtmPartners}
+                        onChange={() => handlePrivilegeChange("accessGtmPartners")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                        Access GTM Partners
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                              type="checkbox"
+                              checked={privileges.accessMarketInsights}
+                              onChange={() => handlePrivilegeChange("accessMarketInsights")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                      Access Market Insights
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                              type="checkbox"
+                              checked={privileges.accessCsrsFoundations}
+                              onChange={() => handlePrivilegeChange("accessCsrsFoundations")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                      Access CSRs/Foundations
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                              type="checkbox"
+                              checked={privileges.accessSales}
+                              onChange={() => handlePrivilegeChange("accessSales")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                      Access Sales Tracker
+                      </label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
         <div className="button-group">
           <button type="submit" className="btn-primary">

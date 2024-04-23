@@ -1798,6 +1798,32 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+/* priveleges */
+.privileges-section {
+  margin-top: 20px;
+}
 
+.privileges-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.privileges-table td {
+  padding: 8px;
+}
+
+.privileges-table label {
+  display: block;
+}
+
+.privileges-table input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.edit-form .button-group button {
+  margin-top: auto;
+  margin-right: 10px;
+  height: 3.3rem;
+}
 
 /* You can customize these colors as desired */
