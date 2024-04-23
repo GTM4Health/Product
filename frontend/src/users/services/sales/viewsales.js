@@ -74,8 +74,29 @@ const ViewSales = () => {
         <div className="dashboard">
           <MenuBar />
           <div className="hosp-content">
-            <h1>View Sales</h1>
+            <h1>View Sales Progress</h1>
             <div className="sales-data">
+            <div className="page-jump f-select">
+              <label htmlFor="page-selector" className="f-label">Go to Page:</label>
+              <select
+                id="page-selector"
+                value={currentPage}
+                className="f-select"
+                onChange={(e) => setCurrentPage(parseInt(e.target.value))}
+              >
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <option key={index + 1} value={index + 1}>
+                    {index + 1}
+                  </option>
+                ))}
+              </select>
+              </div>
+              <div className="page-display">
+                <h4 className="total-rows ft5">Total Sales Records = {totalRows}</h4>
+                <h4 className="right ft5">
+                  <i>Displaying Page {currentPage} of {totalPages}</i>
+                </h4>
+              </div>
               <div className="pagination-buttons">
                 {!isFirstPage && (
                   <button className="prev-button" onClick={handlePrevPage}>
@@ -88,11 +109,11 @@ const ViewSales = () => {
                   </button>
                 )}
               </div>
-              <div className="page-info">
+              {/* <div className="page-info">
                 <p>
                   Page {currentPage} of {totalPages}
                 </p>
-              </div>
+              </div> */}
               <table className="user-table">
                 <thead>
                   <tr>
