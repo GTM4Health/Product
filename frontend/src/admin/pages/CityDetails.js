@@ -30,7 +30,7 @@ const CityDetails = () => {
         <div className="dashboard">
           <AdminMenuBar />
           <div className="page-title">
-            <h1 className="page-title-child hdblue-tag">{city} Hospitals</h1>
+            <h1 className="page-title-child hdblue-tag">{city} Healthcare Centres</h1>
           </div>
           <div className="table-content">
             <Table data={hospitals} /> {/* Render the table component */}
