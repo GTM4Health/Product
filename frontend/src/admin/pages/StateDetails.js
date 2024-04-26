@@ -7,6 +7,7 @@ import axios from 'axios';
 import AdminHeader from '../../layout/admin/AdminHeader';
 import AdminMenuBar from '../../layout/admin/AdminMenubar';
 import Footer from '../../layout/pages/Footer';
+import { useNavigate, Link } from 'react-router-dom';
 
 const StateDetails = () => {
   const { state } = useParams();
@@ -44,11 +45,10 @@ const StateDetails = () => {
                   </tr>
               </thead>
               <tbody>
-                {cities.map((city, index) => (
+              {cities.map((city, index) => (
                   <tr key={index}>
-                  {console.log(city)}
                     <td>{index + 1}</td>
-                    <td>{city._id}</td>
+                    <td><Link to={`/city/${city._id}`}>{city._id}</Link></td>
                     <td>{city.totalCenters}</td>
                   </tr>
                 ))}

@@ -167,6 +167,18 @@ router.get('/state-centers/:state/cities', async (req, res) => {
   }
 });
 
+router.get('/city/:city', async (req, res) => {
+  try {
+    const city = req.params.city;
+    const hospitals = await Hospital.find({ city: city });
+    res.json({ hospitals });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 
 
 
