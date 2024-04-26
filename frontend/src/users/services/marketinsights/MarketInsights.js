@@ -37,6 +37,8 @@ const MarketInsights = () => {
   const [user, setUser] = useState("");
   const isAuthenticated = useAuth("");
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
 
 
@@ -47,7 +49,7 @@ const MarketInsights = () => {
   } else if (user && !(user.marketPriveleges) && isAuthenticated) {
     navigate("/dashboard/Subscription");
   }
-  }, [isAuthenticated,currentPage, pageSize]);
+  }, [isAuthenticated,currentPage, pageSize, searchQuery]);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -59,7 +61,7 @@ const MarketInsights = () => {
   const fetchPdfFiles = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/cont/pdfs?page=${currentPage}&limit=${pageSize}`
+        `${process.env.REACT_APP_BASE_URL}/api/cont/pdfs?page=${currentPage}&limit=${pageSize}&search=${searchQuery}`
       );
       setPdfFiles(response.data.files);
       setTotalFiles(response.data.totalFiles);
@@ -69,15 +71,14 @@ const MarketInsights = () => {
     }
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   const handleDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
 
-  const goToPreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
 
   const goToNextPage = () => {
     if (currentPage < numPages) {
@@ -100,6 +101,14 @@ const MarketInsights = () => {
             <h1 className="page-title-child hdblue-tag reports">View Market Insight Reports</h1>
           </div>
           <div className="page-jump w10">
+            <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+            </div>
             <label htmlFor="page-selector">Go to Page:</label>
             <select
               id="page-selector"
@@ -130,7 +139,7 @@ const MarketInsights = () => {
             <tbody>
               {pdfFiles.map((pdfFile, index) => (
                 <tr key={index}>
-                  <td>{`00${(currentPage - 1) * pageSize + index + 1}`.slice(-4)}</td>
+                  <td>{`${(currentPage - 1) * pageSize + index + 1}`}</td>
                   <td>
                     <a
                       href={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(pdfFile)}`}

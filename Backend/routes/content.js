@@ -44,34 +44,73 @@ router.post('/upload', upload.single('pdfFile'), async (req, res) => {
 });
 
 // Fetch paginated PDF filenames route
-router.get('/pdfs', async (req, res) => {
-  try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+// router.get('/pdfs', async (req, res) => {
+//   try {
+//     const page = parseInt(req.query.page) || 1;
+//     const limit = parseInt(req.query.limit) || 10;
 
-    const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
+//     const startIndex = (page - 1) * limit;
+//     const endIndex = page * limit;
 
-    const totalFiles = await Content.countDocuments({});
-    const totalPages = Math.ceil(totalFiles / limit);
+//     const totalFiles = await Content.countDocuments({});
+//     const totalPages = Math.ceil(totalFiles / limit);
 
-    const pdfFiles = await Content.find({}, 'filename category')
-      .skip(startIndex)
-      .limit(limit);
+//     const pdfFiles = await Content.find({}, 'filename category')
+//       .skip(startIndex)
+//       .limit(limit);
 
-    const filenames = pdfFiles.map(file => file.filename);
+//     const filenames = pdfFiles.map(file => file.filename);
 
-    res.json({
-      files: filenames,
-      totalFiles,
-      totalPages,
-      currentPage: page,
-    });
-  } catch (error) {
-    console.error('Error fetching paginated PDF filenames:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
+//     res.json({
+//       files: filenames,
+//       totalFiles,
+//       totalPages,
+//       currentPage: page,
+//     });
+//   } catch (error) {
+//     console.error('Error fetching paginated PDF filenames:', error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// });
+
+  // Fetch paginated PDF filenames route
+  router.get('/pdfs', async (req, res) => {
+    try {
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 10;
+      const searchQuery = req.query.search || ''; // Get search query from request query parameters
+    
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+    
+      let query = {};
+    
+      if (searchQuery) {
+        // If search query exists, filter filenames based on the query
+        query = { filename: { $regex: searchQuery, $options: 'i' } };
+      }
+    
+      const totalFiles = await Content.countDocuments(query);
+      const totalPages = Math.ceil(totalFiles / limit);
+    
+      const pdfFiles = await Content.find(query, 'filename category')
+        .skip(startIndex)
+        .limit(limit);
+    
+      const filenames = pdfFiles.map(file => file.filename);
+    
+      res.json({
+        files: filenames,
+        totalFiles,
+        totalPages,
+        currentPage: page,
+      });
+    } catch (error) {
+      console.error('Error fetching paginated PDF filenames:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
 
   router.get('/pdfs/:filename', async (req, res) => {
     try {

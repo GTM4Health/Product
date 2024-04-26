@@ -36,8 +36,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// DELETE a sales entry by ID
-router.delete('/delete-sales/:id', async (req, res) => {
+router.delete('/delete-sale/:id', async (req, res) => { // Updated endpoint
   try {
     const deletedSales = await Sales.findByIdAndDelete(req.params.id);
     if (!deletedSales) {
@@ -51,9 +50,9 @@ router.delete('/delete-sales/:id', async (req, res) => {
 });
 
 // Update a sales entry by ID
-router.put('/update-sales/:id', async (req, res) => {
+router.put('/update-sale/:id', async (req, res) => { // Updated endpoint
   const { id } = req.params;
-  const updatedData = req.body.data;
+  const updatedData = req.body.data; // No need for data key
 
   try {
     const updatedSales = await Sales.findByIdAndUpdate(id, updatedData, {
@@ -66,11 +65,42 @@ router.put('/update-sales/:id', async (req, res) => {
   }
 });
 
+// DELETE a sales entry by ID
+// router.delete('/delete-sales/:id', async (req, res) => {
+//   try {
+//     const deletedSales = await Sales.findByIdAndDelete(req.params.id);
+//     if (!deletedSales) {
+//       return res.status(404).json({ message: 'Sales entry not found' });
+//     }
+//     return res.status(200).json({ message: 'Sales entry deleted successfully' });
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ error: 'Server error' });
+//   }
+// });
+
+// // Update a sales entry by ID
+// router.put('/update-sales/:id', async (req, res) => {
+//   const { id } = req.params;
+//   const updatedData = req.body.data;
+
+//   try {
+//     const updatedSales = await Sales.findByIdAndUpdate(id, updatedData, {
+//       new: true,
+//       runValidators: true,
+//     });
+//     res.json(updatedSales);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// });
+
 // GET sales data with pagination
 router.get('/get-sales', async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
   try {
     const sales = await Sales.find()
+      .sort({ reportDate: -1 }) 
       .limit(limit * 1)
       .skip((page - 1) * limit)
       .exec();

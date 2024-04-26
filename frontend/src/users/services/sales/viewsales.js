@@ -5,6 +5,7 @@ import Header2 from '../../../layout/users/Header2';
 import MenuBar from '../../../layout/users/MenuBar';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import EditSalesForm from './updatesales';
 
 const ViewSales = () => {
   const [user, setUser] = useState('');
@@ -14,6 +15,8 @@ const ViewSales = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const isAuthenticated = useAuth();
+  const [editFormVisible, setEditFormVisible] = useState(false);
+  const [selectedSale, setSelectedSale] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,6 +53,59 @@ const ViewSales = () => {
     } catch (error) {
       console.error('Error fetching sales data:', error);
     }
+  };
+
+  const handleEditSales = (sale) => {
+    setSelectedSale(sale); // Set selected sale for editing
+    setEditFormVisible(true); // Show edit form
+  };
+
+  const handleUpdateSales = async (id, updatedData) => {
+    const { reportDate, ...restData } = updatedData;
+    // Format the reportDate
+    const formattedReportDate = new Date(reportDate).toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    }).split(' ').join('-').toUpperCase();
+    
+    try {
+      // Include the formatted reportDate in the requestData
+      const requestData = {
+        data: {
+          ...restData,
+          reportDate: formattedReportDate
+        },
+      };
+      // alert(requestData.data);
+      // console.log(requestData);
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Sales/update-sale/${id}`, requestData);
+      setEditFormVisible(false); // Hide edit form after successful update
+      setSelectedSale(null); // Clear selected sale
+      fetchSalesData(); // Fetch updated sales data
+      console.log("Sales updated successfully");
+    } catch (error) {
+      console.error('Error updating sale:', error);
+    }
+  };
+
+  const handleDeleteSale = async (id) => {
+    try {
+      const confirmDelete = window.confirm("Are you sure you want to delete this sale?");
+      if (confirmDelete) {
+        await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Sales/delete-sale/${id}`);
+        setSalesData(salesData.filter((sale) => sale._id !== id));
+        console.log("Sale deleted successfully");
+      }
+    } catch (error) {
+      console.error('Error deleting sale:', error);
+    }
+  };
+  
+
+  const handleCancelEdit = () => {
+    setEditFormVisible(false); // Hide edit form
+    setSelectedSale(null); // Clear selected sale
   };
 
   const isFirstPage = currentPage === 1;
@@ -119,13 +175,15 @@ const ViewSales = () => {
                   <tr>
                     <th>Sl No.</th>
                     <th>Lead Name</th>
+                    <th>Report Date</th>
                     <th>Healthcare Centre Name</th>
                     <th>Email</th>
                     <th>Mobile No</th>
                     <th>Status</th>
-                    <th>Report Date</th>
+                    
                     <th>Final Status</th>
                     <th>Reports</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -133,17 +191,35 @@ const ViewSales = () => {
                     <tr key={index}>
                       <td>{index+1}</td>
                       <td>{sale.leadName}</td>
+                      <td>{sale.reportDate}</td>
                       <td>{sale.healthcareCentreName}</td>
                       <td>{sale.email}</td>
                       <td>{sale.mobileNo}</td>
                       <td>{sale.status}</td>
-                      <td>{sale.reportDate}</td>
+                      
                       <td>{sale.finalStatus}</td>
                       <td>{sale.reportsBetweenDates}</td>
+                      <td>
+                      <button onClick={() => handleEditSales(sale)}>
+                        <i className="fas fa-edit"></i>
+                      </button>
+                      <button onClick={() => handleDeleteSale(sale._id)}>
+                        <i className="fas fa-trash"></i>
+                      </button>
+                    </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+              {editFormVisible && (
+              <EditSalesForm 
+              sale={selectedSale} 
+              onUpdate={(id, updatedData) =>
+                handleUpdateSales(id, updatedData)
+              } 
+              onCancel={handleCancelEdit}
+               />
+            )}
               <div className="pagination-buttons">
                 {!isFirstPage && (
                   <button className="prev-button" onClick={handlePrevPage}>

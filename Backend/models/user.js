@@ -51,8 +51,16 @@ const userSchema = new mongoose.Schema({
     accessSales : {type: Boolean, default:false}
   },
   endDate: {
-    type: Date, // Assuming the end date will be a Date type
+    type: String,
+    default: '',
+    set: function(value) {
+      if (value != null && value !== '') {
+        return moment(value).utcOffset('+05:30').format('DD-MMM-YYYY');
+      } else {
+        return undefined;
+      }
   },
+}
 });
 
 userSchema.methods.recordLogin = async function () {
@@ -79,6 +87,7 @@ userSchema.pre('save', async function (next) {
   } catch (error) {
     return next(error);
   }
+  
 });
 
 const User = mongoose.model('User', userSchema);

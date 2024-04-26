@@ -38,7 +38,7 @@ const SalesForm = () => {
         day: '2-digit',
         month: 'short',
         year: 'numeric'
-      }).split(' ').join('-');
+      }).split(' ').join('-').toUpperCase();
       
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Sales`, {
         leadName,
