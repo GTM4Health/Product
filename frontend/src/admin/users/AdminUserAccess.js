@@ -225,7 +225,7 @@ function AdminDashboard() {
                   <td>{user.role}</td> */}
                   <td>{user.counter}</td>
                   <td>{user.lastLogin ? moment(user.lastLogin).format('DD-MMM-YYYY').toUpperCase() : ''}</td>
-                  <td>{moment(user.activationTime).format('DD-MMM-YYYY').toUpperCase()}</td>
+                  <td>{user.activationTime ? moment(user.activationTime).format('DD-MMM-YYYY').toUpperCase() : ''}</td>
                   <td>{user.endDate ? moment(user.endDate).format('DD-MMM-YYYY').toUpperCase() : ''}</td>
 
                   <td>
