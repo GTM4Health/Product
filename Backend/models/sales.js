@@ -24,7 +24,7 @@ const salesSchema = new mongoose.Schema({
     default: false,
   },
   reportDate: {
-    type: String,
+    type: Date,
   },
 });
 

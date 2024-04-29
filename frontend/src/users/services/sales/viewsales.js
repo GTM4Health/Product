@@ -17,6 +17,9 @@ const ViewSales = () => {
   const isAuthenticated = useAuth();
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedSale, setSelectedSale] = useState(null);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const moment = require("moment");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,6 +47,8 @@ const ViewSales = () => {
           params: {
             page: currentPage,
             limit: pageSize,
+            startDate: startDate,
+            endDate: endDate
           },
         }
       );
@@ -58,6 +63,16 @@ const ViewSales = () => {
   const handleEditSales = (sale) => {
     setSelectedSale(sale); // Set selected sale for editing
     setEditFormVisible(true); // Show edit form
+  };
+
+  const handleSearch = () => {
+    fetchSalesData();
+  };
+
+  const handleClearSearch = () => {
+    setStartDate('');
+    setEndDate('');
+    fetchSalesData();
   };
 
   const handleUpdateSales = async (id, updatedData) => {
@@ -127,12 +142,31 @@ const ViewSales = () => {
     <div className="page-view">
       <Header2 user={user} />
       <div className="d-content">
+      <MenuBar />
         <div className="dashboard">
-          <MenuBar />
-          <div className="hosp-content">
-            <h1>View Sales Progress</h1>
-            <div className="sales-data">
-            <div className="page-jump f-select">
+        <div className="page-title">
+            <h1 className="page-title-child">View Sales Progress</h1>
+          </div>
+            <div className="filter-container">
+              <label htmlFor="start-date" className='f-label'>Start Date:</label>
+              <input
+                type="date"
+                id="start-date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className='form-outline f-select'
+              />
+              <label htmlFor="end-date" className='f-label'>End Date:</label>
+              <input
+                type="date"
+                id="end-date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className='form-outline f-select'
+              />
+            </div>
+            <div className="page-jump filter-container">
+              <div className='f-select'>
               <label htmlFor="page-selector" className="f-label">Go to Page:</label>
               <select
                 id="page-selector"
@@ -146,7 +180,12 @@ const ViewSales = () => {
                   </option>
                 ))}
               </select>
+              </div> 
+              <button onClick={handleSearch} className="clear-btn">Search</button>
+              <button onClick={handleClearSearch} className="clear-btn">Clear Search</button>
               </div>
+          <div className="hosp-content">
+            <div className="sales-data">
               <div className="page-display">
                 <h4 className="total-rows ft5">Total Sales Records = {totalRows}</h4>
                 <h4 className="right ft5">
@@ -189,9 +228,9 @@ const ViewSales = () => {
                 <tbody>
                   {salesData.map((sale, index) => (
                     <tr key={index}>
-                      <td>{index+1}</td>
+                      <td>{(currentPage - 1) * pageSize + index + 1}</td>
                       <td>{sale.leadName}</td>
-                      <td>{sale.reportDate}</td>
+                      <td>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY').toUpperCase() : ""}</td>
                       <td>{sale.healthcareCentreName}</td>
                       <td>{sale.email}</td>
                       <td>{sale.mobileNo}</td>

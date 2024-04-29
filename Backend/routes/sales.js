@@ -96,15 +96,41 @@ router.put('/update-sale/:id', async (req, res) => { // Updated endpoint
 // });
 
 // GET sales data with pagination
+// router.get('/get-sales', async (req, res) => {
+//   const { page = 1, limit = 10 } = req.query;
+//   try {
+//     const sales = await Sales.find()
+//       .sort({ reportDate: -1 }) 
+//       .limit(limit * 1)
+//       .skip((page - 1) * limit)
+//       .exec();
+//     const count = await Sales.countDocuments();
+//     res.status(200).json({
+//       sales,
+//       totalPages: Math.ceil(count / limit),
+//       currentPage: page,
+//       totalRows: count,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Server error' });
+//   }
+// });
+
+// GET sales data with pagination and date filtering
 router.get('/get-sales', async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 10, startDate, endDate } = req.query;
   try {
-    const sales = await Sales.find()
+    let query = {};
+    if (startDate && endDate) {
+      query = { reportDate: { $gte: startDate, $lte: endDate } };
+    }
+    const sales = await Sales.find(query)
       .sort({ reportDate: -1 }) 
       .limit(limit * 1)
       .skip((page - 1) * limit)
       .exec();
-    const count = await Sales.countDocuments();
+    const count = await Sales.countDocuments(query);
     res.status(200).json({
       sales,
       totalPages: Math.ceil(count / limit),
@@ -116,5 +142,6 @@ router.get('/get-sales', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
 
 module.exports = router;
