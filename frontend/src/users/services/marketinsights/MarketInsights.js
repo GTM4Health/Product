@@ -72,6 +72,7 @@ const MarketInsights = () => {
   };
 
   const handleSearch = (query) => {
+    setCurrentPage(1);
     setSearchQuery(query);
   };
 
