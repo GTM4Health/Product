@@ -74,10 +74,10 @@ const AddContent = () => {
             Name of Report:
             <input type="text" value={reportName} onChange={(e) => setReportName(e.target.value)} />
           </label>
-
+{/* 
           <label>
             Category:
-            {/* Dropdown for Category */}
+            {/* Dropdown for Category *}
             <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
               {categoryOptions.map((category) => (
                 <option key={category} value={category}>
@@ -85,7 +85,7 @@ const AddContent = () => {
                 </option>
               ))}
             </select>
-          </label>
+          </label> */}
 
           {/* File input and upload button */}
           <label>

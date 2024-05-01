@@ -1,22 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import AdminHeader from '../../layout/admin/AdminHeader';
-import AdminMenuBar from '../../layout/admin/AdminMenubar';
+import Header2 from '../../layout/users/Header2';
+import MenuBar from '../../layout/users/MenuBar';
 import Footer from '../../layout/pages/Footer';
 import Table from '../../components/table';
+import useAuth from '../../hooks/useAuth';
 
-const CityDetails = () => {
+const UserCityDetails = () => {
   const { city } = useParams();
   const [hospitals, setHospitals] = useState([]);
+  const isAuthenticated = useAuth();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetchHospitals();
+    if(isAuthenticated)
+        fetchHospitals();
+  }, [isAuthenticated]);
+
+  
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+    console.log(user)
+    // if(![user.privileges.accessDashboard]){
+    //   return <Subscription />;
+    // }
   }, []);
 
   const fetchHospitals = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/city-ad/${city}`);
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/city/${city}`);
       setHospitals(response.data.hospitals);
     } catch (error) {
       console.error(error);
@@ -25,10 +41,10 @@ const CityDetails = () => {
 
   return (
     <div className="page-view">
-      <AdminHeader />
+      <Header2 user={user} />
       <div className="d-content">
         <div className="dashboard">
-          <AdminMenuBar />
+          <MenuBar />
           <div className="page-title">
             <h1 className="page-title-child hdblue-tag">{city} Healthcare Centres</h1>
           </div>
@@ -42,4 +58,4 @@ const CityDetails = () => {
   );
 };
 
-export default CityDetails;
+export default UserCityDetails;

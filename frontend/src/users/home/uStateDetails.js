@@ -8,6 +8,7 @@ import Footer from '../../layout/pages/Footer';
 import Header2 from '../../layout/users/Header2';
 import MenuBar from '../../layout/users/MenuBar';
 import useAuth from '../../hooks/useAuth';
+import { useNavigate, Link } from 'react-router-dom';
 
 const UserStateDetails = () => {
   const { state } = useParams();
@@ -60,11 +61,10 @@ const UserStateDetails = () => {
                   </tr>
               </thead>
               <tbody>
-                {cities.map((city, index) => (
+              {cities.map((city, index) => (
                   <tr key={index}>
-                  {console.log(city)}
                     <td>{index + 1}</td>
-                    <td>{city._id}</td>
+                    <td><Link to={`/dashboard/city-analysis/${city._id}`}>{city._id}</Link></td>
                     <td>{city.totalCenters}</td>
                   </tr>
                 ))}

@@ -129,7 +129,7 @@ const ViewContent = () => {
             <tbody>
               {pdfFiles.map((pdfFile, index) => (
                 <tr key={index}>
-                  <td>{`00${(currentPage - 1) * pageSize + index + 1}`.slice(-4)}</td>
+                  <td>{`${(currentPage - 1) * pageSize + index + 1}`}</td>
                   <td>
                     <a
                       href={`${process.env.REACT_APP_BASE_URL}/api/cont/pdfs/${encodeURIComponent(pdfFile)}`}
@@ -140,7 +140,7 @@ const ViewContent = () => {
                       {pdfFile}
                     </a>
                   </td>
-                  <td>{pdfFile.category}</td>
+                  {/* <td>{pdfFile.category}</td> */}
                   <td>
                     <button onClick={() => handleDownload(pdfFile)}>
                       <i className="fas fa-download"></i>

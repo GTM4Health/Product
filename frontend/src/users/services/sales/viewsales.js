@@ -214,7 +214,7 @@ const ViewSales = () => {
                   <tr>
                     <th>Sl No.</th>
                     <th>Lead Name</th>
-                    <th>Report Date</th>
+                    <th className='dat'>Report Date</th>
                     <th>Healthcare Centre Name</th>
                     <th>Email</th>
                     <th>Mobile No</th>
@@ -230,7 +230,7 @@ const ViewSales = () => {
                     <tr key={index}>
                       <td>{(currentPage - 1) * pageSize + index + 1}</td>
                       <td>{sale.leadName}</td>
-                      <td>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY').toUpperCase() : ""}</td>
+                      <td className='dat'>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY').toUpperCase() : ""}</td>
                       <td>{sale.healthcareCentreName}</td>
                       <td>{sale.email}</td>
                       <td>{sale.mobileNo}</td>

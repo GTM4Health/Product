@@ -59,6 +59,7 @@ import UserStateDetails from '../users/home/uStateDetails';
 import SalesForm from '../users/services/sales/sales';
 import ViewSales from '../users/services/sales/viewsales';
 import CityDetails from '../admin/pages/CityDetails';
+import UserCityDetails from '../users/home/uCityDetails';
 
 //Entry Function into the Product
 export default function App() {
@@ -114,6 +115,7 @@ export default function App() {
         <Route path='/admin/dashboard/View-CSR-Foundation' element = {<CSRPortal />} />
         <Route path="/state-details/:state" element={<StateDetails />} />
         <Route path="/city/:city" element={<CityDetails />} />
+        <Route path="/dashboard/city-analysis/:city" element={<UserCityDetails />} />
         <Route path="/dashboard/state-details/:state" element={<UserStateDetails />} />
         <Route path='/dashboard/CSRs-Foundations' element = {<ViewCSRPortal />} />
         <Route path='/admin/dashboard/Eval-PDF' element = {<BillingForm />} />
