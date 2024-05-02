@@ -9,6 +9,7 @@ import axios from "axios";
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions"; // Importing getCityOptionsByState from cityOptions
 import specialitiesData from "../../../assets/specialities.json"
 import { useNavigate } from "react-router-dom";
+import Categories from "../../../assets/healthcareCategories.json";
 
 const MarketAccess = () => {
   const isAuthenticated = useAuth();
@@ -23,6 +24,7 @@ const MarketAccess = () => {
   const [cityOptions, setCityOptions] = useState([]);
   const [displayedHospital, setDisplayedHospital] = useState(hospitals);
   const [selectedSpeciality, setSelectedSpeciality] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
@@ -32,7 +34,7 @@ const MarketAccess = () => {
     } else if (user && !(user.privileges) && isAuthenticated) {
       navigate("/dashboard/Subscription");
     }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery]);
+  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery, selectedCategory]);
   
   // useEffect(() => {
   //   if (isAuthenticated) 
@@ -50,6 +52,7 @@ const MarketAccess = () => {
     params.append('state', selectedState);
     params.append('city', selectedCity);
     params.append('speciality', selectedSpeciality);
+    params.append('category', selectedCategory);
     params.append('search', searchQuery); // Add this line to include the search parameter
   
     try {
@@ -149,6 +152,11 @@ const MarketAccess = () => {
     setSearchQuery(event.target.value);
   };
 
+  const handleCategoryChange = (event) => {
+    setCurrentPage(1); // Assuming you want to reset the page when the speciality changes
+    setSelectedCategory(event.target.value);
+  };
+
   const handleSearch = async () => {
     const params = new URLSearchParams();
     params.append('page', currentPage);
@@ -156,6 +164,7 @@ const MarketAccess = () => {
     params.append('state', selectedState);
     params.append('city', selectedCity);
     params.append('speciality', selectedSpeciality);
+    params.append('category', selectedCategory);
     params.append('search', searchQuery); // Add this line to include the search parameter
   
     try {
@@ -167,6 +176,12 @@ const MarketAccess = () => {
       console.error(error);
     }
   };
+
+  const catOptions = Categories.map((speciality, index) => (
+    <option key={index} value={speciality}>
+      {speciality}
+    </option>
+  ));
 
   
   const clearSearchResults = () => {
@@ -247,7 +262,21 @@ const MarketAccess = () => {
             onChange={handleSearchInputChange}
           />
           {/* <button onClick={handleSearch}>Search</button> */}
-          <button onClick={clearSearchResults} className="clear-btn">Clear Search</button>
+          <div className="filter-container">
+          <label className="f-label" htmlFor="speciality-select">
+              Category:
+              </label>
+                <select
+                  className="f-select"
+                  id="speciality-select"
+                  value={selectedCategory}
+                  onChange={handleCategoryChange}
+                >
+                  <option value="all">All</option>
+                  {catOptions}
+              </select>
+            <button onClick={clearSearchResults} className="clear-btn">Clear Filters</button>    
+          </div>
           <div className="page-jump f-select">
               <label htmlFor="page-selector" className="f-label">Go to Page:</label>
               <select
