@@ -159,7 +159,7 @@ const SalesForm = () => {
                   placeholder="Mobile No"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="status">Status:</label>
                 <input
                   type="text"
@@ -168,9 +168,9 @@ const SalesForm = () => {
                   onChange={(e) => setStatus(e.target.value)}
                   placeholder="Status"
                 />
-              </div>
+              </div> */}
               <div className="form-group">
-                <label htmlFor="finalStatus">Final Status:</label>
+                <label htmlFor="finalStatus">Status:</label>
                 <select
                   id="finalStatus"
                   value={finalStatus}

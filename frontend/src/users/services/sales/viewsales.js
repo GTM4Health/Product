@@ -220,7 +220,7 @@ const ViewSales = () => {
                     <th>Mobile No</th>
                     <th>Status</th>
                     
-                    <th>Final Status</th>
+                    {/* <th>Final Status</th> */}
                     <th>Reports</th>
                     <th>Actions</th>
                   </tr>
@@ -234,7 +234,7 @@ const ViewSales = () => {
                       <td>{sale.healthcareCentreName}</td>
                       <td>{sale.email}</td>
                       <td>{sale.mobileNo}</td>
-                      <td>{sale.status}</td>
+                      {/* <td>{sale.status}</td> */}
                       
                       <td>{sale.finalStatus}</td>
                       <td>{sale.reportsBetweenDates}</td>

@@ -1829,4 +1829,8 @@ input::-webkit-inner-spin-button {
 .dat{
   width: 6rem;
 }
+
+.search-bar{
+  width: 14rem;
+}
 /* You can customize these colors as desired */

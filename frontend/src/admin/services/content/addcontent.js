@@ -66,8 +66,8 @@ const AddContent = () => {
       <AdminHeader />
       <AdminMenuBar />
       <div className="d-content">
-        <div className="dashboard">
-          <h2 className="page-title">Add Market Insight Reports</h2>
+        <div className="dashboard hosp-content">
+          <h1 className="page-title">Add Market Insight Reports</h1>
 
           {/* New input fields for Name of Report and Category */}
           <label>

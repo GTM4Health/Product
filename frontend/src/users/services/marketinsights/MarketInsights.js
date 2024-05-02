@@ -102,13 +102,19 @@ const MarketInsights = () => {
             <h1 className="page-title-child hdblue-tag reports">View Market Insight Reports</h1>
           </div>
           <div className="page-jump w10">
-            <div className="search-bar">
+          <div className="filter-container">
+          <button className="search-button">
+              <i className="fas fa-search"></i>
+          </button>
+            <div>
             <input
               type="text"
-              placeholder="Search..."
+              className="search-bar"
+              placeholder="Search Market Insights Reports..."
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
             />
+            </div>
             </div>
             <label htmlFor="page-selector">Go to Page:</label>
             <select
