@@ -275,7 +275,7 @@ const MarketAccess = () => {
                   <option value="all">All</option>
                   {catOptions}
               </select>
-            <button onClick={clearSearchResults} className="clear-btn">Clear Filters</button>    
+            <button onClick={clearSearchResults} className="clear-btn">Clear Search</button>    
           </div>
           <div className="page-jump f-select">
               <label htmlFor="page-selector" className="f-label">Go to Page:</label>
