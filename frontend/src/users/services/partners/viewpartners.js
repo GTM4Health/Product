@@ -194,13 +194,13 @@ const PartnersPage = () => {
                   <th>Products Managed</th>
                   <th>State</th>
                   <th>City</th>
-                  {/* <th>Address</th>
-                  <th>Pincode</th>
+                  <th>Address</th>
+                  {/* <th>Pincode</th> */}
                   <th>Website</th>
                   <th>Contact Name</th>
-                  <th>Role</th> */}
-                  {/* <th>Contact Email</th>
-                  <th>Contact Number</th> */}
+                  <th>Role</th>
+                  <th>Contact Email</th>
+                  <th>Contact Number</th>
                 </tr>
               </thead>
               <tbody>

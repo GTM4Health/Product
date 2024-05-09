@@ -209,7 +209,7 @@ const DealerPortal = () => {
                   <th>State</th>
                   <th>City</th>
                   <th>Address</th>
-                  <th>Pincode</th>
+                  {/* <th>Pincode</th> */}
                   <th>Website</th>
                   <th>Contact Name</th>
                   <th>Role</th>

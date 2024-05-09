@@ -128,7 +128,7 @@ const EditDealerForm = ({ dealer, onUpdate, onCancel }) => {
             className="form-outline"
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
             <label>Pincode:</label>
             <input
               type="integer"
@@ -138,7 +138,7 @@ const EditDealerForm = ({ dealer, onUpdate, onCancel }) => {
               placeholder="Pincode"
               className="form-outline f-select pincode"
             />
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="dealerName">Contact Name</label>
           <input

@@ -141,7 +141,7 @@ const Dealers = () => {
                     {renderCityOptions()}
                   </select>
                 </div>
-                <div className="pincode">
+                {/* <div className="pincode">
                   <label className='f-label'>Pincode:</label>
                   <input
                     type="integer"
@@ -151,7 +151,7 @@ const Dealers = () => {
                     placeholder="Pincode"
                     className="form-outline f-select pincode"
                   />
-                </div>
+                </div> */}
                 </div>
               <div className="form-group">
                 <label htmlFor="name">Company Name* :</label>
