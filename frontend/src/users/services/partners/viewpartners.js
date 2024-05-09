@@ -215,7 +215,7 @@ const PartnersPage = () => {
                     {/* <td>{dealer.pincode}</td> */}
                     <td>{dealer.web}</td>
                     <td>{dealer.dealerName}</td>
-                    <td>{dealer.role}</td> */}
+                    <td>{dealer.role}</td> 
                      <td>{dealer.mail}</td>
                     <td>{dealer.phone}</td>
                   </tr>
