@@ -211,13 +211,13 @@ const PartnersPage = () => {
                     <td>{dealer.products}</td>
                     <td>{dealer.state}</td>
                     <td>{dealer.city}</td>
-                    {/* <td>{dealer.address}</td>
-                    <td>{dealer.pincode}</td>
+                    <td>{dealer.address}</td>
+                    {/* <td>{dealer.pincode}</td> */}
                     <td>{dealer.web}</td>
                     <td>{dealer.dealerName}</td>
                     <td>{dealer.role}</td> */}
-                    {/* <td>{dealer.mail}</td>
-                    <td>{dealer.phone}</td> */}
+                     <td>{dealer.mail}</td>
+                    <td>{dealer.phone}</td>
                   </tr>
                 ))}
               </tbody>
