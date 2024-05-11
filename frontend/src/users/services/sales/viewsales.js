@@ -73,6 +73,7 @@ const ViewSales = () => {
     setStartDate('');
     setEndDate('');
     fetchSalesData();
+    setCurrentPage(1);
   };
 
   const handleUpdateSales = async (id, updatedData) => {
@@ -82,7 +83,7 @@ const ViewSales = () => {
       day: '2-digit',
       month: 'short',
       year: 'numeric'
-    }).split(' ').join('-').toUpperCase();
+    }).split(' ').join('-');
     
     try {
       // Include the formatted reportDate in the requestData
@@ -181,8 +182,10 @@ const ViewSales = () => {
                 ))}
               </select>
               </div> 
-              <button onClick={handleSearch} className="clear-btn">Search</button>
-              <button onClick={handleClearSearch} className="clear-btn">Clear Search</button>
+              </div>
+              <div className='filter-container'>
+                <button onClick={handleSearch} className="clear-btn">Search</button>
+                <button onClick={handleClearSearch} className="clear-btn">Clear Search</button>
               </div>
           <div className="hosp-content">
             <div className="sales-data">
@@ -230,7 +233,7 @@ const ViewSales = () => {
                     <tr key={index}>
                       <td>{(currentPage - 1) * pageSize + index + 1}</td>
                       <td>{sale.leadName}</td>
-                      <td className='dat'>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY').toUpperCase() : ""}</td>
+                      <td className='dat'>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY') : ""}</td>
                       <td>{sale.healthcareCentreName}</td>
                       <td>{sale.email}</td>
                       <td>{sale.mobileNo}</td>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import finalStatusOptions from "../../../assets/SalesStatus.json"
 
 const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
   const [leadName, setLeadName] = useState(sale.leadName);
@@ -81,7 +82,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
             placeholder="Mobile No"
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="status">Status</label>
           <input
             type="text"
@@ -90,7 +91,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
             onChange={(e) => setStatus(e.target.value)}
             placeholder="Status"
           />
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="reportDate">Report Date</label>
           <input
@@ -102,14 +103,18 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="finalStatus">Final Status</label>
-          <input
-            type="text"
-            id="finalStatus"
-            value={finalStatus}
-            onChange={(e) => setFinalStatus(e.target.value)}
-            placeholder="Final Status"
-          />
+          <label htmlFor="finalStatus">Status</label>
+          <select
+                  id="finalStatus"
+                  value={finalStatus}
+                  onChange={(e) => setFinalStatus(e.target.value)}
+                >
+                 {finalStatusOptions.map((option, index) => (
+                    <option key={index} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
         </div>
         <div className="form-group">
           <label htmlFor="reportsBetweenDates">Reports</label>
@@ -118,7 +123,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
             id="reportsBetweenDates"
             value={reportsBetweenDates}
             onChange={(e) => setReportsBetweenDates(e.target.value)}
-            placeholder="Reports Between Dates"
+            placeholder="Reports .."
           />
         </div>
         <div className="button-group">

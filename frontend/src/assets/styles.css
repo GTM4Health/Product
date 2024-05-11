@@ -1833,4 +1833,9 @@ input::-webkit-inner-spin-button {
 .search-bar{
   width: 14rem;
 }
+
+.clear-btn{
+  float: right;
+  margin-right: 1.5rem;
+}
 /* You can customize these colors as desired */
