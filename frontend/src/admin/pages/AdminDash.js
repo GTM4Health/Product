@@ -3,9 +3,11 @@ import Footer from "../../layout/pages/Footer";
 import AdminMenuBar from "../../layout/admin/AdminMenubar";
 import useAuth from "../../hooks/useAuth";
 import AdminHeader from "../../layout/admin/AdminHeader";
-import { Pie } from "react-chartjs-2";
-import {Chart, ArcElement } from "chart.js";
+import { Chart, ArcElement, BarElement, CategoryScale, LinearScale } from "chart.js";
+import { Pie, Bar } from "react-chartjs-2";
 import axios from "axios";
+
+Chart.register(ArcElement, BarElement, CategoryScale, LinearScale);
 
 
 
@@ -18,23 +20,21 @@ function AdminDashboard() {
   const [totalReports, setTotalReports] = useState(0);
   const [chartData, setChartData] = useState(null);
   const [totalCSRs, setTotalCSRs] = useState(0);
+  const [topCities, setTopCities] = useState([]);
   // Chart.register(PieElement);
 // Register the ArcElement
-Chart.register(ArcElement);
-  useEffect(() => {
-    if (!isAuthenticated) {
-      // Handle authentication issues here
-      return;
-    }
-  
-    // Fetch the total number of users and other data
-    fetchUsers();
-    fetchHospitals();
-    fetchDealers();
-    fetchStartups();
-    fetchReports();
-    fetchCSRs();
-  }, [isAuthenticated]);
+useEffect(() => {
+  if (!isAuthenticated) {
+    return;
+  }
+  fetchUsers();
+  fetchHospitals();
+  fetchDealers();
+  fetchStartups();
+  fetchReports();
+  fetchCSRs();
+  fetchTopCities();
+}, [isAuthenticated]);
   
   useEffect(() => {
     if (totalUsers > 0 && totalHospitals > 0 && totalDealers > 0 && totalStartups > 0) {
@@ -117,14 +117,72 @@ Chart.register(ArcElement);
     }
   };
 
-  const updatedChartData = {
-    labels: ["Total Hospitals", "Total Dealers", "Total Startups", "Total Users"],
+  // const barChartData = {
+  //   labels: ["Total Hospitals", "Total Dealers", "Total Startups", "Total Users"],
+  //   datasets: [
+  //     {
+  //       data: [totalHospitals, totalDealers, totalStartups, totalUsers],
+  //       backgroundColor: ["#3366FF", "#3366FF", "#3366FF", "#3366FF"],
+  //     },
+  //   ],
+  // };
+
+  const barChartData = {
+    labels: topCities.map(city => city._id),
     datasets: [
       {
-        data: [totalHospitals, totalDealers, totalStartups, totalUsers],
-        backgroundColor: ["#FF5733", "#3366FF", "#33FF33", "#FF9900"],
+        label: 'Total Centres',
+        data: topCities.map(city => city.totalCenters),
+        backgroundColor: ["#3366FF", "#3366FF", "#3366FF", "#3366FF", "#3366FF"],
       },
     ],
+  };
+
+  const citiesChartData = {
+    labels: topCities.map(city => city._id),
+    datasets: [
+      {
+        label: 'Total Centres',
+        data: topCities.map(city => city.totalCenters),
+        backgroundColor: ["#FF5733", "#3366FF", "#33FF33", "#FF9900", "#FF33FF"],
+      },
+    ],
+  };
+
+  const pieChartOptions = {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            const label = context.label || '';
+            const value = context.raw;
+            const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+            const percentage = ((value / total) * 100).toFixed(2) + '%';
+            return `${label}: ${value} (${percentage})`;
+          }
+        }
+      },
+      legend: {
+        display: true,
+        position: 'right',
+      },
+    }
+  };
+
+  
+
+
+
+  const fetchTopCities = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers/Karnataka/cities`
+      );
+      const sortedCities = response.data.sort((a, b) => b.totalCenters - a.totalCenters).slice(0, 5);
+      setTopCities(sortedCities);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
 
@@ -224,11 +282,53 @@ const pieChartData = {
               </tr> */}
             </table>
             </div>
+            
             {/* {chartData && (
                 <div className="pie-chart-container">
                   <Pie data={chartData} />
                 </div>
               )} */}
+              <div className="top-cities-charts chart-box">
+              <h3>Top 5 Cities in Karnataka - Total Centres</h3>
+              <Bar data={barChartData} />
+              <div className="pie-chart-container">
+              <Pie data={citiesChartData} options={pieChartOptions}/>
+              </div>
+              
+            </div>
+            
+              {/* <div className="top-cities-charts">
+              {topCities.map((city, index) => (
+                <div key={index} className="city-chart">
+                  <h3>{city._id}</h3>
+                  <Bar data={{
+                    labels: ["Total Centres"],
+                    datasets: [{
+                      label: city._id,
+                      data: [city.totalCenters],
+                      backgroundColor: ["#FF5733"],
+                    }],
+                  }} />
+                  <Pie data={{
+                    labels: ["Total Centres"],
+                    datasets: [{
+                      data: [city.totalCenters],
+                      backgroundColor: ["#FF5733"],
+                    }],
+                  }} />
+                </div>
+              ))}
+            </div> */}
+            {/* <div className="charts-container">
+            <div className="chart-box">
+              <h3>Distribution Overview</h3>
+              <Pie data={citiesChartData} />
+            </div>
+            <div className="chart-box">
+              <h3>Top 5 Cities in Karnataka - Total Centres</h3>
+              <Bar data={citiesChartData} />
+            </div>
+          </div> */}
         </div>
       </div>
       <Footer />
