@@ -17,6 +17,8 @@ import Categories from "../../../assets/healthcareCategories.json";
 // "Veterinary Clinic",
 // "Eye Care Center",
 // Styles for the PDF
+
+// Styles for the PDF
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
-  smallHeaderCell:{
+  smallHeaderCell: {
     textAlign: 'center',
     fontWeight: 'bold',
     backgroundColor: '#0077b6',
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     width: 30,
   },
-  smallCell:{
+  smallCell: {
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 14,
@@ -104,53 +106,184 @@ const styles = StyleSheet.create({
   },
 });
 
-const MyDocument = ({ hospitalData, State, City }) => (
-  <Document>
-    <Page style={styles.page}>
-      <View style={styles.logoContainer}>
-          <Image src={logo} style={styles.logo} />
-      </View>
-      <Text style={styles.header}>Healthcare Centre List</Text>
-      <View style={styles.gap} />
-      <Text style={styles.smallHeader}>State : {State === 'all' && 'All'} {State !== 'all' && State}                City : {City === 'all' && 'All'} {City !== 'all' && City}</Text>
+const MyDocument = ({ hospitalData, State, City }) => {
+  const rowsPerPage = 10; // Adjust the number of rows per page
+  const totalPages = Math.ceil(hospitalData.length / rowsPerPage);
 
-      <View style={styles.table}>
-        <View style={styles.tableRow}>
-          <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
-          {/* <Text style={[styles.headerCell, styles.borderRight]}>Infrastructure & Services</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>State</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>City</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Address</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Pincode</Text> */}
-          <Text style={[styles.headerCell, styles.borderRight]}>Contact Name</Text>
-          {/* <Text style={[styles.headerCell, styles.borderRight]}>Role</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Contact Email</Text> */}
-          <Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
-          {/* <Text style={[styles.headerCell, styles.borderRight]}>Specialization</Text>
-          <Text style={[styles.headerCell, styles.borderRight]}>Last-Connected</Text> */}
-        </View>
-        {hospitalData.map((hospital, index) => (
-          <View style={styles.tableRow} key={hospital._id}>
-            <Text style={[styles.smallCell, styles.borderRight]}>{index + 1}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.name}</Text>
-            {/* <Text style={[styles.tableCell, styles.borderRight]}>{hospital.infraSer}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.state}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.city}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.address}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.pincode}</Text> */}
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docName}</Text>
-            {/* <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docSpez}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.mail}</Text> */}
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
-            {/* <Text style={[styles.tableCell, styles.borderRight]}>{hospital.speciality}</Text>
-            <Text style={[styles.tableCell, styles.borderRight]}>{hospital.lastConnected}</Text> */}
-          </View>
-        ))}
+  const renderTableRows = (data, pageIndex) => {
+    return data.map((hospital, index) => (
+      <View style={styles.tableRow} key={hospital._id}>
+        <Text style={[styles.smallCell, styles.borderRight]}>{pageIndex * rowsPerPage + index + 1}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.name}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docName}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
       </View>
-    </Page>
-  </Document>
-);
+    ));
+  };
+
+  return (
+    <Document>
+      {Array.from({ length: totalPages }, (_, pageIndex) => (
+        <Page style={styles.page} key={pageIndex}>
+          <View style={styles.logoContainer}>
+            <Image src={logo} style={styles.logo} />
+          </View>
+          <Text style={styles.header}>Healthcare Centre List</Text>
+          <View style={styles.gap} />
+          <Text style={styles.smallHeader}>State: {State === 'all' ? 'All' : State} City: {City === 'all' ? 'All' : City}</Text>
+
+          <View style={styles.table}>
+            <View style={styles.tableRow}>
+              <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Contact Name</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
+            </View>
+            {renderTableRows(
+              hospitalData.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage),
+              pageIndex
+            )}
+          </View>
+        </Page>
+      ))}
+    </Document>
+  );
+};
+// const styles = StyleSheet.create({
+//   page: {
+//     flexDirection: 'column',
+//     padding: 12,
+//   },
+//   header: {
+//     fontSize: 24,
+//     marginBottom: 20,
+//     marginTop: 110,
+//     textAlign: 'center',
+//   },
+//   smallHeader: {
+//     fontSize: 16,
+//     marginBottom: 20,
+//     textAlign: 'center',
+//   },
+//   table: {
+//     display: 'table',
+//     width: '100%',
+//     borderStyle: 'solid',
+//     borderWidth: 1,
+//     borderRightColor: 'black',
+//     borderBottomColor: 'black',
+//     marginTop: 40, // Add margin to create a gap
+//   },
+//   tableRow: {
+//     flexDirection: 'row',
+//     borderBottomWidth: 1,
+//     borderBottomColor: 'black',
+//   },
+//   tableCell: {
+//     flex: 1,
+//     padding: 4,
+//     textAlign: 'center',
+//     fontSize: 16,
+//   },
+//   headerCell: {
+//     flex: 1,
+//     padding: 4,
+//     textAlign: 'center',
+//     fontWeight: 'bold',
+//     backgroundColor: '#0077b6',
+//     color: 'white',
+//     fontSize: 16,
+//     textAlign: 'center',
+//   },
+//   smallHeaderCell:{
+//     textAlign: 'center',
+//     fontWeight: 'bold',
+//     backgroundColor: '#0077b6',
+//     color: 'white',
+//     fontSize: 14,
+//     width: 30,
+//   },
+//   smallCell:{
+//     textAlign: 'center',
+//     fontWeight: 'bold',
+//     fontSize: 14,
+//     padding: 6,
+//     width: 30,
+//   },
+//   borderRight: {
+//     textAlign: 'center',
+//     fontWeight: 'bold',
+//     fontSize: 16,
+//     borderWidth: 1,
+//     borderColor: 'black',
+//   },
+//   logoContainer: {
+//     position: 'absolute',
+//     top: 30, // Adjust the top value to create space between the logo and the table
+//     right: 30,
+//   },
+//   gap: {
+//     height: 40, // Adjust the height to create a gap below the logo
+//   },
+//   section: {
+//     margin: 4,
+//     padding: 2,
+//     flexGrow: 1,
+//   },
+//   logo: {
+//     width: 200,
+//     height: 80,
+//   },
+// });
+
+// const MyDocument = ({ hospitalData, State, City }) => (
+//   <Document>
+//     <Page style={styles.page}>
+//       <View style={styles.logoContainer}>
+//           <Image src={logo} style={styles.logo} />
+//       </View>
+//       <Text style={styles.header}>Healthcare Centre List</Text>
+//       <View style={styles.gap} />
+//       <Text style={styles.smallHeader}>State : {State === 'all' && 'All'} {State !== 'all' && State}                City : {City === 'all' && 'All'} {City !== 'all' && City}</Text>
+
+//       <View style={styles.table}>
+//         <View style={styles.tableRow}>
+//           <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
+//           <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
+//           {/* <Text style={[styles.headerCell, styles.borderRight]}>Infrastructure & Services</Text>
+//           <Text style={[styles.headerCell, styles.borderRight]}>State</Text>
+//           <Text style={[styles.headerCell, styles.borderRight]}>City</Text>
+//           <Text style={[styles.headerCell, styles.borderRight]}>Address</Text>
+//           <Text style={[styles.headerCell, styles.borderRight]}>Pincode</Text> */}
+//           <Text style={[styles.headerCell, styles.borderRight]}>Contact Name</Text>
+//           {/* <Text style={[styles.headerCell, styles.borderRight]}>Role</Text>
+//           <Text style={[styles.headerCell, styles.borderRight]}>Contact Email</Text> */}
+//           <Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
+//           {/* <Text style={[styles.headerCell, styles.borderRight]}>Specialization</Text>
+//           <Text style={[styles.headerCell, styles.borderRight]}>Last-Connected</Text> */}
+//         </View>
+//         {hospitalData.map((hospital, index) => (
+//           <View style={styles.tableRow} key={hospital._id}>
+//             <Text style={[styles.smallCell, styles.borderRight]}>{index + 1}</Text>
+//             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.name}</Text>
+//             {/* <Text style={[styles.tableCell, styles.borderRight]}>{hospital.infraSer}</Text>
+//             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.state}</Text>
+//             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.city}</Text>
+//             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.address}</Text>
+//             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.pincode}</Text> */}
+//             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docName}</Text>
+//             {/* <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docSpez}</Text>
+//             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.mail}</Text> */}
+//             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
+//             {/* <Text style={[styles.tableCell, styles.borderRight]}>{hospital.speciality}</Text>
+//             <Text style={[styles.tableCell, styles.borderRight]}>{hospital.lastConnected}</Text> */}
+//           </View>
+//         ))}
+//       </View>
+//     </Page>
+//   </Document>
+// );
+
 
 
 
@@ -164,6 +297,7 @@ const CityPortal = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalRows, setTotalRows] = useState(0);
+  const [allTotalRows, setAllTotalRows] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [selectedState, setSelectedState] = useState("all");
   const [selectedCity, setSelectedCity] = useState("all");
@@ -175,6 +309,10 @@ const CityPortal = () => {
   const hospitalData = hospitals.map((hospital, index) => ({
     ...hospital,
   }));
+  const [allHospitals, setAllHospitals] = useState([]);
+  const allHospitalData = allHospitals.map((hospital, index) => ({
+    ...hospital,
+  }));
 
 
 
@@ -183,6 +321,7 @@ const CityPortal = () => {
   useEffect(() => {
     if (isAuthenticated) {
       fetchHospitals();
+      fetchAllHospitals();
     }
   }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery, selectedCategory]);
   
@@ -243,6 +382,24 @@ const CityPortal = () => {
       setHospitals(response.data.hospitals);
       setTotalRows(response.data.totalRows);
       setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  
+  const fetchAllHospitals = async () => {
+    const params = new URLSearchParams();
+    params.append('state', selectedState);
+    params.append('city', selectedCity);
+    params.append('speciality', selectedSpeciality);
+    params.append('category', selectedCategory);
+    params.append('search', searchQuery);
+  
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/all?${params.toString()}`);
+      setAllHospitals(response.data.hospitals);
+      setAllTotalRows(response.data.totalRows);
     } catch (error) {
       console.error(error);
     }
@@ -410,7 +567,7 @@ const CityPortal = () => {
             </h1>
           </div>
           
-          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={hospitalData} State={selectedState} City={selectedCity} />} fileName="hospital-list.pdf">
+          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} State={selectedState} City={selectedCity} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
       {({ blob, url, loading, error }) => {
         if (loading) {
           return 'Loading document...';

@@ -44,6 +44,12 @@ const Signup = () => {
         role,
       });
 
+    // Send welcome email after successful signup
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/api/send-welcome-email`, {
+      email,
+      name,
+    });
+
       // Show the success popup
       // After successful signup, navigate to another page and show success popup
       setSignupStatus('success');
@@ -51,7 +57,8 @@ const Signup = () => {
 
       console.error('Signup failed', error);
       setSignupStatus('failure');
-      setErrorMessage(error.response.data.error);
+      const errorMessage = error.response && error.response.data ? error.response.data.error : 'An unexpected error occurred';
+      setErrorMessage(errorMessage);
     }
   };
 

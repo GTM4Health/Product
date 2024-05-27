@@ -1871,6 +1871,8 @@ input::-webkit-inner-spin-button {
 .chart-box {
   flex: 1;
   /* padding: 10px; */
+  width: 60%;
+  height: 60%;
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #fff;
@@ -1881,5 +1883,81 @@ input::-webkit-inner-spin-button {
   margin-bottom: 20px;
   text-align: center;
 }
+
+.user-menu-item i {
+  margin-right: 0.8rem;
+}
+
+.settings-container {
+  position: relative;
+  display: inline-block;
+}
+
+.user-menu-item {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem; /* Match font size to .user-label */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.settings-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+  z-index: 100000;
+}
+
+.settings-option {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: white;
+  color: #333;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem; /* Match font size to .user-label */
+  transition: background-color 0.3s;
+}
+
+.settings-option:hover {
+  background-color: #f1f1f1;
+}
+
+.settings-option:focus {
+  outline: none;
+}
+
+.user-details {
+  margin-bottom: 1rem;
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.user-label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+
 
 /* You can customize these colors as desired */

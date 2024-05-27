@@ -189,6 +189,58 @@ router.get('/city-ad/:city', async (req, res) => {
   }
 });
 
+// backend/rt/hospview.js
+
+router.get(
+  '/print-all',
+  [
+    query('state').optional().trim(),
+    query('city').optional().trim(),
+    query('speciality').optional().trim(),
+    query('category').optional().trim(),
+    query('search').optional().trim(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const { state, city, speciality, search, category } = req.query;
+
+      const conditions = {};
+      if (state && state !== 'all') {
+        conditions.state = state;
+      }
+      if (city && city !== 'all') {
+        conditions.city = city;
+      }
+      if (speciality && speciality !== 'all') {
+        conditions.speciality = speciality;
+      }
+      if (search) {
+        conditions.name = { $regex: new RegExp(search, 'i') };
+      }
+      if (category && category !== 'all') {
+        conditions.category = category;
+      }
+
+      const hospitals = await Hospital.find(conditions).sort({ name: 1 });
+      const totalHospitals = await Hospital.countDocuments(conditions);
+
+      res.json({
+        hospitals,
+        totalRows: totalHospitals,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  }
+);
+
+
 
 
 

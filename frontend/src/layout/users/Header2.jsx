@@ -7,15 +7,19 @@ import DashHomeButton from "../../components/DashHome";
 
 const Header2 = ({ user }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [showName, setShowName] = useState(true); // New state to control name visibility
+  const [showName, setShowName] = useState(true);
 
   const toggleUserMenu = () => {
     setUserMenuOpen(!userMenuOpen);
-    setShowName(true); // Show the name when the user menu is closed
+    setShowName(true);
   };
 
   const handleProfileClick = () => {
-    setShowName(!showName); // Toggle the name visibility when the profile icon is clicked
+    setShowName(!showName);
+  };
+
+  const preventMenuToggle = (event) => {
+    event.stopPropagation();
   };
 
   return (
@@ -32,7 +36,7 @@ const Header2 = ({ user }) => {
               className={`fas fa-user-circle fa-4x profile-icon ${
                 userMenuOpen ? "user-menu-open" : ""
               }`}
-              onClick={handleProfileClick} // Clicking the profile icon toggles the name visibility
+              onClick={handleProfileClick}
             ></i>
             {user && (
               <span
@@ -45,6 +49,7 @@ const Header2 = ({ user }) => {
             )}
             <div
               className={`user-menu-items ${userMenuOpen ? "open" : "closed"}`}
+              onClick={preventMenuToggle}
             >
               <h3 className="user-header">User Portfolio</h3>
               {user && (
@@ -59,8 +64,8 @@ const Header2 = ({ user }) => {
                   </div>
                   {user.role && (
                     <div className="header">
-                        <label className="user-label email">Role:&nbsp;</label>
-                        <span className="user-size">{user.role}</span>
+                      <label className="user-label email">Role:&nbsp;</label>
+                      <span className="user-size">{user.role}</span>
                     </div>
                   )}
                 </div>

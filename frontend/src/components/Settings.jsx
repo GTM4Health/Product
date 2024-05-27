@@ -1,24 +1,33 @@
-// Setting button.
-// Currently empty.
-// Need to populate.
-
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const Settings = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleSettings = () => {
-    // Navigate to the settings page
-    // navigate("/settings");
+  const handleSettingsClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (path) => {
+    navigate(path);
   };
 
   return (
-    <button className="user-menu-item" onClick={handleSettings}>
-      <i className="fas fa-cog"></i>Settings
-    </button>
+    <div className="settings-container">
+      <button className="user-menu-item" onClick={handleSettingsClick}>
+        <i className="fas fa-cog"></i> Settings
+      </button>
+      {isOpen && (
+        <div className="settings-dropdown">
+          <button className="settings-option" onClick={() => handleOptionClick("/profile")}>Update Profile</button>
+          <button className="settings-option" onClick={() => handleOptionClick("/account")}>Account Settings</button>
+          <button className="settings-option" onClick={() => handleOptionClick("/privacy")}>Privacy Settings</button>
+        </div>
+      )}
+    </div>
   );
 };
 
 export default Settings;
-

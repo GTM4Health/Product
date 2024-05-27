@@ -128,7 +128,7 @@ useEffect(() => {
   // };
 
   const barChartData = {
-    labels: topCities.map(city => city._id),
+    labels: topCities.map(city => city._id.substring(0, 4)+"."),
     datasets: [
       {
         label: 'Total Centres',
@@ -137,6 +137,17 @@ useEffect(() => {
       },
     ],
   };
+
+  // const barChartData = {
+  //   labels: topCities.map(city => city._id.substring(0, 4)),
+  //   datasets: [
+  //     {
+  //       label: 'Total Centres',
+  //       data: topCities.map(city => city.totalCenters),
+  //       backgroundColor: ["#3366FF"],
+  //     },
+  //   ],
+  // };
 
   const citiesChartData = {
     labels: topCities.map(city => city._id),
@@ -288,12 +299,12 @@ const pieChartData = {
                   <Pie data={chartData} />
                 </div>
               )} */}
-              <div className="top-cities-charts chart-box">
+              <div className="top-cities-charts chart-box stats-table">
               <h3>Top 5 Cities in Karnataka - Total Centres</h3>
               <Bar data={barChartData} />
-              <div className="pie-chart-container">
+              {/* <div className="pie-chart-container">
               <Pie data={citiesChartData} options={pieChartOptions}/>
-              </div>
+              </div> */}
               
             </div>
             
