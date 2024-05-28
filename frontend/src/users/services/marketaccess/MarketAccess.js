@@ -10,6 +10,139 @@ import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions
 import specialitiesData from "../../../assets/specialities.json"
 import { useNavigate } from "react-router-dom";
 import Categories from "../../../assets/healthcareCategories.json";
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'; // Import PDF generation dependencies
+import logo from "../../../images/newlogo.png"; // Import logo for PDF
+
+// Styles for the PDF
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'column',
+    padding: 12,
+  },
+  header: {
+    fontSize: 24,
+    marginBottom: 20,
+    marginTop: 110,
+    textAlign: 'center',
+  },
+  smallHeader: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  table: {
+    display: 'table',
+    width: '100%',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRightColor: 'black',
+    borderBottomColor: 'black',
+    marginTop: 40, // Add margin to create a gap
+  },
+  tableRow: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+  },
+  tableCell: {
+    flex: 1,
+    padding: 4,
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  headerCell: {
+    flex: 1,
+    padding: 4,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    backgroundColor: '#0077b6',
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  smallHeaderCell: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    backgroundColor: '#0077b6',
+    color: 'white',
+    fontSize: 14,
+    width: 50,
+  },
+  smallCell: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 14,
+    padding: 8,
+    width: 50,
+  },
+  borderRight: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  logoContainer: {
+    position: 'absolute',
+    top: 30, // Adjust the top value to create space between the logo and the table
+    right: 30,
+  },
+  gap: {
+    height: 40, // Adjust the height to create a gap below the logo
+  },
+  section: {
+    margin: 4,
+    padding: 2,
+    flexGrow: 1,
+  },
+  logo: {
+    width: 200,
+    height: 80,
+  },
+});
+
+const MyDocument = ({ hospitalData, State, City }) => {
+  const rowsPerPage = 10; // Adjust the number of rows per page
+  const totalPages = Math.ceil(hospitalData.length / rowsPerPage);
+
+  const renderTableRows = (data, pageIndex) => {
+    return data.map((hospital, index) => (
+      <View style={styles.tableRow} key={hospital._id}>
+        <Text style={[styles.smallCell, styles.borderRight]}>{pageIndex * rowsPerPage + index + 1}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.name}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docName}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
+      </View>
+    ));
+  };
+  return (
+    <Document>
+      {Array.from({ length: totalPages }, (_, pageIndex) => (
+        <Page style={styles.page} key={pageIndex}>
+          <View style={styles.logoContainer}>
+            <Image src={logo} style={styles.logo} />
+          </View>
+          <Text style={styles.header}>Healthcare Centre List</Text>
+          <View style={styles.gap} />
+          <Text style={styles.smallHeader}>State: {State === 'all' ? 'All' : State} City: {City === 'all' ? 'All' : City}</Text>
+
+          <View style={styles.table}>
+            <View style={styles.tableRow}>
+              <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Contact Name</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
+            </View>
+            {renderTableRows(
+              hospitalData.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage),
+              pageIndex
+            )}
+          </View>
+        </Page>
+      ))}
+    </Document>
+  );
+};
 
 const MarketAccess = () => {
   const isAuthenticated = useAuth();
@@ -27,10 +160,15 @@ const MarketAccess = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const [allHospitals, setAllHospitals] = useState([]);
+  const allHospitalData = allHospitals.map((hospital, index) => ({
+    ...hospital,
+  }));
 
   useEffect(() => {
     if (user && user.privileges && isAuthenticated) {
       fetchHospitals();
+      fetchAllHospitals();
     } else if (user && !(user.privileges) && isAuthenticated) {
       navigate("/dashboard/Subscription");
     }
@@ -189,6 +327,22 @@ const MarketAccess = () => {
     setDisplayedHospital(hospitals);
   };
 
+  const fetchAllHospitals = async () => {
+    const params = new URLSearchParams();
+    params.append('state', selectedState);
+    params.append('city', selectedCity);
+    params.append('speciality', selectedSpeciality);
+    params.append('category', selectedCategory);
+    params.append('search', searchQuery);
+  
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/all?${params.toString()}`);
+      setAllHospitals(response.data.hospitals);
+      setAllTotalRows(response.data.totalRows);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   
   const displayedHospitals = hospitals;
 
@@ -207,6 +361,17 @@ const MarketAccess = () => {
                 Healthcare Centres List - City Wise
             </h1>
           </div>
+          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} State={selectedState} City={selectedCity} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
+      {({ blob, url, loading, error }) => {
+        if (loading) {
+          return 'Loading document...';
+        }
+        if (error) {
+          return 'Error generating PDF';
+        }
+        return 'Download PDF';
+      }}
+    </PDFDownloadLink>
           {/* {console.log(user)} */}
           {/* Create a clickable link that redirects to an email */}
           <a href="mailto:info@gtm4health.com">

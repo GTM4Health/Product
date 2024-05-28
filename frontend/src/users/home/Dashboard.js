@@ -5,7 +5,11 @@ import Header2 from "../../layout/users/Header2";
 import useAuth from "../../hooks/useAuth";
 import MenuBar from "../../layout/users/MenuBar";
 import Subscription from "../../common/Subscribe";
+import { Chart, ArcElement, BarElement, CategoryScale, LinearScale } from "chart.js";
+import { Pie, Bar } from "react-chartjs-2";
 
+
+Chart.register(ArcElement, BarElement, CategoryScale, LinearScale);
 
 const Dashboard = () => {
   const isAuthenticated = useAuth();
@@ -14,6 +18,7 @@ const Dashboard = () => {
   const [totalDealers, setTotalDealers] = useState(0);
   const [totalReports, setTotalReports] = useState(0);
   const [totalCSRs, setTotalCSRs] = useState(0);
+  const [topCities, setTopCities] = useState([]);
 
 
   useEffect(() => {
@@ -33,6 +38,7 @@ const Dashboard = () => {
       fetchDealers();
       fetchReports();
       fetchCSRs();
+      fetchTopCities();
     }
 
   }, [isAuthenticated]);
@@ -76,6 +82,75 @@ const Dashboard = () => {
       setTotalReports(response.data.totalFiles);
     } catch (error) {
       console.error("Error fetching PDF files:", error);
+    }
+  };
+
+  const barChartData = {
+    labels: topCities.map(city => city._id.substring(0, 4)+"."),
+    datasets: [
+      {
+        label: 'Total Centres',
+        data: topCities.map(city => city.totalCenters),
+        backgroundColor: ["#0077b6"],
+      },
+    ],
+  };
+
+  // const barChartData = {
+  //   labels: topCities.map(city => city._id.substring(0, 4)),
+  //   datasets: [
+  //     {
+  //       label: 'Total Centres',
+  //       data: topCities.map(city => city.totalCenters),
+  //       backgroundColor: ["#3366FF"],
+  //     },
+  //   ],
+  // };
+
+  const citiesChartData = {
+    labels: topCities.map(city => city._id),
+    datasets: [
+      {
+        label: 'Total Centres',
+        data: topCities.map(city => city.totalCenters),
+        backgroundColor: ["#FF5733", "#3366FF", "#33FF33", "#FF9900", "#FF33FF"],
+      },
+    ],
+  };
+
+  const pieChartOptions = {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            const label = context.label || '';
+            const value = context.raw;
+            const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+            const percentage = ((value / total) * 100).toFixed(2) + '%';
+            return `${label}: ${value} (${percentage})`;
+          }
+        }
+      },
+      legend: {
+        display: true,
+        position: 'right',
+      },
+    }
+  };
+
+  
+
+
+
+  const fetchTopCities = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers/Karnataka/cities`
+      );
+      const sortedCities = response.data.sort((a, b) => b.totalCenters - a.totalCenters).slice(0, 5);
+      setTopCities(sortedCities);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -136,6 +211,10 @@ const Dashboard = () => {
               </tr> */}
               
             </table>
+            <div className="top-cities-charts chart-box stats-table">
+              <h3>Top 5 Cities in Karnataka - Total Centres</h3>
+              <Bar data={barChartData} />
+            </div>
           </div>
         </div>
       </div>

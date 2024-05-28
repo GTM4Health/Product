@@ -133,7 +133,7 @@ useEffect(() => {
       {
         label: 'Total Centres',
         data: topCities.map(city => city.totalCenters),
-        backgroundColor: ["#3366FF", "#3366FF", "#3366FF", "#3366FF", "#3366FF"],
+        backgroundColor: ["#0077b6"],
       },
     ],
   };

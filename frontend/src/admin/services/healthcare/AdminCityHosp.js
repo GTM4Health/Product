@@ -71,14 +71,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#0077b6',
     color: 'white',
     fontSize: 14,
-    width: 30,
+    width: 50,
   },
   smallCell: {
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 14,
     padding: 6,
-    width: 30,
+    width: 50,
   },
   borderRight: {
     textAlign: 'center',
