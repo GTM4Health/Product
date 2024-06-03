@@ -11,6 +11,7 @@ const AdminMenuBar = () => {
   const [isGTMMenuOpen, setIsGTMMenuOpen] = useState(false);
   const [isEditContentMenuOpen, setIsEditContentMenuOpen] = useState(false); // New state
   const [isAuditLogsOpen, setIsAuditLogsOpen] = useState (false);
+  const [isAcademyOpen, setIsAcademyOpen] = useState (false);
   const [isCompetitiveIntelMenuOpen, setIsCompetitiveIntelMenuOpen] = useState(false);
   const [isCSRTabOpen, setIsCSRTabOpen] = useState(false);
  
@@ -26,6 +27,7 @@ const AdminMenuBar = () => {
   const auditLogsOpen = useRef(null);
   const competitiveIntelMenuRef = useRef(null);
   const csrtabMenuRef = useRef(null);
+  const academyOpen = useRef(null);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -55,6 +57,9 @@ const AdminMenuBar = () => {
       }
       if (isAuditLogsOpen.current && !isAuditLogsOpen.current.contains(event.target)){
         setIsAuditLogsOpen(false);
+      }
+      if (isAcademyOpen.current && !isAcademyOpen.current.contains(event.target)){
+        setIsAcademyOpen(false);
       }
       if (competitiveIntelMenuRef.current && !competitiveIntelMenuRef.current.contains(event.target)) {
         setIsCompetitiveIntelMenuOpen(false);
@@ -114,6 +119,13 @@ const AdminMenuBar = () => {
     setIsAuditLogsOpen(!isAuditLogsOpen);
     if (!isAuditLogsOpen) {
       navigate('/admin/audit-logs');
+    }
+  };
+
+  const handleAcademyMenuClick = () => {
+    setIsAcademyOpen(!isAcademyOpen);
+    if (!isAcademyOpen) {
+      navigate('/admin/academy');
     }
   };
 
@@ -395,6 +407,24 @@ const AdminMenuBar = () => {
           </div>
         )} */}
         </div>
+        <div 
+            className={`menu-item ad-menu-item og-tag ${
+            isAcademyOpen ? "active" : ""
+            }`}
+            onClick={handleAcademyMenuClick}
+            ref={academyOpen}
+        >
+          <i className="fas fa-graduation-cap menu-icon"></i>
+          <span className="menu-text">GTM Academy</span>
+          {/* {isDashBoardMenuOpen && (
+          <div className="sub-menu healthcare-menu og-tag">
+            <a href="/admin/dashboard/User-Dashboard" className="sub-menu-item menu-link">
+              <i className="fas fa-users sub-menu-icon"></i>
+              <span className="menu-text">User Dashboard</span>
+            </a>
+          </div>
+        )} */}
+        </div>
     </div>
   );
 };
@@ -406,7 +436,8 @@ export default AdminMenuBar;
 
 
 // import React from "react";
-import Dashboard from './../../users/home/Dashboard';
+// import Dashboard from './../../users/home/Dashboard';
+// import { use } from "../../../backend/routes/email";
 
 // const AdminMenuBar = () => {
 //   return (
