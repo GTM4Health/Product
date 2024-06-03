@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
         <li>Personalized support and consultation sessions.</li>
         <li>Exclusive insights and updates on market trends.</li>
       </ul>
-      <p>If you have any questions or need assistance, our support team is here to help. Feel free to reach out to us anytime at <a href="mailto:support@gtmscale.com">support@gtmscale.com</a>.</p>
+      <p>If you have any questions or need assistance, our support team is here to help. Feel free to reach out to us anytime at <a href="mailto:info@gtmscale.com"> info@gtmscale.com</a>.</p>
       <p>Best regards,<br>GTMScale Team</p>
     `,
   };
