@@ -60,6 +60,8 @@ import SalesForm from '../users/services/sales/sales';
 import ViewSales from '../users/services/sales/viewsales';
 import CityDetails from '../admin/pages/CityDetails';
 import UserCityDetails from '../users/home/uCityDetails';
+import AdNotFoundPage from '../common/AdNotFount';
+
 
 //Entry Function into the Product
 export default function App() {
@@ -121,6 +123,7 @@ export default function App() {
         <Route path='/admin/dashboard/Eval-PDF' element = {<BillingForm />} />
         <Route path='/admin/dashboard/Admin-Bill' element = {<AdminBill />} />
         <Route path='/dashboard/View-Sales-Progress' element = {<ViewSales />}  /> 
+        <Route path='/admin/academy' element = {<AdNotFoundPage />}  /> 
       </Routes>
     </Router>
   );

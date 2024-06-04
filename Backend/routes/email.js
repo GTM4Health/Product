@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
     },
   });
 
+//<p>At GTMScale, we are dedicated to providing you with the tools and insights to scale your growth efficiently. As part of our community, you will have access to industry-leading resources, cutting-edge technology, and a network of professionals committed to your success.</p>
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -31,15 +32,15 @@ router.post('/', async (req, res) => {
     subject: `Welcome to GTMScale, ${name}!`,
     html: `
       <p>Hello <strong>${name}</strong>,</p>
-      <p>Welcome to <strong>GTMScale</strong>! We are thrilled to have you on board.</p>
-      <p>At GTMScale, we are dedicated to providing you with the tools and insights to scale your growth efficiently. As part of our community, you will have access to industry-leading resources, cutting-edge technology, and a network of professionals committed to your success.</p>
-      <p>Here’s what you can expect:</p>
+      <p>Welcome to <strong>GTMScale</strong>, our Technology Platform for Market Access!</p>      
+      <p>Here are a few of the features you can use in GTMScale</p>
       <ul>
-        <li>Access to our comprehensive analytics platform.</li>
-        <li>Personalized support and consultation sessions.</li>
-        <li>Exclusive insights and updates on market trends.</li>
+        <li><strong>Market Access Information</strong> to Healthcare Centres across different Cities</li>
+        <li>Access Information of <strong>Dealers/Distributors & MedTech Companies</strong></li>
+        <li><strong>Market Insights Reports</strong> of different Medical Technologies</li>
+        <li>Information about <strong> CSRs/Foundations </strong> supporting different causes.</li>
       </ul>
-      <p>If you have any questions or need assistance, our support team is here to help. Feel free to reach out to us anytime at <a href="mailto:info@gtm4health.com"> info@gtm4health.com</a>.</p>
+      <p>We do hope you find this useful in your Market Access.</p>
       <p>Best regards,<br>GTM4Health Team</p>
     `,
   };
