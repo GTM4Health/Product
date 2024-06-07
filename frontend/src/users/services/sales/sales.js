@@ -11,6 +11,7 @@ import finalStatusOptions from "../../../assets/SalesStatus.json"
 const SalesForm = () => {
   const [user, setUser] = useState('');
   const [leadName, setLeadName] = useState('');
+  const [emailID, setEmailID] = useState('');
   const [healthcareCentreName, setHealthcareCentreName] = useState('');
   const [email, setEmail] = useState('');
   const [mobileNo, setMobileNo] = useState('');
@@ -42,6 +43,7 @@ const SalesForm = () => {
       
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Sales`, {
         leadName,
+        emailID,
         healthcareCentreName,
         email,
         mobileNo,
@@ -77,6 +79,7 @@ const SalesForm = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
       setUser(storedUser);
+      setEmailID(storedUser.email);
     }
   }, []);
 

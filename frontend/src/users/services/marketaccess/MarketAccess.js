@@ -101,6 +101,9 @@ const styles = StyleSheet.create({
   },
 });
 
+//<Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
+//<Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
+
 const MyDocument = ({ hospitalData, State, City }) => {
   const rowsPerPage = 10; // Adjust the number of rows per page
   const totalPages = Math.ceil(hospitalData.length / rowsPerPage);
@@ -111,7 +114,7 @@ const MyDocument = ({ hospitalData, State, City }) => {
         <Text style={[styles.smallCell, styles.borderRight]}>{pageIndex * rowsPerPage + index + 1}</Text>
         <Text style={[styles.tableCell, styles.borderRight]}>{hospital.name}</Text>
         <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docName}</Text>
-        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.mail}</Text>
       </View>
     ));
   };
@@ -131,7 +134,7 @@ const MyDocument = ({ hospitalData, State, City }) => {
               <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Contact Name</Text>
-              <Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Email</Text>
             </View>
             {renderTableRows(
               hospitalData.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage),
@@ -489,7 +492,7 @@ const MarketAccess = () => {
                   <th>Doctor Name</th>
                   <th>Speciality</th>
                   <th>Contact Email</th>
-                  <th>Contact Number</th>
+                  {/* <th>Contact Number</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -502,10 +505,11 @@ const MarketAccess = () => {
                     <td>{hospital.city}</td>
                     <td>{hospital.category}</td>
                     <td>{hospital.docName}</td> 
-                    {/* <td>{hospital.docSpez}</td> */}
+                    {/* <td>{hospital.docSpez}</td>
+                    <td>{hospital.phone}</td> */}
                     <td>{hospital.speciality}</td>
                     <td>{hospital.mail}</td>
-                    <td>{hospital.phone}</td> 
+                     
                   </tr>
                 ))}
               </tbody>

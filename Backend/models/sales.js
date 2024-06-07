@@ -4,6 +4,9 @@ const salesSchema = new mongoose.Schema({
   leadName: {
     type: String,
   },
+  emailID: {
+    type: String,
+  },
   healthcareCentreName: {
     type: String,
   },

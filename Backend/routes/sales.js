@@ -9,6 +9,7 @@ router.post('/', async (req, res) => {
     console.log('Sales creation request received');
     const {
       leadName,
+      emailID,
       healthcareCentreName,
       email,
       mobileNo,
@@ -20,6 +21,7 @@ router.post('/', async (req, res) => {
 
     const sales = new Sales({
       leadName,
+      emailID,
       healthcareCentreName,
       email,
       mobileNo,

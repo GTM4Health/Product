@@ -292,7 +292,7 @@ const pieChartData = {
                 </td>
               </tr> */}
             </table>
-            </div>
+            
             
             {/* {chartData && (
                 <div className="pie-chart-container">
@@ -307,7 +307,7 @@ const pieChartData = {
               </div> */}
               
             </div>
-            
+            </div>
               {/* <div className="top-cities-charts">
               {topCities.map((city, index) => (
                 <div key={index} className="city-chart">
