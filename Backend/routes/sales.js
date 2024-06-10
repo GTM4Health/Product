@@ -121,22 +121,32 @@ router.put('/update-sale/:id', async (req, res) => { // Updated endpoint
 
 // GET sales data with pagination and date filtering
 router.get('/get-sales', async (req, res) => {
-  const { page = 1, limit = 10, startDate, endDate } = req.query;
+  const { page = 1, limit = 10, startDate, endDate, email} = req.query;
   try {
     let query = {};
+
+    // Filter by date range if provided
     if (startDate && endDate) {
-      query = { reportDate: { $gte: startDate, $lte: endDate } };
+      query.reportDate = { $gte: new Date(startDate), $lte: new Date(endDate) };
     }
+
+    // Filter by email if provided
+    if (email) {
+      query.emailID = email;
+    }
+
     const sales = await Sales.find(query)
       .sort({ reportDate: -1 }) 
       .limit(limit * 1)
       .skip((page - 1) * limit)
       .exec();
+
     const count = await Sales.countDocuments(query);
+
     res.status(200).json({
       sales,
       totalPages: Math.ceil(count / limit),
-      currentPage: page,
+      currentPage: parseInt(page),
       totalRows: count,
     });
   } catch (error) {
@@ -144,6 +154,7 @@ router.get('/get-sales', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
 
 
 module.exports = router;

@@ -7,50 +7,48 @@ import Footer from "../layout/pages/Footer";
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // State to hold error message
-  const [successMessage, setSuccessMessage] = useState(''); // State to hold success message
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     if (successMessage) {
       const timeout = setTimeout(() => {
         navigate('/dashboard');
-      }, 0);
+      }, 2500);
 
       return () => clearTimeout(timeout);
     }
   }, [successMessage, navigate]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
-      console.log('Email and password are required');
+      setErrorMessage('Email and password are required');
       return;
     }
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/login`, {
-        email,
-        password,
-      });
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/login`, { email, password });
 
-      // Update local storage with token and user data
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
 
-      // Extract and log additional login information
       const { counter, lastLogin } = response.data.loginDetails;
-      console.log(`Login successful! Login Counter: ${counter}, Last Login: ${lastLogin}`);
+      const welcomeMessage = counter === 0 
+        ? 'Login successful\nWelcome to GTMScale!' 
+        : `Login successful!\nLast Login: ${lastLogin}`;
 
-      // Set success message
-      setSuccessMessage('Login successful!');
+      setSuccessMessage(welcomeMessage);
     } catch (error) {
       console.error('Login failed', error);
       setPassword('');
 
-      // Set the error message based on the error response
       if (error.response && error.response.data.error) {
         setErrorMessage(error.response.data.error);
+      } else {
+        setErrorMessage('An error occurred during login. Please try again.');
       }
     }
   };
