@@ -200,7 +200,7 @@ const PartnersPage = () => {
                   <th>Contact Name</th>
                   <th>Role</th>
                   <th>Contact Email</th>
-                  <th>Contact Number</th>
+                  {/* <th>Contact Number</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -217,7 +217,7 @@ const PartnersPage = () => {
                     <td>{dealer.dealerName}</td>
                     <td>{dealer.role}</td> 
                      <td>{dealer.mail}</td>
-                    <td>{dealer.phone}</td>
+                    {/* <td>{dealer.phone}</td> */}
                   </tr>
                 ))}
               </tbody>
