@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   smallHeader: {
-    fontSize: 16,
+    fontSize: 12,
     marginBottom: 20,
     textAlign: 'center',
   },
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 4,
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 12,
   },
   headerCell: {
     flex: 1,
@@ -70,20 +70,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: '#0077b6',
     color: 'white',
-    fontSize: 14,
-    width: 50,
+    fontSize: 10,
+    width: 30,
   },
   smallCell: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: 10,
     padding: 6,
-    width: 50,
+    width: 30,
   },
   borderRight: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 12,
     borderWidth: 1,
     borderColor: 'black',
   },
@@ -117,6 +117,7 @@ const MyDocument = ({ hospitalData, State, City }) => {
         <Text style={[styles.tableCell, styles.borderRight]}>{hospital.name}</Text>
         <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docName}</Text>
         <Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.mail}</Text>
       </View>
     ));
   };
@@ -138,6 +139,7 @@ const MyDocument = ({ hospitalData, State, City }) => {
               <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Contact Name</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Email</Text>
             </View>
             {renderTableRows(
               hospitalData.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage),
