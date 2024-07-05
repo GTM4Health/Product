@@ -429,9 +429,7 @@ const MarketAccess = () => {
             value={searchQuery}
             onChange={handleSearchInputChange}
           />
-          {/* <button onClick={handleSearch}>Search</button> */}
-          <div className="filter-container">
-          <label className="f-label" htmlFor="speciality-select">
+          {/* <button onClick={handleSearch}>Search</button> *          <label className="f-label" htmlFor="speciality-select">
               Category:
               </label>
                 <select
@@ -442,7 +440,9 @@ const MarketAccess = () => {
                 >
                   <option value="all">All</option>
                   {catOptions}
-              </select>
+              </select> */}
+          <div className="filter-container">
+
             <button onClick={clearSearchResults} className="clear-btn">Clear Search</button>    
           </div>
           <div className="page-jump f-select">
