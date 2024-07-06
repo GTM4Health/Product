@@ -54,8 +54,10 @@ router.post('/', async (req, res) => {
         marketPriveleges : user.privileges.accessMarketInsights,
         csrPriveleges : user.privileges.accessCsrsFoundations,
         salesPriveleges : user.privileges.accessSales,
+        formPrivilegesHC:user.privileges.formPrivilegesHC,
         counter: user.counter,
-        lastLogin: user.lastLogin
+        lastLogin: user.lastLogin,
+        
       },
       loginDetails: { counter: user.counter, lastLogin: user.lastLogin },
     });

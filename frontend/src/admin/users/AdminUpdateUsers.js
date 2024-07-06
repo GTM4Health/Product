@@ -15,6 +15,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
     accessMarketInsights: user.privileges.accessMarketInsights || false,
     accessCsrsFoundations: user.privileges.accessCsrsFoundations || false,
     accessSales : user.privileges.accessSales || false,
+    formPrivilegesHC : user.privileges.formPrivilegesHC || false,
   });
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
       accessMarketInsights: user.privileges.accessMarketInsights || false,
       accessCsrsFoundations: user.privileges.accessCsrsFoundations || false,
       accessSales : user.privileges.accessSales || false,
+      formPrivilegesHC : user.privileges.formPrivilegesHC || false,
     });
   }, [user]);
 
@@ -180,6 +182,20 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
                       </label>
                     </td>
                   </tr>
+                  {/* <tr>
+                    <td>
+                      <input
+                              type="checkbox"
+                              checked={privileges.FormPrivilegesHC}
+                              onChange={() => handlePrivilegeChange("FormPrivilegesHC")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                      Healthcare Centre Forms
+                      </label>
+                    </td>
+                  </tr> */}
                 </tbody>
               </table>
             </div>

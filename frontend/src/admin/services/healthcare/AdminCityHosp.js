@@ -12,6 +12,7 @@ import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '
 import logo from "../../../images/newlogo.png"; // Import logo for PDF
 import Categories from "../../../assets/healthcareCategories.json";
 
+
 // "Military Hospital",
 // "Optical Store",
 // "Veterinary Clinic",
@@ -556,6 +557,24 @@ const CityPortal = () => {
     };
   // const displayedHospitals = hospitals.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
+  const handleExportCSV = () => {
+    const csvContent = [
+      ['Healthcare Centre Name', 'Contact Name', 'Contact Number', 'Email'],
+      ...allHospitalData.map(hospital => [hospital.name, hospital.docName, hospital.phone, hospital.mail])
+    ]
+      .map(e => e.join(","))
+      .join("\n");
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `Healthcare_Centre_State: ${selectedState=='all' ? 'All' : selectedState}_City: ${selectedCity=='all' ? 'All' : selectedCity}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="page-view">
       <AdminHeader />
@@ -572,7 +591,7 @@ const CityPortal = () => {
           <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} State={selectedState} City={selectedCity} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
       {({ blob, url, loading, error }) => {
         if (loading) {
-          return 'Loading document...';
+          return 'Generating PDF...';
         }
         if (error) {
           return 'Error generating PDF';
@@ -580,6 +599,7 @@ const CityPortal = () => {
         return 'Download PDF';
       }}
     </PDFDownloadLink>
+    {/* <button onClick={handleExportCSV} className="clear-btn">Export CSV</button> */}
           <div className="filter-container">
               {/* <div className="search-container">
                 <input
