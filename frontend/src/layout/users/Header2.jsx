@@ -27,7 +27,7 @@ const Header2 = ({ user }) => {
       <Logo />
       {user && 
       <div className="toolbar_left">
-      Welcome to GTM4Health, {user.name ? user.name : "User"}
+      Welcome to GTMScale, {user.name ? user.name : "User"}
 
       <br/>
       Last Login: {user.lastLogin ? (user.lastLogin) : '' }

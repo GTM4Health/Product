@@ -50,12 +50,12 @@ const UserHospital = () => {
     fetchHospitalNames();
   }, [searchQuery]); // Trigger the effect whenever searchQuery changes
 
-  useEffect(() => {
-    if (user && !(user.formPrivilegesHC) && isAuthenticated) {
-      navigate("/dashboard/Subscription");
-    }
+  // useEffect(() => {
+  //   if (user && !(user.formPrivilegesHC) && isAuthenticated) {
+  //     navigate("/dashboard/Subscription");
+  //   }
 
-  }, [isAuthenticated]);
+  // }, [isAuthenticated]);
   
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -169,7 +169,7 @@ const UserHospital = () => {
 
   return (
     <div className="page-view">
-      <Header2 />
+      <Header2 user = {user} />
       <div className="d-content">
         <div className="dashboard">
           <MenuBar />

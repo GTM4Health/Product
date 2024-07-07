@@ -274,6 +274,7 @@ const MarketAccess = () => {
     setSelectedState("all");
     setSelectedCity("all");
     setSelectedSpeciality("all"); // Reset speciality to "all"
+    setSelectedCategory("all");
     setCurrentPage(1);
     fetchHospitals(); // Reload hospitals with cleared filters
   };
@@ -490,7 +491,7 @@ const MarketAccess = () => {
                   <th>City</th>
                   <th>Category</th>
                   <th>Doctor Name</th>
-                  <th>Speciality</th>
+                  {/* <th>Speciality</th> */}
                   <th>Contact Email</th>
                   {/* <th>Contact Number</th> */}
                 </tr>
@@ -507,7 +508,7 @@ const MarketAccess = () => {
                     <td>{hospital.docName}</td> 
                     {/* <td>{hospital.docSpez}</td>
                     <td>{hospital.phone}</td> */}
-                    <td>{hospital.speciality}</td>
+                    {/* <td>{hospital.speciality}</td> */}
                     <td>{hospital.mail}</td>
                      
                   </tr>

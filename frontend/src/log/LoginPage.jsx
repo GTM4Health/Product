@@ -15,7 +15,7 @@ const LoginPage = () => {
     if (successMessage) {
       const timeout = setTimeout(() => {
         navigate('/dashboard');
-      }, 2500);
+      }, 1500);
 
       return () => clearTimeout(timeout);
     }
@@ -36,9 +36,12 @@ const LoginPage = () => {
       localStorage.setItem('user', JSON.stringify(response.data.user));
 
       const { counter, lastLogin } = response.data.loginDetails;
-      const welcomeMessage = counter === 0 
-        ? 'Login successful\nWelcome to GTMScale!' 
-        : `Login successful!\nLast Login: ${lastLogin}`;
+      const welcomeMessage = 'Login successful'
+        // : `Login successful!';      
+      // const welcomeMessage = counter === 0 
+      //   ? 'Login successful\nWelcome to GTMScale!' 
+      //    `Login successful!\nLast Login: ${lastLogin}`;
+
 
       setSuccessMessage(welcomeMessage);
     } catch (error) {

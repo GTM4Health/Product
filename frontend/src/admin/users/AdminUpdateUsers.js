@@ -186,8 +186,8 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
                     <td>
                       <input
                               type="checkbox"
-                              checked={privileges.FormPrivilegesHC}
-                              onChange={() => handlePrivilegeChange("FormPrivilegesHC")}
+                              checked={privileges.formPrivilegesHC}
+                              onChange={() => handlePrivilegeChange("formPrivilegesHC")}
                       />
                     </td>
                     <td>
