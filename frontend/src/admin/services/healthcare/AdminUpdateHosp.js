@@ -18,6 +18,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
   const [address, setAddress] = useState(hospital.address);
   const [pincode, setPincode] = useState(hospital.pincode);
   const [category, setCategory] = useState(hospital.category);
+  const [addedBy, setAddedBy] = useState(hospital.addedBy || "Admin");
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -38,6 +39,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     setPincode(hospital.pincode || "");
     setAddress(hospital.address || "");
     setCategory(hospital.category || "");
+    setAddedBy(hospital.addedBy || "Admin");
   }, [hospital]);
 
   const handleSubmit = (e) => {

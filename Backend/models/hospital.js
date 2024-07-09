@@ -45,6 +45,9 @@ const hospitalSchema = new mongoose.Schema({
   },
   category: {
     type: String,
+  },
+  addedBy : {
+    type: String,
   }
 });
 

@@ -316,6 +316,7 @@ const CityPortal = () => {
   const allHospitalData = allHospitals.map((hospital, index) => ({
     ...hospital,
   }));
+  const [addedBy, setAddedBy] = useState('');
 
 
 
@@ -326,11 +327,15 @@ const CityPortal = () => {
       fetchHospitals();
       fetchAllHospitals();
     }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery, selectedCategory]);
+  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery, selectedCategory, addedBy]);
   
   useEffect(() => {
     setDisplayedHospital(hospitals); // Update displayed hospitals when hospitals change
   }, [hospitals]);
+
+  useEffect (() => {
+    setAddedBy("Admin");
+  })
 
   useEffect(() => {
     setCurrentPage(1);
@@ -739,6 +744,7 @@ const CityPortal = () => {
                   <th>Contact Number</th>
                   <th>Specialization</th>
                   <th>Last-Connected</th>
+                  <th>Added By</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -758,7 +764,9 @@ const CityPortal = () => {
                     <td>{hospital.mail}</td>
                     <td>{hospital.phone}</td>
                     <td>{hospital.speciality}</td>
+                    
                     <td>{hospital.lastConnected}</td>
+                    <td>{hospital.addedBy || "Admin"}</td>
                     <td>
                       <button className="edit-button" onClick={() => handleEditHospital(hospital)}>
                         <i className="fas fa-pencil-alt"></i>

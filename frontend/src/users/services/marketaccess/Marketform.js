@@ -30,6 +30,7 @@ const UserHospital = () => {
   const [hospitalNames, setHospitalNames] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [user, setUser] = useState(null);
+  const [addedBy, setAddedBy] = useState('');
   
 
   useEffect(() => {
@@ -50,6 +51,10 @@ const UserHospital = () => {
     fetchHospitalNames();
   }, [searchQuery]); // Trigger the effect whenever searchQuery changes
 
+  useEffect (() => {
+    user && setAddedBy(user.name);
+  })
+
   // useEffect(() => {
   //   if (user && !(user.formPrivilegesHC) && isAuthenticated) {
   //     navigate("/dashboard/Subscription");
@@ -62,6 +67,7 @@ const UserHospital = () => {
     if (storedUser) {
       setUser(storedUser);
     }
+  
   }, []); 
 
   
@@ -94,6 +100,7 @@ const UserHospital = () => {
         category,
         searchQuery,
         hospitalNames,
+        addedBy,
       });
       setSearchQuery('');
       setName('');

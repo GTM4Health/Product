@@ -1,9 +1,3 @@
-//User Login validation code
-//react is posting to router.  
-//Router verifies with existing table in Mongodb
-//Router posts results back to react
-// React accordingly allows or denies access.
-
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -34,32 +28,33 @@ router.post('/', async (req, res) => {
       return res.status(401).json({ error: 'Subscription expired' });
     }
 
+    // Preserve the last login details before recording the new login
+    const lastLogin = user.lastLogin;
+    const counter = user.counter;
+
     // Record login details (new feature from user.js model)
     await user.recordLogin();
 
     // Create a JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     // Return the token, user details, and additional login information
-
-
     res.json({
       token,
       user: { 
         name: user.name, 
         email: user.email, 
-        privileges:user.privileges.accessHospitals, 
-        dashPriveleges : user.privileges.accessDashboard,
-        gtmPriveleges : user.privileges.accessGtmPartners,
-        marketPriveleges : user.privileges.accessMarketInsights,
-        csrPriveleges : user.privileges.accessCsrsFoundations,
-        salesPriveleges : user.privileges.accessSales,
-        formPrivilegesHC:user.privileges.formPrivilegesHC,
+        privileges: user.privileges.accessHospitals, 
+        dashPrivileges: user.privileges.accessDashboard,
+        gtmPrivileges: user.privileges.accessGtmPartners,
+        marketPrivileges: user.privileges.accessMarketInsights,
+        csrPrivileges: user.privileges.accessCsrsFoundations,
+        salesPrivileges: user.privileges.accessSales,
+        formPrivilegesHC: user.privileges.formPrivilegesHC,
         counter: user.counter,
-        lastLogin: user.lastLogin,
-        
+        lastLogin: lastLogin, // Use the preserved last login date
       },
-      loginDetails: { counter: user.counter, lastLogin: user.lastLogin },
+      loginDetails: { counter: counter, lastLogin: lastLogin },
     });
   } catch (error) {
     console.error('Login failed', error);
@@ -68,5 +63,3 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
-
-
