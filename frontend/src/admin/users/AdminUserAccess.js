@@ -171,19 +171,6 @@ function AdminDashboard() {
             <i>Displaying Page {currentPage} of {totalPages}</i>
           </h4>
         </div>
-
-        <div className="pagination-buttons">
-          {!isFirstPage && (
-            <button className="prev-button" onClick={handlePrevPage}>
-              &laquo; Prev
-            </button>
-          )}
-          {!isLastPage && (
-            <button className="next-button" onClick={handleNextPage}>
-              Next &raquo;
-            </button>
-          )}
-        </div>
         <div className="page-jump f-select">
               <label htmlFor="page-selector" className="f-label">Go to Page:</label>
               <select
@@ -198,7 +185,19 @@ function AdminDashboard() {
                   </option>
                 ))}
               </select>
-              </div>
+        </div>
+        <div className="pagination-buttons">
+          {!isFirstPage && (
+            <button className="prev-button" onClick={handlePrevPage}>
+              &laquo; Prev
+            </button>
+          )}
+          {!isLastPage && (
+            <button className="next-button" onClick={handleNextPage}>
+              Next &raquo;
+            </button>
+          )}
+        </div>
         <div className="table-content">
           <table className="user-table">
             <thead>

@@ -30,7 +30,7 @@ const Header2 = ({ user }) => {
       Welcome to GTMScale, {user.name ? user.name : "User"}
 
       <br/>
-       {user.lastLogin ? "Last Login: " (user.lastLogin) : 'This is your first login' }
+       {user.lastLogin ? ("Last Login: "+ user.lastLogin) : 'This is your first login !' }
       </div>
       }
       {/* <div className="toolbar_left">
