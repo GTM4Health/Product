@@ -182,7 +182,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
                       </label>
                     </td>
                   </tr>
-                  {/* <tr>
+                  <tr>
                     <td>
                       <input
                               type="checkbox"
@@ -195,7 +195,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
                       Healthcare Centre Forms
                       </label>
                     </td>
-                  </tr> */}
+                  </tr>
                 </tbody>
               </table>
             </div>

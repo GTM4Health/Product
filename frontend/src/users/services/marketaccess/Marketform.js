@@ -55,12 +55,12 @@ const UserHospital = () => {
     user && setAddedBy(user.name);
   })
 
-  // useEffect(() => {
-  //   if (user && !(user.formPrivilegesHC) && isAuthenticated) {
-  //     navigate("/dashboard/Subscription");
-  //   }
+  useEffect(() => {
+    if (user && !(user.formPrivilegesHC) && isAuthenticated) {
+      navigate("/dashboard/Subscription");
+    }
 
-  // }, [isAuthenticated]);
+  }, [isAuthenticated]);
   
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
