@@ -55,12 +55,12 @@ const UserHospital = () => {
     user && setAddedBy(user.name);
   })
 
-  useEffect(() => {
-    if (user && !(user.formPrivilegesHC) && isAuthenticated) {
-      navigate("/dashboard/Subscription");
-    }
+  // useEffect(() => {
+  //   if (user && !(user.formPrivilegesHC) && isAuthenticated) {
+  //     navigate("/dashboard/Subscription");
+  //   }
 
-  }, [isAuthenticated]);
+  // }, [isAuthenticated]);
   
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -70,7 +70,34 @@ const UserHospital = () => {
   
   }, []); 
 
+  useEffect(() => {
+    if (user && user.formPrivilegesHC && isAuthenticated) {
+      fetchHospitals();
+    } else if (user && !(user.formPrivilegesHC) && isAuthenticated) {
+      navigate("/dashboard/Subscription");
+    }
+  }, [isAuthenticated]);
   
+
+  const fetchHospitals = async () => {
+    const params = new URLSearchParams();
+    // params.append('page', currentPage);
+    // params.append('limit', pageSize);
+    // params.append('state', selectedState);
+    // params.append('city', selectedCity);
+    // params.append('speciality', selectedSpeciality);
+    // params.append('category', selectedCategory);
+    // params.append('search', searchQuery); // Add this line to include the search parameter
+  
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal?${params.toString()}`);
+      // setHospitals(response.data.hospitals);
+      // setTotalRows(response.data.totalRows);
+      // setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleStateChange = (e) => {
     setState(e.target.value);
