@@ -128,17 +128,21 @@ const ViewCSRPortal = () => {
   const [searchCriteria, setSearchCriteria] = useState("csrName");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
 
 
   useEffect(() => {
-    if (user && user.csrPriveleges && isAuthenticated) {
-      fetchCsrs();
-      setShowNoRecordsPopup(filteredCsrs.length === 0);
-    } else if (user && !(user.csrPriveleges) && isAuthenticated) {
-      navigate("/dashboard/Subscription");
+    if (isAuthenticated && user) {
+      if (!user.csrPrivileges) {
+        navigate("/dashboard/Subscription");
+      } else {
+        fetchCsrs();
+      }
     }
-  }, [isAuthenticated, currentPage, pageSize, searchQuery, filteredCsrs]);
+  }, [isAuthenticated, user, currentPage, pageSize, searchQuery, navigate]);
+
+  
   
 
   const handleSearchInputChange = (event) => {
@@ -244,6 +248,10 @@ const ViewCSRPortal = () => {
   };
 
   const displayedCsrs = searchQuery ? filteredCsrs : csrs;
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div className="page-view">

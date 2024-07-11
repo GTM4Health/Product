@@ -49,14 +49,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 10,
   },
-  smallHeaderCell:{
+  smallHeaderCell: {
     textAlign: 'center',
     fontWeight: 'bold',
     backgroundColor: '#0077b6',
     color: 'white',
     fontSize: 8,
   },
-  smallCell:{
+  smallCell: {
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 8,
@@ -130,21 +130,19 @@ const CSRPortal = () => {
   const [selectedCSR, setSelectedCSR] = useState(null);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     fetchCsrs();
-  //     setShowNoRecordsPopup(filteredCsrs.length === 0);
-  //   }
-  // }, [isAuthenticated, currentPage, pageSize, searchQuery, filteredCsrs]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (user?.csrPriveleges) {
+        fetchCsrs();
+      } else {
+        navigate("/dashboard/Subscription");
+      }
+    }
+  }, [isAuthenticated, user, currentPage, pageSize, searchQuery, navigate]);
 
   useEffect(() => {
-    if (user && user.csrPriveleges && isAuthenticated) {
-      fetchCsrs();
-      setShowNoRecordsPopup(filteredCsrs.length === 0);
-    } else if (user && !(user.csrPriveleges) && isAuthenticated) {
-      navigate("/dashboard/Subscription");
-    }
-  }, [isAuthenticated, currentPage, pageSize, searchQuery, filteredCsrs]);
+    setShowNoRecordsPopup(filteredCsrs.length === 0);
+  }, [filteredCsrs]);
 
   const handleSearchInputChange = (event) => {
     setCurrentPage(1);
@@ -309,44 +307,6 @@ const CSRPortal = () => {
               </i>
             </h4>
           </div>
-          {/* <button variant="primary" className="search-button" block>
-            <PDFDownloadLink document={<MyDocument csrData={csrs} />} fileName="csr-list.pdf" className="search-button">
-              {({ blob, url, loading, error }) => {
-                if (loading) {
-                  return 'Loading document...';
-                }
-                if (error) {
-                  return 'Error generating PDF'; // Add this line to handle errors
-                }
-                return 'Generate PDF';
-              }}
-            </PDFDownloadLink>
-          </button>
-
-          <div className="search-container">
-            <label htmlFor="search-criteria">Search :</label>
-            <select
-              value={searchCriteria}
-              onChange={(e) => setSearchCriteria(e.target.value)}
-              className="search-criteria w30"
-            >
-              <option value="csrName">CSR/Foundation Name</option>
-              <option value="website">Website</option>
-              <option value="domain">Domain</option>
-            </select>
-            <input
-              id="search-input"
-              type="text"
-              placeholder={`Enter ${capitalizeFirstLetter(searchCriteria).split(/(?=[A-Z])/).join(' ')}`}
-              value={searchQuery}
-              className="search-input w30"
-              onChange={handleSearchInputChange}
-            />
-            <button className="search-button" onClick={fetchCsrs}>
-              <i className="fas fa-search"></i>
-            </button>
-          </div> */}
-
           <div className="page-jump w10">
             <label htmlFor="page-selector">Go to Page:</label>
             <select
@@ -413,3 +373,43 @@ const CSRPortal = () => {
 };
 
 export default CSRPortal;
+
+
+
+          {/* <button variant="primary" className="search-button" block>
+            <PDFDownloadLink document={<MyDocument csrData={csrs} />} fileName="csr-list.pdf" className="search-button">
+              {({ blob, url, loading, error }) => {
+                if (loading) {
+                  return 'Loading document...';
+                }
+                if (error) {
+                  return 'Error generating PDF'; // Add this line to handle errors
+                }
+                return 'Generate PDF';
+              }}
+            </PDFDownloadLink>
+          </button>
+
+          <div className="search-container">
+            <label htmlFor="search-criteria">Search :</label>
+            <select
+              value={searchCriteria}
+              onChange={(e) => setSearchCriteria(e.target.value)}
+              className="search-criteria w30"
+            >
+              <option value="csrName">CSR/Foundation Name</option>
+              <option value="website">Website</option>
+              <option value="domain">Domain</option>
+            </select>
+            <input
+              id="search-input"
+              type="text"
+              placeholder={`Enter ${capitalizeFirstLetter(searchCriteria).split(/(?=[A-Z])/).join(' ')}`}
+              value={searchQuery}
+              className="search-input w30"
+              onChange={handleSearchInputChange}
+            />
+            <button className="search-button" onClick={fetchCsrs}>
+              <i className="fas fa-search"></i>
+            </button>
+          </div> */}

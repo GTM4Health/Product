@@ -31,10 +31,22 @@ const UserHospital = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [user, setUser] = useState(null);
   const [addedBy, setAddedBy] = useState('');
+
+
+
+  // useEffect(() => {
+  //   if (user && user.formPrivilegesHC && isAuthenticated) {
+  //     fetchHospitals();
+  //   } else if (user && !(user.formPrivilegesHC) && isAuthenticated) {
+  //     navigate("/dashboard/Subscription");
+  //   }
+  // }, [isAuthenticated]);
+  
   
 
   useEffect(() => {
     // Fetch hospital names from the backend when the component mounts
+    user && setAddedBy(user.name);
     const fetchHospitalNames = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal`, {
@@ -51,9 +63,6 @@ const UserHospital = () => {
     fetchHospitalNames();
   }, [searchQuery]); // Trigger the effect whenever searchQuery changes
 
-  useEffect (() => {
-    user && setAddedBy(user.name);
-  })
 
   // useEffect(() => {
   //   if (user && !(user.formPrivilegesHC) && isAuthenticated) {
@@ -70,14 +79,7 @@ const UserHospital = () => {
   
   }, []); 
 
-  useEffect(() => {
-    if (user && user.formPrivilegesHC && isAuthenticated) {
-      fetchHospitals();
-    } else if (user && !(user.formPrivilegesHC) && isAuthenticated) {
-      navigate("/dashboard/Subscription");
-    }
-  }, [isAuthenticated]);
-  
+
 
   const fetchHospitals = async () => {
     const params = new URLSearchParams();

@@ -9,7 +9,7 @@ import EditSalesForm from './updatesales';
 import moment from 'moment';
 
 const ViewSales = () => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(null);
   const [salesData, setSalesData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -20,22 +20,36 @@ const ViewSales = () => {
   const [selectedSale, setSelectedSale] = useState(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && user.salesPriveleges && isAuthenticated) {
-      fetchSalesData();
-    } else if (user && !(user.salesPriveleges) && isAuthenticated) {
-      navigate("/dashboard/Subscription");
-    }
-  }, [isAuthenticated, user, currentPage, startDate, endDate]);
-
-  useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
+    console.log('Stored user:', storedUser);
     if (storedUser) {
       setUser(storedUser);
     }
   }, []);
+
+  useEffect(() => {
+    console.log('Auth status:', isAuthenticated);
+    console.log('User object:', user);
+    if (user !== null && isAuthenticated !== null) {
+      setIsLoading(false);
+      if (isAuthenticated) {
+        if (user.salesPrivileges) {
+          console.log('Fetching sales data...');
+          fetchSalesData();
+        } else {
+          console.log('User does not have sales privileges. Redirecting to Subscription.');
+          navigate("/dashboard/Subscription");
+        }
+      } else {
+        console.log('User is not authenticated. Redirecting to login.');
+        navigate("/login");
+      }
+    }
+  }, [isAuthenticated, user, currentPage, startDate, endDate]);
 
   const fetchSalesData = async () => {
     try {
@@ -43,7 +57,7 @@ const ViewSales = () => {
         `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Sales/get-sales`,
         {
           params: {
-            email: user.email, // Pass user's email for filtering
+            email: user.email,
             page: currentPage,
             limit: pageSize,
             startDate: startDate,
@@ -65,7 +79,7 @@ const ViewSales = () => {
   };
 
   const handleSearch = () => {
-    setCurrentPage(1); // Reset to the first page on search
+    setCurrentPage(1);
     fetchSalesData();
   };
 
@@ -133,6 +147,10 @@ const ViewSales = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="page-view">

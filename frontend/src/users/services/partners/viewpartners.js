@@ -20,14 +20,25 @@ const PartnersPage = () => {
   const [selectedState, setSelectedState] = useState("all");
   const [selectedCity, setSelectedCity] = useState("all");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    if (user && user.gtmPriveleges  && isAuthenticated) {
+//     if (user && user.gtmPriveleges  && isAuthenticated) {
+//       fetchDealers();
+//   } else if (user && !(user.gtmPriveleges ) && isAuthenticated) {
+//     navigate("/dashboard/Subscription");
+//   }
+// }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+
+useEffect(() => {
+  if (isAuthenticated && user) {
+    if (!user.gtmPriveleges) {
+      navigate("/dashboard/Subscription");
+    } else {
       fetchDealers();
-  } else if (user && !(user.gtmPriveleges ) && isAuthenticated) {
-    navigate("/dashboard/Subscription");
+    }
   }
 }, [isAuthenticated, currentPage, selectedState, selectedCity]);
 

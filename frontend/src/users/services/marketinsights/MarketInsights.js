@@ -41,22 +41,24 @@ const MarketInsights = () => {
   const [searchResults, setSearchResults] = useState([]);
 
 
-
-  useEffect(() => {
-
-    if (user && user.marketPriveleges && isAuthenticated) {
-    fetchPdfFiles();
-  } else if (user && !(user.marketPriveleges) && isAuthenticated) {
-    navigate("/dashboard/Subscription");
-  }
-  }, [isAuthenticated,currentPage, pageSize, searchQuery]);
-
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
       setUser(storedUser);
     }
   }, []);
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      if (!user.marketPriveleges) {
+        navigate("/dashboard/Subscription");
+      } else {
+        fetchPdfFiles();
+      }
+    }
+  }, [isAuthenticated,currentPage, pageSize, searchQuery]);
+
+
 
   const fetchPdfFiles = async () => {
     try {
