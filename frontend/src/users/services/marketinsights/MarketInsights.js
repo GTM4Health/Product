@@ -50,13 +50,13 @@ const MarketInsights = () => {
 
   useEffect(() => {
     if (isAuthenticated && user) {
-      if (!user.marketPriveleges) {
+      if (!user.marketPrivileges) {
         navigate("/dashboard/Subscription");
       } else {
         fetchPdfFiles();
       }
     }
-  }, [isAuthenticated,currentPage, pageSize, searchQuery]);
+  }, [isAuthenticated,currentPage, pageSize, searchQuery, navigate]);
 
 
 

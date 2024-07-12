@@ -6,10 +6,10 @@ import Header2 from '../../../layout/users/Header2';
 import MenuBar from '../../../layout/users/MenuBar';
 import useAuth from '../../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import finalStatusOptions from "../../../assets/SalesStatus.json"
+import finalStatusOptions from "../../../assets/SalesStatus.json";
 
 const SalesForm = () => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(null);
   const [leadName, setLeadName] = useState('');
   const [emailID, setEmailID] = useState('');
   const [healthcareCentreName, setHealthcareCentreName] = useState('');
@@ -18,23 +18,27 @@ const SalesForm = () => {
   const [status, setStatus] = useState('');
   const [finalStatus, setFinalStatus] = useState('');
   const [reportsBetweenDates, setReportsBetweenDates] = useState('');
-  const [reportDate, setReportDate] = useState(''); // New state for report date
+  const [reportDate, setReportDate] = useState('');
   const [salesStatus, setSalesStatus] = useState(null);
-  const isAuthenticated = useAuth();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && user.salesPriveleges && isAuthenticated) {
-      setLeadName(user.name)
-    } else if (user && !(user.salesPriveleges) && isAuthenticated) {
-      navigate("/dashboard/Subscription");
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+      setEmailID(storedUser.email);
+      if (!storedUser.salesPrivileges) {
+        navigate("/dashboard/Subscription");
+      } else {
+        setLeadName(storedUser.name);
+      }
     }
-  }, [isAuthenticated]);
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Convert report date to the desired format
       const formattedReportDate = new Date(reportDate).toLocaleDateString('en-GB', {
         day: '2-digit',
         month: 'short',
@@ -50,9 +54,9 @@ const SalesForm = () => {
         status,
         finalStatus,
         reportsBetweenDates,
-        reportDate: formattedReportDate // Include formatted report date when submitting
+        reportDate: formattedReportDate
       });
-      // Clear form fields after successful submission
+      
       setLeadName('');
       setHealthcareCentreName('');
       setEmail('');
@@ -60,9 +64,9 @@ const SalesForm = () => {
       setStatus('');
       setFinalStatus('');
       setReportsBetweenDates('');
-      setReportDate(''); // Clear report date field
+      setReportDate('');
       setSalesStatus('success');
-      // Show success message or redirect to another page
+      
       setTimeout(() => {
         setSalesStatus(null);
       }, 1500);
@@ -70,18 +74,8 @@ const SalesForm = () => {
     } catch (error) {
       console.error('Error:', error);
       setSalesStatus('failure');
-      // Handle error
     }
   };
-
-
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setUser(storedUser);
-      setEmailID(storedUser.email);
-    }
-  }, []);
 
   const renderCityOptions = () => {
     const cities = getCityOptionsByState(state);
@@ -162,16 +156,6 @@ const SalesForm = () => {
                   placeholder="Mobile No"
                 />
               </div>
-              {/* <div className="form-group">
-                <label htmlFor="status">Status:</label>
-                <input
-                  type="text"
-                  id="status"
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
-                  placeholder="Status"
-                />
-              </div> */}
               <div className="form-group">
                 <label htmlFor="finalStatus">Status:</label>
                 <select

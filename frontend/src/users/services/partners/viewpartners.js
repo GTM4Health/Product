@@ -32,9 +32,17 @@ const PartnersPage = () => {
 //   }
 // }, [isAuthenticated, currentPage, selectedState, selectedCity]);
 
+
+useEffect(() => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  if (storedUser) {
+    setUser(storedUser);
+  }
+}, []);
+
 useEffect(() => {
   if (isAuthenticated && user) {
-    if (!user.gtmPriveleges) {
+    if (!user.gtmPrivileges) {
       navigate("/dashboard/Subscription");
     } else {
       fetchDealers();
@@ -47,13 +55,6 @@ useEffect(() => {
   //     fetchDealers();
   //   }
   // }, [isAuthenticated, currentPage, selectedState, selectedCity]);
-
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, []);
 
   useEffect(() => {
     setCurrentPage(1);
