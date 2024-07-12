@@ -41,6 +41,10 @@ const UserHospital = () => {
   //     navigate("/dashboard/Subscription");
   //   }
   // }, [isAuthenticated]);
+
+  useEffect(() => {
+    user && setAddedBy(user.name);
+  })
   
   
 
