@@ -386,7 +386,7 @@ const UserHospital = () => {
                   className="form-outline"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label className='f-label' htmlFor="speciality">Speciality :</label>
                 <select
                   id="speciality"
@@ -399,12 +399,11 @@ const UserHospital = () => {
                   </option>
                   {renderSpecialityOptions()}
                 </select>
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="lastConnected">Last Connected:</label>
                 <textarea
                   id="lastConnected"
-                  required
                   value={lastConnected}
                   onChange={(e) => setLastConnected(e.target.value)}
                   placeholder="Last Connected"

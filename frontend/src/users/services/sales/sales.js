@@ -31,7 +31,7 @@ const SalesForm = () => {
       if (!storedUser.salesPrivileges) {
         navigate("/dashboard/Subscription");
       } else {
-        setLeadName(storedUser.name);
+        //setLeadName(storedUser.name);
       }
     }
   }, [navigate]);

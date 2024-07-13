@@ -15,9 +15,10 @@ const HeaderIn = () => {
             <div className="buttons">
                
                 <LoginButton />
-                <SignUpButton />
+                {/* <SignUpButton /> */}
+                
+                <RequestDemoButton />
                 <HomeButton />
-                {/* <RequestDemoButton /> */}
                 {/* //deprecated */}
             </div>
       </div>

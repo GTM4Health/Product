@@ -1,9 +1,11 @@
 [
-    "No Requirement",
-    "Product Demoed",
-    "Proposal Sent",
-    "Our Cost is higher",
-    "Closed Sales",
-    "Lost to Competition",
-    "On hold"
+    "Lead",
+    "First Meeting",
+    "Demonstration",
+    "Quotation",
+    "Invoiced",
+    "Payment Pending",
+    "Converted",
+    "Future",
+    "Lost"
 ]
