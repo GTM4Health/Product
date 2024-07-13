@@ -34,13 +34,13 @@ const UserHospital = () => {
 
 
 
-  // useEffect(() => {
-  //   if (user && user.formPrivilegesHC && isAuthenticated) {
-  //     fetchHospitals();
-  //   } else if (user && !(user.formPrivilegesHC) && isAuthenticated) {
-  //     navigate("/dashboard/Subscription");
-  //   }
-  // }, [isAuthenticated]);
+  useEffect(() => {
+    if (user && user.formPrivilegesHC && isAuthenticated) {
+      fetchHospitals();
+    } else if (user && !(user.formPrivilegesHC) && isAuthenticated) {
+      navigate("/dashboard/Subscription");
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     user && setAddedBy(user.name);
