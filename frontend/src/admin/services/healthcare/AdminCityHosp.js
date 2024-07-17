@@ -604,7 +604,7 @@ const CityPortal = () => {
         return 'Download PDF';
       }}
     </PDFDownloadLink>
-    {/* <button onClick={handleExportCSV} className="clear-btn">Export CSV</button> */}
+    <button onClick={handleExportCSV} className="clear-btn">Export CSV</button>
           <div className="filter-container">
               {/* <div className="search-container">
                 <input

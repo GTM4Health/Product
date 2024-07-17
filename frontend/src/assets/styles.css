@@ -730,6 +730,7 @@ form.hospital-f .form-group {
 form.hospital-f .form-group label {
   width: 7rem; /* Adjust this value based on your label's width */
   border: 2rem;
+  padding-left: 1.5rem;
 }
 
 form.hospital-f .form-group input {
