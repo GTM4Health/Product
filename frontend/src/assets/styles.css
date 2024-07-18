@@ -724,7 +724,7 @@ form.hospital-f .form-group {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 form.hospital-f .form-group label {

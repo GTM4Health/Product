@@ -26,6 +26,7 @@ const AdminHospital = () => {
   const [category, setCategory] = useState('');
   const [hospitalNames, setHospitalNames] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [addedOnTime, setAddedOnTime] = useState('');
   
 
   useEffect(() => {
@@ -54,6 +55,10 @@ const AdminHospital = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const now = new Date();
+    const options = { year: 'numeric', month: 'short', day: '2-digit' };
+    const formattedDate = now.toLocaleDateString('en-GB', options).replace(/ /g, '-');
+    const formattedTime = now.toLocaleTimeString('en-US', { hour12: true });
     try {
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Add-Hospital`, {
         name,
@@ -71,7 +76,9 @@ const AdminHospital = () => {
         category,
         searchQuery,
         hospitalNames,
+        addedOnTime: `${formattedTime} ${formattedDate}` // Send Added On Time with the form data
       });
+
       setSearchQuery('');
       setName('');
       setCity('');
@@ -87,7 +94,8 @@ const AdminHospital = () => {
       setHospitalStatus('success');
       setAddress('');
       setCategory('');
-      setHospitalNames('');
+      setHospitalNames([]);
+      setAddedOnTime(''); // Clear Added On Time state
       // Clear the success message after 2 seconds
       setTimeout(() => {
         setHospitalStatus(null);

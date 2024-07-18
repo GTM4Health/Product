@@ -604,7 +604,7 @@ const CityPortal = () => {
         return 'Download PDF';
       }}
     </PDFDownloadLink>
-    <button onClick={handleExportCSV} className="clear-btn">Export CSV</button>
+    <button onClick={handleExportCSV} className="clear-btn">Export as XLS</button>
           <div className="filter-container">
               {/* <div className="search-container">
                 <input
@@ -745,6 +745,7 @@ const CityPortal = () => {
                   <th>Specialization</th>
                   <th>Last-Connected</th>
                   <th>Added By</th>
+                  <th>Added On</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -767,6 +768,7 @@ const CityPortal = () => {
                     
                     <td>{hospital.lastConnected}</td>
                     <td>{hospital.addedBy || "Admin"}</td>
+                    <td>{hospital.addedOnTime}</td>
                     <td>
                       <button className="edit-button" onClick={() => handleEditHospital(hospital)}>
                         <i className="fas fa-pencil-alt"></i>

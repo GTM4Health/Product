@@ -31,6 +31,7 @@ const UserHospital = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [user, setUser] = useState(null);
   const [addedBy, setAddedBy] = useState('');
+  const [addedOnTime, setAddedOnTime] = useState('');
 
 
 
@@ -116,6 +117,11 @@ const UserHospital = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const now = new Date();
+    const options = { year: 'numeric', month: 'short', day: '2-digit' };
+    const formattedDate = now.toLocaleDateString('en-GB', options).replace(/ /g, '-');
+    const formattedTime = now.toLocaleTimeString('en-US', { hour12: true });
+    
     try {
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Add-Hospital`, {
         name,
@@ -134,6 +140,7 @@ const UserHospital = () => {
         searchQuery,
         hospitalNames,
         addedBy,
+        addedOnTime: `${formattedTime} ${formattedDate}`,
       });
       setSearchQuery('');
       setName('');
@@ -151,6 +158,7 @@ const UserHospital = () => {
       setAddress('');
       setCategory('');
       setHospitalNames('');
+      setAddedOnTime('');
       // Clear the success message after 2 seconds
       setTimeout(() => {
         setHospitalStatus(null);
