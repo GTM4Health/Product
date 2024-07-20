@@ -140,7 +140,7 @@ const UserHospital = () => {
         searchQuery,
         hospitalNames,
         addedBy,
-        addedOnTime: `${formattedTime} ${formattedDate}`,
+        addedOnTime: `${formattedDate}, ${formattedTime} `,
       });
       setSearchQuery('');
       setName('');

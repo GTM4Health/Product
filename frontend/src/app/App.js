@@ -62,6 +62,7 @@ import CityDetails from '../admin/pages/CityDetails';
 import UserCityDetails from '../users/home/uCityDetails';
 import AdNotFoundPage from '../common/AdNotFount';
 import UserHospital from '../users/services/marketaccess/Marketform';
+import SelectMarket from '../users/services/sales/selectmarkets';
 
 
 //Entry Function into the Product
@@ -102,6 +103,7 @@ export default function App() {
         <Route path='/dashboard/View-Healthcare-Centres-All' element={<MarketAccessAll />} />
         <Route path='/dashboard/Market-Insights' element={<MarketInsights />} />
         <Route path='/dashboard/form-healthcare' element = {<UserHospital />} />
+        <Route path='/dashboard/added-healthcare-centres' element= {<SelectMarket />} />
 
         <Route path='/admin/dashboard/Save-Project' element={<AdminSaveProject />} />
         <Route path='/admin/dashboard/Add-Content' element={<AddContent />} />

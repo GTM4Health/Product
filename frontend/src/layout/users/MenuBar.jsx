@@ -134,6 +134,10 @@ const MenuBar = () => {
                 <i className="fas fa-hospital sub-menu-icon"></i>
                 <span className="menu-text">View Sales Progress</span>
             </a>
+            <a href="/dashboard/added-healthcare-centres" className="sub-menu-item menu-link">
+                <i className="fas fa-clipboard-list sub-menu-icon"></i>
+                <span className="menu-text">Added Healthcare Centres</span>
+            </a>
         </div>
         )}
       </div>

@@ -76,7 +76,7 @@ const AdminHospital = () => {
         category,
         searchQuery,
         hospitalNames,
-        addedOnTime: `${formattedTime} ${formattedDate}` // Send Added On Time with the form data
+        addedOnTime: `${formattedDate},${formattedTime} ` // Send Added On Time with the form data
       });
 
       setSearchQuery('');
