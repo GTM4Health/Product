@@ -203,7 +203,7 @@ const SelectMarket = () => {
     params.append('endDate', endDate);
   
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal?${params.toString()}`);
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/select?${params.toString()}`);
       setHospitals(response.data.hospitals);
       setTotalRows(response.data.totalRows);
       setTotalPages(response.data.totalPages);
