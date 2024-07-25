@@ -118,12 +118,13 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
         </div>
         <div className="form-group">
           <label htmlFor="reportsBetweenDates">Reports</label>
-          <input
+          <textarea
             type="text"
             id="reportsBetweenDates"
             value={reportsBetweenDates}
             onChange={(e) => setReportsBetweenDates(e.target.value)}
             placeholder="Reports .."
+            className="textarea"
           />
         </div>
         <div className="button-group">

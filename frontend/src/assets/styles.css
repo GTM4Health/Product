@@ -1963,6 +1963,9 @@ input::-webkit-inner-spin-button {
   font-size: 1rem;
 }
 
-
+td{
+    white-space: pre-wrap;
+  
+}
 
 /* You can customize these colors as desired */

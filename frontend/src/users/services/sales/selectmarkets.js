@@ -1,17 +1,16 @@
 // MarketAccess.js
 
-import React, { useState, useEffect } from "react";
-import Footer from "../../../layout/pages/Footer";
-import Header2 from "../../../layout/users/Header2";
-import useAuth from "../../../hooks/useAuth";
-import Menubar from "../../../layout/users/MenuBar";
+import { Document, Image, Page, StyleSheet, Text, View } from '@react-pdf/renderer'; // Import PDF generation dependencies
 import axios from "axios";
-import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions"; // Importing getCityOptionsByState from cityOptions
-import specialitiesData from "../../../assets/specialities.json"
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Categories from "../../../assets/healthcareCategories.json";
-import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'; // Import PDF generation dependencies
+import specialitiesData from "../../../assets/specialities.json";
+import useAuth from "../../../hooks/useAuth";
 import logo from "../../../images/newlogo.png"; // Import logo for PDF
+import Footer from "../../../layout/pages/Footer";
+import Header2 from "../../../layout/users/Header2";
+import Menubar from "../../../layout/users/MenuBar";
 
 
 // Styles for the PDF
@@ -511,7 +510,8 @@ const SelectMarket = () => {
                 <tr>
                   <th>Sl No.</th>
                   <th>Name</th>
-                  <th>Infrastructure & Services</th>
+                  {/* <th>Infrastructure & Services</th> */}
+                  <th>Added On</th>
                   <th>State</th>
                   <th>City</th>
                   <th>Category</th>
@@ -526,7 +526,8 @@ const SelectMarket = () => {
                   <tr key={hospital._id}>
                     <td>{(currentPage - 1) * pageSize + index + 1}</td>
                     <td>{hospital.name}</td>
-                    <td>{hospital.infraSer}</td>
+                    {/* <td>{hospital.infraSer}</td> */}
+                    <td>{hospital.addedOnTime}</td>
                     <td>{hospital.state}</td>
                     <td>{hospital.city}</td>
                     <td>{hospital.category}</td>
