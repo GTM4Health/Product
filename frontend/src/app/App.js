@@ -63,6 +63,7 @@ import UserCityDetails from '../users/home/uCityDetails';
 import AdNotFoundPage from '../common/AdNotFount';
 import UserHospital from '../users/services/marketaccess/Marketform';
 import SelectMarket from '../users/services/sales/selectmarkets';
+import AddedDashboard from '../admin/pages/AddedDash';
 
 
 //Entry Function into the Product
@@ -89,6 +90,7 @@ export default function App() {
         <Route path='admin/dashboard/View-Startups' element={<StartupPortal />} />
         <Route path='admin/dashboard/Create-Project' element={<CreateProject />} />
         <Route path='admin/dashboard/Update-Project' element={<UpdateProject />} />
+        <Route path='/admin/dashboard/added-hc-dashboard' element={<AddedDashboard />} />
         <Route path='/home' element={<Home />} />
         <Route path='/home-mr' element={<HomeMR />} />
         <Route path='/home-mr2' element={<HomeMR2 />} />

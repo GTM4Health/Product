@@ -391,7 +391,7 @@ const SelectMarket = () => {
               </i>
             </p>
           </a> */}
-          <div className="filter-container">
+          {/* <div className="filter-container"> */}
           {/* <label className="f-label"  htmlFor="state-select">State:</label>
             <select className="f-select" id="state-select" value={selectedState} onChange={handleStateChange}>
               <option value="all">All</option>
@@ -470,7 +470,8 @@ const SelectMarket = () => {
               className='form-outline f-select'
             />
           </div>
-          <div className="page-jump f-select">
+          <div className="page-jump filter-container">
+            <div className='f-select'>
               <label htmlFor="page-selector" className="f-label">Go to Page:</label>
               <select
                 id="page-selector"
@@ -484,8 +485,13 @@ const SelectMarket = () => {
                   </option>
                 ))}
               </select>
-              </div>
-        </div>
+            </div>
+          </div>
+          <div className='filter-container'>
+            <button onClick={handleSearch} className="clear-btn">Search</button>
+            <button onClick={clearSearchResults} className="clear-btn">Clear Search</button>
+          </div>
+          {/* </div> */}
           <div className="page-display">
             <h4 className="total-rows ft5">Total Healthcare Centers = {totalRows}</h4>
             <h4 className="right ft5">

@@ -165,6 +165,12 @@ const AdminMenuBar = () => {
                 <span className="menu-text">Pan India Dashboard</span>
               </a>
             </div>
+            <div className="og-tag">
+              <a href="/admin/dashboard/added-hc-dashboard" className="sub-menu-item menu-link">
+                <i className="fas fa-map-marked-alt sub-menu-icon"></i>
+                <span className="menu-text">Added Healthcare Centres Dashboard</span>
+              </a>
+            </div>
             {/* <div className="og-tag">
               <a href="/admin/dashboard/Eval-PDF" className="sub-menu-item menu-link">
                 <i className="fas fa-map-marked-alt sub-menu-icon"></i>

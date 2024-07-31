@@ -7,10 +7,176 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import EditSalesForm from './updatesales';
 import moment from 'moment';
+import logo from "../../../images/newlogo.png"; 
+import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'; 
+
+
+// PDF styles 
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'column',
+    padding: 12,
+  },
+  header: {
+    fontSize: 24,
+    marginBottom: 20,
+    marginTop: 110,
+    textAlign: 'center',
+  },
+  table: {
+    display: 'table',
+    width: '100%',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: 'black',
+    marginTop: 40,
+  },
+  tableRow: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+  },
+  tableCell: {
+    flex: 1,
+    padding: 4,
+    textAlign: 'center',
+    fontSize: 16,
+    borderRightWidth: 1,
+    borderRightColor: 'black',
+  },
+  headerCell: {
+    flex: 1,
+    padding: 4,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    backgroundColor: '#0077b6',
+    color: 'white',
+    fontSize: 16,
+    borderRightWidth: 1,
+    borderRightColor: 'black',
+  },
+  logoContainer: {
+    position: 'absolute',
+    top: 30,
+    right: 30,
+  },
+  smallHeaderCell: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    backgroundColor: '#0077b6',
+    color: 'white',
+    fontSize: 14,
+    width: 50,
+    borderRightWidth: 1,
+    borderRightColor: 'black',
+  },
+  smallCell: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 14,
+    padding: 8,
+    width: 50,
+    borderRightWidth: 1,
+    borderRightColor: 'black',
+  },
+  gap: {
+    height: 40,
+  },
+  logo: {
+    width: 200,
+    height: 80,
+  },
+});
+
+// PDF Document component with borders
+// const SalesDocument = ({ salesData }) => (
+//   <Document>
+//     <Page style={styles.page}>
+//       <View style={styles.logoContainer}>
+//         <Image src={logo} style={styles.logo} />
+//       </View>
+//       <Text style={styles.header}>Sales Progress Tracker</Text>
+//       <View style={styles.gap} />
+//       <View style={styles.table}>
+//         <View style={styles.tableRow}>
+//           <Text style={styles.smallHeaderCell}>Sl No.</Text>
+//           <Text style={styles.headerCell}>Lead Name</Text>
+//           <Text style={styles.headerCell}>Report Date</Text>
+//           <Text style={styles.headerCell}>Healthcare Centre Name</Text>
+//           {/* <Text style={styles.headerCell}>Email</Text> */}
+//           {/* <Text style={styles.headerCell}>Mobile No</Text> */}
+//           <Text style={styles.headerCell}>Status</Text>
+//           <Text style={styles.headerCell}>Reports</Text>
+//         </View>
+//         {salesData.map((sale, index) => (
+//           <View style={styles.tableRow} key={sale._id}>
+//             <Text style={styles.smallCell}>{index + 1}</Text>
+//             <Text style={styles.tableCell}>{sale.leadName}</Text>
+//             <Text style={styles.tableCell}>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY') : ""}</Text>
+//             <Text style={styles.tableCell}>{sale.healthcareCentreName}</Text>
+//             {/* <Text style={styles.tableCell}>{sale.email}</Text>
+//             <Text style={styles.tableCell}>{sale.mobileNo}</Text> */}
+//             <Text style={styles.tableCell}>{sale.finalStatus}</Text>
+//             <Text style={styles.tableCell}>{sale.reportsBetweenDates}</Text>
+//           </View>
+//         ))}
+//       </View>
+//     </Page>
+//   </Document>
+// );
+const SalesDocument = ({ salesData }) => {
+  const rowsPerPage = 10; // Adjust the number of rows per page
+  const totalPages = Math.ceil(salesData.length / rowsPerPage);
+
+  const renderTableRows = (data, pageIndex) => {
+    return data.map((sale, index) => (
+      <View style={styles.tableRow} key={sale._id}>
+        <Text style={[styles.smallCell, styles.borderRight]}>{pageIndex * rowsPerPage + index + 1}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{sale.leadName}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY') : ""}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{sale.healthcareCentreName}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{sale.finalStatus}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{sale.reportsBetweenDates}</Text>
+      </View>
+    ));
+  };
+
+  return (
+    <Document>
+      {Array.from({ length: totalPages }, (_, pageIndex) => (
+        <Page style={styles.page} key={pageIndex}>
+          <View style={styles.logoContainer}>
+            <Image src={logo} style={styles.logo} />
+          </View>
+          <Text style={styles.header}>Sales Progress Tracker</Text>
+          <View style={styles.gap} />
+          <View style={styles.table}>
+            <View style={styles.tableRow}>
+              <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Lead Name</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Report Date</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Status</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Reports</Text>
+            </View>
+            {renderTableRows(
+              salesData.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage),
+              pageIndex
+            )}
+          </View>
+        </Page>
+      ))}
+    </Document>
+  );
+};
+
+
+
 
 const ViewSales = () => {
   const [user, setUser] = useState(null);
   const [salesData, setSalesData] = useState([]);
+  const [allSalesData, setAllSalesData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [totalRows, setTotalRows] = useState(0);
@@ -40,6 +206,7 @@ const ViewSales = () => {
         if (user.salesPrivileges) {
           console.log('Fetching sales data...');
           fetchSalesData();
+          fetchAllSalesData();
         } else {
           console.log('User does not have sales privileges. Redirecting to Subscription.');
           navigate("/dashboard/Subscription");
@@ -72,7 +239,24 @@ const ViewSales = () => {
       console.error('Error fetching sales data:', error);
     }
   };
-
+  const fetchAllSalesData = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Sales/get-all-sales`,
+        {
+          params: {
+            email: user.email,
+            startDate: startDate,
+            endDate: endDate
+          },
+        }
+      );
+      setAllSalesData(response.data.sales);
+    } catch (error) {
+      console.error('Error fetching all sales data:', error);
+    }
+  };
+  
   const handleEditSales = (sale) => {
     setSelectedSale(sale);
     setEditFormVisible(true);
@@ -109,6 +293,7 @@ const ViewSales = () => {
       setEditFormVisible(false);
       setSelectedSale(null);
       fetchSalesData();
+      fetchAllSalesData();
       console.log("Sales updated successfully");
     } catch (error) {
       console.error('Error updating sale:', error);
@@ -199,6 +384,17 @@ const ViewSales = () => {
           <div className='filter-container'>
             <button onClick={handleSearch} className="clear-btn">Search</button>
             <button onClick={handleClearSearch} className="clear-btn">Clear Search</button>
+          </div>
+          <div className="download-pdf">
+                  <PDFDownloadLink
+                    className="clear-btn"
+                    document={<SalesDocument salesData={salesData} />}
+                    fileName="GTMScale_SalesTracker_2024.pdf"
+                  >
+                    {({ loading }) =>
+                      loading ? 'Loading document...' : 'Download PDF'
+                    }
+                  </PDFDownloadLink>
           </div>
           <div className="hosp-content">
             <div className="sales-data">

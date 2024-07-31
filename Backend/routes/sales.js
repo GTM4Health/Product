@@ -155,6 +155,72 @@ router.get('/get-sales', async (req, res) => {
   }
 });
 
+router.get('/get-sales', async (req, res) => {
+  const { page = 1, limit = 10, startDate, endDate, email} = req.query;
+  try {
+    let query = {};
+
+    // Filter by date range if provided
+    if (startDate && endDate) {
+      query.reportDate = { $gte: new Date(startDate), $lte: new Date(endDate) };
+    }
+
+    // Filter by email if provided
+    if (email) {
+      query.emailID = email;
+    }
+
+    const sales = await Sales.find(query)
+      .sort({ reportDate: -1 }) 
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
+
+    const count = await Sales.countDocuments(query);
+
+    res.status(200).json({
+      sales,
+      totalPages: Math.ceil(count / limit),
+      currentPage: parseInt(page),
+      totalRows: count,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// viewsales.js
+
+router.get('/get-all-sales', async (req, res) => {
+  const { startDate, endDate, email } = req.query;
+  try {
+    let query = {};
+
+    // Filter by date range if provided
+    if (startDate && endDate) {
+      query.reportDate = { $gte: new Date(startDate), $lte: new Date(endDate) };
+    }
+
+    // Filter by email if provided
+    if (email) {
+      query.emailID = email;
+    }
+
+    const sales = await Sales.find(query)
+      .sort({ reportDate: -1 }) 
+      .exec();
+
+    res.status(200).json({
+      sales,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+
 
 
 module.exports = router;
