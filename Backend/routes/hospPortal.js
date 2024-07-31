@@ -366,6 +366,29 @@ router.get(
 );
 
 
+router.get('/added-dashboard', async (req, res) => {
+  try {
+    // Update existing documents with null 'addedBy' field to 'Admin'
+    await Hospital.updateMany({ addedBy: null }, { $set: { addedBy: 'Admin' } });
+
+    const addedCenters = await Hospital.aggregate([
+      { $group: { _id: '$addedBy', totalCenters: { $sum: 1 } } },
+      { $sort: { totalCenters: -1 } }
+    ]);
+
+    const formattedData = addedCenters.map((entry, index) => ({
+      id: index + 1,
+      user: entry._id,
+      totalCenters: entry.totalCenters,
+    }));
+
+    res.json(formattedData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 
 
