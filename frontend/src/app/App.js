@@ -64,6 +64,7 @@ import AdNotFoundPage from '../common/AdNotFount';
 import UserHospital from '../users/services/marketaccess/Marketform';
 import SelectMarket from '../users/services/sales/selectmarkets';
 import AddedDashboard from '../admin/pages/AddedDash';
+import UserViewCI from '../users/services/intel/viewci';
 
 
 //Entry Function into the Product
@@ -118,6 +119,7 @@ export default function App() {
         <Route path='/dashboard/Subscription' element = {<Subscription />} />
         <Route path="/dashboard/Sales-Tracker" element={<SalesForm />} />
         <Route path='/admin/view-competitive-intelligence' element = {<AdminViewCI />} />
+        <Route path='/view-competitive-intelligence' element = {<UserViewCI />} />
         <Route path='*' element={<NotFoundPage />} />
         <Route path='/admin/audit-logs' element={<AdminNotFoundPage />} />
         <Route path='/admin/dashboard/Add-CSR-Foundation' element = {<NewCSRForm />} />

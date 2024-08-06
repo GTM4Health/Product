@@ -493,7 +493,7 @@ button[type="submit"]:hover {
   margin-left: 250px; /* Adjust this value based on the menu bar width */
   padding: 20px;
   /*240vh*/
-  min-height: 190vh;
+  min-height: 200vh;
   height: auto;
   /* max-height: 400vh; */
   /* margin-bottom: 100px; Adjust this value based on the footer height */
@@ -1640,7 +1640,7 @@ form.hospital-f .hsubtn {
 }
 
 .usrbar{
-  height: 100vh;
+  height: 105vh;
 }
 
 .search-container {

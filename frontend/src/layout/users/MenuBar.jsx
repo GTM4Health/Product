@@ -4,14 +4,18 @@ import React, { useState, useRef, useEffect } from "react";
 
 import Dashboard from './../../users/home/Dashboard';
 import { useNavigate } from "react-router-dom";
+import CompetitiveIntelligence from './../../admin/services/intel/AdminCompIntel';
 
 const MenuBar = () => {
   const [isHealthcareCentresMenuOpen, setIsHealthcareCentresMenuOpen] = useState(false);
   const [isDashBoardMenuOpen,setIsDashBoardMenuOpen] = useState(false);
   const [isSalesMenuOpen, setIsSalesMenuOpen] = useState(false);
+  const [isCompetitiveIntelMenuOpen, setIsCompetitiveIntelMenuOpen] = useState(false);
   const healthcareCentresMenuRef = useRef(null);
   const dashBoardMenuRef=useRef(null);
   const salesMenuRef = useRef(null);
+  const competitiveIntelMenuRef = useRef(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +28,9 @@ const MenuBar = () => {
       }
       if(salesMenuRef.current && !salesMenuRef.current.contains(event.target)){
         setIsSalesMenuOpen(false);
+      }
+      if (competitiveIntelMenuRef.current && !competitiveIntelMenuRef.current.contains(event.target)) {
+        setIsCompetitiveIntelMenuOpen(false);
       }
     };
 
@@ -50,6 +57,10 @@ const MenuBar = () => {
     setIsSalesMenuOpen(!isSalesMenuOpen);
   };
 
+  const handleCompetitiveIntelMenuClick = () => {
+    setIsCompetitiveIntelMenuOpen(!isCompetitiveIntelMenuOpen);
+    // navigate('/admin/competitive-intelligence');
+  };
   return (
     <div className="adbar usrbar"> 
       <div
@@ -141,6 +152,27 @@ const MenuBar = () => {
         </div>
         )}
       </div>
+      <div
+        className={`menu-item ad-menu-item ${isCompetitiveIntelMenuOpen ? "active" : ""}`}
+        onClick={handleCompetitiveIntelMenuClick}
+        ref={competitiveIntelMenuRef}
+      >
+        <i className="fas fa-chart-bar menu-icon"></i> {/* Changed icon to a bar chart */}
+        <span className="menu-text">Competitive Intelligence</span>
+        {isCompetitiveIntelMenuOpen && (
+          <div className="sub-menu competitive-intel-menu">
+            {/* <a href="/admin/competitive-intelligence" className="sub-menu-item menu-link">
+              <i className="fas fa-plus sub-menu-icon"></i> 
+              <span className="menu-text">Add Competitive Intelligence</span>
+            </a> */}
+            <a href="/view-competitive-intelligence" className="sub-menu-item menu-link">
+              <i className="fas fa-search sub-menu-icon"></i> 
+              <span className="menu-text">View Competitive Intelligence</span>
+            </a>
+          </div>
+        )}
+      </div>
+
       {/* <a href="/dashboard/gtm-readiness-assessment" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-clipboard-list menu-icon"></i>
