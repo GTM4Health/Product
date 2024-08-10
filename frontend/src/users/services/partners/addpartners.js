@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from "../../../layout/pages/Footer"
 import useAuth from "../../../hooks/useAuth";
@@ -23,6 +23,9 @@ const UserDealers = () => {
   const [pincode, setPincode] = useState(null);
   const isAuthenticated = useAuth();
   const [user, setUser] = useState(null);
+  const [totalRows, setTotalRows] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [dealers, setDealers] = useState([]);
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -44,7 +47,32 @@ const UserDealers = () => {
         fetchDealers();
       }
     }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+  }, [isAuthenticated]);
+
+  const fetchDealers = async () => {
+    let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Dealers/dealers-portal?`;
+  
+    const params = new URLSearchParams();
+    // params.append('page', currentPage);
+    // params.append('limit', pageSize);
+  
+    // if (selectedState !== 'all') {
+    //   params.append('state', selectedState);
+    // }
+  
+    // if (selectedCity !== 'all') {
+    //   params.append('city', selectedCity);
+    // }
+  
+    try {
+      const response = await axios.get(url + params.toString());
+      setDealers(response.data.dealer);
+      setTotalRows(response.data.totalRows);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
