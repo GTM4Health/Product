@@ -11,6 +11,9 @@ const MenuBar = () => {
   const [isDashBoardMenuOpen,setIsDashBoardMenuOpen] = useState(false);
   const [isSalesMenuOpen, setIsSalesMenuOpen] = useState(false);
   const [isCompetitiveIntelMenuOpen, setIsCompetitiveIntelMenuOpen] = useState(false);
+  const [isMedTechMenuOpen, setIsMedTechMenuOpen] = useState(false);
+
+  const medTechMenuRef = useRef(null);
   const healthcareCentresMenuRef = useRef(null);
   const dashBoardMenuRef=useRef(null);
   const salesMenuRef = useRef(null);
@@ -31,6 +34,9 @@ const MenuBar = () => {
       }
       if (competitiveIntelMenuRef.current && !competitiveIntelMenuRef.current.contains(event.target)) {
         setIsCompetitiveIntelMenuOpen(false);
+      }
+      if (medTechMenuRef.current && !medTechMenuRef.current.contains(event.target)) {
+        setIsMedTechMenuOpen(false);
       }
     };
 
@@ -55,6 +61,10 @@ const MenuBar = () => {
 
   const handleSalesMenuClick = () => {
     setIsSalesMenuOpen(!isSalesMenuOpen);
+  };
+
+  const handleMedTechMenuClick = () => {
+    setIsMedTechMenuOpen(!isMedTechMenuOpen);
   };
 
   const handleCompetitiveIntelMenuClick = () => {
@@ -108,12 +118,36 @@ const MenuBar = () => {
           </div>
         )}
       </div>
-      <a href="/dashboard/Access-GTM-Partners" className="menu-link">
+      {/* <a href="/dashboard/Access-GTM-Partners" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-check-circle menu-icon"></i>
           <span className="menu-text">Access GTM Partners</span>
         </div>
-      </a>
+      </a> */}
+      <div
+        className={`menu-item ad-menu-item ${
+          isMedTechMenuOpen ? "active" : ""
+        }`}
+        onClick={handleMedTechMenuClick}
+        ref={medTechMenuRef}
+      >
+        <i className="fas fa-microscope menu-icon"></i>
+        <span className="menu-text">Access GTM Partners</span>
+        {isMedTechMenuOpen && (
+          <div className="sub-menu medtech-menu">
+            <a href="/dashboard/Add-MedTech-Companies" className="sub-menu-item menu-link">
+              <i className="fas fa-plus sub-menu-icon"></i>
+              <span className="menu-text">Add MedTech Companies</span>
+            </a>
+            <a href="/dashboard/Access-GTM-Partners" className="sub-menu-item menu-link">
+              <i className="fas fa-chart-line sub-menu-icon"></i>
+              <span className="menu-text">
+                View MedTech Companies
+              </span>
+            </a>
+          </div>
+        )}
+      </div>
       <a href="/dashboard/Market-Insights" className="menu-link">
         <div className="menu-item">
           <i className="fas fa-lightbulb menu-icon"></i>

@@ -65,6 +65,7 @@ import UserHospital from '../users/services/marketaccess/Marketform';
 import SelectMarket from '../users/services/sales/selectmarkets';
 import AddedDashboard from '../admin/pages/AddedDash';
 import UserViewCI from '../users/services/intel/viewci';
+import UserDealers from '../users/services/partners/addpartners';
 
 
 //Entry Function into the Product
@@ -84,6 +85,7 @@ export default function App() {
         <Route path='admin/dashboard/City-Hospital' element={<CityPortal />} />
         <Route path='admin/dashboard/User-Dashboard' element={<AdminUserAccess />} />
         <Route path='admin/dashboard/Add-MedTech-Companies' element={<Dealers />} />
+        <Route path='/dashboard/Add-MedTech-Companies' element={<UserDealers />} />
         <Route path='admin/dashboard/View-MedTech-Companies' element={<DealerPortal />} />
         <Route path='admin/dashboard/Add-Products' element={<Products />} />
         <Route path='admin/dashboard/View-Products' element={<ProductPortal />} />
