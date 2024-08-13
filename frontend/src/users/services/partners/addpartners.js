@@ -132,9 +132,9 @@ const UserDealers = () => {
 
   const renderDealerStatusMessage = () => {
     if (dealerStatus === 'success') {
-      return <div className="popup success">MedTech-Company successfully registered!</div>;
+      return <div className="popup success">Dealers & Distributors successfully registered!</div>;
     } else if (dealerStatus === 'failure') {
-      const errorMessage = 'MedTech-Company failed to register. Please try again.';
+      const errorMessage = 'Dealers & Distributors failed to register. Please try again.';
       return (
         <div className="popup failure">
           {errorMessage}
