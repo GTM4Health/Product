@@ -26,6 +26,8 @@ const UserDealers = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [dealers, setDealers] = useState([]);
+  const [addedBy, setAddedBy] = useState('');
+  const [addedOnTime, setAddedOnTime] = useState('');
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -76,6 +78,10 @@ const UserDealers = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const now = new Date();
+    const options = { year: 'numeric', month: 'short', day: '2-digit' };
+    const formattedDate = now.toLocaleDateString('en-GB', options).replace(/ /g, '-');
+    const formattedTime = now.toLocaleTimeString('en-US', { hour12: true });
     try {
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Dealers`, {
         name,
@@ -90,6 +96,8 @@ const UserDealers = () => {
         phone,
         GST,
         pincode,
+        addedBy,
+        addedOnTime: `${formattedDate}, ${formattedTime} `,
       });
       setName('');
       setWeb('');
@@ -104,6 +112,7 @@ const UserDealers = () => {
       setGST('');
       setPincode('');
       setDealerStatus('success');
+      setAddedOnTime('');
 
       // Clear the success message after 2 seconds
       setTimeout(() => {
@@ -151,7 +160,7 @@ const UserDealers = () => {
         <div className="dashboard">
           <MenuBar />
           <div className="hosp-content">
-            <h1>Add MedTech-Companies</h1>
+            <h1>Add Dealers & Distributors</h1>
             {renderDealerStatusMessage()}
             <form onSubmit={handleSubmit} className="hospital-f">
               <div className='filter-container'>

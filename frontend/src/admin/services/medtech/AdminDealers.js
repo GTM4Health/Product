@@ -104,7 +104,8 @@ const Dealers = () => {
         <div className="dashboard">
           <AdminMenuBar />
           <div className="hosp-content">
-            <h1>Add MedTech-Companies</h1>
+            <h1>Add Dealers & Distributors </h1> 
+            {/* //MedTech-Companies */}
             {renderDealerStatusMessage()}
             <form onSubmit={handleSubmit} className="hospital-f">
               <div className='filter-container'>

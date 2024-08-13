@@ -137,12 +137,12 @@ const MenuBar = () => {
           <div className="sub-menu medtech-menu">
             <a href="/dashboard/Add-MedTech-Companies" className="sub-menu-item menu-link">
               <i className="fas fa-plus sub-menu-icon"></i>
-              <span className="menu-text">Add MedTech Companies</span>
+              <span className="menu-text">Add Dealers & Distributors</span>
             </a>
             <a href="/dashboard/Access-GTM-Partners" className="sub-menu-item menu-link">
               <i className="fas fa-chart-line sub-menu-icon"></i>
               <span className="menu-text">
-                View MedTech Companies
+                View Dealers & Distributors 
               </span>
             </a>
           </div>

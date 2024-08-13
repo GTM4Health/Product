@@ -222,17 +222,17 @@ const AdminMenuBar = () => {
         ref={medTechMenuRef}
       >
         <i className="fas fa-microscope menu-icon"></i>
-        <span className="menu-text">Manage MedTech Companies</span>
+        <span className="menu-text">Manage Dealers & Distributors </span>
         {isMedTechMenuOpen && (
           <div className="sub-menu medtech-menu">
             <a href="/admin/dashboard/Add-MedTech-Companies" className="sub-menu-item menu-link">
               <i className="fas fa-plus sub-menu-icon"></i>
-              <span className="menu-text">Add MedTech Companies</span>
+              <span className="menu-text">Add Dealers & Distributors</span>
             </a>
             <a href="/admin/dashboard/View-MedTech-Companies" className="sub-menu-item menu-link">
               <i className="fas fa-chart-line sub-menu-icon"></i>
               <span className="menu-text">
-                View & Update MedTech Companies
+                View & Update Dealers & Distributors 
               </span>
             </a>
           </div>

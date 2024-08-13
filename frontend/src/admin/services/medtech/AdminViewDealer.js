@@ -143,7 +143,7 @@ const DealerPortal = () => {
         <div className="dashboard">
           <AdminMenuBar />
           <div className="page-title">
-            <h1 className="page-title-child">MedTech and Distribution Companies</h1>
+            <h1 className="page-title-child">Dealers & Distributors </h1>
           </div>
           <div className="filter-container">
             <label className="f-label" htmlFor="state-select">State:</label>
@@ -180,7 +180,7 @@ const DealerPortal = () => {
               </select>
             </div>
           <div className="page-display">
-            <h4 className="total-rows">Total MedTech-Companies = {totalRows}</h4>
+            <h4 className="total-rows">Total Dealers & Distributors  = {totalRows}</h4>
             <h4 className="right">
               <i>
                 Displaying Page {currentPage} of {totalPages}
@@ -215,6 +215,8 @@ const DealerPortal = () => {
                   <th>Role</th>
                   <th>Contact Email</th>
                   <th>Contact Number</th>
+                  <th>Added By</th>
+                  <th>Added On</th>
                   {/* <th>GST No.</th> */}
                   <th>Actions</th>
                 </tr>
@@ -234,6 +236,8 @@ const DealerPortal = () => {
                     <td>{dealer.role}</td>
                     <td>{dealer.mail}</td>
                     <td>{dealer.phone}</td>
+                    <td>{dealer.addedBy || "Admin"}</td>
+                    <td>{dealer.addedOnTime}</td>
                     {/* <td>{dealer.GST}</td> */}
                     <td>
                       <button className="edit-button" onClick={() => handleEditDealer(dealer)}>

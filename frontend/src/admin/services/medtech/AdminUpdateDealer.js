@@ -81,7 +81,7 @@ const EditDealerForm = ({ dealer, onUpdate, onCancel }) => {
 
   return (
     <div className="edit-form">
-      <h2>Edit MedTech Companies</h2>
+      <h2>Edit Dealers & Distributors </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name *</label>
