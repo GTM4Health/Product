@@ -178,7 +178,7 @@ useEffect(() => {
               </select>
             </div>
           <div className="page-display">
-            <h4 className="total-rows">Total MedTech-Companies = {totalRows}</h4>
+            <h4 className="total-rows">Total Dealers & Distributors = {totalRows}</h4>
             <h4 className="right">
               <i>
                 Displaying Page {currentPage} of {totalPages}
