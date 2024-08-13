@@ -42,7 +42,13 @@ const dealerSchema = new mongoose.Schema({
   },
   pincode: {
     type: String,
-  }
+  },
+  addedBy : {
+    type: String,
+  },
+  addedOnTime : {
+    type : String,
+  },
 });
 
 module.exports = mongoose.model('Dealer', dealerSchema);
