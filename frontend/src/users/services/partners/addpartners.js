@@ -51,6 +51,10 @@ const UserDealers = () => {
     }
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    user && setAddedBy(user.name);
+  })
+
   const fetchDealers = async () => {
     let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Dealers/dealers-portal?`;
   
