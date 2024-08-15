@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema({
     accessSales : {type: Boolean, default:false},
     formPrivilegesHC : {type: Boolean, default: false},
     formPrivilegesDD: {type: Boolean, default: false},
-    ciPriveleges: {type: Boolean, default: false},
+    ciPrivileges: {type: Boolean, default: false},
   },
   endDate: {
     type: String,

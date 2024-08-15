@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions";
 import Header2 from "../../../layout/users/Header2";
 import MenuBar from "../../../layout/users/MenuBar";
+//import { useNavigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
@@ -19,6 +20,7 @@ const UserViewCI = () => {
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedIntel, setSelectedIntel] = useState(null);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const UserViewCI = () => {
     } else if (user && !(user.ciPrivileges) && isAuthenticated) {
       navigate("/dashboard/Subscription");
     }
-  }, [isAuthenticated, currentPage,user]);
+  }, [isAuthenticated]);
 
   const fetchCompetitiveIntelligence = async () => {
     try {

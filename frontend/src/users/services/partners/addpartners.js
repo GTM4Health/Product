@@ -6,6 +6,7 @@ import Header2 from "../../../layout/users/Header2";
 import MenuBar from "../../../layout/users/MenuBar";
 
 import { stateOptions, getCityOptionsByState } from '../../../assets/cityOptions';
+import { useNavigate } from "react-router-dom";
 
 const UserDealers = () => {
   const [name, setName] = useState('');
@@ -28,6 +29,7 @@ const UserDealers = () => {
   const [dealers, setDealers] = useState([]);
   const [addedBy, setAddedBy] = useState('');
   const [addedOnTime, setAddedOnTime] = useState('');
+  const navigate = useNavigate();
 
   const handleStateChange = (e) => {
     setState(e.target.value);
