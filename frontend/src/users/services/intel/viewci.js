@@ -47,7 +47,7 @@ const UserViewCI = () => {
 
   const fetchCompetitiveIntelligence = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/competitive-intelligence`, {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/competitive-intelligence-user`, {
         params: {
           page: currentPage,
           limit: pageSize,
@@ -131,9 +131,7 @@ const UserViewCI = () => {
           <div className="page-title">
             <h1 className="page-title-child hdblue-tag">Competitive Intelligence Portal</h1>
           </div>
-          {/* Add your filter and display components here */}
           <div className="filter-container">
-            {/* Add filters as needed */}
           </div>
           <div className="page-display">
             <h4 className="total-rows ft5">Total Competitive Intelligence Records = {totalRows}</h4>

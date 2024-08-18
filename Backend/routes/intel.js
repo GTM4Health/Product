@@ -47,6 +47,8 @@ router.get('/competitive-intelligence', async (req, res) => {
   }
 });
 
+
+
 // Update competitive intelligence by ID
 router.put('/up-competitive-intelligence/update-intel/:id', async (req, res) => {
   try {
@@ -80,6 +82,30 @@ router.delete('/del-competitive-intelligence/delete-intel/:id', async (req, res)
     }
 
     res.json({ message: 'Competitive Intelligence deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+router.get('/competitive-intelligence-user', async (req, res) => {
+  try {
+    const { page = 1, limit = 10 } = req.query;
+    const skip = (page - 1) * limit;
+
+    const competitiveData = await Intel.find()
+      .sort({ name: 1 }) // 1 for ascending order, -1 for descending
+      .skip(skip)
+      .limit(parseInt(limit));
+
+    const totalRows = await Intel.countDocuments();
+    const totalPages = Math.ceil(totalRows / limit);
+
+    res.json({
+      competitiveData,
+      totalRows,
+      totalPages,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

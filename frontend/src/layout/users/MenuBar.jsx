@@ -100,7 +100,7 @@ const MenuBar = () => {
         ref={healthcareCentresMenuRef}
       >
         <i className="fas fa-chart-line menu-icon"></i>
-        <span className="menu-text">Market Access</span>
+        <span className="menu-text">Access Healthcare Centres</span>
         {isHealthcareCentresMenuOpen && (
           <div className="sub-menu healthcare-centres-menu">
             {/* <a href="/dashboard/View-Healthcare-Centres-All" className="sub-menu-item menu-link">
@@ -132,7 +132,7 @@ const MenuBar = () => {
         ref={medTechMenuRef}
       >
         <i className="fas fa-microscope menu-icon"></i>
-        <span className="menu-text">Access GTM Partners</span>
+        <span className="menu-text">Access Dealers & Distributors</span>
         {isMedTechMenuOpen && (
           <div className="sub-menu medtech-menu">
             <a href="/dashboard/Add-MedTech-Companies" className="sub-menu-item menu-link">
@@ -142,7 +142,7 @@ const MenuBar = () => {
             <a href="/dashboard/Access-GTM-Partners" className="sub-menu-item menu-link">
               <i className="fas fa-chart-line sub-menu-icon"></i>
               <span className="menu-text">
-                View Dealers & Distributors 
+                View Dealers & Distributors
               </span>
             </a>
           </div>
