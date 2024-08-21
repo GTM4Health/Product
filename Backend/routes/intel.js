@@ -87,14 +87,13 @@ router.delete('/del-competitive-intelligence/delete-intel/:id', async (req, res)
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 router.get('/competitive-intelligence-user', async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query;
     const skip = (page - 1) * limit;
 
     const competitiveData = await Intel.find()
-      .sort({ name: 1 }) // 1 for ascending order, -1 for descending
+      .sort({ domain: 1 }) // Sorting by "domain" in ascending order (1 for ascending, -1 for descending)
       .skip(skip)
       .limit(parseInt(limit));
 
@@ -111,6 +110,7 @@ router.get('/competitive-intelligence-user', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 
 
