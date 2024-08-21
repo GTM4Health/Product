@@ -129,7 +129,7 @@ const UserViewCI = () => {
         <div className="dashboard">
           <MenuBar />
           <div className="page-title">
-            <h1 className="page-title-child hdblue-tag">Competitive Intelligence Portal</h1>
+            <h1 className="page-title-child hdblue-tag">Competitive Intelligence</h1>
           </div>
           <div className="filter-container">
           </div>
