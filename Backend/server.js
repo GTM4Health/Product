@@ -59,6 +59,8 @@ const csrRouter = require('./routes/csr');
 const billRouter = require('./routes/bill');
 const salesRouter = require('./routes/sales');
 const mailRouter = require('./routes/email');
+const passwordResetRoute = require('./routes/password');
+
 
 // Use routes
 app.use('/api/signup', signupRouter);
@@ -77,6 +79,7 @@ app.use('/api/admin/dashboard', intelRouter);
 app.use('/api/admin/dashboard/Billings', billRouter);
 app.use('/api/admin/dashboard/Sales', salesRouter);
 app.use('/api/send-welcome-email', mailRouter);
+app.use('/api/password', passwordResetRoute);
 
 
 

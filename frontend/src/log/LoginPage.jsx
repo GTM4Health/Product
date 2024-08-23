@@ -130,6 +130,10 @@ const LoginPage = () => {
               />
             </div>
             <br />
+            <div className="forgot-password">
+                <a href="/reset-password">Forgot Password</a>
+            </div>
+
             <div className="subm-row">
               <button className="login-btn" type="submit">
                 Submit

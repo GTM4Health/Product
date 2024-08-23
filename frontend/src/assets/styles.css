@@ -1968,4 +1968,18 @@ td{
   
 }
 
+.forgot-password {
+  margin-bottom: 10px; /* Adjust spacing if needed */
+}
+
+.forgot-password a {
+  color: gray;
+  text-decoration: none; /* Remove underline */
+  font-size: 0.9rem; /* Adjust font size if needed */
+}
+
+.forgot-password a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
 /* You can customize these colors as desired */
