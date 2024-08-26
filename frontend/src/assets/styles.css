@@ -1982,4 +1982,17 @@ td{
   text-decoration: underline; /* Add underline on hover */
 }
 
+
+form.hospital-f .xform-group label {
+  width: 7rem; /* Adjust this value based on your label's width */
+  border: 2rem;
+  padding-left: 1.5rem;
+}
+
+form.hospital-f .xform-group input {
+  width: 18rem; /* Adjust this value based on your input's width */
+  margin-left: 0.5rem; /* Adjust this value to add spacing between label and input */
+}
+
+
 /* You can customize these colors as desired */

@@ -67,6 +67,7 @@ import AddedDashboard from '../admin/pages/AddedDash';
 import UserViewCI from '../users/services/intel/viewci';
 import UserDealers from '../users/services/partners/addpartners';
 import ResetPasswordPage from '../log/ResetPasswd';
+import ChangePassword from '../users/home/profile/changepd';
 
 
 //Entry Function into the Product
@@ -111,6 +112,7 @@ export default function App() {
         <Route path='/dashboard/form-healthcare' element = {<UserHospital />} />
         <Route path='/dashboard/added-healthcare-centres' element= {<SelectMarket />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/change-password" element={<ChangePassword />} />
         <Route path='/admin/dashboard/Save-Project' element={<AdminSaveProject />} />
         <Route path='/admin/dashboard/Add-Content' element={<AddContent />} />
         <Route path='/admin/dashboard/View-Content' element={<ViewContent />} />

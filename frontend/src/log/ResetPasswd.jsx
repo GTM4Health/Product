@@ -34,12 +34,16 @@ const ResetPasswordPage = () => {
     } catch (error) {
       console.error('Password reset failed', error);
       setMessage('Password reset failed. Please try again.');
+      setTimeout(() => {
+        navigate('/');
+      }, 1500); 
     }
   };
 
   return (
     <div className='page-view'>
       <HeaderIn />
+      <div className="signupPage">
       <div className="login-container">
         <h1 className="signup-title"> <span className='blue-t'>Reset</span> Password</h1>
         <form onSubmit={handleResetPassword}>
@@ -86,6 +90,7 @@ const ResetPasswordPage = () => {
           </div>
         </form>
         {message && <div className="popup message">{message}</div>}
+      </div>
       </div>
       <Footer />
     </div>
