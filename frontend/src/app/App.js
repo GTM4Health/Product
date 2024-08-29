@@ -68,6 +68,7 @@ import UserViewCI from '../users/services/intel/viewci';
 import UserDealers from '../users/services/partners/addpartners';
 import ResetPasswordPage from '../log/ResetPasswd';
 import ChangePassword from '../users/home/profile/changepd';
+import EditProfile from '../users/home/profile/userProfile';
 
 
 //Entry Function into the Product
@@ -105,6 +106,7 @@ export default function App() {
         <Route path="/settings" element={<SettingsPage />} />
         <Route path='/termsofuse' element={<Terms />} />
         <Route path='/privacypolicy' element={<Privacy />} />
+        <Route path='/my-profile' element={<EditProfile />} />
         <Route path="/dashboard/Market-Access" element={<MarketAccess />} />
         <Route path="/dashboard/Pan-India-Analysis" element={<PanIndia />} />
         <Route path='/dashboard/View-Healthcare-Centres-All' element={<MarketAccessAll />} />

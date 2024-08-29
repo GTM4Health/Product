@@ -21,7 +21,7 @@ const Settings = () => {
       </button>
       {isOpen && (
         <div className="settings-dropdown">
-          <button className="settings-option" onClick={() => handleOptionClick("/profile")}>Update Profile</button>
+          <button className="settings-option" onClick={() => handleOptionClick("/my-profile")}>Update Profile</button>
           <button className="settings-option" onClick={() => handleOptionClick("/account")}>Account Settings</button>
           <button className="settings-option" onClick={() => handleOptionClick("/privacy")}>Privacy Settings</button>
           <button className="settings-option" onClick={() => handleOptionClick("/change-password")}>Change Password</button>
