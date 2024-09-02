@@ -12,12 +12,14 @@ const MenuBar = () => {
   const [isSalesMenuOpen, setIsSalesMenuOpen] = useState(false);
   const [isCompetitiveIntelMenuOpen, setIsCompetitiveIntelMenuOpen] = useState(false);
   const [isMedTechMenuOpen, setIsMedTechMenuOpen] = useState(false);
+  const [isStartupsMenuOpen, setIsStartupsMenuOpen] = useState(false);
 
   const medTechMenuRef = useRef(null);
   const healthcareCentresMenuRef = useRef(null);
   const dashBoardMenuRef=useRef(null);
   const salesMenuRef = useRef(null);
   const competitiveIntelMenuRef = useRef(null);
+  const startupsMenuRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -37,6 +39,9 @@ const MenuBar = () => {
       }
       if (medTechMenuRef.current && !medTechMenuRef.current.contains(event.target)) {
         setIsMedTechMenuOpen(false);
+      }
+      if (startupsMenuRef.current && !startupsMenuRef.current.contains(event.target)) {
+        setIsStartupsMenuOpen(false);
       }
     };
 
@@ -70,6 +75,9 @@ const MenuBar = () => {
   const handleCompetitiveIntelMenuClick = () => {
     setIsCompetitiveIntelMenuOpen(!isCompetitiveIntelMenuOpen);
     // navigate('/admin/competitive-intelligence');
+  };
+  const handleStartupsMenuClick = () => {
+    setIsStartupsMenuOpen(!isStartupsMenuOpen);
   };
   return (
     <div className="adbar usrbar"> 
@@ -144,6 +152,28 @@ const MenuBar = () => {
               <span className="menu-text">
                 View Dealers & Distributors
               </span>
+            </a>
+          </div>
+        )}
+      </div>
+      <div
+        className={`menu-item ad-menu-item ${
+          isStartupsMenuOpen ? "active" : ""
+        }`}
+        onClick={handleStartupsMenuClick}
+        ref={startupsMenuRef}
+      >
+        <i className="fas fa-rocket menu-icon"></i>
+        <span className="menu-text">Access Startups</span>
+        {isStartupsMenuOpen && (
+          <div className="sub-menu startups-menu">
+            {/* <a href="/dashboard/Add-Startups" className="sub-menu-item menu-link">
+              <i className="fas fa-plus-circle sub-menu-icon"></i>
+              <span className="menu-text">Add Startup</span>
+            </a> */}
+            <a href="/dashboard/View-Startups" className="sub-menu-item menu-link">
+              <i className="fas fa-clipboard-list sub-menu-icon"></i>
+              <span className="menu-text">View Startups</span>
             </a>
           </div>
         )}
