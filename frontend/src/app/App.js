@@ -69,6 +69,7 @@ import UserDealers from '../users/services/partners/addpartners';
 import ResetPasswordPage from '../log/ResetPasswd';
 import ChangePassword from '../users/home/profile/changepd';
 import EditProfile from '../users/home/profile/userProfile';
+import ViewStartupPortal from '../users/services/startups/viewstartup';
 
 
 //Entry Function into the Product
@@ -113,6 +114,7 @@ export default function App() {
         <Route path='/dashboard/Market-Insights' element={<MarketInsights />} />
         <Route path='/dashboard/form-healthcare' element = {<UserHospital />} />
         <Route path='/dashboard/added-healthcare-centres' element= {<SelectMarket />} />
+        <Route path='/dashboard/View-Startups' element= {< ViewStartupPortal /> } />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path='/admin/dashboard/Save-Project' element={<AdminSaveProject />} />
