@@ -52,6 +52,7 @@ const userSchema = new mongoose.Schema({
     formPrivilegesHC : {type: Boolean, default: false},
     formPrivilegesDD: {type: Boolean, default: false},
     ciPrivileges: {type: Boolean, default: false},
+    startupPrivileges : {type: Boolean, default: false},
   },
   companyName: {
     type: String,
