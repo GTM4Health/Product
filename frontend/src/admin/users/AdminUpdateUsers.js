@@ -19,6 +19,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
     formPrivilegesHC : user.privileges.formPrivilegesHC || false,
     formPrivilegesDD : user.privileges.formPrivilegesDD || false,
     ciPrivileges : user.privileges.ciPrivileges || false,
+    startupPrivileges : user.privileges.startupPrivileges || false,
   });
 
   useEffect(() => {
@@ -37,6 +38,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
       formPrivilegesHC : user.privileges.formPrivilegesHC || false,
       formPrivilegesDD : user.privileges.formPrivilegesDD || false,
       ciPrivileges : user.privileges.ciPrivileges || false,
+      startupPrivileges : user.privileges.startupPrivileges || false,
     });
   }, [user]);
 
@@ -226,6 +228,20 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
                     <td>
                       <label>
                       Access Competitive Intelligence
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                              type="checkbox"
+                              checked={privileges.startupPrivileges}
+                              onChange={() => handlePrivilegeChange("startupPrivileges")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                      Access Startups
                       </label>
                     </td>
                   </tr>

@@ -139,13 +139,15 @@ const UserViewStartup = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (isAuthenticated && user) {
-  //     fetchStartups();
-  //   } else {
-  //     fetchStartups(); // Redirect to login if not authenticated
-  //   }
-  // }, [isAuthenticated, currentPage, pageSize, searchQuery, searchCriteria]);
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      if (!user.startupPrivileges) {
+        navigate("/dashboard/Subscription");
+      } else {
+        fetchStartups(); // Redirect to login if not authenticated
+      }
+    }
+  }, [isAuthenticated, currentPage, pageSize, searchQuery, searchCriteria]);
 
   
   useEffect(() => {
