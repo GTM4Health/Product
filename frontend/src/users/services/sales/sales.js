@@ -136,7 +136,7 @@ const SalesForm = () => {
                   placeholder="Healthcare Centre Name"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="email">Email:</label>
                 <input
                   type="email"
@@ -155,7 +155,7 @@ const SalesForm = () => {
                   onChange={(e) => setMobileNo(e.target.value)}
                   placeholder="Mobile No"
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="finalStatus">Status:</label>
                 <select

@@ -62,7 +62,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
             placeholder="Healthcare Centre Name"
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -81,7 +81,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
             onChange={(e) => setMobileNo(e.target.value)}
             placeholder="Mobile No"
           />
-        </div>
+        </div> */}
         {/* <div className="form-group">
           <label htmlFor="status">Status</label>
           <input
