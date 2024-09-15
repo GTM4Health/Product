@@ -18,7 +18,7 @@ const Footer = () => {
             <img src={imgP} alt="logoH" className="logo" />
           </div>
             <h1>&copy; 2024 GTM4Health</h1>
-            <h3>V1.5.7</h3>
+            <h3>V1.5.9</h3>
           </span>
           <div className="social-icons">
              <a href="https://www.facebook.com/gtm4health" target="_blank">
