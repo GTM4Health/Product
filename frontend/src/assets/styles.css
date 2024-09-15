@@ -1565,7 +1565,7 @@ form.hospital-f .hsubtn {
 
 .land3{
   height:50h;
-  width: 80vh;
+  width: 70vh;
 }
 
 .toolbar{
@@ -1994,5 +1994,10 @@ form.hospital-f .xform-group input {
   margin-left: 0.5rem; /* Adjust this value to add spacing between label and input */
 }
 
+.bxd{
+  border-width: 1rem;
+  border-color: #000;
+  border: 1px solid black;
+}
 
 /* You can customize these colors as desired */

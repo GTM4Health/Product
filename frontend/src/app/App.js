@@ -40,6 +40,7 @@ import AdminSettings from './../common/AdminSettings';
 import MarketInsights from '../users/services/marketinsights/MarketInsights';
 import LandingPage2 from '../users/home/LandingPage2';
 import HomePage from '../users/home/HomePage';
+import HomePage2 from '../users/home/HomePage2';
 import PanIndiaDash from '../admin/pages/PanIndiaDash';
 import CompetitiveIntelligence from '../admin/services/intel/AdminCompIntel';
 import AdminNotFoundPage from '../admin/services/logs/AdminAuditlogs';
@@ -78,6 +79,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home3 />} />
+        <Route path="/test" element={<Home4 />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -204,6 +206,16 @@ const Home3 = () => {
     <div className="landing-page">
       <div className="content">
         <HomePage />
+      </div>
+    </div>
+  );
+}
+
+const Home4 = () => {
+  return (
+    <div className="landing-page">
+      <div className="content">
+        <HomePage2 />
       </div>
     </div>
   );
