@@ -284,7 +284,7 @@ const UserViewStartup = () => {
               <option value="website">Website</option>
               <option value="productStage">Product Stage</option>
               <option value="domain">Domain</option>
-              <option value="progress">Progress</option>
+              <option value="progress">Founder</option>
             </select>
             <input
               id="search-input"

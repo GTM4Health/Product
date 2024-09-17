@@ -26,7 +26,7 @@ const Dashboard = () => {
     if (storedUser) {
       setUser(storedUser);
     }
-    console.log(user)
+    //console.log(user)
     // if(![user.privileges.accessDashboard]){
     //   return <Subscription />;
     // }
@@ -86,7 +86,8 @@ const Dashboard = () => {
   };
 
   const barChartData = {
-    labels: topCities.map(city => city._id.substring(0, 4)+"."),
+    //labels: topCities.map(city => city._id.substring(0, 4)+"."),
+    labels: topCities.map(city => city._id),
     datasets: [
       {
         label: 'Total Centres',
@@ -147,7 +148,7 @@ const Dashboard = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers/Karnataka/cities`
       );
-      const sortedCities = response.data.sort((a, b) => b.totalCenters - a.totalCenters).slice(0, 5);
+      const sortedCities = response.data.sort((a, b) => b.totalCenters - a.totalCenters).slice(0, 4);
       setTopCities(sortedCities);
     } catch (error) {
       console.error(error);
@@ -198,7 +199,7 @@ const Dashboard = () => {
                   {totalCSRs}                 
                 </td>
               </tr>
-              {console.log(user)}
+              {/* {console.log(user)} */}
               {/* <tr>
                 <td className="category-heading" colSpan="1">
                   Total MedTech-Companies
@@ -212,7 +213,7 @@ const Dashboard = () => {
               
             </table>
             <div className="top-cities-charts chart-box stats-table">
-              <h3>Top 5 Cities in Karnataka - Total Centres</h3>
+              <h3>Top 4 Cities  - Total Centres</h3>
               <Bar data={barChartData} />
             </div>
           </div>

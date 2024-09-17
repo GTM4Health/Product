@@ -424,7 +424,7 @@ const fetchStartups = async () => {
                   <th>Website</th>
                   <th>Product Stage</th>
                   <th>Domain</th>
-                  <th>Progress</th>
+                  <th>Founder</th>
                   <th>Actions</th>
                 </tr>
               </thead>

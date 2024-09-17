@@ -123,12 +123,12 @@ const StartupForm = () => {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="infraSer">Startup Progress :</label>
+                <label htmlFor="infraSer">Startup Founder :</label>
                 <textarea
                   id="infraSer"
                   value={progress}
                   onChange={(e) => setProgress(e.target.value)}
-                  placeholder="Startup Progress"
+                  placeholder="Startup Founder"
                   className="form-outline textarea"
                 ></textarea>
               </div>
