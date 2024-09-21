@@ -356,7 +356,9 @@ button:hover {
   margin-right: 2%; /* Add this line to create equal spacing between inputs *
 } */
 
-
+.page-jump{
+  margin : 15px;
+}
 
 .centrepage {
   display: flex;
@@ -1999,5 +2001,6 @@ form.hospital-f .xform-group input {
   border-color: #000;
   border: 1px solid black;
 }
+
 
 /* You can customize these colors as desired */

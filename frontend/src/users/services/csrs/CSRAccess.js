@@ -321,7 +321,7 @@ const ViewCSRPortal = () => {
           </div> 
 
           <div className="page-jump w10">
-            <label htmlFor="page-selector">Go to Page:</label>
+            <label htmlFor="page-selector goto">Go to Page:</label>
             <select
               id="page-selector"
               value={currentPage}

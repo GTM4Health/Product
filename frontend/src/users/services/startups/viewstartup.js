@@ -9,6 +9,7 @@ import { Button } from "bootstrap";
 import logo from "../../../images/newlogo.png";
 import { useNavigate } from "react-router-dom";
 
+
 // Styles for the PDF
 const styles = StyleSheet.create({
   page: {
@@ -253,26 +254,6 @@ const UserViewStartup = () => {
           <div className="page-title">
             <h1 className="page-title-child">Startups</h1>
           </div>
-          <div className="pagination-buttons">
-            {!isFirstPage && (
-              <button className="prev-button" onClick={handlePrevPage}>
-                &laquo; Prev
-              </button>
-            )}
-            {!isLastPage && (
-              <button className="next-button" onClick={handleNextPage}>
-                Next &raquo;
-              </button>
-            )}
-          </div>
-          <div className="page-display">
-            <h4 className="total-rows">Total Startups = {totalRows}</h4>
-            <h4 className="right">
-              <i>
-                Displaying Page {currentPage} of {totalPages}
-              </i>
-            </h4>
-          </div>
           <div className="search-container">
             <label htmlFor="search-criteria">Search :</label>
             <select
@@ -315,6 +296,26 @@ const UserViewStartup = () => {
                 ))}
               </select>
             </div>
+          <div className="page-display">
+            <h4 className="total-rows">Total Startups = {totalRows}</h4>
+            <h4 className="right">
+              <i>
+                Displaying Page {currentPage} of {totalPages}
+              </i>
+            </h4>
+          </div>
+          <div className="pagination-buttons">
+            {!isFirstPage && (
+              <button className="prev-button" onClick={handlePrevPage}>
+                &laquo; Prev
+              </button>
+            )}
+            {!isLastPage && (
+              <button className="next-button" onClick={handleNextPage}>
+                Next &raquo;
+              </button>
+            )}
+          </div>
           {showNoRecordsPopup && <NoRecordsPopup />}
           <div className="table-content">
             <table className="user-table">
@@ -325,7 +326,7 @@ const UserViewStartup = () => {
                   <th>Website</th>
                   <th>Product Stage</th>
                   <th>Domain</th>
-                  <th>Progress</th>
+                  <th>Founders</th>
                 </tr>
               </thead>
               <tbody>
@@ -341,6 +342,19 @@ const UserViewStartup = () => {
                 ))}
               </tbody>
             </table>
+            
+          </div>
+          <div className="pagination-buttons">
+            {!isFirstPage && (
+              <button className="prev-button" onClick={handlePrevPage}>
+                &laquo; Prev
+              </button>
+            )}
+            {!isLastPage && (
+              <button className="next-button" onClick={handleNextPage}>
+                Next &raquo;
+              </button>
+            )}
           </div>
           {/* <div className="pdf-button">
             {generatePDF()}
