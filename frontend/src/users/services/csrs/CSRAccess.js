@@ -20,6 +20,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 10,
   },
+  subHeader: { // Add a new style for the company name
+    fontSize: 12,
+    marginBottom: 10,
+    fontWeight: 'bold',
+  },
   table: {
     display: 'table',
     width: '100%',
@@ -48,6 +53,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#0077b6',
     color: 'white',
     fontSize: 10,
+  },
+    subHeader: { // Add a new style for the company name
+    fontSize: 12,
+    marginBottom: 10,
+    fontWeight: 'bold',
   },
   smallHeaderCell:{
     textAlign: 'center',
@@ -92,6 +102,7 @@ const MyDocument = ({ csrData }) => (
   <Document>
     <Page style={styles.page}>
       <Text style={styles.header}>CSR/Foundation List</Text>
+      <Text style={styles.subHeader}>{compName} | GTM4Health</Text> 
       <View style={styles.logoContainer}>
         <Image src={logo} style={styles.logo} />
       </View>
@@ -128,6 +139,7 @@ const ViewCSRPortal = () => {
   const [searchCriteria, setSearchCriteria] = useState("csrName");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const [compName, setCompanyName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
 
@@ -138,11 +150,20 @@ const ViewCSRPortal = () => {
         navigate("/dashboard/Subscription");
       } else {
         fetchCsrs();
+        fetchCompanyName(user.email);
       }
     }
   }, [isAuthenticated, user, currentPage, pageSize, searchQuery, navigate]);
 
-  
+  const fetchCompanyName = async (userEmail) => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/user/email/${userEmail}`);
+      const { companyName } = response.data;
+      setCompanyName(companyName || ''); // Set the company name
+    } catch (error) {
+      console.error('Failed to fetch company name', error);
+    }
+  };
   
 
   const handleSearchInputChange = (event) => {

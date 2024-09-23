@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
     marginTop: 110,
     textAlign: 'center',
   },
+  subHeader: { // Add a new style for the company name
+    fontSize: 20,
+    marginBottom: 15,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   smallHeader: {
     fontSize: 16,
     marginBottom: 20,
@@ -104,7 +110,7 @@ const styles = StyleSheet.create({
 //<Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
 //<Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
 
-const MyDocument = ({ hospitalData, State, City }) => {
+const MyDocument = ({ hospitalData, State, City, compName }) => {
   const rowsPerPage = 10; // Adjust the number of rows per page
   const totalPages = Math.ceil(hospitalData.length / rowsPerPage);
 
@@ -126,6 +132,7 @@ const MyDocument = ({ hospitalData, State, City }) => {
             <Image src={logo} style={styles.logo} />
           </View>
           <Text style={styles.header}>Healthcare Centre List</Text>
+          <Text style={styles.subHeader}>{compName} | GTM4Health</Text> 
           <View style={styles.gap} />
           <Text style={styles.smallHeader}>State: {State === 'all' ? 'All' : State} City: {City === 'all' ? 'All' : City}</Text>
 
@@ -163,6 +170,7 @@ const MarketAccess = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const [compName, setCompanyName] = useState('');
   const [allHospitals, setAllHospitals] = useState([]);
   const allHospitalData = allHospitals.map((hospital, index) => ({
     ...hospital,
@@ -171,6 +179,7 @@ const MarketAccess = () => {
   useEffect(() => {
     if (user && user.privileges && isAuthenticated) {
       fetchHospitals();
+      fetchCompanyName(user.email);
       fetchAllHospitals();
     } else if (user && !(user.privileges) && isAuthenticated) {
       navigate("/dashboard/Subscription");
@@ -185,6 +194,16 @@ const MarketAccess = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedState]);
+
+  const fetchCompanyName = async (userEmail) => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/user/email/${userEmail}`);
+      const { companyName } = response.data;
+      setCompanyName(companyName || ''); // Set the company name
+    } catch (error) {
+      console.error('Failed to fetch company name', error);
+    }
+  };
 
   const fetchHospitals = async () => {
     const params = new URLSearchParams();
@@ -365,7 +384,7 @@ const MarketAccess = () => {
                 Healthcare Centres List - City Wise
             </h1>
           </div>
-          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} State={selectedState} City={selectedCity} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
+          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} compName={compName} State={selectedState} City={selectedCity} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
       {({ blob, url, loading, error }) => {
         if (loading) {
           return 'Loading document...';
