@@ -384,7 +384,7 @@ const MarketAccess = () => {
                 Healthcare Centres List - City Wise
             </h1>
           </div>
-          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} compName={compName} State={selectedState} City={selectedCity} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
+          {/* <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} compName={compName} State={selectedState} City={selectedCity} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
       {({ blob, url, loading, error }) => {
         if (loading) {
           return 'Loading document...';
@@ -394,7 +394,7 @@ const MarketAccess = () => {
         }
         return 'Download PDF';
       }}
-    </PDFDownloadLink>
+    </PDFDownloadLink> */}
           {/* {console.log(user)} */}
           {/* Create a clickable link that redirects to an email */}
           <a href="mailto:info@gtm4health.com">

@@ -39,7 +39,16 @@ const dealerSchema = new mongoose.Schema({
   },
   GST: {
     type: String,
-  }
+  },
+  pincode: {
+    type: String,
+  },
+  addedBy : {
+    type: String,
+  },
+  addedOnTime : {
+    type : String,
+  },
 });
 
 module.exports = mongoose.model('Dealer', dealerSchema);

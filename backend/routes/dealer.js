@@ -7,8 +7,8 @@ const { query, validationResult } = require('express-validator');
 router.post('/', async (req, res) => {
   try {
     console.log('Dealer creation request received');
-    const { name, web, address, city, state, products, dealerName, role, mail, phone, GST } = req.body;
-    const dealer = new Dealer({ name, web, address, city, state, products, dealerName, role, mail, phone, GST });
+    const { name, web, address, city, state, products, dealerName, role, mail, phone, GST, pincode, addedBy, addedOnTime } = req.body;
+    const dealer = new Dealer({ name, web, address, city, state, products, dealerName, role, mail, phone, GST, pincode, addedBy, addedOnTime });
     const savedDealer = await dealer.save();
     res.status(201).json({ message: 'Dealer created successfully' });
   } catch (error) {

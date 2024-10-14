@@ -13,7 +13,13 @@ const app = express();
 const port = 5000;
 
 // Enable CORS
-app.use(cors());
+app.use(cors(
+  {
+    origin: ["https://gtmscale-product.vercel.app","https://www.gtmscale.in"],
+    methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
+    credentials: true, 
+  }
+));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false })); // Add this line
@@ -30,6 +36,10 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
+app.get("/",(req,res) => {
+  return res.send("Backend is accepting APIs now!");
+})
+
 // Import routes
 // Backend this component runs on port 5000
 // Front end this kind of component runs on port 3000
@@ -43,7 +53,14 @@ const dealerRouter = require('./routes/dealer');
 const productRouter = require('./routes/products');
 const startupRouter = require('./routes/startup');
 const projectRouter = require('./routes/project');
-const contentRouter = require('./routes/content')
+const contentRouter = require('./routes/content');
+const intelRouter = require ('./routes/intel');
+const csrRouter = require('./routes/csr');
+const billRouter = require('./routes/bill');
+const salesRouter = require('./routes/sales');
+const mailRouter = require('./routes/email');
+const passwordResetRoute = require('./routes/password');
+
 
 // Use routes
 app.use('/api/signup', signupRouter);
@@ -53,10 +70,16 @@ app.use('/api/admin/dashboard/Add-Hospital', hospitalRouter);
 app.use('/api/admin/dashboard/Dealers',dealerRouter);
 app.use('/api/admin/dashboard/Products', productRouter);
 app.use('/api/admin/dashboard/Startups',startupRouter);
+app.use('/api/admin/dashboard/CSR',csrRouter);
 app.use('/api/admin/dashboard/Projects',projectRouter);
 app.use('/api/users',userRouter);
 app.use('/api/hospital-portal',hospitalPortalRouter);
 app.use('/api/cont', contentRouter);
+app.use('/api/admin/dashboard', intelRouter);
+app.use('/api/admin/dashboard/Billings', billRouter);
+app.use('/api/admin/dashboard/Sales', salesRouter);
+app.use('/api/send-welcome-email', mailRouter);
+app.use('/api/password', passwordResetRoute);
 
 
 
@@ -64,3 +87,4 @@ app.use('/api/cont', contentRouter);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
