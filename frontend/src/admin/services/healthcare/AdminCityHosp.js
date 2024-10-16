@@ -732,6 +732,7 @@ const CityPortal = () => {
                 <tr>
                   <th>Sl No.</th>
                   <th>Name</th>
+                  <th>Contact Details</th>
                   <th>Infrastructure & Services</th>
                   <th>Category</th>
                   <th>State</th>
@@ -754,6 +755,7 @@ const CityPortal = () => {
                   <tr key={hospital._id}>
                     <td>{(currentPage - 1) * pageSize + index + 1}</td>
                     <td>{hospital.name}</td>
+                    <td>{hospital.details}</td>
                     <td>{hospital.infraSer}</td>
                     <td>{hospital.category}</td>
                     <td>{hospital.state}</td>

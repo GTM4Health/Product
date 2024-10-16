@@ -6,6 +6,7 @@ import Categories from "../../../assets/healthcareCategories.json";
 
 const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
   const [name, setName] = useState(hospital.name);
+  const [details, setDetails] = useState(hospital.details);
   const [city, setCity] = useState(hospital.city);
   const [docName, setDocName] = useState(hospital.docName);
   const [docSpez, setDocSpez] = useState(hospital.docSpez);
@@ -27,6 +28,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
 
   useEffect(() => {
     setName(hospital.name);
+    setDetails(hospital.details || "");
     setCity(hospital.city);
     setDocName(hospital.docName);
     setDocSpez(hospital.docSpez);
@@ -46,6 +48,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     e.preventDefault();
     const updatedData = {
       name,
+      details,
       city,
       docName,
       docSpez,
@@ -111,6 +114,17 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
             onChange={(e) => setName(e.target.value)}
             required
           />
+        </div>
+        <div className="form-group">
+                <label htmlFor="det">Centre Details* :</label>
+                <input
+                  type="text"
+                  id="det"
+                  value={details}
+                  onChange={(e) => setDetails(e.target.value)}
+                  placeholder="Healthcare Centre Details"
+                  className="form-outline"
+                />
         </div>
         <div className="form-group">
           <label htmlFor="state">State</label>

@@ -11,6 +11,7 @@ import specialitiesData from '../../../assets/specialities.json'; // Import the 
 
 const AdminHospital = () => {
   const [name, setName] = useState('');
+  const [details, setDetails] = useState('');
   const [state, setState] = useState('');
   const [infraSer, setInfraSer] = useState('');
   const [city, setCity] = useState('');
@@ -62,6 +63,7 @@ const AdminHospital = () => {
     try {
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Add-Hospital`, {
         name,
+        details,
         city,
         state,
         infraSer,
@@ -81,6 +83,7 @@ const AdminHospital = () => {
 
       setSearchQuery('');
       setName('');
+      setDetails('');
       setCity('');
       setInfraSer('');
       setState('');
@@ -250,6 +253,17 @@ const AdminHospital = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Healthcare Centre Name"
+                  className="form-outline"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="det">Centre Details* :</label>
+                <input
+                  type="text"
+                  id="det"
+                  value={details}
+                  onChange={(e) => setDetails(e.target.value)}
+                  placeholder="Healthcare Centre Details"
                   className="form-outline"
                 />
               </div>
