@@ -8,6 +8,9 @@ const hospitalSchema = new mongoose.Schema({
     type: String,
     required: true, // Name is mandatory
   },
+  details: {
+    type: String,
+  },
   city: {
     type: String,
     required: true, // City is mandatory
@@ -50,6 +53,9 @@ const hospitalSchema = new mongoose.Schema({
     type: String,
   },
   addedOnTime : {
+    type : String,
+  },
+  beds : {
     type : String,
   },
 });

@@ -87,7 +87,7 @@ router.get(
     }
 
     try {
-      const { page = 1, limit = 10, state, city, speciality, search, category, addedBy, startDate, endDate } = req.query;
+      const { page = 1, limit = 10, state, city, speciality, search, category, addedBy, startDate, endDate} = req.query;
 
       const conditions = {};
       if (state && state !== 'all') {

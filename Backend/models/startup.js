@@ -17,6 +17,9 @@ const startupSchema = new mongoose.Schema({
   progress: {
     type: String,
   },
+  work : {
+    type : String,
+  },
 });
 
 module.exports = mongoose.model('Startup', startupSchema);
