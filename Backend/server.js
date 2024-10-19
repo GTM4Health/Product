@@ -20,6 +20,15 @@ app.use(cors(
     credentials: true, 
   }
 ));
+
+// app.use(cors({
+//     origin: 'http://localhost:3000',
+//     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
+//     credentials: true,
+// }));
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false })); // Add this line
@@ -36,9 +45,10 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-app.get("/",(req,res) => {
-  return res.send("Backend is accepting APIs now!");
-})
+// app.get("/",(req,res) => {
+//   return res.send("Backend is accepting APIs now!");
+// })
+
 
 // Import routes
 // Backend this component runs on port 5000
@@ -60,6 +70,7 @@ const billRouter = require('./routes/bill');
 const salesRouter = require('./routes/sales');
 const mailRouter = require('./routes/email');
 const passwordResetRoute = require('./routes/password');
+
 
 
 // Use routes
