@@ -127,8 +127,20 @@ useEffect(() => {
   //   ],
   // };
 
+  // const barChartData = {
+  //   labels: topCities.map(city => city._id.substring(0, 4)+"."),
+  //   datasets: [
+  //     {
+  //       label: 'Total Centres',
+  //       data: topCities.map(city => city.totalCenters),
+  //       backgroundColor: ["#0077b6"],
+  //     },
+  //   ],
+  // };
+
   const barChartData = {
-    labels: topCities.map(city => city._id.substring(0, 4)+"."),
+    //labels: topCities.map(city => city._id.substring(0, 4)+"."),
+    labels: topCities.map(city => city._id),
     datasets: [
       {
         label: 'Total Centres',
@@ -184,12 +196,24 @@ useEffect(() => {
 
 
 
+  // const fetchTopCities = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers/Karnataka/cities`
+  //     );
+  //     const sortedCities = response.data.sort((a, b) => b.totalCenters - a.totalCenters).slice(0, 5);
+  //     setTopCities(sortedCities);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   const fetchTopCities = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers/Karnataka/cities`
       );
-      const sortedCities = response.data.sort((a, b) => b.totalCenters - a.totalCenters).slice(0, 5);
+      const sortedCities = response.data.sort((a, b) => b.totalCenters - a.totalCenters).slice(0, 4);
       setTopCities(sortedCities);
     } catch (error) {
       console.error(error);
@@ -299,13 +323,15 @@ const pieChartData = {
                   <Pie data={chartData} />
                 </div>
               )} */}
-              <div className="top-cities-charts chart-box stats-table">
+              {/* <div className="top-cities-charts chart-box stats-table">
               <h3>Top 5 Cities in Karnataka - Total Centres</h3>
               <Bar data={barChartData} />
               {/* <div className="pie-chart-container">
               <Pie data={citiesChartData} options={pieChartOptions}/>
               </div> */}
-              
+            <div className="top-cities-charts chart-box stats-table">
+              <h3>Top 4 Cities  - Total Centres</h3>
+              <Bar data={barChartData} />
             </div>
             </div>
               {/* <div className="top-cities-charts">

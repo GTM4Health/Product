@@ -13,6 +13,7 @@ const StartupForm = () => {
   const [domain, setDomain] = useState("");
   const [progress, setProgress] = useState("");
   const [startupStatus, setStartupStatus] = useState(null);
+  const [work, setWork] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,12 +24,14 @@ const StartupForm = () => {
         productStage,
         domain,
         progress,
+        work,
       });
       setStartupName("");
       setWebsite("");
       setProductStage("");
       setDomain("");
       setProgress("");
+      setWork("");
       setStartupStatus("success");
 
       // Clear the success message after 2 seconds
@@ -129,6 +132,16 @@ const StartupForm = () => {
                   value={progress}
                   onChange={(e) => setProgress(e.target.value)}
                   placeholder="Startup Founder"
+                  className="form-outline textarea"
+                ></textarea>
+              </div>
+              <div className="form-group">
+                <label htmlFor="infraSer">Progress :</label>
+                <textarea
+                  id="infraSer"
+                  value={work}
+                  onChange={(e) => setWork(e.target.value)}
+                  placeholder="Progress"
                   className="form-outline textarea"
                 ></textarea>
               </div>

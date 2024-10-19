@@ -383,7 +383,7 @@ const fetchStartups = async () => {
               <option value="website">Website</option>
               <option value="productStage">Product Stage</option>
               <option value="domain">Domain</option>
-              <option value="progress">Progress</option>
+              <option value="progress">Founders</option>
             </select>
             <input
               id="search-input"
@@ -425,6 +425,7 @@ const fetchStartups = async () => {
                   <th>Product Stage</th>
                   <th>Domain</th>
                   <th>Founder</th>
+                  <th>Progress</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -437,6 +438,7 @@ const fetchStartups = async () => {
                     <td>{startup.productStage}</td>
                     <td>{startup.domain}</td>
                     <td>{startup.progress}</td>
+                    <td>{startup.work}</td>
                     <td>
                       <button className="edit-button" onClick={() => handleEditStartup(startup)}>
                         <i className="fas fa-pencil-alt"></i>

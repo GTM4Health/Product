@@ -28,6 +28,7 @@ const AdminHospital = () => {
   const [hospitalNames, setHospitalNames] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [addedOnTime, setAddedOnTime] = useState('');
+  const [beds, setBeds] = useState('');
   
 
   useEffect(() => {
@@ -77,6 +78,7 @@ const AdminHospital = () => {
         address,
         category,
         searchQuery,
+        beds,
         hospitalNames,
         addedOnTime: `${formattedDate},${formattedTime} ` // Send Added On Time with the form data
       });
@@ -98,6 +100,7 @@ const AdminHospital = () => {
       setAddress('');
       setCategory('');
       setHospitalNames([]);
+      setBeds("[]")
       setAddedOnTime(''); // Clear Added On Time state
       // Clear the success message after 2 seconds
       setTimeout(() => {
@@ -257,13 +260,24 @@ const AdminHospital = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="det">Centre Details* :</label>
+                <label htmlFor="det">Centre Details :</label>
                 <input
                   type="text"
                   id="det"
                   value={details}
                   onChange={(e) => setDetails(e.target.value)}
                   placeholder="Healthcare Centre Details"
+                  className="form-outline"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="det"># of Beds :</label>
+                <input
+                  type="text"
+                  id="det"
+                  value={beds}
+                  onChange={(e) => setBeds(e.target.value)}
+                  placeholder="Beds"
                   className="form-outline"
                 />
               </div>

@@ -20,6 +20,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
   const [pincode, setPincode] = useState(hospital.pincode);
   const [category, setCategory] = useState(hospital.category);
   const [addedBy, setAddedBy] = useState(hospital.addedBy || "Admin");
+  const [beds, setBeds] = useState(hospital.beds || "");
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -42,6 +43,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     setAddress(hospital.address || "");
     setCategory(hospital.category || "");
     setAddedBy(hospital.addedBy || "Admin");
+    setBeds(hospital.beds || "");
   }, [hospital]);
 
   const handleSubmit = (e) => {
@@ -60,6 +62,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
       lastConnected,
       pincode,
       address,
+      beds,
       category
     };
     onUpdate(hospital._id, updatedData);
@@ -193,6 +196,17 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
             placeholder="Infrastructure & Services"
             className="textarea"
           ></textarea>
+        </div>
+        <div className="form-group">
+                <label htmlFor="det"># of Beds :</label>
+                <input
+                  type="text"
+                  id="det"
+                  value={beds}
+                  onChange={(e) => setBeds(e.target.value)}
+                  placeholder="Beds"
+                  className="form-outline"
+                />
         </div>
         <div className="form-group">
           <label htmlFor="docName">Contact Name</label>

@@ -7,7 +7,7 @@ const { query, validationResult } = require('express-validator');
 router.post('/', async (req, res) => {
   try {
     console.log('Startup creation request received');
-    const { startupName, website, productStage, domain, progress } = req.body;
+    const { startupName, website, productStage, domain, progress, work } = req.body;
 
     const startup = new Startup({
       startupName,
@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
       productStage,
       domain,
       progress,
+      work,
     });
     const savedStartup = await startup.save();
     res.status(201).json({ message: 'Startup created successfully' });

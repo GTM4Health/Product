@@ -734,6 +734,7 @@ const CityPortal = () => {
                   <th>Name</th>
                   <th>Contact Details</th>
                   <th>Infrastructure & Services</th>
+                  <th># of Beds</th>
                   <th>Category</th>
                   <th>State</th>
                   <th>City</th>
@@ -757,6 +758,7 @@ const CityPortal = () => {
                     <td>{hospital.name}</td>
                     <td>{hospital.details}</td>
                     <td>{hospital.infraSer}</td>
+                    <td>{hospital.beds}</td>
                     <td>{hospital.category}</td>
                     <td>{hospital.state}</td>
                     <td>{hospital.city}</td>

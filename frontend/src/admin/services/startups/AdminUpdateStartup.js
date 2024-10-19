@@ -8,13 +8,15 @@ const EditStartupForm = ({ startup, onUpdate, onCancel }) => {
   const [productStage, setProductStage] = useState(startup.productStage);
   const [domain, setDomain] = useState(startup.domain);
   const [progress, setProgress] = useState(startup.progress);
+  const [work, setWork] = useState(startup.work);
 
   useEffect(() => {
     setStartupName(startup.startupName);
     setWebsite(startup.website);
     setProductStage(startup.productStage);
     setDomain(startup.domain);
-    setProgress(startup.progress)
+    setProgress(startup.progress);
+    setWork(startup.work);
   }, [startup]);
 
   const handleSubmit = (e) => {
@@ -25,6 +27,7 @@ const EditStartupForm = ({ startup, onUpdate, onCancel }) => {
       productStage,
       domain,
       progress,
+      work,
     };
     onUpdate(startup._id, updatedData);
   };
@@ -91,6 +94,16 @@ const EditStartupForm = ({ startup, onUpdate, onCancel }) => {
                   value={progress}
                   onChange={(e) => setProgress(e.target.value)}
                   placeholder="Startup Founder"
+                  className="form-outline textarea"
+                ></textarea>
+        </div>
+        <div className="form-group">
+                <label htmlFor="infraSer">Progress :</label>
+                <textarea
+                  id="infraSer"
+                  value={work}
+                  onChange={(e) => setWork(e.target.value)}
+                  placeholder="Progress"
                   className="form-outline textarea"
                 ></textarea>
         </div>
