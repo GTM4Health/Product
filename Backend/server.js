@@ -49,6 +49,9 @@ db.once('open', () => {
 //   return res.send("Backend is accepting APIs now!");
 // })
 
+app.get("/",(req,res) => {
+  return res.send("Backend is accepting APIs now!");
+})
 
 // Import routes
 // Backend this component runs on port 5000
