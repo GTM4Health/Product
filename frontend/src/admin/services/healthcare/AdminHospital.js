@@ -100,7 +100,7 @@ const AdminHospital = () => {
       setAddress('');
       setCategory('');
       setHospitalNames([]);
-      setBeds("[]")
+      setBeds("")
       setAddedOnTime(''); // Clear Added On Time state
       // Clear the success message after 2 seconds
       setTimeout(() => {
