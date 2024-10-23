@@ -281,6 +281,7 @@ export const stateOptions  = [
       label: 'Maharashtra',
       cities: [
         { value: 'Mumbai', label: 'Mumbai' },
+        { value: 'Kolhapur', label: 'Kolhapur' },
         { value: 'Pune', label: 'Pune' },
         { value: 'Nagpur', label: 'Nagpur' },
         { value: 'Thane', label: 'Thane' },
