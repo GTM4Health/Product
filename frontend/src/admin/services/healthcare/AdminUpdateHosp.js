@@ -63,7 +63,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
       pincode,
       address,
       beds,
-      category
+      category,
     };
     onUpdate(hospital._id, updatedData);
   };
@@ -106,7 +106,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
 
   return (
     <div className="edit-form">
-      <h2>Edit Hospital</h2>
+      <h2>Edit Healthcare Centre</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
@@ -126,7 +126,6 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
                   value={details}
                   onChange={(e) => setDetails(e.target.value)}
                   placeholder="Healthcare Centre Details"
-                  className="form-outline"
                 />
         </div>
         <div className="form-group">
@@ -153,12 +152,11 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
           </select>
         </div>
         <div className="form-group">
-            <label className='f-label' htmlFor="speciality">Categories :</label>
+            <label htmlFor="category">Categories :</label>
             <select
               id="category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="form-outline f-select wd50"
             >
               <option value="" disabled hidden>
                 Select Category

@@ -132,7 +132,8 @@ const MyDocument = ({ hospitalData, State, City }) => {
           </View>
           <Text style={styles.header}>Healthcare Centre List</Text>
           <View style={styles.gap} />
-          <Text style={styles.smallHeader}>State: {State === 'all' ? 'All' : State} City: {City === 'all' ? 'All' : City}</Text>
+          <Text style={styles.smallHeader}> State: {State === 'all' ? 'All' : State}</Text>
+          <Text style={styles.smallHeader}> City: {City === 'all' ? 'All' : City}</Text>
 
           <View style={styles.table}>
             <View style={styles.tableRow}>
@@ -321,21 +322,20 @@ const CityPortal = () => {
 
 
 
-
   useEffect(() => {
     if (isAuthenticated) {
+      setAddedBy("Admin");
       fetchHospitals();
       fetchAllHospitals();
     }
   }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery, selectedCategory, addedBy]);
   
+
   useEffect(() => {
     setDisplayedHospital(hospitals); // Update displayed hospitals when hospitals change
   }, [hospitals]);
 
-  useEffect (() => {
-    setAddedBy("Admin");
-  })
+
 
   useEffect(() => {
     setCurrentPage(1);
@@ -460,7 +460,9 @@ const CityPortal = () => {
     if (!isFirstPage) {
       setCurrentPage(currentPage - 1);
       window.scrollTo(0, 0);
-      fetchHospitals();
+      // setTimeout( () =>
+      //   fetchHospitals(),
+      //   1000);
     }
   };
   
@@ -468,7 +470,9 @@ const CityPortal = () => {
     if (!isLastPage) {
       setCurrentPage(currentPage + 1);
       window.scrollTo(0, 0);
-      fetchHospitals();
+        //     setTimeout( () =>
+        // fetchHospitals(),
+        // 1000);
     }
   };
   

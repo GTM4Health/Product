@@ -108,7 +108,7 @@ const SalesForm = () => {
             {renderSalesStatusMessage()}
             <form onSubmit={handleSubmit} className="sales-form hospital-f">
               <div className="form-group">
-                <label htmlFor="leadName">Lead Name:</label>
+                <label htmlFor="leadName">Lead Name* :</label>
                 <input
                   type="text"
                   id="leadName"
@@ -118,7 +118,7 @@ const SalesForm = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="reportDate">Report Date:</label>
+                <label htmlFor="reportDate">Report Date* :</label>
                 <input
                   type="date"
                   id="reportDate"

@@ -281,9 +281,12 @@ export const stateOptions  = [
       label: 'Maharashtra',
       cities: [
         { value: 'Mumbai', label: 'Mumbai' },
+        { value: 'Kolhapur', label: 'Kolhapur' },
+        { value: 'Satara', label: 'Satara' },
         { value: 'Pune', label: 'Pune' },
         { value: 'Nagpur', label: 'Nagpur' },
         { value: 'Thane', label: 'Thane' },
+        { value: 'Navi Mumbai', label: 'Navi Mumbai' },
         { value: 'Nashik', label: 'Nashik' },
         { value: 'Kalyan-Dombivli', label: 'Kalyan-Dombivli' },
         { value: 'Vasai-Virar', label: 'Vasai-Virar' },

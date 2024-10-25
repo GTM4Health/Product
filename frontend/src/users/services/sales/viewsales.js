@@ -23,13 +23,19 @@ const styles = StyleSheet.create({
     marginTop: 110,
     textAlign: 'center',
   },
+  smallHeader: {
+    fontSize: 12,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
   table: {
     display: 'table',
     width: '100%',
     borderStyle: 'solid',
     borderWidth: 1,
-    borderColor: 'black',
-    marginTop: 40,
+    borderRightColor: 'black',
+    borderBottomColor: 'black',
+    marginTop: 40, // Add margin to create a gap
   },
   tableRow: {
     flexDirection: 'row',
@@ -40,9 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 4,
     textAlign: 'center',
-    fontSize: 16,
-    borderRightWidth: 1,
-    borderRightColor: 'black',
+    fontSize: 12,
   },
   headerCell: {
     flex: 1,
@@ -52,35 +56,48 @@ const styles = StyleSheet.create({
     backgroundColor: '#0077b6',
     color: 'white',
     fontSize: 16,
-    borderRightWidth: 1,
-    borderRightColor: 'black',
+    textAlign: 'center',
   },
-  logoContainer: {
-    position: 'absolute',
-    top: 30,
-    right: 30,
+  subHeader: { // Add a new style for the company name
+    fontSize: 20,
+    marginBottom: 15,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   smallHeaderCell: {
     textAlign: 'center',
     fontWeight: 'bold',
     backgroundColor: '#0077b6',
     color: 'white',
-    fontSize: 14,
-    width: 50,
-    borderRightWidth: 1,
-    borderRightColor: 'black',
+    fontSize: 10,
+    width: 30,
   },
   smallCell: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 14,
-    padding: 8,
-    width: 50,
-    borderRightWidth: 1,
-    borderRightColor: 'black',
+    fontSize: 10,
+    padding: 6,
+    width: 30,
+  },
+  borderRight: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 12,
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  logoContainer: {
+    position: 'absolute',
+    top: 30, // Adjust the top value to create space between the logo and the table
+    right: 30,
   },
   gap: {
-    height: 40,
+    height: 40, // Adjust the height to create a gap below the logo
+  },
+  section: {
+    margin: 4,
+    padding: 2,
+    flexGrow: 1,
   },
   logo: {
     width: 200,
@@ -124,7 +141,7 @@ const styles = StyleSheet.create({
 //     </Page>
 //   </Document>
 // );
-const SalesDocument = ({ salesData }) => {
+const SalesDocument = ({ salesData , compName}) => {
   const rowsPerPage = 10; // Adjust the number of rows per page
   const totalPages = Math.ceil(salesData.length / rowsPerPage);
 
@@ -149,6 +166,7 @@ const SalesDocument = ({ salesData }) => {
             <Image src={logo} style={styles.logo} />
           </View>
           <Text style={styles.header}>Sales Progress Tracker</Text>
+          <Text style={styles.subHeader}>{compName || "Company Name"} | GTM4Health</Text> 
           <View style={styles.gap} />
           <View style={styles.table}>
             <View style={styles.tableRow}>
@@ -187,6 +205,7 @@ const ViewSales = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [compName, setCompanyName] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -198,14 +217,15 @@ const ViewSales = () => {
   }, []);
 
   useEffect(() => {
-    console.log('Auth status:', isAuthenticated);
-    console.log('User object:', user);
+    // console.log('Auth status:', isAuthenticated);
+    // console.log('User object:', user);
     if (user !== null && isAuthenticated !== null) {
       setIsLoading(false);
       if (isAuthenticated) {
         if (user.salesPrivileges) {
           console.log('Fetching sales data...');
           fetchSalesData();
+          fetchCompanyName(user.email);
           fetchAllSalesData();
         } else {
           console.log('User does not have sales privileges. Redirecting to Subscription.');
@@ -239,6 +259,18 @@ const ViewSales = () => {
       console.error('Error fetching sales data:', error);
     }
   };
+
+  const fetchCompanyName = async (userEmail) => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/user/email/${userEmail}`);
+      const { companyName } = response.data;
+      setCompanyName(companyName || ''); // Set the company name
+    } catch (error) {
+      console.error('Failed to fetch company name', error);
+    }
+  };
+
+
   const fetchAllSalesData = async () => {
     try {
       const response = await axios.get(
@@ -388,7 +420,7 @@ const ViewSales = () => {
           <div className="download-pdf">
                   <PDFDownloadLink
                     className="clear-btn"
-                    document={<SalesDocument salesData={salesData} />}
+                    document={<SalesDocument salesData={salesData} compName={compName} />}
                     fileName="GTMScale_SalesTracker_2024.pdf"
                   >
                     {({ loading }) =>
