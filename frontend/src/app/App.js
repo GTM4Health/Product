@@ -71,6 +71,7 @@ import ResetPasswordPage from '../log/ResetPasswd';
 import ChangePassword from '../users/home/profile/changepd';
 import EditProfile from '../users/home/profile/userProfile';
 import ViewStartupPortal from '../users/services/startups/viewstartup';
+import CategoriesDashboard from '../admin/pages/CatDash';
 
 
 //Entry Function into the Product
@@ -144,7 +145,7 @@ export default function App() {
         <Route path='/admin/dashboard/Admin-Bill' element = {<AdminBill />} />
         <Route path='/dashboard/View-Sales-Progress' element = {<ViewSales />}  /> 
         <Route path='/admin/academy' element = {<AdNotFoundPage />}  /> 
-       
+       <Route path='/admin/dashboard/Healthcare-Dashboard' element = {<CategoriesDashboard />}  />
       </Routes>
     </Router>
   );

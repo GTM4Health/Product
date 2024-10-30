@@ -166,6 +166,12 @@ const AdminMenuBar = () => {
               </a>
             </div>
             <div className="og-tag">
+              <a href="/admin/dashboard/Healthcare-Dashboard" className="sub-menu-item menu-link">
+                <i className="fas fa-plus-circle sub-menu-icon"></i>
+                <span className="menu-text">Healthcare Categories Dashboard</span>
+              </a>
+            </div>
+            <div className="og-tag">
               <a href="/admin/dashboard/added-hc-dashboard" className="sub-menu-item menu-link">
                 <i className="fas fa-map-marked-alt sub-menu-icon"></i>
                 <span className="menu-text">Added Healthcare Centres Dashboard</span>

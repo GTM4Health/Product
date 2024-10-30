@@ -389,6 +389,38 @@ router.get('/added-dashboard', async (req, res) => {
   }
 });
 
+// GET /api/hospitals/categories - Get categories with centers > 10
+router.get('/categories', async (req, res) => {
+  try {
+    // Aggregate categories and count total centers for each
+    const categories = await Hospital.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          totalCenters: { $sum: 1 }
+        }
+      },
+      {
+        $match: {
+          totalCenters: { $gt: 10 } 
+        }
+      },
+      {
+        $project: {
+          name: "$_id",
+          totalCenters: 1
+        }
+      }
+    ]);
+
+    res.json(categories);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving categories" });
+  }
+});
+
+
 
 
 

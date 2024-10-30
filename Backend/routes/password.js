@@ -8,7 +8,7 @@ router.post('/change', async (req, res) => {
   try {
     const { email, currentPassword, newPassword } = req.body;
 
-    // Find the user by email 
+    // Find the user by email
     const user = await User.findOne({ email });
 
     if (!user) {
