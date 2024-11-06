@@ -404,6 +404,11 @@ router.get('/categories', async (req, res) => {
         $match: {
           totalCenters: { $gt: 10 } 
         }
+      },      
+      {
+        $sort: {
+          _id: 1 
+        }
       },
       {
         $project: {
