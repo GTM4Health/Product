@@ -271,7 +271,7 @@ const UserHospital = () => {
                   />
                 </div>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="search">Search Hospital:</label>
                 <input
                   type="text"
@@ -303,7 +303,7 @@ const UserHospital = () => {
 
               )}
               </div>
-                              {/* Dropdown Menu */}
+                              Dropdown Menu */}
               <div className="form-group">
                 <label htmlFor="name">Centre Name* :</label>
                 <input
