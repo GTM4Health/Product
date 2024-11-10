@@ -20,6 +20,7 @@ function AdminDashboard() {
   const [totalPages, setTotalPages] = useState(0);
   const [selectedUser, setSelectedUser] = useState(null);
   const [editFormVisible, setEditFormVisible] = useState(false);
+  const [selectedCriteria, setSelectedCriteria] = useState("");
 
   const myPieChartRef = useRef(); // Use a ref for Chart.js instance
 
@@ -27,14 +28,14 @@ function AdminDashboard() {
     if (isAuthenticated) {
       fetchUsers();
     }
-  }, [isAuthenticated, currentPage, pageSize]);
+  }, [isAuthenticated, currentPage, pageSize, selectedCriteria]);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetchHospitals();
-      fetchDealers();
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     fetchHospitals();
+  //     fetchDealers();
+  //   }
+  // }, [isAuthenticated,selectedCriteria, selectedSortOrder]);
 
   // useEffect(() => {
   //   if (myPieChartRef.current) {
@@ -50,11 +51,27 @@ function AdminDashboard() {
   //   myPieChartRef.current = myPieChart; // Store the reference in the ref
   // }, [currentPage, pageSize]);
 
+  // const fetchUsers = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${process.env.REACT_APP_BASE_URL}/api/users?page=${currentPage}&limit=${pageSize}`
+  //     );
+  //     setUsers(response.data.users);
+  //     setTotalUsers(response.data.totalRows);
+  //     setTotalRows(response.data.totalRows);
+  //     setTotalPages(response.data.totalPages);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/users?page=${currentPage}&limit=${pageSize}`
-      );
+      let url = `${process.env.REACT_APP_BASE_URL}/api/users?page=${currentPage}&limit=${pageSize}`;
+      if (selectedCriteria) {
+        url += `&criteria=${selectedCriteria}&sort=desc`;
+      }
+      const response = await axios.get(url);
       setUsers(response.data.users);
       setTotalUsers(response.data.totalRows);
       setTotalRows(response.data.totalRows);
@@ -154,6 +171,13 @@ function AdminDashboard() {
     }
   };
 
+
+
+  const handleCriteriaChange = (event) => {
+    setSelectedCriteria(event.target.value);
+  };
+
+
   
 
   return (
@@ -185,6 +209,14 @@ function AdminDashboard() {
                     {index + 1}
                   </option>
                 ))}
+              </select>
+        </div>
+        <div className="page-jump f-select">
+              <label htmlFor="page-sel" className="f-label">Criteria:</label>
+              <select id ="page-sel" className="f-select" value={selectedCriteria} onChange={handleCriteriaChange}>
+                <option value="" disabled>Default</option>
+                <option value="mostRecent">Most Recent Users</option>
+                <option value="topUsers">Top Users</option>
               </select>
         </div>
         <div className="pagination-buttons">

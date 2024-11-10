@@ -29,6 +29,7 @@ const AdminHospital = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [addedOnTime, setAddedOnTime] = useState('');
   const [beds, setBeds] = useState('');
+  const [certification, setCertification] = useState('');
   
 
   useEffect(() => {
@@ -80,6 +81,7 @@ const AdminHospital = () => {
         searchQuery,
         beds,
         hospitalNames,
+        certification,
         addedOnTime: `${formattedDate},${formattedTime} ` // Send Added On Time with the form data
       });
 
@@ -100,7 +102,8 @@ const AdminHospital = () => {
       setAddress('');
       setCategory('');
       setHospitalNames([]);
-      setBeds("")
+      setBeds("");
+      setCertification("");
       setAddedOnTime(''); // Clear Added On Time state
       // Clear the success message after 2 seconds
       setTimeout(() => {
@@ -280,6 +283,20 @@ const AdminHospital = () => {
                   placeholder="Beds"
                   className="form-outline"
                 />
+              </div>
+              <div className="form-group">
+                <label htmlFor="certification">Certifications:</label>
+                <select
+                  id="certification"
+                  value={certification}
+                  onChange={(e) => setCertification(e.target.value)}
+                  className="form-outline"
+                >
+                  <option value="" disabled hidden>Select Certification</option>
+                  <option value="NABH">NABH</option>
+                  <option value="NABL">NABL</option>
+                  <option value="JCI">JCI</option>
+                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="infraSer">Infrastructure & Services :</label>

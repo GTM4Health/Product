@@ -58,6 +58,9 @@ const hospitalSchema = new mongoose.Schema({
   beds : {
     type : String,
   },
+  certification : {
+    type : String,
+  }
 });
 
 module.exports = mongoose.model('Hospital', hospitalSchema);
