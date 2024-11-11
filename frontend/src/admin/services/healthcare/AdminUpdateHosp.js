@@ -21,6 +21,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
   const [category, setCategory] = useState(hospital.category);
   const [addedBy, setAddedBy] = useState(hospital.addedBy || "Admin");
   const [beds, setBeds] = useState(hospital.beds || "");
+  const [certification, setCertification] = useState('');
 
   const handleStateChange = (e) => {
     setState(e.target.value);
@@ -44,6 +45,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     setCategory(hospital.category || "");
     setAddedBy(hospital.addedBy || "Admin");
     setBeds(hospital.beds || "");
+    setCertification(hospital.certification || "");
   }, [hospital]);
 
   const handleSubmit = (e) => {
@@ -64,6 +66,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
       address,
       beds,
       category,
+      certification,
     };
     onUpdate(hospital._id, updatedData);
   };
@@ -205,6 +208,20 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
                   placeholder="Beds"
                   className="form-outline"
                 />
+        </div>
+        <div className="form-group">
+                <label htmlFor="certification">Certifications:</label>
+                <select
+                  id="certification"
+                  value={certification}
+                  onChange={(e) => setCertification(e.target.value)}
+                  className="form-outline"
+                >
+                  <option value="" disabled hidden>Select Certification</option>
+                  <option value="NABH">NABH</option>
+                  <option value="NABL">NABL</option>
+                  <option value="JCI">JCI</option>
+                </select>
         </div>
         <div className="form-group">
           <label htmlFor="docName">Contact Name</label>
