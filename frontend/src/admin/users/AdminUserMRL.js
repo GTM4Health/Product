@@ -10,7 +10,7 @@ import CompetitiveIntelligence from './../services/intel/AdminCompIntel';
 const moment = require('moment');
 
 
-function AdminDashboard() {
+function AdminDashboardMost() {
   const isAuthenticated = useAuth();
   const [users, setUsers] = useState([]);
   const [totalUsers, setTotalUsers] = useState(0);
@@ -30,71 +30,16 @@ function AdminDashboard() {
     }
   }, [isAuthenticated, currentPage, pageSize, selectedCriteria]);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     fetchHospitals();
-  //     fetchDealers();
-  //   }
-  // }, [isAuthenticated,selectedCriteria, selectedSortOrder]);
 
-  // useEffect(() => {
-  //   if (myPieChartRef.current) {
-  //     myPieChartRef.current.destroy(); // Destroy the previous chart if it exists
-  //   }
-
-  //   // Create a new chart
-  //   const ctx = document.getElementById("myPieChart").getContext("2d");
-  //   const myPieChart = new Chart(ctx, {
-  //     type: "pie",
-  //     data: pieChartData,
-  //   });
-  //   myPieChartRef.current = myPieChart; // Store the reference in the ref
-  // }, [currentPage, pageSize]);
-
-  // const fetchUsers = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${process.env.REACT_APP_BASE_URL}/api/users?page=${currentPage}&limit=${pageSize}`
-  //     );
-  //     setUsers(response.data.users);
-  //     setTotalUsers(response.data.totalRows);
-  //     setTotalRows(response.data.totalRows);
-  //     setTotalPages(response.data.totalPages);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   const fetchUsers = async () => {
     try {
-      let url = `${process.env.REACT_APP_BASE_URL}/api/users/classic?page=${currentPage}&limit=${pageSize}`;
+      let url = `${process.env.REACT_APP_BASE_URL}/api/users?page=${currentPage}&limit=${pageSize}&criteria=mostRecent`;
       const response = await axios.get(url);
       setUsers(response.data.users);
       setTotalUsers(response.data.totalRows);
       setTotalRows(response.data.totalRows);
       setTotalPages(response.data.totalPages);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const fetchHospitals = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/hospital-portal`
-      );
-      setTotalHospitals(response.data.totalRows);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const fetchDealers = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/Dealers/dealers-portal`
-      );
-      setTotalDealers(response.data.totalRows);
     } catch (error) {
       console.error(error);
     }
@@ -106,54 +51,7 @@ function AdminDashboard() {
   if (!isAuthenticated) {
     return null;
   }
-  const handleDeleteUser = async (id) => {
-    const confirmed = window.confirm("Are you sure you want to delete this user?");
-    if (!confirmed) {
-      return;
-    }
-
-    try {
-      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/users/delete-user/${id}`);
-      setUsers(users.filter((user) => user._id !== id));
-      console.log("User deleted successfully");
-    } catch (error) {
-      console.error(error);
-      console.log("Error deleting user");
-    }
-  };
-
-  const handleEditUser = (user) => {
-    setSelectedUser(user);
-    setEditFormVisible(true);
-  };
-
-  const handleUpdateUser = async (id, updatedData) => {
-    try {
-      const requestData = {
-        data: updatedData,
-      };
-
-      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/users/update-user/${id}`, requestData);
-      setEditFormVisible(false);
-      setSelectedUser(null);
-      fetchUsers();
-      console.log("User updated successfully");
-    } catch (error) {
-      console.error(error);
-      console.log("Error updating user");
-    }
-  };
-
-  const pieChartData = {
-    labels: ["Total Users"],
-    datasets: [
-      {
-        data: [totalUsers],
-        backgroundColor: ["#FF5733"],
-      },
-    ],
-  };
-
+  
   const handlePrevPage = () => {
     if (!isFirstPage) {
       setCurrentPage(currentPage - 1);
@@ -229,7 +127,7 @@ function AdminDashboard() {
                 <th>Email</th>
                 {/* <th>Phone</th>
                 <th>Role</th> */}
-                <th>Dashboard Privileges</th> 
+                {/* <th>Dashboard Privileges</th> 
                 <th>Healthcare Centre Privileges</th>
                 <th>Dealers & Distributors Privileges</th>
                 <th>Reports Privileges</th>
@@ -238,12 +136,12 @@ function AdminDashboard() {
                 <th>Healthcare Centre Forms Privileges</th>
                 <th>Dealers & Distributors Forms Privileges</th>
                 <th>Competitive Intelligence Privileges</th>
-                <th>Startup Privileges</th>
+                <th>Startup Privileges</th> */}
                 <th>Login Counter</th>
                 <th>Last Login</th>
-                <th>Activated Date & Time</th>
+                {/* <th>Activated Date & Time</th>
                 <th>End of Subscription</th>
-                <th>Actions</th>
+                <th>Actions</th> */}
               </tr>
             </thead>
             <tbody>
@@ -257,7 +155,7 @@ function AdminDashboard() {
                   <td>{user.privileges.accessGtmPartners}</td>
                   <td>{user.privileges.accessMarketInsights}</td>
                   <td>{user.privileges.accessCsrsFoundations}</td> */}
-                  <td>{user.privileges.accessDashboard ?   'Granted'  : 'Restricted'}</td> 
+                  {/* <td>{user.privileges.accessDashboard ?   'Granted'  : 'Restricted'}</td> 
                   <td>{user.privileges.accessHospitals ?   'Granted'  : 'Restricted'}</td>
                   <td>{user.privileges.accessGtmPartners ? 'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.accessMarketInsights ? 'Granted' : 'Restricted'}</td>
@@ -266,22 +164,22 @@ function AdminDashboard() {
                   <td>{user.privileges.formPrivilegesHC ?  'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.formPrivilegesDD ?  'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.ciPrivileges ?  'Granted' : 'Restricted'}</td>
-                  <td>{user.privileges.startupPrivileges ?  'Granted' : 'Restricted'}</td>
+                  <td>{user.privileges.startupPrivileges ?  'Granted' : 'Restricted'}</td> */}
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
                   <td>{user.counter}</td>
                   <td>{user.lastLogin ? (user.lastLogin) : '' }</td>
-                  <td>{user.activationTime ? (user.activationTime) : ''}</td>
-                  <td>{user.endDate ? moment(user.endDate).format('DD-MMM-YYYY'): ''}</td>
+                  {/* <td>{user.activationTime ? (user.activationTime) : ''}</td>
+                  <td>{user.endDate ? moment(user.endDate).format('DD-MMM-YYYY'): ''}</td> */}
 
-                  <td>
+                  {/* <td>
                       <button className="edit-button" onClick={() => handleEditUser(user)}>
                         <i className="fas fa-pencil-alt"></i>
                       </button>
                       <button className="delete-button" onClick={() => handleDeleteUser(user._id)}>
                         <i className="fa fa-trash" aria-hidden="true"></i>
                       </button>
-                </td>
+                </td> */}
                 </tr>
               ))}
             </tbody>
@@ -312,4 +210,4 @@ function AdminDashboard() {
   );
 }
 
-export default AdminDashboard;
+export default AdminDashboardMost;

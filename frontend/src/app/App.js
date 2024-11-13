@@ -72,6 +72,8 @@ import ChangePassword from '../users/home/profile/changepd';
 import EditProfile from '../users/home/profile/userProfile';
 import ViewStartupPortal from '../users/services/startups/viewstartup';
 import CategoriesDashboard from '../admin/pages/CatDash';
+import AdminDashboardTop from '../admin/users/AdminUserTop';
+import AdminDashboardMost from '../admin/users/AdminUserMRL';
 
 
 //Entry Function into the Product
@@ -145,11 +147,16 @@ export default function App() {
         <Route path='/admin/dashboard/Admin-Bill' element = {<AdminBill />} />
         <Route path='/dashboard/View-Sales-Progress' element = {<ViewSales />}  /> 
         <Route path='/admin/academy' element = {<AdNotFoundPage />}  /> 
-       <Route path='/admin/dashboard/Healthcare-Dashboard' element = {<CategoriesDashboard />}  />
+        <Route path='/admin/dashboard/Healthcare-Dashboard' element = {<CategoriesDashboard />}  />
+        <Route path='/admin/dashboard/recent-users' element={<AdminDashboardMost />} />
+        <Route path='/admin/dashboard/top-users' element={<AdminDashboardTop />} />
       </Routes>
     </Router>
   );
-}
+};
+
+
+
 
 function HomeMR2(){
   return (

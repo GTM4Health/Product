@@ -6,39 +6,54 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 
-// router.get("/", async (req, res) => {
-//   const { page = 1, limit = 10 } = req.query;
-//   const skip = (page - 1) * limit;
+router.get("/classic", async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+  const skip = (page - 1) * limit;
 
-//   try {
-//     const totalRows = await User.countDocuments();
-//     const totalPages = Math.ceil(totalRows / limit); // Calculate total pages
+  try {
+    const totalRows = await User.countDocuments();
+    const totalPages = Math.ceil(totalRows / limit); // Calculate total pages
 
-//     const users = await User.find().skip(skip).limit(Number(limit));
+    const users = await User.find().skip(skip).limit(Number(limit));
 
-//     res.json({ users, totalRows, totalPages });
-//   } catch (error) {
-//     console.error('Failed to fetch users', error);
-//     res.status(500).json({ error: 'Failed to fetch users' });
-//   }
-// });
+    res.json({ users, totalRows, totalPages });
+  } catch (error) {
+    console.error('Failed to fetch users', error);
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
+});
 
 router.get('/', async (req, res) => {
   const { page = 1, limit = 10, criteria } = req.query;
 
-  const queryOptions = { sort: { createdAt: -1 } }; // Default sort descending by creation date
+  let sortStage = { createdAt: -1 }; // default sorting by creation date, newest first
 
   if (criteria === 'mostRecent') {
-    queryOptions.sort = { lastLogin: -1 };
+    // Sort by lastLogin by converting it to Date within MongoDB
+    sortStage = { lastLoginDate: -1 };
   } else if (criteria === 'topUsers') {
-    queryOptions.sort = { counter: -1 };
+    sortStage = { counter: -1 };
   }
 
   try {
-    const users = await User.find({})
-      .sort(queryOptions.sort)
-      .skip((page - 1) * limit)
-      .limit(parseInt(limit));
+    const pipeline = [];
+
+    // Convert `lastLogin` to Date only if sorting by most recent login
+    if (criteria === 'mostRecent') {
+      pipeline.push({
+        $addFields: {
+          lastLoginDate: { $toDate: "$lastLogin" },
+        },
+      });
+    }
+
+    pipeline.push(
+      { $sort: sortStage },
+      { $skip: (page - 1) * limit },
+      { $limit: parseInt(limit) }
+    );
+
+    const users = await User.aggregate(pipeline);
 
     const totalRows = await User.countDocuments();
 
@@ -53,6 +68,38 @@ router.get('/', async (req, res) => {
     res.status(500).json({ message: 'Error fetching users' });
   }
 });
+
+
+// router.get('/', async (req, res) => {
+//   const { page = 1, limit = 10, criteria } = req.query;
+
+//   const queryOptions = { sort: { createdAt: -1 } }; 
+
+//   if (criteria === 'mostRecent') {
+//     queryOptions.sort = { lastLogin: -1 };
+//   } else if (criteria === 'topUsers') {
+//     queryOptions.sort = { counter: -1 };
+//   }
+
+//   try {
+//     const users = await User.find({})
+//       .sort(queryOptions.sort)
+//       .skip((page - 1) * limit)
+//       .limit(parseInt(limit));
+
+//     const totalRows = await User.countDocuments();
+
+//     res.json({
+//       users,
+//       totalRows,
+//       totalPages: Math.ceil(totalRows / limit),
+//       currentPage: parseInt(page),
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Error fetching users' });
+//   }
+// });
 
 
 
