@@ -32,6 +32,7 @@ const UserHospital = () => {
   const [user, setUser] = useState(null);
   const [addedBy, setAddedBy] = useState('');
   const [addedOnTime, setAddedOnTime] = useState('');
+  const [certification, setCertification] = useState('');
 
 
 
@@ -140,6 +141,7 @@ const UserHospital = () => {
         searchQuery,
         hospitalNames,
         addedBy,
+        certification,
         addedOnTime: `${formattedDate}, ${formattedTime} `,
       });
       setSearchQuery('');
@@ -159,6 +161,7 @@ const UserHospital = () => {
       setCategory('');
       setHospitalNames('');
       setAddedOnTime('');
+      setCertification("");
       // Clear the success message after 2 seconds
       setTimeout(() => {
         setHospitalStatus(null);
@@ -315,6 +318,20 @@ const UserHospital = () => {
                   placeholder="Healthcare Centre Name"
                   className="form-outline"
                 />
+              </div>
+              <div className="form-group">
+                <label htmlFor="certification">Certifications:</label>
+                <select
+                  id="certification"
+                  value={certification}
+                  onChange={(e) => setCertification(e.target.value)}
+                  className="form-outline"
+                >
+                  <option value="" disabled hidden>Select Certification</option>
+                  <option value="NABH">NABH</option>
+                  <option value="NABL">NABL</option>
+                  <option value="JCI">JCI</option>
+                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="infraSer">Infrastructure & Services :</label>
