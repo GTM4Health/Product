@@ -33,6 +33,7 @@ const UserHospital = () => {
   const [addedBy, setAddedBy] = useState('');
   const [addedOnTime, setAddedOnTime] = useState('');
   const [certification, setCertification] = useState('');
+  const [beds, setBeds] = useState('');
 
 
 
@@ -141,6 +142,7 @@ const UserHospital = () => {
         searchQuery,
         hospitalNames,
         addedBy,
+        beds,
         certification,
         addedOnTime: `${formattedDate}, ${formattedTime} `,
       });
@@ -160,6 +162,7 @@ const UserHospital = () => {
       setAddress('');
       setCategory('');
       setHospitalNames('');
+      setBeds("");
       setAddedOnTime('');
       setCertification("");
       // Clear the success message after 2 seconds
@@ -316,6 +319,17 @@ const UserHospital = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Healthcare Centre Name"
+                  className="form-outline"
+                />
+              </div>
+              <div className="form-group">
+              <label htmlFor="det"># of Beds :</label>
+                <input
+                  type="text"
+                  id="det"
+                  value={beds}
+                  onChange={(e) => setBeds(e.target.value)}
+                  placeholder="Beds"
                   className="form-outline"
                 />
               </div>
