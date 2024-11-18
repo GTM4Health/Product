@@ -506,10 +506,10 @@ const MarketAccess = () => {
                   <th>Sl No.</th>
                   <th>Name</th>
                   <th>Infrastructure & Services</th>
-                  <th>State</th>
+                  {/* <th>State</th> */}
                   <th>City</th>
                   <th>Category</th>
-                  <th>Doctor Name</th>
+                  {/* <th>Doctor Name</th> */}
                   {/* <th>Speciality</th> */}
                   <th>Contact Email</th>
                   {/* <th>Contact Number</th> */}
@@ -521,10 +521,10 @@ const MarketAccess = () => {
                     <td>{(currentPage - 1) * pageSize + index + 1}</td>
                     <td>{hospital.name}</td>
                     <td>{hospital.infraSer}</td>
-                    <td>{hospital.state}</td>
+                    {/* <td>{hospital.state}</td> */}
                     <td>{hospital.city}</td>
                     <td>{hospital.category}</td>
-                    <td>{hospital.docName}</td> 
+                    {/* <td>{hospital.docName}</td>  */}
                     {/* <td>{hospital.docSpez}</td>
                     <td>{hospital.phone}</td> */}
                     {/* <td>{hospital.speciality}</td> */}

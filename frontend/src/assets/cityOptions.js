@@ -128,6 +128,7 @@ export const stateOptions  = [
       label: 'Gujarat',
       cities: [
         { value: 'Ahmedabad', label: 'Ahmedabad' },
+        { value: 'Anand', label: 'Anand' },
         { value: 'Surat', label: 'Surat' },
         { value: 'Vadodara', label: 'Vadodara' },
         { value: 'Rajkot', label: 'Rajkot' },
@@ -468,6 +469,7 @@ export const stateOptions  = [
         { value: 'Agra', label: 'Agra' },
         { value: 'Varanasi', label: 'Varanasi' },
         { value: 'Meerut', label: 'Meerut' },
+        { value: 'Noida', label: 'Noida' },
         { value: 'Prayagraj (Allahabad)', label: 'Prayagraj (Allahabad)' },
         // Add more cities here
       ],
