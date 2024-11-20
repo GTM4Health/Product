@@ -96,6 +96,10 @@ const MenuBar = () => {
               <i className="fas fa-map-marked-alt sub-menu-icon"></i>
               <span className="menu-text">Pan India Dashboard</span>
             </a>
+            <a href='/dashboard/Healthcare-Dashboard' className="sub-menu-item menu-link">
+              <i className="fas fa-map-marked-alt sub-menu-icon"></i>
+              <span className="menu-text">HealthCare Categories Dashboard</span>
+            </a>
           </div>
           )}
       </div>

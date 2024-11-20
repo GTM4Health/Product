@@ -74,6 +74,7 @@ import ViewStartupPortal from '../users/services/startups/viewstartup';
 import CategoriesDashboard from '../admin/pages/CatDash';
 import AdminDashboardTop from '../admin/users/AdminUserTop';
 import AdminDashboardMost from '../admin/users/AdminUserMRL';
+import UserCategoriesDash from '../users/home/catDash';
 
 
 //Entry Function into the Product
@@ -113,6 +114,7 @@ export default function App() {
         <Route path='/termsofuse' element={<Terms />} />
         <Route path='/privacypolicy' element={<Privacy />} />
         <Route path='/my-profile' element={<EditProfile />} />
+        <Route path='/dashboard/Healthcare-Dashboard' element = {<UserCategoriesDash />}  />
         <Route path="/dashboard/Market-Access" element={<MarketAccess />} />
         <Route path="/dashboard/Pan-India-Analysis" element={<PanIndia />} />
         <Route path='/dashboard/View-Healthcare-Centres-All' element={<MarketAccessAll />} />
