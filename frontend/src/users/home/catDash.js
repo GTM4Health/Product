@@ -42,7 +42,7 @@ const UserCategoriesDash = () => {
         <div className="dashboard">
           <MenuBar />
           <div className="page-title">
-            <h1 className="page-title-child hdblue-tag">User Categories Dashboard</h1>
+            <h1 className="page-title-child hdblue-tag">Categories Dashboard</h1>
           </div>
           <div className="table-content">
             <table className="user-table">
