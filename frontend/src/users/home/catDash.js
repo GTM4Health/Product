@@ -58,9 +58,7 @@ const UserCategoriesDash = () => {
                   <tr key={category.id}>
                     <td>{index + 1}</td>
                     <td>
-                      <Link to={`/dashboard/category-details/${category.id}`}>
                         {category.name}
-                      </Link>
                     </td>
                     <td>{category.totalCenters}</td>
                   </tr>
