@@ -83,7 +83,7 @@ function AdminDashboardTop() {
           <AdminMenuBar />
         </div>
         <div className="page-title">
-          <h1 className="page-title-child">User Dashboard</h1>
+          <h1 className="page-title-child">User Dashboard - Top Users</h1>
         </div>
         <div className="page-display">
           <h4 className="total-rows">Total Users = {totalRows}</h4>
@@ -139,7 +139,7 @@ function AdminDashboardTop() {
                 <th>Competitive Intelligence Privileges</th>
                 <th>Startup Privileges</th> */}
                 <th>Login Counter</th>
-                <th>Last Login</th>
+                {/* <th>Last Login</th> */}
                 {/* <th>Activated Date & Time</th>
                 <th>End of Subscription</th>
                 <th>Actions</th> */}
@@ -169,7 +169,7 @@ function AdminDashboardTop() {
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
                   <td>{user.counter}</td>
-                  <td>{user.lastLogin ? (user.lastLogin) : '' }</td>
+                  {/* <td>{user.lastLogin ? (user.lastLogin) : '' }</td> */}
                   {/* <td>{user.activationTime ? (user.activationTime) : ''}</td>
                   <td>{user.endDate ? moment(user.endDate).format('DD-MMM-YYYY'): ''}</td> */}
 

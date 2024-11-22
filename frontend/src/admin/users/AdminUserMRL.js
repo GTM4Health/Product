@@ -83,7 +83,7 @@ function AdminDashboardMost() {
           <AdminMenuBar />
         </div>
         <div className="page-title">
-          <h1 className="page-title-child">User Dashboard</h1>
+          <h1 className="page-title-child">User Dashboard - Recent Users</h1>
         </div>
         <div className="page-display">
           <h4 className="total-rows">Total Users = {totalRows}</h4>
@@ -137,7 +137,7 @@ function AdminDashboardMost() {
                 <th>Dealers & Distributors Forms Privileges</th>
                 <th>Competitive Intelligence Privileges</th>
                 <th>Startup Privileges</th> */}
-                <th>Login Counter</th>
+                {/* <th>Login Counter</th> */}
                 <th>Last Login</th>
                 {/* <th>Activated Date & Time</th>
                 <th>End of Subscription</th>
