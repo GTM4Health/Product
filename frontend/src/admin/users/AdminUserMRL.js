@@ -167,7 +167,7 @@ function AdminDashboardMost() {
                   <td>{user.privileges.startupPrivileges ?  'Granted' : 'Restricted'}</td> */}
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
-                  <td>{user.counter}</td>
+                  {/* <td>{user.counter}</td> */}
                   <td>{user.lastLogin ? (user.lastLogin) : '' }</td>
                   {/* <td>{user.activationTime ? (user.activationTime) : ''}</td>
                   <td>{user.endDate ? moment(user.endDate).format('DD-MMM-YYYY'): ''}</td> */}
