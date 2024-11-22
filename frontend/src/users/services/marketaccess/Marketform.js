@@ -345,6 +345,7 @@ const UserHospital = () => {
                   <option value="NABH">NABH</option>
                   <option value="NABL">NABL</option>
                   <option value="JCI">JCI</option>
+                  <option value="NONE">NONE</option>
                 </select>
               </div>
               <div className="form-group">
