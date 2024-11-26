@@ -425,6 +425,22 @@ router.get('/categories', async (req, res) => {
   }
 });
 
+router.get('/categories/:categoryName', async (req, res) => {
+  const categoryName = decodeURIComponent(req.params.categoryName); // Decode category name to handle special characters like spaces
+
+  try {
+    const hospitals = await Hospital.find({ category: categoryName });
+
+    if (hospitals.length === 0) {
+      return res.status(404).json({ message: 'No hospitals found for this category' });
+    }
+
+    res.json(hospitals); // Return all hospitals in this category
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving hospitals for the category" });
+  }
+});
 
 
 

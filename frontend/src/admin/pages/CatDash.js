@@ -1,5 +1,6 @@
 // src/CategoriesDashboard.js
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AdminHeader from '../../layout/admin/AdminHeader';
 import AdminMenuBar from '../../layout/admin/AdminMenubar';
@@ -44,7 +45,9 @@ const CategoriesDashboard = () => {
                 {categories.map((category, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{category.name}</td>
+                    <td>
+                      <Link to={`/admin/dashboard/categories/${category._id}`}>{category.name}</Link>
+                    </td>
                     <td>{category.totalCenters}</td>
                   </tr>
                 ))}
