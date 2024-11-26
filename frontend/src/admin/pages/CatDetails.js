@@ -37,7 +37,7 @@ const CategoryDetails = () => {
         <div className="dashboard">
           <AdminMenuBar />
           <div className="page-title">
-            <h1 className="page-title-child hdblue-tag">Centers under Category</h1>
+            <h1 className="page-title-child hdblue-tag">Healthcare Centers - {categoryName}</h1>
           </div>
           <div className="table-content">
             <table className="user-table">
@@ -54,8 +54,8 @@ const CategoryDetails = () => {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{center.name}</td>
-                    <td>{center.location}</td>
-                    <td>{center.totalBeds}</td>
+                    <td>{center.city}</td>
+                    <td>{center.beds}</td>
                   </tr>
                 ))}
               </tbody>
