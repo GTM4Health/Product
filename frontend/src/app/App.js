@@ -75,8 +75,8 @@ import CategoriesDashboard from '../admin/pages/CatDash';
 import AdminDashboardTop from '../admin/users/AdminUserTop';
 import AdminDashboardMost from '../admin/users/AdminUserMRL';
 import UserCategoriesDash from '../users/home/catDash';
-import catDetails from '../admin/pages/CatDetails';
 import CategoryDetails from '../admin/pages/CatDetails';
+import UserCategoryDetails from '../users/home/catDetails';
 
 
 //Entry Function into the Product
@@ -145,6 +145,7 @@ export default function App() {
         <Route path="/state-details/:state" element={<StateDetails />} />
         <Route path="/city/:city" element={<CityDetails />} />
         <Route path="admin/dashboard/categories/:categoryName" element={<CategoryDetails />} />
+        <Route path="/dashboard/categories/:categoryName" element={<UserCategoryDetails />} />
         <Route path="/dashboard/city-analysis/:city" element={<UserCityDetails />} />
         <Route path="/dashboard/state-details/:state" element={<UserStateDetails />} />
         <Route path='/dashboard/CSRs-Foundations' element = {<ViewCSRPortal />} />

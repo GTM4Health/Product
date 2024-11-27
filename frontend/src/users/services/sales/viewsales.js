@@ -162,11 +162,12 @@ const SalesDocument = ({ salesData , compName}) => {
     <Document>
       {Array.from({ length: totalPages }, (_, pageIndex) => (
         <Page style={styles.page} key={pageIndex}>
-          <View style={styles.logoContainer}>
+          {/* <View style={styles.logoContainer}>
             <Image src={logo} style={styles.logo} />
-          </View>
+          </View> */}
           <Text style={styles.header}>Sales Progress Tracker</Text>
-          <Text style={styles.subHeader}>{compName || "Company Name"} | GTM4Health</Text> 
+          <Text style={styles.subHeader}>{compName || " Company Name "}</Text> 
+          {/* <Text style={styles.subHeader}>{compName || "Company Name"} | GTM4Health</Text>  */}
           <View style={styles.gap} />
           <View style={styles.table}>
             <View style={styles.tableRow}>
