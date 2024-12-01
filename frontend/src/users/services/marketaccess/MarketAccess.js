@@ -507,6 +507,7 @@ const MarketAccess = () => {
                   <th>Name</th>
                   <th>Infrastructure & Services</th>
                   <th># of Beds</th>
+                  <th>Certification</th>
                   {/* <th>State</th> */}
                   <th>City</th>
                   <th>Category</th>
@@ -523,6 +524,7 @@ const MarketAccess = () => {
                     <td>{hospital.name}</td>
                     <td>{hospital.infraSer}</td>
                     <td>{hospital.beds}</td>
+                    <td>{hospital.certification}</td>
                     {/* <td>{hospital.state}</td> */}
                     <td>{hospital.city}</td>
                     <td>{hospital.category}</td>
