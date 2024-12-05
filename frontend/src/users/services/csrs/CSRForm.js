@@ -16,16 +16,24 @@ const CSRForm = () => {
   const [ser, setSer] = useState('');
   const [csrStatus, setCSRStatus] = useState(null);
 
+
+
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) setUser(storedUser);
-
-    if (storedUser && !storedUser.formPrivilegesCSR && isAuthenticated) {
-      navigate('/dashboard/Subscription');
+    if (storedUser) {
+      setUser(storedUser);
     }
-  }, [isAuthenticated, navigate]);
+  }, []); 
 
-  
+  useEffect(() => {
+    if (user && user.formPrivilegesCSR && isAuthenticated) {
+      //fetchHospitals();
+    } else if (user && !(user.formPrivilegesCSR) && isAuthenticated) {
+      navigate("/dashboard/Subscription");
+    }
+  }, [isAuthenticated]);
+
+
 
   if (!isAuthenticated) {
     return null;

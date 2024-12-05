@@ -208,7 +208,7 @@ const MenuBar = () => {
        <span className="menu-text">CSRs & Foundations</span>
         {isCSRMenuOpen && (
           <div className="sub-menu healthcare-centres-menu">
-            <a href="/admin/dashboard/Add-CSR-Foundation" className="sub-menu-item menu-link">
+            <a href="/dashboard/Add-CSR-Foundation" className="sub-menu-item menu-link">
                 <i className="fas fa-plus-circle sub-menu-icon"></i>
                 <span className="menu-text">Add CSRs & Foundation</span>
             </a>

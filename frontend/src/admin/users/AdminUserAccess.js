@@ -237,6 +237,7 @@ function AdminDashboard() {
                 <th>Sales Tracker Privileges</th>
                 <th>Healthcare Centre Forms Privileges</th>
                 <th>Dealers & Distributors Forms Privileges</th>
+                <th>CSR/Foundations Forms Privileges</th>
                 <th>Competitive Intelligence Privileges</th>
                 <th>Startup Privileges</th>
                 <th>Login Counter</th>
@@ -265,6 +266,7 @@ function AdminDashboard() {
                   <td>{user.privileges.accessSales ? 'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.formPrivilegesHC ?  'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.formPrivilegesDD ?  'Granted' : 'Restricted'}</td>
+                  <td>{user.privileges.formPrivilegesCSR ?  'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.ciPrivileges ?  'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.startupPrivileges ?  'Granted' : 'Restricted'}</td>
                   {/* <td>{user.phone}</td>

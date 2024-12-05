@@ -18,6 +18,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
     accessSales : user.privileges.accessSales || false,
     formPrivilegesHC : user.privileges.formPrivilegesHC || false,
     formPrivilegesDD : user.privileges.formPrivilegesDD || false,
+    formPrivilegesCSR : user.privileges.formPrivilegesCSR || false,
     ciPrivileges : user.privileges.ciPrivileges || false,
     startupPrivileges : user.privileges.startupPrivileges || false,
   });
@@ -37,6 +38,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
       accessSales : user.privileges.accessSales || false,
       formPrivilegesHC : user.privileges.formPrivilegesHC || false,
       formPrivilegesDD : user.privileges.formPrivilegesDD || false,
+      formPrivilegesCSR : user.privileges.formPrivilegesCSR || false,
       ciPrivileges : user.privileges.ciPrivileges || false,
       startupPrivileges : user.privileges.startupPrivileges || false,
     });
@@ -214,6 +216,20 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
                     <td>
                       <label>
                       Dealers & Distributors Forms
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                              type="checkbox"
+                              checked={privileges.formPrivilegesCSR}
+                              onChange={() => handlePrivilegeChange("formPrivilegesCSR")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                      CSR/Foundation Forms
                       </label>
                     </td>
                   </tr>
