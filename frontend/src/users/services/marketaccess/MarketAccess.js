@@ -505,7 +505,7 @@ const MarketAccess = () => {
                 <tr>
                   <th>Sl No.</th>
                   <th>Name</th>
-                  <th>Infrastructure & Services</th>
+                  <th>Actionable Insights</th>
                   <th># of Beds</th>
                   <th>Certification</th>
                   {/* <th>State</th> */}

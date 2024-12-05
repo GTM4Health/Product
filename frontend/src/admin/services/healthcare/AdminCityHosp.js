@@ -737,7 +737,7 @@ const CityPortal = () => {
                   <th>Sl No.</th>
                   <th>Name</th>
                   <th>Contact Details</th>
-                  <th>Infrastructure & Services</th>
+                  <th>Actionable Insights</th>
                   <th># of Beds</th>
                   <th>Certification</th>
                   <th>Category</th>

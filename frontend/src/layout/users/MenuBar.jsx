@@ -13,6 +13,7 @@ const MenuBar = () => {
   const [isCompetitiveIntelMenuOpen, setIsCompetitiveIntelMenuOpen] = useState(false);
   const [isMedTechMenuOpen, setIsMedTechMenuOpen] = useState(false);
   const [isStartupsMenuOpen, setIsStartupsMenuOpen] = useState(false);
+  const [isCSRMenuOpen, setIsCSRMenuOpen] = useState(false);
 
   const medTechMenuRef = useRef(null);
   const healthcareCentresMenuRef = useRef(null);
@@ -20,6 +21,7 @@ const MenuBar = () => {
   const salesMenuRef = useRef(null);
   const competitiveIntelMenuRef = useRef(null);
   const startupsMenuRef = useRef(null);
+  const csrMenuRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -43,6 +45,9 @@ const MenuBar = () => {
       if (startupsMenuRef.current && !startupsMenuRef.current.contains(event.target)) {
         setIsStartupsMenuOpen(false);
       }
+      if (csrMenuRef.current && !csrMenuRef.current.contains(event.target)) {
+        setIsCSRMenuOpen(false);
+        }
     };
 
     document.addEventListener("mousedown", handleOutsideClick);
@@ -79,6 +84,10 @@ const MenuBar = () => {
   const handleStartupsMenuClick = () => {
     setIsStartupsMenuOpen(!isStartupsMenuOpen);
   };
+  const handleCSRMenuClick = () => {
+    setIsCSRMenuOpen(!isCSRMenuOpen);
+  };
+
   return (
     <div className="adbar usrbar"> 
       <div
@@ -188,12 +197,30 @@ const MenuBar = () => {
           <span className="menu-text">Market Insights Reports</span>
         </div>
       </a>
-       <a href="/dashboard/CSRs-Foundations" className="menu-link">
-        <div className="menu-item">
-          <i className="fas fa-clipboard-list menu-icon"></i>
-          <span className="menu-text">CSRs & Foundations</span>
+      <div
+        className={`menu-item ${
+          isCSRMenuOpen ? "active" : ""
+        }`}
+        onClick={handleCSRMenuClick}
+        ref={csrMenuRef}
+      >
+       <i className="fas fa-clipboard-list menu-icon"></i>
+       <span className="menu-text">CSRs & Foundations</span>
+        {isCSRMenuOpen && (
+          <div className="sub-menu healthcare-centres-menu">
+            <a href="/admin/dashboard/Add-CSR-Foundation" className="sub-menu-item menu-link">
+                <i className="fas fa-plus-circle sub-menu-icon"></i>
+                <span className="menu-text">Add CSRs & Foundation</span>
+            </a>
+            <a href="/dashboard/CSRs-Foundations" className="sub-menu-item menu-link">
+                <i className="fas fa-map-marked-alt sub-menu-icon"></i>
+                <span className="menu-text">View CSRs & Foundations</span>
+             </a> 
         </div>
-      </a> 
+
+        )}
+      </div>
+
       <div
         className={`menu-item ${
           isSalesMenuOpen ? "active" : ""
