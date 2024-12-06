@@ -370,6 +370,7 @@ const CSRPortal = () => {
                   <th>Website</th>
                   <th>Domain</th>
                   <th>Services</th>
+                  <th>Added By</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -381,6 +382,7 @@ const CSRPortal = () => {
                     <td>{csr.website}</td>
                     <td>{csr.domain}</td>
                     <td>{csr.ser}</td>
+                    <td>{csr.addedBy || "Admin"}</td>
                     <td>
                       <button onClick={() => handleEditCSR(csr)}>
                         <i className="fas fa-edit"></i>

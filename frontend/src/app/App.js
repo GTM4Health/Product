@@ -77,6 +77,7 @@ import AdminDashboardMost from '../admin/users/AdminUserMRL';
 import UserCategoriesDash from '../users/home/catDash';
 import CategoryDetails from '../admin/pages/CatDetails';
 import UserCategoryDetails from '../users/home/catDetails';
+import CSRForm from '../users/services/csrs/CSRForm';
 
 
 //Entry Function into the Product
@@ -156,6 +157,7 @@ export default function App() {
         <Route path='/admin/dashboard/Healthcare-Dashboard' element = {<CategoriesDashboard />}  />
         <Route path='/admin/dashboard/recent-users' element={<AdminDashboardMost />} />
         <Route path='/admin/dashboard/top-users' element={<AdminDashboardTop />} />
+        <Route path='/dashboard/Add-CSR-Foundation' element = {<CSRForm />} />
       </Routes>
     </Router>
   );

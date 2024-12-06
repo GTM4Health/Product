@@ -8,6 +8,7 @@ const EditCSRForm = ({ csr, onUpdate, onCancel }) => {
   const [domain, setDomain] = useState(csr.domain);
   const [progress, setProgress] = useState(csr.progress);
   const [ser, setSer] = useState(csr.ser);
+  const [addedBy, setAddedBy] = useState(csr.addedBy || "Admin");
 
   useEffect(() => {
     setCSRName(csr.csrName);
@@ -25,6 +26,7 @@ const EditCSRForm = ({ csr, onUpdate, onCancel }) => {
       domain,
       progress,
       ser,
+      addedBy,
     };
     onUpdate(csr._id, updatedData);
   };

@@ -12,6 +12,7 @@ const NewCSRForm = () => {
   const [domain, setDomain] = useState("");
   const [csrStatus, setCSRStatus] = useState(null);
   const [ser, setSer] = useState("");
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -14,26 +14,40 @@ const CSRForm = () => {
   const [website, setWebsite] = useState('');
   const [domain, setDomain] = useState('');
   const [ser, setSer] = useState('');
+  const [addedBy, setAddedBy] = useState('');
   const [csrStatus, setCSRStatus] = useState(null);
-
-
+  
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
       setUser(storedUser);
     }
-  }, []); 
+  }, []);
+
+  useEffect(() => {
+    user && setAddedBy(user.name);
+  })
 
   useEffect(() => {
     if (user && user.formPrivilegesCSR && isAuthenticated) {
-      //fetchHospitals();
+      fetchCsrs();
     } else if (user && !(user.formPrivilegesCSR) && isAuthenticated) {
       navigate("/dashboard/Subscription");
     }
   }, [isAuthenticated]);
 
+  const fetchCsrs = async () => {
+    let url = `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/CSR/csrs-portal?`;
 
+    const params = new URLSearchParams();
+
+    try {
+      const response = await axios.get(url + params.toString());
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (!isAuthenticated) {
     return null;
@@ -47,6 +61,7 @@ const CSRForm = () => {
         website,
         domain,
         ser,
+        addedBy,
       });
       setCSRName('');
       setWebsite('');
@@ -85,10 +100,11 @@ const CSRForm = () => {
       <div className="d-content">
         <div className="dashboard">
           <MenuBar />
-          <div className="csr-content">
+          <div className="hosp-content">
             <h1>Add CSR/Foundation</h1>
             {renderCSRStatusMessage()}
-            <form onSubmit={handleSubmit} className="csr-form">
+            <form onSubmit={handleSubmit} className="hospital-f">
+              {/* CSR/Foundation Name */}
               <div className="form-group">
                 <label htmlFor="csrName">CSR/Foundation Name*:</label>
                 <input
@@ -101,6 +117,7 @@ const CSRForm = () => {
                   className="form-outline"
                 />
               </div>
+              {/* Website URL */}
               <div className="form-group">
                 <label htmlFor="website">Website URL:</label>
                 <input
@@ -112,6 +129,7 @@ const CSRForm = () => {
                   className="form-outline"
                 />
               </div>
+              {/* Domain */}
               <div className="form-group">
                 <label htmlFor="domain">Domain:</label>
                 <input
@@ -133,7 +151,7 @@ const CSRForm = () => {
                   className="form-outline textarea"
                 ></textarea>
               </div>
-              <button type="submit" className="btn-submit">
+              <button type="submit" className="hsubtn login-btn">
                 Submit
               </button>
             </form>

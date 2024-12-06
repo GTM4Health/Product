@@ -52,6 +52,7 @@ router.post('/', async (req, res) => {
         salesPrivileges: user.privileges.accessSales,
         formPrivilegesHC: user.privileges.formPrivilegesHC,
         formPrivilegesDD: user.privileges.formPrivilegesDD,
+        formPrivilegesCSR: user.privileges.formPrivilegesCSR,
         ciPrivileges: user.privileges.ciPrivileges,
         startupPrivileges : user.privileges.startupPrivileges,
         counter: user.counter,

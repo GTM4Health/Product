@@ -47,6 +47,7 @@ const CategoryDetails = () => {
                   <th>Center Name</th>
                   <th>Location</th>
                   <th>Total Beds</th>
+                  <th>Certifications</th>
                 </tr>
               </thead>
               <tbody>
@@ -54,8 +55,9 @@ const CategoryDetails = () => {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{center.name}</td>
-                    <td>{center.city}</td>
+                    <td>{center.city}, {center.state}</td>
                     <td>{center.beds}</td>
+                    
                   </tr>
                 ))}
               </tbody>
