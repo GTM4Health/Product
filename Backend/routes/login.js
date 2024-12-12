@@ -23,10 +23,12 @@ router.post('/', async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
+
     // Check if the subscription end date is valid
-    if (user.endDate && new Date() > user.endDate) {
+    if (user.endDate && new Date() >= new Date(user.endDate)) {
       return res.status(401).json({ error: 'Subscription expired' });
     }
+
 
     // Preserve the last login details before recording the new login
     const lastLogin = user.lastLogin;
@@ -56,6 +58,7 @@ router.post('/', async (req, res) => {
         ciPrivileges: user.privileges.ciPrivileges,
         startupPrivileges : user.privileges.startupPrivileges,
         counter: user.counter,
+        endDate: user.endDate,
         lastLogin: lastLogin, // Use the preserved last login date
       },
       loginDetails: { counter: counter, lastLogin: lastLogin },

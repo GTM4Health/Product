@@ -21,6 +21,8 @@ const Header2 = ({ user }) => {
   const preventMenuToggle = (event) => {
     event.stopPropagation();
   };
+  console.log('User object:', user);
+
 
   return (
     <div className={`toolbar ${userMenuOpen ? "user-menu-open" : ""}`}>
@@ -31,6 +33,8 @@ const Header2 = ({ user }) => {
 
       <br/>
        {(user.lastLogin) ? ("Last Login: "+ user.lastLogin) : 'This is your first login !' }
+      <br/>
+      {(user.endDate) ? ("Subscription till: "+ user.endDate) : 'Trial Account' }
       </div>
       }
       {/* <div className="toolbar_left">
