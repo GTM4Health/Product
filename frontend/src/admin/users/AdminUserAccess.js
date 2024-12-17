@@ -273,7 +273,7 @@ function AdminDashboard() {
                   <td>{user.privileges.startupPrivileges ?  'Granted' : 'Restricted'}</td>
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
-                  <td>{user.subscription ? user.subscription : 'Trial User'}</td>
+                  <td>{user.subscription ? user.subscription : ' '}</td>
                   <td>{user.counter}</td>
                   <td>{user.lastLogin ? (user.lastLogin) : '' }</td>
                   <td>{user.activationTime ? (user.activationTime) : ''}</td>
