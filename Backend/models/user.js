@@ -67,6 +67,9 @@ const userSchema = new mongoose.Schema({
   productOrService: {
     type: String,
   },
+  subscription: {
+    type: String,
+  },
   endDate: {
     type: String,
     default: '',

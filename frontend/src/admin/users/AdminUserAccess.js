@@ -7,6 +7,7 @@ import AdminUpdateUserForm from "./AdminUpdateUsers";
 import { Pie } from "react-chartjs-2";
 import axios from "axios";
 import CompetitiveIntelligence from './../services/intel/AdminCompIntel';
+import Subscription from './../../common/Subscribe';
 const moment = require('moment');
 
 
@@ -240,6 +241,7 @@ function AdminDashboard() {
                 <th>CSR/Foundations Forms Privileges</th>
                 <th>Competitive Intelligence Privileges</th>
                 <th>Startup Privileges</th>
+                <th>Subscription</th>
                 <th>Login Counter</th>
                 <th>Last Login</th>
                 <th>Activated Date & Time</th>
@@ -271,6 +273,7 @@ function AdminDashboard() {
                   <td>{user.privileges.startupPrivileges ?  'Granted' : 'Restricted'}</td>
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
+                  <td>{user.subscription ? user.subscription : 'Trial User'}</td>
                   <td>{user.counter}</td>
                   <td>{user.lastLogin ? (user.lastLogin) : '' }</td>
                   <td>{user.activationTime ? (user.activationTime) : ''}</td>

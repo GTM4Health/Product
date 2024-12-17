@@ -7,6 +7,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [endDate, setEndDate] = useState(user.endDate || "");
+  const [subscription, setSubscription] = useState(user.subscription || "Trial User");
 
   // Adding state for privileges
   const [privileges, setPrivileges] = useState({
@@ -27,6 +28,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
     setName(user.name);
     setEmail(user.email);
     setEndDate(user.endDate);
+    setSubscription(user.subscription || "Trial User");
 
     // Update privileges state when user changes
     setPrivileges({
@@ -57,6 +59,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
       name,
       email,
       endDate,
+      subscription,
       // Include privileges in the updated data
       privileges,
     };
@@ -101,8 +104,6 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
               onChange={(e) => setEndDate(e.target.value)}
             />
         </div>
-
-  
         <div className="privileges-section">
               <h3>Access Privileges</h3>
               <table className="privileges-table">
@@ -261,9 +262,21 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
                       </label>
                     </td>
                   </tr>
-                </tbody>
+                </tbody>   
               </table>
             </div>
+            <div className="form-group">
+          <label htmlFor="subscription">Subscription Type *</label>
+          <select
+            id="subscription"
+            value={subscription}
+            onChange={(e) => setSubscription(e.target.value)}
+            required
+          >
+            <option value="Paid User">Paid User</option>
+            <option value="Trial User">Trial User</option>
+          </select>
+        </div>
 
         <div className="button-group">
           <button type="submit" className="btn-primary">

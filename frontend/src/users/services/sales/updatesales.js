@@ -10,6 +10,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
   const [reportDate, setReportDate] = useState(sale.reportDate);
   const [finalStatus, setFinalStatus] = useState(sale.finalStatus);
   const [reportsBetweenDates, setReportsBetweenDates] = useState(sale.reportsBetweenDates);
+  const [revenue, setRevenue] = useState(sale.revenue || "");
 
   useEffect(() => {
     setLeadName(sale.leadName);
@@ -20,6 +21,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
     setReportDate(sale.reportDate);
     setFinalStatus(sale.finalStatus);
     setReportsBetweenDates(sale.reportsBetweenDates);
+    setRevenue(sale.revenue || "");
   }, [sale]);
 
   const handleSubmit = (e) => {
@@ -34,6 +36,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
       reportDate,
       finalStatus,
       reportsBetweenDates,
+      revenue,
     };
     onUpdate(sale._id, updatedData);
   };
@@ -116,6 +119,16 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
                   ))}
                 </select>
         </div>
+        <div className="form-group">
+                <label htmlFor="revenue">Revenue:</label>
+                <input
+                  type="number"
+                  id="revenue"
+                  value={revenue}
+                  onChange={(e) => setRevenue(e.target.value)}
+                  placeholder="Enter Revenue"
+                />
+              </div>
         <div className="form-group">
           <label htmlFor="reportsBetweenDates">Reports</label>
           <textarea

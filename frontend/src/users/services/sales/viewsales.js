@@ -153,6 +153,7 @@ const SalesDocument = ({ salesData , compName}) => {
         <Text style={[styles.tableCell, styles.borderRight]}>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY') : ""}</Text>
         <Text style={[styles.tableCell, styles.borderRight]}>{sale.healthcareCentreName}</Text>
         <Text style={[styles.tableCell, styles.borderRight]}>{sale.finalStatus}</Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>{sale.revenue}</Text>
         <Text style={[styles.tableCell, styles.borderRight]}>{sale.reportsBetweenDates}</Text>
       </View>
     ));
@@ -176,6 +177,7 @@ const SalesDocument = ({ salesData , compName}) => {
               <Text style={[styles.headerCell, styles.borderRight]}>Report Date</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Status</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Revenue</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Reports</Text>
             </View>
             {renderTableRows(
@@ -459,6 +461,7 @@ const ViewSales = () => {
                     {/* <th>Email</th>
                     <th>Mobile No</th> */}
                     <th>Status</th>
+                    <th>Revenue</th>
                     <th>Reports</th>
                     <th>Actions</th>
                   </tr>
@@ -473,6 +476,7 @@ const ViewSales = () => {
                       {/* <td>{sale.email}</td>
                       <td>{sale.mobileNo}</td> */}
                       <td>{sale.finalStatus}</td>
+                      <td>{sale.revenue}</td>
                       <td>{sale.reportsBetweenDates}</td>
                       <td>
                         <button onClick={() => handleEditSales(sale)}>

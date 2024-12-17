@@ -20,6 +20,8 @@ const SalesForm = () => {
   const [reportsBetweenDates, setReportsBetweenDates] = useState('');
   const [reportDate, setReportDate] = useState('');
   const [salesStatus, setSalesStatus] = useState(null);
+  const [revenue, setRevenue] = useState('');
+
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -54,7 +56,8 @@ const SalesForm = () => {
         status,
         finalStatus,
         reportsBetweenDates,
-        reportDate: formattedReportDate
+        reportDate: formattedReportDate,
+        revenue,
       });
       
       setLeadName('');
@@ -66,6 +69,7 @@ const SalesForm = () => {
       setReportsBetweenDates('');
       setReportDate('');
       setSalesStatus('success');
+      setRevenue('');
       
       setTimeout(() => {
         setSalesStatus(null);
@@ -170,6 +174,17 @@ const SalesForm = () => {
                   ))}
                 </select>
               </div>
+              <div className="form-group">
+                <label htmlFor="revenue">Revenue:</label>
+                <input
+                  type="number"
+                  id="revenue"
+                  value={revenue}
+                  onChange={(e) => setRevenue(e.target.value)}
+                  placeholder="Enter Revenue"
+                />
+              </div>
+
               <div className="form-group">
                 <label htmlFor="reportsBetweenDates">Reports:</label>
                 <textarea

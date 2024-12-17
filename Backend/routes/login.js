@@ -57,6 +57,7 @@ router.post('/', async (req, res) => {
         formPrivilegesCSR: user.privileges.formPrivilegesCSR,
         ciPrivileges: user.privileges.ciPrivileges,
         startupPrivileges : user.privileges.startupPrivileges,
+        subscription : user.subscription,
         counter: user.counter,
         endDate: user.endDate,
         lastLogin: lastLogin, // Use the preserved last login date

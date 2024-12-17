@@ -29,6 +29,9 @@ const salesSchema = new mongoose.Schema({
   reportDate: {
     type: Date,
   },
+  revenue: {
+    type: Number,
+  },
 });
 
 module.exports = mongoose.model('Sales', salesSchema);

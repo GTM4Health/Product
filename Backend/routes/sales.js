@@ -16,6 +16,7 @@ router.post('/', async (req, res) => {
       status,
       finalStatus,
       reportsBetweenDates,
+      revenue,
       reportDate,
     } = req.body;
 
@@ -28,6 +29,7 @@ router.post('/', async (req, res) => {
       status,
       finalStatus,
       reportsBetweenDates,
+      revenue,
       reportDate,
     });
     const savedSales = await sales.save();
