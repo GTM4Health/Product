@@ -34,9 +34,10 @@ const Header2 = ({ user }) => {
       <br/>
        {(user.lastLogin) ? ("Last Login: "+ user.lastLogin) : 'This is your first login !' }
       <br/>
+      <br/>
       {(user.endDate) ? ("Subscription End Date: "+ user.endDate) : ' ' }
       <br/>
-      {(user.subscription) ? (user.subscription) : ' ' }
+      {(user.subscription) ? ("User Type: " + user.subscription) : ' ' }
       </div>
       }
       {/* <div className="toolbar_left">
