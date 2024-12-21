@@ -32,6 +32,10 @@ const salesSchema = new mongoose.Schema({
   revenue: {
     type: Number,
   },
+  timestamp: {
+    type: Date,
+    default: Date.now, // Auto-generate timestamp if not provided
+  },
 });
 
 module.exports = mongoose.model('Sales', salesSchema);

@@ -21,6 +21,8 @@ const SalesForm = () => {
   const [reportDate, setReportDate] = useState('');
   const [salesStatus, setSalesStatus] = useState(null);
   const [revenue, setRevenue] = useState('');
+  const [timestamp, setTimestamp] = useState('');
+
 
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -41,6 +43,8 @@ const SalesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const currentTimestamp = new Date().toISOString();
+      setTimestamp(currentTimestamp);
       const formattedReportDate = new Date(reportDate).toLocaleDateString('en-GB', {
         day: '2-digit',
         month: 'short',
@@ -58,6 +62,7 @@ const SalesForm = () => {
         reportsBetweenDates,
         reportDate: formattedReportDate,
         revenue,
+        timestamp: currentTimestamp,
       });
       
       setLeadName('');
@@ -175,13 +180,13 @@ const SalesForm = () => {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="revenue">Revenue:</label>
+                <label htmlFor="revenue">Revenue Potential:</label>
                 <input
                   type="number"
                   id="revenue"
                   value={revenue}
                   onChange={(e) => setRevenue(e.target.value)}
-                  placeholder="Enter Revenue"
+                  placeholder="Enter Revenue Potential"
                 />
               </div>
 

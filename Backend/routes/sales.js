@@ -18,6 +18,7 @@ router.post('/', async (req, res) => {
       reportsBetweenDates,
       revenue,
       reportDate,
+      timestamp,
     } = req.body;
 
     const sales = new Sales({
@@ -31,6 +32,7 @@ router.post('/', async (req, res) => {
       reportsBetweenDates,
       revenue,
       reportDate,
+      timestamp,
     });
     const savedSales = await sales.save();
     res.status(201).json({ message: 'Sales entry created successfully' });
@@ -138,6 +140,7 @@ router.get('/get-sales', async (req, res) => {
     }
 
     const sales = await Sales.find(query)
+      .sort({ timestamp: -1 }) 
       .sort({ reportDate: -1 }) 
       .limit(limit * 1)
       .skip((page - 1) * limit)
@@ -173,6 +176,7 @@ router.get('/get-sales', async (req, res) => {
     }
 
     const sales = await Sales.find(query)
+      .sort({ timestamp: -1 })
       .sort({ reportDate: -1 }) 
       .limit(limit * 1)
       .skip((page - 1) * limit)
@@ -210,7 +214,7 @@ router.get('/get-all-sales', async (req, res) => {
     }
 
     const sales = await Sales.find(query)
-      .sort({ reportDate: -1 }) 
+      .sort({ timestamp: -1 }) 
       .exec();
 
     res.status(200).json({

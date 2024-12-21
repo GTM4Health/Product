@@ -461,7 +461,7 @@ const ViewSales = () => {
                     {/* <th>Email</th>
                     <th>Mobile No</th> */}
                     <th>Status</th>
-                    <th>Revenue</th>
+                    <th>Revenue Potential</th>
                     <th>Reports</th>
                     <th>Actions</th>
                   </tr>

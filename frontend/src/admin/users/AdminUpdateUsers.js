@@ -273,6 +273,9 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
             onChange={(e) => setSubscription(e.target.value)}
             required
           >
+            <option value="" disabled hidden>
+                      Select
+            </option>
             <option value="Paid User">Paid User</option>
             <option value="Trial User">Trial User</option>
           </select>

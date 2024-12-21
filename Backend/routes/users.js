@@ -6,15 +6,44 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 
+// router.get("/classic", async (req, res) => {
+//   const { page = 1, limit = 10 } = req.query;
+//   const skip = (page - 1) * limit;
+
+//   try {
+//     const totalRows = await User.countDocuments();
+//     const totalPages = Math.ceil(totalRows / limit); // Calculate total pages
+
+//     const users = await User.find().skip(skip).limit(Number(limit));
+
+//     res.json({ users, totalRows, totalPages });
+//   } catch (error) {
+//     console.error('Failed to fetch users', error);
+//     res.status(500).json({ error: 'Failed to fetch users' });
+//   }
+// });
+
 router.get("/classic", async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 10, search = '' } = req.query;
   const skip = (page - 1) * limit;
 
   try {
-    const totalRows = await User.countDocuments();
-    const totalPages = Math.ceil(totalRows / limit); // Calculate total pages
+    // Build search filter
+    const searchFilter = search
+      ? { $or: [
+          { name: { $regex: search, $options: "i" } }, // Case-insensitive search in 'username'
+          { email: { $regex: search, $options: "i" } }     // Add more fields as needed
+        ] }
+      : {};
 
-    const users = await User.find().skip(skip).limit(Number(limit));
+    // Count total rows matching the search filter
+    const totalRows = await User.countDocuments(searchFilter);
+    const totalPages = Math.ceil(totalRows / limit);
+
+    // Fetch paginated users matching the search filter
+    const users = await User.find(searchFilter)
+      .skip(skip)
+      .limit(Number(limit));
 
     res.json({ users, totalRows, totalPages });
   } catch (error) {
@@ -22,6 +51,7 @@ router.get("/classic", async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch users' });
   }
 });
+
 
 router.get('/', async (req, res) => {
   const { page = 1, limit = 10, criteria } = req.query;

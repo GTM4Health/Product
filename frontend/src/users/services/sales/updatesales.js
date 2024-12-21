@@ -120,13 +120,13 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
                 </select>
         </div>
         <div className="form-group">
-                <label htmlFor="revenue">Revenue:</label>
+                <label htmlFor="revenue">Revenue Potential:</label>
                 <input
                   type="number"
                   id="revenue"
                   value={revenue}
                   onChange={(e) => setRevenue(e.target.value)}
-                  placeholder="Enter Revenue"
+                  placeholder="Enter Revenue Potential"
                 />
               </div>
         <div className="form-group">

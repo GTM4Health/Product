@@ -22,6 +22,7 @@ function AdminDashboard() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedCriteria, setSelectedCriteria] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); 
 
   const myPieChartRef = useRef(); // Use a ref for Chart.js instance
 
@@ -29,7 +30,7 @@ function AdminDashboard() {
     if (isAuthenticated) {
       fetchUsers();
     }
-  }, [isAuthenticated, currentPage, pageSize, selectedCriteria]);
+  }, [isAuthenticated, currentPage, pageSize, selectedCriteria,searchTerm]);
 
   // useEffect(() => {
   //   if (isAuthenticated) {
@@ -69,6 +70,9 @@ function AdminDashboard() {
   const fetchUsers = async () => {
     try {
       let url = `${process.env.REACT_APP_BASE_URL}/api/users/classic?page=${currentPage}&limit=${pageSize}`;
+      if (searchTerm) {
+        url += `&search=${searchTerm}`; // Add search parameter to API
+      }
       const response = await axios.get(url);
       setUsers(response.data.users);
       setTotalUsers(response.data.totalRows);
@@ -175,6 +179,10 @@ function AdminDashboard() {
     setSelectedCriteria(event.target.value);
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value); // Update search term on input change
+    setCurrentPage(1); // Reset to first page when searching
+  };
 
   
 
@@ -194,7 +202,19 @@ function AdminDashboard() {
             <i>Displaying Page {currentPage} of {totalPages}</i>
           </h4>
         </div>
-        <div className="page-jump f-select">
+        <div className="filter-container">
+          <button className="search-button">
+              <i className="fas fa-search"></i>
+          </button>
+          <input
+            type="text"
+            id="search-input"
+             className="f-select"
+            placeholder="Search Users by Name or Email"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+          <div className="page-jump f-select">
               <label htmlFor="page-selector" className="f-label">Go to Page:</label>
               <select
                 id="page-selector"
@@ -208,7 +228,10 @@ function AdminDashboard() {
                   </option>
                 ))}
               </select>
+              </div>
         </div>
+
+
         <div className="pagination-buttons">
           {!isFirstPage && (
             <button className="prev-button" onClick={handlePrevPage}>
