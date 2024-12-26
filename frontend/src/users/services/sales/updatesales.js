@@ -130,13 +130,13 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
                 />
               </div>
         <div className="form-group">
-          <label htmlFor="reportsBetweenDates">Reports</label>
+          <label htmlFor="reportsBetweenDates">Progress</label>
           <textarea
             type="text"
             id="reportsBetweenDates"
             value={reportsBetweenDates}
             onChange={(e) => setReportsBetweenDates(e.target.value)}
-            placeholder="Reports .."
+            placeholder="Progress .."
             className="textarea"
           />
         </div>

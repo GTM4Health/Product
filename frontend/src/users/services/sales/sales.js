@@ -191,7 +191,7 @@ const SalesForm = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="reportsBetweenDates">Reports:</label>
+                <label htmlFor="reportsBetweenDates">Progress:</label>
                 <textarea
                   className='form-outline textarea'
                   id="reportsBetweenDates"

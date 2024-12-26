@@ -47,7 +47,7 @@ const CategoryDetails = () => {
                   <th>Center Name</th>
                   <th>Location</th>
                   <th>Total Beds</th>
-                  <th>Certifications</th>
+                  <th>Certification</th>
                 </tr>
               </thead>
               <tbody>

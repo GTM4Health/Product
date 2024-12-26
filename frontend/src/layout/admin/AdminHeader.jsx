@@ -4,6 +4,7 @@ import AdminLogoutButton from "../../components/AdminLogout";
 import Settings from "../../components/Settings";
 import Help from "../../components/Help";
 import AdminDashHomeButton from "../../components/AdminDashHome";
+import SignUpButton from "../../components/Signup";
 
 const AdminHeader = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,6 +32,7 @@ const AdminHeader = () => {
           {/* <i className="fas fa-search fa-2x search-icon"></i> */}
         </div>
         <AdminDashHomeButton />
+        <SignUpButton />
         <div className="user-menu">
           <div className="profile" onClick={toggleAdminMenu}>
             <i

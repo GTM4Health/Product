@@ -177,8 +177,8 @@ const SalesDocument = ({ salesData , compName}) => {
               <Text style={[styles.headerCell, styles.borderRight]}>Report Date</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Status</Text>
-              <Text style={[styles.headerCell, styles.borderRight]}>Revenue</Text>
-              <Text style={[styles.headerCell, styles.borderRight]}>Reports</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Revenue Potential</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Progress</Text>
             </View>
             {renderTableRows(
               salesData.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage),
@@ -462,7 +462,7 @@ const ViewSales = () => {
                     <th>Mobile No</th> */}
                     <th>Status</th>
                     <th>Revenue Potential</th>
-                    <th>Reports</th>
+                    <th>Progress</th>
                     <th>Actions</th>
                   </tr>
                 </thead>

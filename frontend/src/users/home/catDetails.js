@@ -61,6 +61,7 @@ const UserCategoryDetails = () => {
                   <th>Center Name</th>
                   <th>Location</th>
                   <th>Total Beds</th>
+                  <th>Certification</th>
                 </tr>
               </thead>
               <tbody>
@@ -68,8 +69,9 @@ const UserCategoryDetails = () => {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{center.name}</td>
-                    <td>{center.city}</td>
+                    <td>{center.city},{center.state}</td>
                     <td>{center.beds}</td>
+                    <td>{center.certification}</td>
                   </tr>
                 ))}
               </tbody>

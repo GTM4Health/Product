@@ -14,7 +14,7 @@ const Header = () => {
                     </Col>
                     <Col xs={8} md={10} className="text-end">
                         <div className="buttons">
-                        <SignUpButton />
+                        {/* <SignUpButton /> */}
                         <LoginButton />
                         </div>
                     </Col>
