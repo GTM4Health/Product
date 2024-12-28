@@ -16,7 +16,7 @@ const CategoriesDashboard = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/categories`);
-      const filteredCategories = response.data.filter(category => category.totalCenters > 10);
+      const filteredCategories = response.data.filter(category => category.totalCenters > 0);
       setCategories(filteredCategories);
     } catch (error) {
       console.error(error);
