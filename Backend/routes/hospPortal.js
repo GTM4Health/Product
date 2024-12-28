@@ -402,7 +402,7 @@ router.get('/categories', async (req, res) => {
       },
       {
         $match: {
-          totalCenters: { $gt: 10 } 
+          totalCenters: { $gt: 0 } 
         }
       },      
       {
