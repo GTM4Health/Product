@@ -390,6 +390,7 @@ router.get('/added-dashboard', async (req, res) => {
 });
 
 // GET /api/hospitals/categories - Get categories with centers > 10
+// GET /api/hospitals/categories - Get all categories with their center counts
 router.get('/categories', async (req, res) => {
   try {
     // Aggregate categories and count total centers for each
@@ -401,13 +402,8 @@ router.get('/categories', async (req, res) => {
         }
       },
       {
-        $match: {
-          totalCenters: { $gt: 0 } 
-        }
-      },      
-      {
         $sort: {
-          _id: 1 
+          _id: 1 // Sort categories alphabetically by name
         }
       },
       {
@@ -424,6 +420,7 @@ router.get('/categories', async (req, res) => {
     res.status(500).json({ message: "Error retrieving categories" });
   }
 });
+
 
 router.get('/categories/:categoryName', async (req, res) => {
   const categoryName = decodeURIComponent(req.params.categoryName); // Decode category name to handle special characters like spaces
