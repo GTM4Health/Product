@@ -9,7 +9,7 @@ const Logo = () => {
   return (
     <div className="image">
       <img src={imgP} alt="logoH" className="logo" />
-      <img src={Beta} alt="betaV" className="beta" />
+      {/* <img src={Beta} alt="betaV" className="beta" /> */}
     </div>
   );
 };
