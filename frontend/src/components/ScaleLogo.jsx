@@ -9,7 +9,7 @@ const Scale = () => {
   return (
     <div className="image">
       <img src={SLogo} alt="logoH" className="logo" />
-      <img src={Beta} alt="betaV" className="beta" />
+      {/* <img src={Beta} alt="betaV" className="beta" /> */}
     </div>
   );
 };
