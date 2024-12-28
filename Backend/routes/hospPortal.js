@@ -389,7 +389,6 @@ router.get('/added-dashboard', async (req, res) => {
   }
 });
 
-// GET /api/hospitals/categories - Get categories with centers > 10
 // GET /api/hospitals/categories - Get all categories with their center counts
 router.get('/categories', async (req, res) => {
   try {
@@ -420,6 +419,7 @@ router.get('/categories', async (req, res) => {
     res.status(500).json({ message: "Error retrieving categories" });
   }
 });
+
 
 
 router.get('/categories/:categoryName', async (req, res) => {
