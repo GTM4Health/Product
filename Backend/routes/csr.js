@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator');
 router.post('/', async (req, res) => {
   try {
     console.log('CSR/Foundation creation request received');
-    const { csrName, website, domain, ser, progress, addedBy } = req.body;
+    const { csrName, website, domain, ser, progress, addedBy, addedOnTime} = req.body;
 
     const csr = new CSR({
       csrName,
@@ -16,6 +16,7 @@ router.post('/', async (req, res) => {
       ser,
       progress,
       addedBy,
+      addedOnTime,
     });
 
     const savedCSR = await csr.save();

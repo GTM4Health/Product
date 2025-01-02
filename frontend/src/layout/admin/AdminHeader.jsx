@@ -5,11 +5,15 @@ import Settings from "../../components/Settings";
 import Help from "../../components/Help";
 import AdminDashHomeButton from "../../components/AdminDashHome";
 import SignUpButton from "../../components/Signup";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from 'react-router-dom';
 
 const AdminHeader = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [adminMenuOpen, setAdminMenuOpen] = useState(false);
   const [showName, setShowName] = useState(true); // New state to control name visibility
+  const isAuthenticated = useAuth();
+  const navigate = useNavigate();
 
   const toggleAdminMenu = () => {
     setAdminMenuOpen(!adminMenuOpen);
@@ -23,6 +27,11 @@ const AdminHeader = () => {
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
+
+  if (!isAuthenticated) {
+    navigate('/login');
+  }
+  
 
   return (
     <div className={`toolbar ${adminMenuOpen ? "user-menu-open" : ""}`}>

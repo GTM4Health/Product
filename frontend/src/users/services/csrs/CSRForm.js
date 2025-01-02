@@ -16,6 +16,7 @@ const CSRForm = () => {
   const [ser, setSer] = useState('');
   const [addedBy, setAddedBy] = useState('');
   const [csrStatus, setCSRStatus] = useState(null);
+  const [addedOnTime, setAddedOnTime] = useState('');
   
 
   useEffect(() => {
@@ -55,6 +56,10 @@ const CSRForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const now = new Date();
+    const options = { year: 'numeric', month: 'short', day: '2-digit' };
+    const formattedDate = now.toLocaleDateString('en-GB', options).replace(/ /g, '-');
+    const formattedTime = now.toLocaleTimeString('en-US', { hour12: true });
     try {
       await axios.post(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/CSR`, {
         csrName,
@@ -62,13 +67,15 @@ const CSRForm = () => {
         domain,
         ser,
         addedBy,
+        addedOnTime: `${formattedDate}, ${formattedTime} `,
+        
       });
       setCSRName('');
       setWebsite('');
       setDomain('');
       setSer('');
       setCSRStatus('success');
-
+      setAddedOnTime('');
       setTimeout(() => {
         setCSRStatus(null);
       }, 1000);

@@ -11,6 +11,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
   const [finalStatus, setFinalStatus] = useState(sale.finalStatus);
   const [reportsBetweenDates, setReportsBetweenDates] = useState(sale.reportsBetweenDates);
   const [revenue, setRevenue] = useState(sale.revenue || "");
+  const [product, setProduct] = useState(sale.product || "");
 
   useEffect(() => {
     setLeadName(sale.leadName);
@@ -22,6 +23,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
     setFinalStatus(sale.finalStatus);
     setReportsBetweenDates(sale.reportsBetweenDates);
     setRevenue(sale.revenue || "");
+    setProduct(sale.product || "");
   }, [sale]);
 
   const handleSubmit = (e) => {
@@ -37,6 +39,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
       finalStatus,
       reportsBetweenDates,
       revenue,
+      product,
     };
     onUpdate(sale._id, updatedData);
   };
@@ -128,7 +131,19 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
                   onChange={(e) => setRevenue(e.target.value)}
                   placeholder="Enter Revenue Potential"
                 />
-              </div>
+        </div>
+        <div className="form-group">
+                <label htmlFor="csrName">Product :</label>
+                <input
+                  type="text"
+                  id="csrName"
+                  required
+                  value={product}
+                  onChange={(e) => setProduct(e.target.value)}
+                  placeholder="Product Name"
+                  className="form-outline"
+                />
+        </div>
         <div className="form-group">
           <label htmlFor="reportsBetweenDates">Progress</label>
           <textarea

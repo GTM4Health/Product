@@ -20,6 +20,9 @@ const csrSchema = new mongoose.Schema({
   addedBy : {
     type: String,
   },
+  addedOnTime : {
+    type : String,
+  },
 });
 
 module.exports = mongoose.model('CSR', csrSchema);

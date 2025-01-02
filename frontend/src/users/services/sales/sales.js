@@ -22,6 +22,7 @@ const SalesForm = () => {
   const [salesStatus, setSalesStatus] = useState(null);
   const [revenue, setRevenue] = useState('');
   const [timestamp, setTimestamp] = useState('');
+  const [product, setProduct] = useState("");
 
 
   const { isAuthenticated } = useAuth();
@@ -55,6 +56,7 @@ const SalesForm = () => {
         leadName,
         emailID,
         healthcareCentreName,
+        product,
         email,
         mobileNo,
         status,
@@ -67,6 +69,7 @@ const SalesForm = () => {
       
       setLeadName('');
       setHealthcareCentreName('');
+      setProduct('');
       setEmail('');
       setMobileNo('');
       setStatus('');
@@ -145,6 +148,18 @@ const SalesForm = () => {
                   placeholder="Healthcare Centre Name"
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="csrName">Product :</label>
+                <input
+                  type="text"
+                  id="csrName"
+                  required
+                  value={product}
+                  onChange={(e) => setProduct(e.target.value)}
+                  placeholder="Product Name"
+                  className="form-outline"
+                />
+              </div>
               {/* <div className="form-group">
                 <label htmlFor="email">Email:</label>
                 <input
@@ -189,7 +204,6 @@ const SalesForm = () => {
                   placeholder="Enter Revenue Potential"
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="reportsBetweenDates">Progress:</label>
                 <textarea

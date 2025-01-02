@@ -177,7 +177,7 @@ const SalesDocument = ({ salesData , compName}) => {
               <Text style={[styles.headerCell, styles.borderRight]}>Report Date</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Status</Text>
-              <Text style={[styles.headerCell, styles.borderRight]}>Revenue Potential</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Revenue    Potential</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Progress</Text>
             </View>
             {renderTableRows(
@@ -458,6 +458,7 @@ const ViewSales = () => {
                     <th>Lead Name</th>
                     <th className='dat'>Report Date</th>
                     <th>Healthcare Centre Name</th>
+                    <th>Product</th>
                     {/* <th>Email</th>
                     <th>Mobile No</th> */}
                     <th>Status</th>
@@ -473,6 +474,7 @@ const ViewSales = () => {
                       <td>{sale.leadName}</td>
                       <td className='dat'>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY') : ""}</td>
                       <td>{sale.healthcareCentreName}</td>
+                      <td>{sale.product}</td>
                       {/* <td>{sale.email}</td>
                       <td>{sale.mobileNo}</td> */}
                       <td>{sale.finalStatus}</td>

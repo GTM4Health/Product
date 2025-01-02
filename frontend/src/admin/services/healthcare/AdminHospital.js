@@ -30,7 +30,7 @@ const AdminHospital = () => {
   const [addedOnTime, setAddedOnTime] = useState('');
   const [beds, setBeds] = useState('');
   const [certification, setCertification] = useState('');
-  
+
 
   useEffect(() => {
     // Fetch hospital names from the backend when the component mounts
@@ -82,6 +82,7 @@ const AdminHospital = () => {
         beds,
         hospitalNames,
         certification,
+        product,
         addedOnTime: `${formattedDate},${formattedTime} ` // Send Added On Time with the form data
       });
 
@@ -104,6 +105,7 @@ const AdminHospital = () => {
       setHospitalNames([]);
       setBeds("");
       setCertification("");
+      setProduct("");
       setAddedOnTime(''); // Clear Added On Time state
       // Clear the success message after 2 seconds
       setTimeout(() => {
@@ -309,6 +311,18 @@ const AdminHospital = () => {
                   placeholder="Infrastructure & Services"
                   className="form-outline textarea"
                 ></textarea>
+              </div>
+              <div className="form-group">
+                <label htmlFor="csrName">Product :</label>
+                <input
+                  type="text"
+                  id="csrName"
+                  required
+                  value={product}
+                  onChange={(e) => setProduct(e.target.value)}
+                  placeholder="Product Name"
+                  className="form-outline"
+                />
               </div>
               <div className="form-group">
                 <label className='f-label' htmlFor="speciality">Categories :</label>
