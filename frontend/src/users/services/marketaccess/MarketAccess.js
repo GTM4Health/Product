@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
 //<Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
 //<Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
 
-const MyDocument = ({ hospitalData, State, City, compName }) => {
+const MyDocument = ({ hospitalData, State, City, compName, Category }) => {
   const rowsPerPage = 10; // Adjust the number of rows per page
   const totalPages = Math.ceil(hospitalData.length / rowsPerPage);
 
