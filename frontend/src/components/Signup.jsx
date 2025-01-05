@@ -8,7 +8,7 @@ const SignUpButton = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/signup');
+    navigate('/admin/dashboard/signup');
   };
 
   return (

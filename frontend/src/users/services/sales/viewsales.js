@@ -177,7 +177,7 @@ const SalesDocument = ({ salesData , compName}) => {
               <Text style={[styles.headerCell, styles.borderRight]}>Report Date</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Status</Text>
-              <Text style={[styles.headerCell, styles.borderRight]}>Revenue    Potential</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Revenue-Potential</Text>
               <Text style={[styles.headerCell, styles.borderRight]}>Progress</Text>
             </View>
             {renderTableRows(

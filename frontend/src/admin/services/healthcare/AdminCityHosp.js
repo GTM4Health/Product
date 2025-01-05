@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const MyDocument = ({ hospitalData, State, City }) => {
+const MyDocument = ({ hospitalData, State, City, Category }) => {
   const rowsPerPage = 10; // Adjust the number of rows per page
   const totalPages = Math.ceil(hospitalData.length / rowsPerPage);
 
@@ -134,6 +134,7 @@ const MyDocument = ({ hospitalData, State, City }) => {
           <View style={styles.gap} />
           <Text style={styles.smallHeader}> State: {State === 'all' ? 'All' : State}</Text>
           <Text style={styles.smallHeader}> City: {City === 'all' ? 'All' : City}</Text>
+          <Text style={styles.smallHeader}> Category : {Category === 'all' ? 'All' : Category}</Text>
 
           <View style={styles.table}>
             <View style={styles.tableRow}>
@@ -597,7 +598,7 @@ const CityPortal = () => {
             </h1>
           </div>
           
-          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} State={selectedState} City={selectedCity} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
+          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} State={selectedState} City={selectedCity} Category={selectedCategory} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
       {({ blob, url, loading, error }) => {
         if (loading) {
           return 'Generating PDF...';

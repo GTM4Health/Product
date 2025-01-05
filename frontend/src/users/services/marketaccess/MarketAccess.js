@@ -134,8 +134,9 @@ const MyDocument = ({ hospitalData, State, City, compName }) => {
           <Text style={styles.header}>Healthcare Centre List</Text>
           <Text style={styles.subHeader}>{compName} | GTM4Health</Text> 
           <View style={styles.gap} />
-          <Text style={styles.smallHeader}>State: {State === 'all' ? 'All' : State} City: {City === 'all' ? 'All' : City}</Text>
-
+          <Text style={styles.smallHeader}> State: {State === 'all' ? 'All' : State}</Text>
+          <Text style={styles.smallHeader}> City: {City === 'all' ? 'All' : City}</Text>
+          <Text style={styles.smallHeader}> Category : {Category === 'all' ? 'All' : Category}</Text>
           <View style={styles.table}>
             <View style={styles.tableRow}>
               <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
@@ -384,7 +385,7 @@ const MarketAccess = () => {
                 Healthcare Centres List - City Wise
             </h1>
           </div>
-          {/* <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} compName={compName} State={selectedState} City={selectedCity} />} fileName="GTMScale_Healthcare_Centres-list.pdf">
+          <PDFDownloadLink className="clear-btn" document={<MyDocument hospitalData={allHospitalData} compName={compName} State={selectedState} City={selectedCity} Category={selectedCategory}  />} fileName="GTMScale_Healthcare_Centres-list.pdf">
       {({ blob, url, loading, error }) => {
         if (loading) {
           return 'Loading document...';
@@ -394,7 +395,7 @@ const MarketAccess = () => {
         }
         return 'Download PDF';
       }}
-    </PDFDownloadLink> */}
+    </PDFDownloadLink>
           {/* {console.log(user)} */}
           {/* Create a clickable link that redirects to an email */}
           <a href="mailto:info@gtm4health.com">
@@ -511,7 +512,7 @@ const MarketAccess = () => {
                   {/* <th>State</th> */}
                   <th>City</th>
                   <th>Category</th>
-                  <th>Contact Name</th>
+                  <th>Contact Details</th>
                   {/* <th>Speciality</th> */}
                   <th>Contact Email</th>
                   {/* <th>Contact Number</th> */}
@@ -528,7 +529,7 @@ const MarketAccess = () => {
                     {/* <td>{hospital.state}</td> */}
                     <td>{hospital.city}</td>
                     <td>{hospital.category}</td>
-                    <td>{hospital.docName}</td> 
+                    <td>{hospital.docName}, {hospital.mail}</td> 
                     {/* <td>{hospital.docSpez}</td>
                     <td>{hospital.phone}</td> */}
                     {/* <td>{hospital.speciality}</td> */}

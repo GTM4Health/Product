@@ -440,7 +440,7 @@ const AdminMenuBar = () => {
             ref={academyOpen}
         >
           <i className="fas fa-graduation-cap menu-icon"></i>
-          <span className="menu-text">GTM Academy</span>
+          <span className="menu-text">Learning Modules</span>
           {/* {isDashBoardMenuOpen && (
           <div className="sub-menu healthcare-menu og-tag">
             <a href="/admin/dashboard/User-Dashboard" className="sub-menu-item menu-link">
