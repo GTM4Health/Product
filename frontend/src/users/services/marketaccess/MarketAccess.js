@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   logo: {
-    width: 200,
-    height: 80,
+    width: 180,
+    height: 60,
   },
 });
 
@@ -514,7 +514,7 @@ const MarketAccess = () => {
                   <th>Category</th>
                   <th>Contact Details</th>
                   {/* <th>Speciality</th> */}
-                  <th>Contact Email</th>
+                  {/* <th>Contact Email</th> */}
                   {/* <th>Contact Number</th> */}
                 </tr>
               </thead>
@@ -533,7 +533,7 @@ const MarketAccess = () => {
                     {/* <td>{hospital.docSpez}</td>
                     <td>{hospital.phone}</td> */}
                     {/* <td>{hospital.speciality}</td> */}
-                    <td>{hospital.mail}</td>
+                    {/* <td>{hospital.mail}</td> */}
                      
                   </tr>
                 ))}

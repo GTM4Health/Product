@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   logo: {
-    width: 200,
-    height: 80,
+    width: 180,
+    height: 60,
   },
 });
 
