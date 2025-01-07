@@ -30,6 +30,7 @@ const AdminHospital = () => {
   const [addedOnTime, setAddedOnTime] = useState('');
   const [beds, setBeds] = useState('');
   const [certification, setCertification] = useState('');
+  const [product, setProduct] = useState('');
 
 
   useEffect(() => {

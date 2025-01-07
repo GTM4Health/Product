@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   },
 });
 
+
 const MyDocument = ({ hospitalData, State, City, Category }) => {
   const rowsPerPage = 10; // Adjust the number of rows per page
   const totalPages = Math.ceil(hospitalData.length / rowsPerPage);
@@ -114,11 +115,17 @@ const MyDocument = ({ hospitalData, State, City, Category }) => {
   const renderTableRows = (data, pageIndex) => {
     return data.map((hospital, index) => (
       <View style={styles.tableRow} key={hospital._id}>
-        <Text style={[styles.smallCell, styles.borderRight]}>{pageIndex * rowsPerPage + index + 1}</Text>
-        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.name}</Text>
-        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.docName}</Text>
-        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.phone}</Text>
-        <Text style={[styles.tableCell, styles.borderRight]}>{hospital.mail}</Text>
+        <Text style={[styles.smallCell, styles.borderRight]}>
+          {pageIndex * rowsPerPage + index + 1}
+        </Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>
+          {hospital.name}, {hospital.city}
+        </Text>
+        <Text style={[styles.tableCell, styles.borderRight]}>
+          {hospital.docName !== "" ? `${hospital.docName}, ` : ""}
+          {hospital.mail  !== "" ? `${hospital.mail}, ` : ""}
+          {hospital.phone !== "" ? `${hospital.phone}` : ""}
+        </Text>
       </View>
     ));
   };
@@ -127,22 +134,26 @@ const MyDocument = ({ hospitalData, State, City, Category }) => {
     <Document>
       {Array.from({ length: totalPages }, (_, pageIndex) => (
         <Page style={styles.page} key={pageIndex}>
-          <View style={styles.logoContainer}>
-            <Image src={logo} style={styles.logo} />
-          </View>
-          <Text style={styles.header}>Healthcare Centre List</Text>
-          <View style={styles.gap} />
-          <Text style={styles.smallHeader}> State: {State === 'all' ? 'All' : State}</Text>
-          <Text style={styles.smallHeader}> City: {City === 'all' ? 'All' : City}</Text>
-          <Text style={styles.smallHeader}> Category : {Category === 'all' ? 'All' : Category}</Text>
-
+          {pageIndex === 0 && ( // Render the header only on the first page
+            <>
+              <View style={styles.logoContainer}>
+                <Image src={logo} style={styles.logo} />
+              </View>
+              <Text style={styles.header}>Healthcare Centre List</Text>
+              <View style={styles.gap} />
+              <Text style={styles.smallHeader}>
+                State: {State === 'all' ? 'All' : State}, City: {City === 'all' ? 'All' : City}
+              </Text>
+              <Text style={styles.smallHeader}>
+                Category: {Category === 'all' ? 'All' : Category}
+              </Text>
+            </>
+          )}
           <View style={styles.table}>
             <View style={styles.tableRow}>
               <Text style={[styles.smallHeaderCell, styles.borderRight]}>Sl No.</Text>
-              <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre Name</Text>
-              <Text style={[styles.headerCell, styles.borderRight]}>Contact Name</Text>
-              <Text style={[styles.headerCell, styles.borderRight]}>Contact Number</Text>
-              <Text style={[styles.headerCell, styles.borderRight]}>Email</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Healthcare Centre</Text>
+              <Text style={[styles.headerCell, styles.borderRight]}>Contact Details</Text>
             </View>
             {renderTableRows(
               hospitalData.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage),
@@ -154,6 +165,7 @@ const MyDocument = ({ hospitalData, State, City, Category }) => {
     </Document>
   );
 };
+
 // const styles = StyleSheet.create({
 //   page: {
 //     flexDirection: 'column',
