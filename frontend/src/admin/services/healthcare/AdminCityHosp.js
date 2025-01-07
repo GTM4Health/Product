@@ -122,9 +122,7 @@ const MyDocument = ({ hospitalData, State, City, Category }) => {
           {hospital.name}, {hospital.city}
         </Text>
         <Text style={[styles.tableCell, styles.borderRight]}>
-          {hospital.docName !== "" ? `${hospital.docName}, ` : ""}
-          {hospital.mail  !== "" ? `${hospital.mail}, ` : ""}
-          {hospital.phone !== "" ? `${hospital.phone}` : ""}
+          {[hospital.docName, hospital.mail, hospital.phone].filter(val => val !== "").join(", ")}
         </Text>
       </View>
     ));

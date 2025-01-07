@@ -124,9 +124,10 @@ const MyDocument = ({ hospitalData, State, City, compName, Category }) => {
           {hospital.name}, {hospital.city}
         </Text>
         <Text style={[styles.tableCell, styles.borderRight]}>
-          {hospital.docName !== "" ? `${hospital.docName}, ` : ""}
+          {hospital.docName ? `${hospital.docName}${hospital.mail ? ", " : ""}` : ""}
           {hospital.mail}
         </Text>
+
       </View>
     ));
   };
