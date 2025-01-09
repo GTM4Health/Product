@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
     marginTop: 70, // Reduced space above the title
     textAlign: 'center',
   },
+  subHeader: { // Add a new style for the company name
+    fontSize: 18,
+    marginBottom: 8,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   smallHeader: {
     fontSize: 12,
     marginBottom: 6, // Reduced space between subtitle and table
