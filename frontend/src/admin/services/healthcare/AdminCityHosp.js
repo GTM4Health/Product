@@ -18,8 +18,6 @@ import Categories from "../../../assets/healthcareCategories.json";
 // "Veterinary Clinic",
 // "Eye Care Center",
 // Styles for the PDF
-
-// Styles for the PDF
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
@@ -27,13 +25,13 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    marginBottom: 20,
-    marginTop: 110,
+    marginBottom: 10, // Reduced spacing below the title
+    marginTop: 70, // Reduced space above the title
     textAlign: 'center',
   },
   smallHeader: {
     fontSize: 12,
-    marginBottom: 20,
+    marginBottom: 6, // Reduced space between subtitle and table
     textAlign: 'center',
   },
   table: {
@@ -43,7 +41,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRightColor: 'black',
     borderBottomColor: 'black',
-    marginTop: 40, // Add margin to create a gap
+    marginTop: 10, // Tightened space between table and previous element
   },
   tableRow: {
     flexDirection: 'row',
@@ -52,19 +50,18 @@ const styles = StyleSheet.create({
   },
   tableCell: {
     flex: 1,
-    padding: 4,
+    padding: 2, // Reduced padding inside table cells
     textAlign: 'center',
     fontSize: 12,
   },
   headerCell: {
     flex: 1,
-    padding: 4,
+    padding: 2, // Reduced padding inside header cells
     textAlign: 'center',
     fontWeight: 'bold',
     backgroundColor: '#0077b6',
     color: 'white',
     fontSize: 16,
-    textAlign: 'center',
   },
   smallHeaderCell: {
     textAlign: 'center',
@@ -78,7 +75,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 10,
-    padding: 6,
+    padding: 4, // Reduced padding inside smaller cells
     width: 30,
   },
   borderRight: {
@@ -90,11 +87,11 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: 'absolute',
-    top: 30, // Adjust the top value to create space between the logo and the table
-    right: 30,
+    top: 10, // Tightened spacing between logo and top of the page
+    right: 20,
   },
   gap: {
-    height: 40, // Adjust the height to create a gap below the logo
+    height: 8, // Minimal gap for separation
   },
   section: {
     margin: 4,
@@ -102,10 +99,98 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   logo: {
-    width: 180,
-    height: 60,
+    width: 160, // Adjusted size to maintain proportions
+    height: 50,
   },
 });
+
+// Styles for the PDF
+// const styles = StyleSheet.create({
+//   page: {
+//     flexDirection: 'column',
+//     padding: 12,
+//   },
+//   header: {
+//     fontSize: 24,
+//     marginBottom: 20,
+//     marginTop: 110,
+//     textAlign: 'center',
+//   },
+//   smallHeader: {
+//     fontSize: 12,
+//     marginBottom: 20,
+//     textAlign: 'center',
+//   },
+//   table: {
+//     display: 'table',
+//     width: '100%',
+//     borderStyle: 'solid',
+//     borderWidth: 1,
+//     borderRightColor: 'black',
+//     borderBottomColor: 'black',
+//     marginTop: 40, // Add margin to create a gap
+//   },
+//   tableRow: {
+//     flexDirection: 'row',
+//     borderBottomWidth: 1,
+//     borderBottomColor: 'black',
+//   },
+//   tableCell: {
+//     flex: 1,
+//     padding: 4,
+//     textAlign: 'center',
+//     fontSize: 12,
+//   },
+//   headerCell: {
+//     flex: 1,
+//     padding: 4,
+//     textAlign: 'center',
+//     fontWeight: 'bold',
+//     backgroundColor: '#0077b6',
+//     color: 'white',
+//     fontSize: 16,
+//     textAlign: 'center',
+//   },
+//   smallHeaderCell: {
+//     textAlign: 'center',
+//     fontWeight: 'bold',
+//     backgroundColor: '#0077b6',
+//     color: 'white',
+//     fontSize: 10,
+//     width: 30,
+//   },
+//   smallCell: {
+//     textAlign: 'center',
+//     fontWeight: 'bold',
+//     fontSize: 10,
+//     padding: 6,
+//     width: 30,
+//   },
+//   borderRight: {
+//     textAlign: 'center',
+//     fontWeight: 'bold',
+//     fontSize: 12,
+//     borderWidth: 1,
+//     borderColor: 'black',
+//   },
+//   logoContainer: {
+//     position: 'absolute',
+//     top: 30, // Adjust the top value to create space between the logo and the table
+//     right: 30,
+//   },
+//   gap: {
+//     height: 40, // Adjust the height to create a gap below the logo
+//   },
+//   section: {
+//     margin: 4,
+//     padding: 2,
+//     flexGrow: 1,
+//   },
+//   logo: {
+//     width: 180,
+//     height: 60,
+//   },
+// });
 
 
 const MyDocument = ({ hospitalData, State, City, Category }) => {
