@@ -454,6 +454,25 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET Centre Details by ID
+router.get('/centre/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Fetch centre details from the database
+    const centre = await Hospital.findById(id);
+
+    if (!centre) {
+      return res.status(404).json({ message: 'Centre not found' });
+    }
+
+    res.status(200).json(centre);
+  } catch (error) {
+    console.error('Error fetching centre details:', error);
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
+  }
+})
+
 module.exports = router;
 
 // router.get(

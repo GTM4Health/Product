@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Table = ({ data }) => {
+const AdminTable = ({ data }) => {
   return (
     <table className="user-table">
       <thead>
@@ -26,7 +26,7 @@ const Table = ({ data }) => {
             <td>{item.beds}</td>
             <td>{item.certification}</td>
             <td>
-              <Link to={`/dashboard/city-analysis/centre/${item._id}`} className="details-link">
+              <Link to={`/city/centre/${item._id}`} className="details-link">
                 View Details
               </Link>
             </td>
@@ -38,4 +38,4 @@ const Table = ({ data }) => {
   );
 };
 
-export default Table;
+export default AdminTable;

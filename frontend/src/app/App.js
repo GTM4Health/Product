@@ -78,6 +78,8 @@ import UserCategoriesDash from '../users/home/catDash';
 import CategoryDetails from '../admin/pages/CatDetails';
 import UserCategoryDetails from '../users/home/catDetails';
 import CSRForm from '../users/services/csrs/CSRForm';
+import CentreDetails from '../users/home/uCentre';
+import AdminCentreDetails from '../admin/pages/Centre';
 
 
 //Entry Function into the Product
@@ -145,9 +147,11 @@ export default function App() {
         <Route path='/admin/dashboard/View-CSR-Foundation' element = {<CSRPortal />} />
         <Route path="/state-details/:state" element={<StateDetails />} />
         <Route path="/city/:city" element={<CityDetails />} />
+        <Route path="/city/centre/:id" element={<AdminCentreDetails />} />
         <Route path="admin/dashboard/categories/:categoryName" element={<CategoryDetails />} />
         <Route path="/dashboard/categories/:categoryName" element={<UserCategoryDetails />} />
         <Route path="/dashboard/city-analysis/:city" element={<UserCityDetails />} />
+        <Route path="/dashboard/city-analysis/centre/:id" element={<CentreDetails />} />
         <Route path="/dashboard/state-details/:state" element={<UserStateDetails />} />
         <Route path='/dashboard/CSRs-Foundations' element = {<ViewCSRPortal />} />
         <Route path='/admin/dashboard/Eval-PDF' element = {<BillingForm />} />

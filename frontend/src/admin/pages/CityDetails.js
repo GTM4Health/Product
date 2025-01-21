@@ -4,7 +4,7 @@ import axios from 'axios';
 import AdminHeader from '../../layout/admin/AdminHeader';
 import AdminMenuBar from '../../layout/admin/AdminMenubar';
 import Footer from '../../layout/pages/Footer';
-import Table from '../../components/table';
+import AdminTable from '../../components/AdminTable';
 
 const CityDetails = () => {
   const { city } = useParams();
@@ -33,7 +33,7 @@ const CityDetails = () => {
             <h1 className="page-title-child hdblue-tag">{city} Healthcare Centres</h1>
           </div>
           <div className="table-content">
-            <Table data={hospitals} /> {/* Render the table component */}
+            <AdminTable data={hospitals} /> {/* Render the table component */}
           </div>
         </div>
       </div>
