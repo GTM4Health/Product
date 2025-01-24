@@ -49,18 +49,31 @@ const CentreDetails = () => {
       <div className="d-content">
         <div className="dashboard">
           <MenuBar />
-          <div className="centre-details">
-            <img src={gtm} alt="GTM Logo" className="gtm-logo" />
-            <h1>{centre.name}</h1>
-            <p><strong>About:</strong> {centre.about}</p>
-            <p><strong>Infrastructure:</strong> {centre.infrastructure}</p>
-            <p><strong>No of Beds:</strong> {centre.beds}</p>
-            <p><strong>Certifications:</strong> {centre.certification}</p>
-            <p><strong>Actionable Insights:</strong> {centre.insights}</p>
-            <h3>Contact Details</h3>
-            <p>Email: {centre.email}</p>
-            <p>Phone: {centre.phone}</p>
+          <div className="centre-details-container">
+          <div className="centre-header">
+            {/* <img src={gtm} alt="GTM Logo" className="centre-logo" /> */}
+            <h1 className="centre-name">About {centre.name}</h1>
           </div>
+          <div className="centre-info">
+            <h2 className="centre-section-title">Infrastructure and Services</h2>
+            <ul className="centre-info-list">
+              <li className="centre-info-item"><h3><strong>Category:</strong> {centre.category}</h3></li>
+              <li className="centre-info-item"><h3><strong>No of Beds:</strong> {centre.beds}</h3></li>
+              <li className="centre-info-item"><h3><strong>Certifications:</strong> {centre.certification}</h3></li>
+            </ul>
+          </div>
+          <div className="centre-insights">
+            <h2 className="centre-section-title">Actionable Insights</h2>
+            <div className="centre-insights-item"><h4>{centre.infraSer}</h4></div>
+          </div>
+          <div className="centre-contact">
+            <h2 className="centre-section-title">Contact Details</h2>
+            <ul className="centre-contact-list">
+              <li className="centre-contact-item"><h3><strong>Email:</strong> {centre.email}</h3></li>
+              <li className="centre-contact-item"><h3><strong>Phone:</strong> {centre.phone}</h3></li>
+            </ul>
+          </div>
+        </div>
         </div>
       </div>
       <Footer />
