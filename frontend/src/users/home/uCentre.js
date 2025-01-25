@@ -69,8 +69,9 @@ const CentreDetails = () => {
           <div className="centre-contact">
             <h2 className="centre-section-title">Contact Details</h2>
             <ul className="centre-contact-list">
-              <li className="centre-contact-item"><h3><strong>Email:</strong> {centre.email}</h3></li>
-              <li className="centre-contact-item"><h3><strong>Phone:</strong> {centre.phone}</h3></li>
+              <li className="centre-contact-item"><h3><strong>Name:</strong>{centre.details}</h3></li>
+              <li className="centre-contact-item"><h3><strong>Email:</strong>{centre.mail}</h3></li>
+              <li className="centre-contact-item"><h3><strong>Phone:</strong>{centre.phone}</h3></li>
             </ul>
           </div>
         </div>
