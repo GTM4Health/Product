@@ -52,7 +52,9 @@ const CentreDetails = () => {
           <div className="centre-details-container">
           <div className="centre-header">
             {/* <img src={gtm} alt="GTM Logo" className="centre-logo" /> */}
-            <h1 className="centre-name">About {centre.name}</h1>
+            <h1 className="centre-name">{centre.name}</h1>
+            {/* <hr className="divider" /> */}
+            <h3>{centre.city}, {centre.state}</h3>
           </div>
           <div className="centre-info">
             <h2 className="centre-section-title">Infrastructure and Services</h2>
