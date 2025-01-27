@@ -40,29 +40,29 @@ const AdminCentreDetails = () => {
             <h1 className="centre-name">{centre.name}</h1>
             {/* <hr className="divider" /> */}
             <h3>{centre.city}, {centre.state}</h3>
+            <h3 className='normal'><strong>Category:</strong> {centre.category}</h3> 
           </div>
-
           <div className="centre-info">
             <h2 className="centre-section-title">Infrastructure and Services</h2>
             <ul className="centre-info-list">
-              <li className="centre-info-item"><h3><strong>Category:</strong> {centre.category}</h3></li>
-              <li className="centre-info-item"><h3><strong>No of Beds:</strong> {centre.beds}</h3></li>
-              <li className="centre-info-item"><h3><strong>Certifications:</strong> {centre.certification}</h3></li>
+              {/* <li className="centre-info-item"><h3 className="normal" ><strong>Category: </strong> {centre.category}</h3></li> */}
+              <li className="centre-info-item"><h3 className="normal" ><strong>No of Beds: </strong> {centre.beds}</h3></li>
+              <li className="centre-info-item"><h3 className="normal" ><strong>Certifications: </strong> {centre.certification}</h3></li>
             </ul>
           </div>
           <div className="centre-insights">
             <h2 className="centre-section-title">Actionable Insights</h2>
-            <div className="centre-insights-item"><h4>{centre.infraSer}</h4></div>
+            <div className="centre-insights-item"><h4 className="normal">{centre.infraSer}</h4></div>
           </div>
           <div className="centre-contact">
             <h2 className="centre-section-title">Contact Details</h2>
             <ul className="centre-contact-list">
-              <li className="centre-contact-item"><h3><strong>Name:</strong> {centre.details}</h3></li>
-              <li className="centre-contact-item"><h3><strong>Email:</strong> {centre.mail}</h3></li>
-              <li className="centre-contact-item"><h3><strong>Phone:</strong> {centre.phone}</h3></li>
+              <li className="centre-contact-item"><h3 className="normal"><strong>Name: </strong>{centre.docName}</h3></li>
+              <li className="centre-contact-item"><h3 className="normal"><strong>Email: </strong>{centre.mail}</h3></li>
+              <li className="centre-contact-item"><h3 className="normal"><strong>Phone: </strong>{centre.phone}</h3></li>
             </ul>
           </div>
-        </div>
+          </div>
         </div>
       </div>
       <Footer />
