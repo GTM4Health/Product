@@ -20,6 +20,7 @@ const UserHospital = () => {
   const [docName, setDocName] = useState('');
   const [docSpez, setDocSpez] = useState('');
   const [mail, setMail] = useState('');
+  const [web, setWeb] = useState('');
   const [phone, setPhone] = useState('');
   const [speciality, setSpeciality] = useState('');
   const [lastConnected, setLastConnected] = useState('');
@@ -144,6 +145,7 @@ const UserHospital = () => {
         addedBy,
         beds,
         certification,
+        web,
         addedOnTime: `${formattedDate}, ${formattedTime} `,
       });
       setSearchQuery('');
@@ -165,6 +167,7 @@ const UserHospital = () => {
       setBeds("");
       setAddedOnTime('');
       setCertification("");
+      setWeb("");
       // Clear the success message after 2 seconds
       setTimeout(() => {
         setHospitalStatus(null);
@@ -412,6 +415,17 @@ const UserHospital = () => {
                   value={mail}
                   onChange={(e) => setMail(e.target.value)}
                   placeholder="Contact Email"
+                  className="form-outline"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="web">Website URL :</label>
+                <input
+                  type="text"
+                  id="web"
+                  value={web}
+                  onChange={(e) => setWeb(e.target.value)}
+                  placeholder="Website URL"
                   className="form-outline"
                 />
               </div>

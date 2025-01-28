@@ -60,6 +60,7 @@ const AdminCentreDetails = () => {
               <li className="centre-contact-item"><h3 className="normal"><strong>Name: </strong>{centre.docName}</h3></li>
               <li className="centre-contact-item"><h3 className="normal"><strong>Email: </strong>{centre.mail}</h3></li>
               <li className="centre-contact-item"><h3 className="normal"><strong>Phone: </strong>{centre.phone}</h3></li>
+              <li className="centre-contact-item"><h3 className="normal"><strong>Website/URL: </strong>{centre.web}</h3></li>
             </ul>
           </div>
           </div>

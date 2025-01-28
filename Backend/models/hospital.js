@@ -60,7 +60,10 @@ const hospitalSchema = new mongoose.Schema({
   },
   certification : {
     type : String,
-  }
+  },
+  web : {
+    type : String,
+  },
 });
 
 module.exports = mongoose.model('Hospital', hospitalSchema);

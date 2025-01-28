@@ -11,6 +11,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
   const [docName, setDocName] = useState(hospital.docName);
   const [docSpez, setDocSpez] = useState(hospital.docSpez);
   const [mail, setMail] = useState(hospital.mail);
+  const [web, setWeb] = useState(hospital.web || "");
   const [phone, setPhone] = useState(hospital.phone);
   const [infraSer, setInfraSer] = useState(hospital.infraSer);
   const [state, setState] = useState(hospital.state);
@@ -46,6 +47,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
     setAddedBy(hospital.addedBy || "Admin");
     setBeds(hospital.beds || "");
     setCertification(hospital.certification || "");
+    setWeb(hospital.web || "");
   }, [hospital]);
 
   const handleSubmit = (e) => {
@@ -67,6 +69,7 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
       beds,
       category,
       certification,
+      web,
     };
     onUpdate(hospital._id, updatedData);
   };
@@ -250,6 +253,17 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
             value={mail}
             onChange={(e) => setMail(e.target.value)}
           />
+        </div>
+        <div className="form-group">
+                <label htmlFor="web">Website URL :</label>
+                <input
+                  type="text"
+                  id="web"
+                  value={web}
+                  onChange={(e) => setWeb(e.target.value)}
+                  placeholder="Website URL"
+                  className="form-outline"
+                />
         </div>
         <div className="form-group">
           <label htmlFor="phone">Contact Number</label>

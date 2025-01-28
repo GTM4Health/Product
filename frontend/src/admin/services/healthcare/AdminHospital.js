@@ -18,6 +18,7 @@ const AdminHospital = () => {
   const [docName, setDocName] = useState('');
   const [docSpez, setDocSpez] = useState('');
   const [mail, setMail] = useState('');
+  const [web, setWeb] = useState('');
   const [phone, setPhone] = useState('');
   const [speciality, setSpeciality] = useState('');
   const [lastConnected, setLastConnected] = useState('');
@@ -84,6 +85,7 @@ const AdminHospital = () => {
         hospitalNames,
         certification,
         product,
+        web,
         addedOnTime: `${formattedDate},${formattedTime} ` // Send Added On Time with the form data
       });
 
@@ -107,6 +109,7 @@ const AdminHospital = () => {
       setBeds("");
       setCertification("");
       setProduct("");
+      setWeb("");
       setAddedOnTime(''); // Clear Added On Time state
       // Clear the success message after 2 seconds
       setTimeout(() => {
@@ -313,7 +316,7 @@ const AdminHospital = () => {
                   className="form-outline textarea"
                 ></textarea>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="csrName">Product :</label>
                 <input
                   type="text"
@@ -324,7 +327,7 @@ const AdminHospital = () => {
                   placeholder="Product Name"
                   className="form-outline"
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label className='f-label' htmlFor="speciality">Categories :</label>
                 <select
@@ -379,6 +382,17 @@ const AdminHospital = () => {
                   value={mail}
                   onChange={(e) => setMail(e.target.value)}
                   placeholder="Contact Email"
+                  className="form-outline"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="web">Website URL :</label>
+                <input
+                  type="text"
+                  id="web"
+                  value={web}
+                  onChange={(e) => setWeb(e.target.value)}
+                  placeholder="Website URL"
                   className="form-outline"
                 />
               </div>
