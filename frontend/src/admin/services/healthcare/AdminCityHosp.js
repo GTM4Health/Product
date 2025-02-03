@@ -406,6 +406,7 @@ const CityPortal = () => {
   const [selectedSpeciality, setSelectedSpeciality] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [totalHosp, setTotalHosp] = useState('');
+  
   const hospitalData = hospitals.map((hospital, index) => ({
     ...hospital,
   }));

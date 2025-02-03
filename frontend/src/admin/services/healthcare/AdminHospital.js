@@ -1,12 +1,11 @@
-import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import Footer from "../../../layout/pages/Footer"
-import AdminMenuBar from "../../../layout/admin/AdminMenubar";
-import useAuth from '../../../hooks/useAuth';
-import AdminHeader from "../../../layout/admin/AdminHeader";
+import React, { useEffect, useState } from 'react';
 import Categories from "../../../assets/healthcareCategories.json";
+import AdminHeader from "../../../layout/admin/AdminHeader";
+import AdminMenuBar from "../../../layout/admin/AdminMenubar";
+import Footer from "../../../layout/pages/Footer";
 
-import { stateOptions, getCityOptionsByState } from '../../../assets/cityOptions';
+import { getCityOptionsByState, stateOptions } from '../../../assets/cityOptions';
 import specialitiesData from '../../../assets/specialities.json'; // Import the specialities data
 
 const AdminHospital = () => {
@@ -32,6 +31,7 @@ const AdminHospital = () => {
   const [beds, setBeds] = useState('');
   const [certification, setCertification] = useState('');
   const [product, setProduct] = useState('');
+  
 
 
   useEffect(() => {
@@ -351,6 +351,17 @@ const AdminHospital = () => {
                   placeholder="Address"
                   className="form-outline textarea addrx"
                 ></textarea>
+              </div>
+              <div className="form-group">
+                <label htmlFor="web">Website URL :</label>
+                <input
+                  type="text"
+                  id="web"
+                  value={web}
+                  onChange={(e) => setWeb(e.target.value)}
+                  placeholder="Website URL"
+                  className="form-outline"
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="docName">Contact Name :</label>
