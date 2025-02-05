@@ -55,14 +55,12 @@ const CategoryDetails = () => {
                 {centers.map((center, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <Link to={`/city/centre/${item._id}`} className="details-link">
-                      <td>{center.name}</td>
-                    </Link>
+                    <td>{center.name}</td>
                     <td>{center.city}, {center.state}</td>
                     <td>{center.beds}</td>
                     <td>{center.certification}</td>
                     <td>
-                    <Link to={`/city/centre/${item._id}`} className="details-link">
+                    <Link to={`/city/centre/${center._id}`} className="details-link">
                       View Details
                     </Link>
                     </td>

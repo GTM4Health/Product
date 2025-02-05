@@ -74,7 +74,7 @@ const UserCategoryDetails = () => {
                     <td>{center.beds}</td>
                     <td>{center.certification}</td>
                     <td>
-                      <Link to={`/dashboard/city-analysis/centre/${item._id}`} className="details-link">
+                      <Link to={`/dashboard/city-analysis/centre/${center._id}`} className="details-link">
                         View Details
                       </Link>
                     </td>
