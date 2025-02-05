@@ -1,6 +1,6 @@
 // src/CategoryDetails.js
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../../layout/pages/Footer';
 import MenuBar from '../../layout/users/MenuBar';
@@ -62,6 +62,7 @@ const UserCategoryDetails = () => {
                   <th>Location</th>
                   <th>Total Beds</th>
                   <th>Certification</th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -72,6 +73,11 @@ const UserCategoryDetails = () => {
                     <td>{center.city}, {center.state}</td>
                     <td>{center.beds}</td>
                     <td>{center.certification}</td>
+                    <td>
+                      <Link to={`/dashboard/city-analysis/centre/${item._id}`} className="details-link">
+                        View Details
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>

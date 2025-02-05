@@ -1,6 +1,6 @@
 // src/CategoryDetails.js
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import AdminHeader from '../../layout/admin/AdminHeader';
 import AdminMenuBar from '../../layout/admin/AdminMenubar';
@@ -48,16 +48,24 @@ const CategoryDetails = () => {
                   <th>Location</th>
                   <th>Total Beds</th>
                   <th>Certification</th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
                 {centers.map((center, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{center.name}</td>
+                    <Link to={`/city/centre/${item._id}`} className="details-link">
+                      <td>{center.name}</td>
+                    </Link>
                     <td>{center.city}, {center.state}</td>
                     <td>{center.beds}</td>
                     <td>{center.certification}</td>
+                    <td>
+                    <Link to={`/city/centre/${item._id}`} className="details-link">
+                      View Details
+                    </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>
