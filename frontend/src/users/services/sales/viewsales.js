@@ -423,7 +423,7 @@ const ViewSales = () => {
           <div className="download-pdf">
                   <PDFDownloadLink
                     className="clear-btn"
-                    document={<SalesDocument salesData={salesData} compName={compName} />}
+                    document={<SalesDocument salesData={allSalesData} compName={compName} />}
                     fileName="GTMScale_SalesTracker_2024.pdf"
                   >
                     {({ loading }) =>
