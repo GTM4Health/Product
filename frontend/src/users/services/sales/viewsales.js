@@ -166,8 +166,12 @@ const SalesDocument = ({ salesData , compName}) => {
           {/* <View style={styles.logoContainer}>
             <Image src={logo} style={styles.logo} />
           </View> */}
+          {pageIndex === 0 && ( // Render the header only on the first page
+            <>
           <Text style={styles.header}>Sales Progress Tracker</Text>
           <Text style={styles.subHeader}>{compName || " Company Name "}</Text> 
+            </>
+          )}
           {/* <Text style={styles.subHeader}>{compName || "Company Name"} | GTM4Health</Text>  */}
           <View style={styles.gap} />
           <View style={styles.table}>

@@ -7,7 +7,7 @@ import { Button } from "bootstrap";
 import logo from "../../../images/newlogo.png";
 import Header2 from '../../../layout/users/Header2';
 import MenuBar from "../../../layout/users/MenuBar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link  } from "react-router-dom";
 
 
 // Styles for the PDF --org
@@ -365,6 +365,7 @@ const ViewCSRPortal = () => {
                   <th>Website</th>
                   <th>Domain</th>
                   <th>Services</th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -375,6 +376,11 @@ const ViewCSRPortal = () => {
                     <td>{csr.website}</td>
                     <td>{csr.domain}</td>
                     <td>{csr.ser}</td>
+                    <td>
+                      <Link to={`/dashboard/csr-foundation/${csr._id}`} className="details-link">
+                        View Details
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>

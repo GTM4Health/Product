@@ -81,6 +81,21 @@ router.get('/all-csrs', async (req, res) => {
   }
 });
 
+// Fetch a single CSR/Foundation by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const csr = await CSR.findById(req.params.id);
+    if (!csr) {
+      return res.status(404).json({ message: 'CSR Not Found' });
+    }
+    res.json(csr);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
 // DELETE a CSR/Foundation by ID
 router.delete('/delete-csr/:id', async (req, res) => {
   try {

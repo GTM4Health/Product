@@ -80,7 +80,7 @@ import UserCategoryDetails from '../users/home/catDetails';
 import CSRForm from '../users/services/csrs/CSRForm';
 import CentreDetails from '../users/home/uCentre';
 import AdminCentreDetails from '../admin/pages/Centre';
-
+import CSRPage from '../users/home/uCSR';
 
 //Entry Function into the Product
 export default function App() {
@@ -162,6 +162,7 @@ export default function App() {
         <Route path='/admin/dashboard/recent-users' element={<AdminDashboardMost />} />
         <Route path='/admin/dashboard/top-users' element={<AdminDashboardTop />} />
         <Route path='/dashboard/Add-CSR-Foundation' element = {<CSRForm />} />
+        <Route path='/dashboard/csr-foundation/:id' element = {<CSRPage />} />
       </Routes>
     </Router>
   );
