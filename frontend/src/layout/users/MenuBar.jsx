@@ -277,9 +277,12 @@ const MenuBar = () => {
         )}
       </div>
 
-      <div  className={`menu-item ${ isAssetMenuOpen ? "active" : ""}`} >
+      <div  className={`menu-item ad-menu-item ${ isAssetMenuOpen ? "active" : ""}`}
+        onClick={handleAssetMenuClick}
+        ref={assetMenuRef}
+       >
         <i className="fas fa-building menu-icon"></i>
-        <span className="menu-text">Assets</span>
+        <span className="menu-text">Assets Tracker</span>
         {isAssetMenuOpen && (
           <div className="sub-menu asset-menu">
           <a href="/dashboard/added-assets" className="sub-menu-item menu-link">
