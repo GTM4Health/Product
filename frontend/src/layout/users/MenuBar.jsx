@@ -14,6 +14,7 @@ const MenuBar = () => {
   const [isMedTechMenuOpen, setIsMedTechMenuOpen] = useState(false);
   const [isStartupsMenuOpen, setIsStartupsMenuOpen] = useState(false);
   const [isCSRMenuOpen, setIsCSRMenuOpen] = useState(false);
+  const [isAssetMenuOpen, setIsAssetMenuOpen] = useState(false);
 
   const medTechMenuRef = useRef(null);
   const healthcareCentresMenuRef = useRef(null);
@@ -22,6 +23,7 @@ const MenuBar = () => {
   const competitiveIntelMenuRef = useRef(null);
   const startupsMenuRef = useRef(null);
   const csrMenuRef = useRef(null);
+  const assetMenuRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -48,6 +50,9 @@ const MenuBar = () => {
       if (csrMenuRef.current && !csrMenuRef.current.contains(event.target)) {
         setIsCSRMenuOpen(false);
         }
+      if (assetMenuRef.current && !assetMenuRef.current.contains(event.target)) {
+        setIsAssetMenuOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleOutsideClick);
@@ -86,6 +91,10 @@ const MenuBar = () => {
   };
   const handleCSRMenuClick = () => {
     setIsCSRMenuOpen(!isCSRMenuOpen);
+  };
+
+  const handleAssetMenuClick = () => {
+    setIsAssetMenuOpen(!isAssetMenuOpen);
   };
 
   return (
@@ -264,6 +273,23 @@ const MenuBar = () => {
               <i className="fas fa-search sub-menu-icon"></i> 
               <span className="menu-text">View Competitive Intelligence</span>
             </a>
+          </div>
+        )}
+      </div>
+
+      <div  className={`menu-item ${ isAssetMenuOpen ? "active" : ""}`} >
+        <i className="fas fa-building menu-icon"></i>
+        <span className="menu-text">Assets</span>
+        {isAssetMenuOpen && (
+          <div className="sub-menu asset-menu">
+          <a href="/dashboard/added-assets" className="sub-menu-item menu-link">
+              <i className="fas fa-hospital sub-menu-icon"></i>
+              <span className="menu-text">View Assets</span>
+          </a>
+          <a href="/dashboard/Add-Assets" className="sub-menu-item menu-link">  
+              <i className="fas fa-plus-circle sub-menu-icon"></i>
+              <span className="menu-text">Assets Tracker</span>
+          </a>
           </div>
         )}
       </div>
