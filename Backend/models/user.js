@@ -54,6 +54,7 @@ const userSchema = new mongoose.Schema({
     formPrivilegesCSR: {type: Boolean, default: false},
     ciPrivileges: {type: Boolean, default: false},
     startupPrivileges : {type: Boolean, default: false},
+    assetPrivileges : {type: Boolean, default: false},
   },
   companyName: {
     type: String,
