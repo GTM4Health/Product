@@ -81,7 +81,8 @@ import CSRForm from '../users/services/csrs/CSRForm';
 import CentreDetails from '../users/home/uCentre';
 import AdminCentreDetails from '../admin/pages/Centre';
 import CSRPage from '../users/home/uCSR';
-
+import AssetForm from '../users/services/assets/AssetForm';
+import ViewAssets from '../users/services/assets/ViewAsset';
 //Entry Function into the Product
 export default function App() {
   return (
@@ -109,6 +110,7 @@ export default function App() {
         <Route path='admin/dashboard/Create-Project' element={<CreateProject />} />
         <Route path='admin/dashboard/Update-Project' element={<UpdateProject />} />
         <Route path='/admin/dashboard/added-hc-dashboard' element={<AddedDashboard />} />
+        <Route path='/dashboard/Add-Assets' element={<AssetForm />} />
         <Route path='/home' element={<Home />} />
         <Route path='/home-mr' element={<HomeMR />} />
         <Route path='/home-mr2' element={<HomeMR2 />} />
@@ -163,6 +165,7 @@ export default function App() {
         <Route path='/admin/dashboard/top-users' element={<AdminDashboardTop />} />
         <Route path='/dashboard/Add-CSR-Foundation' element = {<CSRForm />} />
         <Route path='/dashboard/csr-foundation/:id' element = {<CSRPage />} />
+        <Route path='/dashboard/added-assets' element = {<ViewAssets />} />
       </Routes>
     </Router>
   );

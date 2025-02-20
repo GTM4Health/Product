@@ -264,6 +264,7 @@ function AdminDashboard() {
                 <th>CSR/Foundations Forms Privileges</th>
                 <th>Competitive Intelligence Privileges</th>
                 <th>Startup Privileges</th>
+                <th>Assets Privileges</th>
                 <th>Subscription</th>
                 <th>Login Counter</th>
                 <th>Last Login</th>
@@ -294,6 +295,7 @@ function AdminDashboard() {
                   <td>{user.privileges.formPrivilegesCSR ?  'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.ciPrivileges ?  'Granted' : 'Restricted'}</td>
                   <td>{user.privileges.startupPrivileges ?  'Granted' : 'Restricted'}</td>
+                  <td>{user.privileges.assetPrivileges ?  'Granted' : 'Restricted'}</td>
                   {/* <td>{user.phone}</td>
                   <td>{user.role}</td> */}
                   <td>{user.subscription ? user.subscription : ' '}</td>

@@ -22,6 +22,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
     formPrivilegesCSR : user.privileges.formPrivilegesCSR || false,
     ciPrivileges : user.privileges.ciPrivileges || false,
     startupPrivileges : user.privileges.startupPrivileges || false,
+    assetPrivileges : user.privileges.assetPrivileges || false,
   });
 
   useEffect(() => {
@@ -43,6 +44,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
       formPrivilegesCSR : user.privileges.formPrivilegesCSR || false,
       ciPrivileges : user.privileges.ciPrivileges || false,
       startupPrivileges : user.privileges.startupPrivileges || false,
+      assetPrivileges : user.privileges.assetPrivileges || false,
     });
   }, [user]);
 
@@ -259,6 +261,20 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
                     <td>
                       <label>
                       Access Startups
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                              type="checkbox"
+                              checked={privileges.assetPrivileges}
+                              onChange={() => handlePrivilegeChange("assetPrivileges")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                      Access Assets
                       </label>
                     </td>
                   </tr>
