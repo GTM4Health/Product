@@ -95,7 +95,7 @@ const AssetForm = () => {
         <div className="dashboard">
           <MenuBar />
           <div className="hosp-content">
-            <h1>Add Asset</h1>
+            <h1>Asset Onboarding</h1>
             {renderAssetStatusMessage()}
             <form onSubmit={handleSubmit} className="hospital-f">
               <div className="form-group">

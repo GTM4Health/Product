@@ -291,7 +291,7 @@ const MenuBar = () => {
           </a>
           <a href="/dashboard/Add-Assets" className="sub-menu-item menu-link">  
               <i className="fas fa-plus-circle sub-menu-icon"></i>
-              <span className="menu-text">Assets Tracker</span>
+              <span className="menu-text">Assets Onboarding</span>
           </a>
           </div>
         )}

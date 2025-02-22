@@ -217,7 +217,7 @@ const ViewAssets = () => {
                       <th>Sl No.</th>
                       <th>Asset Number</th>
                       <th>Product Name</th>
-                      <th>Email ID</th>
+                      {/* <th>Email ID</th> */}
                       <th>Observations</th>
                       <th>Timestamp</th>
                     </tr>
@@ -228,9 +228,9 @@ const ViewAssets = () => {
                       <td>{(currentPage - 1) * pageSize + index + 1}</td>
                         <td>{asset.assetNumber}</td>
                         <td>{asset.productName}</td>
-                        <td>{asset.emailID}</td>
+                        {/* <td>{asset.emailID}</td> */}
                         <td>{asset.observations}</td>
-                        <td>{moment(asset.timestamp).format('DD-MMM-YYYY')}</td>
+                        <td>{moment(asset.timestamp).format("hh:mm:ss A, DD-MMM-YYYY")}</td>
                       </tr>
                     ))}
                   </tbody>
