@@ -40,7 +40,7 @@ router.get('/assets-portal/', async (req, res) => {
       query[searchCriteria] = { $regex: new RegExp(searchQuery, 'i') };
     }
 
-    const assets = await Asset.find(query).skip(skip).limit(parseInt(limit));
+    const assets = await Asset.find(query).skip(skip).limit(parseInt(limit)).sort({ timestamp: -1 }).exec();
     const totalAssets = await Asset.countDocuments(query);
 
     res.json({

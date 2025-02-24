@@ -122,7 +122,7 @@ const AssetForm = () => {
                   className="form-outline"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="emailID">Email ID:</label>
                 <input
                   type="email"
@@ -131,7 +131,7 @@ const AssetForm = () => {
                   readOnly
                   className="form-outline"
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="observations">Observations:</label>
                 <textarea

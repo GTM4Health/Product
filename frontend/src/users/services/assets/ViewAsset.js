@@ -230,7 +230,7 @@ const ViewAssets = () => {
                         <td>{asset.productName}</td>
                         {/* <td>{asset.emailID}</td> */}
                         <td>{asset.observations}</td>
-                        <td>{moment(asset.timestamp).format("hh:mm:ss A, DD-MMM-YYYY")}</td>
+                        <td>{moment(asset.timestamp).format("DD-MMM-YYYY, hh:mm:ss A")}</td>
                       </tr>
                     ))}
                   </tbody>
