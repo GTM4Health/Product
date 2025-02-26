@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRightColor: 'black',
     borderBottomColor: 'black',
-    marginTop: 40, // Add margin to create a gap
+    marginTop: 20, // Add margin to create a gap
   },
   tableRow: {
     flexDirection: 'row',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     right: 30,
   },
   gap: {
-    height: 40, // Adjust the height to create a gap below the logo
+    height: 20, // Adjust the height to create a gap below the logo
   },
   section: {
     margin: 4,

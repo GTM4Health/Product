@@ -182,13 +182,13 @@ const ViewAssets = () => {
             </div>
           </div>
         <div className="download-pdf">
-          {/* <PDFDownloadLink
+          <PDFDownloadLink
             className="clear-btn"
             document={<AssetDocument assetData={assetData} compName={compName} />}
             fileName="assets_report.pdf"
           >
             {({ loading }) => (loading ? 'Generating PDF...' : 'Download PDF')}
-          </PDFDownloadLink> */}
+          </PDFDownloadLink>
         </div>
         <div className="hosp-content">
           <div className="sales-data">
