@@ -6,7 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions";
 import Header2 from "../../../layout/users/Header2";
 import MenuBar from "../../../layout/users/MenuBar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const PartnersPage = () => {
@@ -212,6 +212,7 @@ useEffect(() => {
                   <th>Contact Name</th>
                   <th>Role</th>
                   <th>Contact Email</th>
+                  <th>Details</th>
                   {/* <th>Contact Number</th> */}
                 </tr>
               </thead>
@@ -230,6 +231,11 @@ useEffect(() => {
                     <td>{dealer.role}</td> 
                      <td>{dealer.mail}</td>
                     {/* <td>{dealer.phone}</td> */}
+                    <td>
+                      <Link to={`/dashboard/Access-GTM-Partners-Page/${dealer._id}`} className="details-link">
+                        View Details
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>

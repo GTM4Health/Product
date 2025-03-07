@@ -17,6 +17,21 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Fetch a single dealer by ID
+router.get('/get/:id', async (req, res) => {
+  try {
+    const dealer = await Dealer.findById(req.params.id);
+    if (!dealer) {
+      return res.status(404).json({ message: 'Dealer not found' });
+    }
+    res.status(200).json(dealer);
+  } catch (error) {
+    console.error('Error fetching dealer:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 // DELETE a hospital by ID
 router.delete('/delete-dealer/:id', async (req, res) => {
   try {

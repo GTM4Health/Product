@@ -83,6 +83,7 @@ import AdminCentreDetails from '../admin/pages/Centre';
 import CSRPage from '../users/home/uCSR';
 import AssetForm from '../users/services/assets/AssetForm';
 import ViewAssets from '../users/services/assets/ViewAsset';
+import UPartners from '../users/home/uPartners';
 //Entry Function into the Product
 export default function App() {
   return (
@@ -165,6 +166,7 @@ export default function App() {
         <Route path='/admin/dashboard/top-users' element={<AdminDashboardTop />} />
         <Route path='/dashboard/Add-CSR-Foundation' element = {<CSRForm />} />
         <Route path='/dashboard/csr-foundation/:id' element = {<CSRPage />} />
+        <Route path='/dashboard/Access-GTM-Partners-Page/:id' element = {<UPartners />} />
         <Route path='/dashboard/added-assets' element = {<ViewAssets />} />
       </Routes>
     </Router>
