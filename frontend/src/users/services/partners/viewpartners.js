@@ -204,13 +204,13 @@ useEffect(() => {
                   <th>Sl No.</th>
                   <th>Name</th>
                   <th>Products Managed</th>
-                  <th>State</th>
-                  <th>City</th>
-                  <th>Address</th>
+                  <th>Location</th>
+                  {/* <th>City</th> */}
+                  {/* <th>Address</th> */}
                   {/* <th>Pincode</th> */}
-                  <th>Website</th>
-                  <th>Contact Name</th>
-                  <th>Role</th>
+                  {/* <th>Website</th> */}
+                  {/* <th>Contact Name</th> */}
+                  {/* <th>Role</th> */}
                   <th>Contact Email</th>
                   <th>Details</th>
                   {/* <th>Contact Number</th> */}
@@ -222,13 +222,13 @@ useEffect(() => {
                     <td>{(currentPage - 1) * pageSize + index + 1}</td>
                     <td>{dealer.name}</td>
                     <td>{dealer.products}</td>
-                    <td>{dealer.state}</td>
-                    <td>{dealer.city}</td>
-                    <td>{dealer.address}</td>
+                    <td>{dealer.city}, {dealer.state}</td>
+                    {/* <td></td> */}
+                    {/* <td>{dealer.address}</td> */}
                     {/* <td>{dealer.pincode}</td> */}
-                    <td>{dealer.web}</td>
-                    <td>{dealer.dealerName}</td>
-                    <td>{dealer.role}</td> 
+                    {/* <td>{dealer.web}</td> */}
+                    {/* <td>{dealer.dealerName}</td> */}
+                    {/* <td>{dealer.role}</td>  */}
                      <td>{dealer.mail}</td>
                     {/* <td>{dealer.phone}</td> */}
                     <td>
