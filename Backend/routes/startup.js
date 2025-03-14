@@ -25,6 +25,21 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Fetch a startup by ID
+router.get('/getOne/:id', async (req, res) => {
+  try {
+    const startup = await Startup.findById(req.params.id);
+    if (!startup) {
+      return res.status(404).json({ message: 'Startup not found' });
+    }
+    res.json(startup);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
 // DELETE a startup by ID
 router.delete('/delete-startup/:id', async (req, res) => {
   try {

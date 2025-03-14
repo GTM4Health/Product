@@ -7,7 +7,7 @@ import { PDFViewer, PDFDownloadLink, Document, Page, Text, View, StyleSheet, Ima
 import axios from "axios";
 import { Button } from "bootstrap";
 import logo from "../../../images/newlogo.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 // Styles for the PDF
@@ -327,6 +327,7 @@ const UserViewStartup = () => {
                   <th>Product Stage</th>
                   <th>Domain</th>
                   <th>Founders</th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -338,6 +339,11 @@ const UserViewStartup = () => {
                     <td>{startup.productStage}</td>
                     <td>{startup.domain}</td>
                     <td>{startup.progress}</td>
+                     <td>
+                        <Link to={`/dashboard/startup/${startup._id}`} className="details-link">
+                          View Details
+                        </Link>
+                      </td>
                   </tr>
                 ))}
               </tbody>
