@@ -13,7 +13,17 @@ const adminLoginSchema = new mongoose.Schema({
     type: String, // Change the type to String to store formatted time
     default: () => moment().utcOffset('+05:30').format('DD-MM-YYYY, hh:mm:ss A'),
   },
+  lastLogin: {
+    type: String, // Stores the last login timestamp before updating loginTime
+    default: null,
+  }
 });
+
+adminLoginSchema.methods.recordLogin = async function () {
+  this.lastLogin = this.loginTime; // Store current loginTime as lastLogin
+  this.loginTime = moment().utcOffset('+05:30').format('DD-MM-YYYY, hh:mm:ss A'); // Update loginTime
+  await this.save();
+};
 
 const Admin = mongoose.model('Admin', adminLoginSchema);
 

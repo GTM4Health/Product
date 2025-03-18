@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Logo from "../../components/Logo";
 import AdminLogoutButton from "../../components/AdminLogout";
 import Settings from "../../components/Settings";
@@ -7,13 +7,31 @@ import AdminDashHomeButton from "../../components/AdminDashHome";
 import SignUpButton from "../../components/Signup";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const AdminHeader = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [adminMenuOpen, setAdminMenuOpen] = useState(false);
   const [showName, setShowName] = useState(true); // New state to control name visibility
   const isAuthenticated = useAuth();
+  const [lastLogin, setLastLogin] = useState(null);
   const navigate = useNavigate();
+
+  
+  useEffect(() => {
+    const fetchLastLogin = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/last-login`);
+        if (response.status === 200) {
+          setLastLogin(response.data.lastLogin);
+        }
+      } catch (error) {
+        console.error("Error fetching last login:", error);
+      }
+    };
+
+    fetchLastLogin();
+  }, []);
 
   const toggleAdminMenu = () => {
     setAdminMenuOpen(!adminMenuOpen);
@@ -31,11 +49,17 @@ const AdminHeader = () => {
   if (!isAuthenticated) {
     navigate('/login');
   }
+
   
 
   return (
     <div className={`toolbar ${adminMenuOpen ? "user-menu-open" : ""}`}>
       <Logo />
+      <div className="toolbar_left">
+        Welcome, Admin
+        <br />
+        {lastLogin ? `Last Login: ${lastLogin}` : "This is your first login!"}
+      </div>
       <div className="buttons">
         <div className="search-bar">
           {/* <i className="fas fa-search fa-2x search-icon"></i> */}
