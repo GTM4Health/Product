@@ -24,7 +24,7 @@ const AdminViewSpecialist = () => {
 
   const fetchSpecialists = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/specialists`, {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/specialist/get-all`, {
         params: {
           page: currentPage,
           limit: pageSize,
