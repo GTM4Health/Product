@@ -85,6 +85,8 @@ import AssetForm from '../users/services/assets/AssetForm';
 import ViewAssets from '../users/services/assets/ViewAsset';
 import UPartners from '../users/home/uPartners';
 import StartupPage from '../users/home/uStartup';
+import NewSpecialistForm from '../admin/services/specialists/addSpecialist';
+import ViewSpecialist from '../admin/services/specialists/viewSpecialist';
 //Entry Function into the Product
 export default function App() {
   return (
@@ -170,6 +172,8 @@ export default function App() {
         <Route path='/dashboard/Access-GTM-Partners-Page/:id' element = {<UPartners />} />
         <Route path='/dashboard/startup/:id' element = {<StartupPage />} />
         <Route path='/dashboard/added-assets' element = {<ViewAssets />} />
+        <Route path='/admin/dashboard/add-specialist-profile' element = {<NewSpecialistForm />} />
+        <Route path='/admin/dashboard/view-specialist-profile' element = {<ViewSpecialist />} />
       </Routes>
     </Router>
   );

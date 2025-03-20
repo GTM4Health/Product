@@ -58,7 +58,7 @@ const AdminHeader = () => {
       <div className="toolbar_left">
         Welcome, Admin
         <br />
-        {lastLogin ? `Last Login: ${lastLogin}` : "This is your first login!"}
+        {lastLogin ? `Last Login: ${lastLogin}` : " "}
       </div>
       <div className="buttons">
         <div className="search-bar">

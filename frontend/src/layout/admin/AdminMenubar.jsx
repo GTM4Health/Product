@@ -14,6 +14,7 @@ const AdminMenuBar = () => {
   const [isAcademyOpen, setIsAcademyOpen] = useState (false);
   const [isCompetitiveIntelMenuOpen, setIsCompetitiveIntelMenuOpen] = useState(false);
   const [isCSRTabOpen, setIsCSRTabOpen] = useState(false);
+  const[isSpecialistMenuOpen, setIsSpecialistMenuOpen] = useState(false);
  
   const navigate = useNavigate();
   const dashboardMenuRef=useRef(null)
@@ -28,6 +29,7 @@ const AdminMenuBar = () => {
   const competitiveIntelMenuRef = useRef(null);
   const csrtabMenuRef = useRef(null);
   const academyOpen = useRef(null);
+  const specialistMenuRef = useRef(null);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -66,6 +68,9 @@ const AdminMenuBar = () => {
       }
       if (csrtabMenuRef.current && !csrtabMenuRef.current.contains(event.target)) {
         setIsCSRTabOpen(false);
+      }
+      if (specialistMenuRef.current && !specialistMenuRef.current.contains(event.target)) {
+        setIsSpecialistMenuOpen(false);
       }
     };
 
@@ -138,6 +143,13 @@ const AdminMenuBar = () => {
   const handleCSRMenuClick = () => {
     setIsCSRTabOpen (!isCSRTabOpen);
   };
+
+  const handleSpecialistMenuClick = () => {
+    setIsSpecialistMenuOpen(!isSpecialistMenuOpen);
+    // if (!isSpecialistMenuOpen) {
+    //   navigate('/admin/specialists');
+    // }
+  }
 
   return (
     <div className="adbar ht-bar">
@@ -432,6 +444,7 @@ const AdminMenuBar = () => {
           </div>
         )} */}
         </div>
+
         <div 
             className={`menu-item ad-menu-item og-tag ${
             isAcademyOpen ? "active" : ""
@@ -450,6 +463,30 @@ const AdminMenuBar = () => {
           </div>
         )} */}
         </div>
+        <div
+        className={`menu-item ad-menu-item ${
+          isSpecialistMenuOpen ? "active" : ""
+        }`}
+        onClick={handleSpecialistMenuClick}
+        ref={specialistMenuRef}
+      >
+        <i className="fas fa-user-md menu-icon"></i>
+        <span className="menu-text">Specialist Profile</span>
+        {isSpecialistMenuOpen && (
+          <div className="sub-menu specialist-menu">
+          <a href="/admin/dashboard/add-specialist-profile" className="sub-menu-item menu-link">
+            <i className="fas fa-user-md sub-menu-icon"></i>
+            <span className="menu-text">Add Specialist Profile</span>
+          </a>
+          <a href="/admin/dashboard/view-specialist-profile" className="sub-menu-item menu-link">
+            <i className="fas fa-user-md sub-menu-icon"></i>
+            <span className="menu-text">View Specialist Profiles</span>
+          </a>
+          </div>
+        )}
+      </div>
+          
+
     </div>
   );
 };
