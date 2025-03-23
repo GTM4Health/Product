@@ -123,7 +123,7 @@ const AdminViewSpecialist = () => {
                   <th>Qualifications</th>
                   <th>Experience (Years)</th>
                   <th>Work Experience</th>
-                  <th>Location</th>
+                  <th>Address</th>
                   <th>State</th>
                   <th>City</th>
                   <th>Email</th>

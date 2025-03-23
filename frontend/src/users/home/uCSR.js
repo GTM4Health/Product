@@ -67,7 +67,7 @@ const CSRPage = () => {
               <ul className="centre-info-list">
                 <li className="centre-info-item"><h3 className="normal"><strong>Website:</strong> {csr.website}</h3></li>
                 <li className="centre-info-item"><h3 className="normal"><strong>Domain:</strong> {csr.domain}</h3></li>
-                <li className="centre-info-item"><h3 className="normal"><strong>Description:</strong> {csr.ser}</h3></li>
+                <li className="centre-insights-item"><h3 className="normal"><strong>Description:</strong> {csr.ser}</h3></li>
                 {/* <li className="centre-info-item"><h3 className="normal"><strong>Contact:</strong>{csr.ser}</h3></li> */}
               </ul>
             </div>

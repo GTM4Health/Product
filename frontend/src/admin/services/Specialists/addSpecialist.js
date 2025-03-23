@@ -5,6 +5,8 @@ import AdminMenuBar from "../../../layout/admin/AdminMenubar";
 import useAuth from "../../../hooks/useAuth";
 import AdminHeader from "../../../layout/admin/AdminHeader";
 
+import { stateOptions, getCityOptionsByState } from '../../../assets/cityOptions';
+
 const NewSpecialistForm = () => {
   const [doctorName, setDoctorName] = useState("");
   const [specialistIn, setSpecialistIn] = useState("");
@@ -54,6 +56,23 @@ const NewSpecialistForm = () => {
     }
   };
 
+    const renderCityOptions = () => {
+      const cities = getCityOptionsByState(state);
+      if(!state)
+      return     <option disabled value=''> State is Mandatory field * </option>
+      return cities.map((city) => (
+        <option key={city.value} value={city.value}>
+          {city.label}
+        </option>
+      ));
+    };
+
+    const handleStateChange = (e) => {
+      setState(e.target.value);
+      setCity('');
+    };
+  
+
   const renderSpecialistStatusMessage = () => {
     if (specialistStatus === "success") {
       return <div className="popup success">Specialist successfully added!</div>;
@@ -100,16 +119,31 @@ const NewSpecialistForm = () => {
                 <textarea id="workExperience" value={workExperience} onChange={(e) => setWorkExperience(e.target.value)} placeholder="Work Experience" className="form-outline textarea" />
               </div>
               <div className="form-group">
-                <label htmlFor="location">Location:</label>
-                <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Location" className="form-outline" />
+                <label htmlFor="location">Address:</label>
+                <input type="text" id="location" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Address" className="form-outline" />
               </div>
               <div className="form-group">
                 <label htmlFor="state">State:</label>
-                <input type="text" id="state" value={state} onChange={(e) => setState(e.target.value)} placeholder="State" className="form-outline" />
+                <select id="state" value={state} onChange={handleStateChange}>
+                  <option disabled value="">
+                    Select State
+                  </option>
+                  {renderStateOptions()}
+                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="city">City:</label>
-                <input type="text" id="city" value={city} onChange={(e) => setCity(e.target.value)} placeholder="City" className="form-outline" />
+                <select
+                  id="city"
+                  required
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                >
+                  <option disabled hidden value="">
+                    Select City
+                  </option>
+                  {renderCityOptions()}
+                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="email">Email:</label>

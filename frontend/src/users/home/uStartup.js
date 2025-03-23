@@ -65,11 +65,11 @@ const StartupPage = () => {
             <div className="centre-info">
               <h2 className="centre-section-title">Startup Details</h2>
               <ul className="centre-info-list">
+              <li className="centre-insights-item"><h3 className="normal"><strong>Founder(s):</strong> {startup.progress}</h3></li>
                 <li className="centre-info-item"><h3 className="normal"><strong>Website:</strong> {startup.website}</h3></li>
                 <li className="centre-info-item"><h3 className="normal"><strong>Domain:</strong> {startup.domain}</h3></li>
                 <li className="centre-info-item"><h3 className="normal"><strong>Product Stage:</strong> {startup.productStage}</h3></li>
-                <li className="centre-info-item"><h3 className="normal"><strong>Founders:</strong> {startup.progress}</h3></li>
-                <li className="centre-info-item"><h3 className="normal"><strong>Progress:</strong>{startup.work}</h3></li>              
+                <li className="centre-insights-item"><h3 className="normal"><strong>Progress:</strong>{startup.work}</h3></li>              
               </ul>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions";
 
 const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
   const [doctorName, setDoctorName] = useState(specialistData.doctorName);
@@ -41,6 +42,31 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
     };
     onUpdate(specialistData._id, updatedData);
   };
+
+    const renderCityOptions = () => {
+      const cities = getCityOptionsByState(state);
+      if (!state) {
+        return (
+          <option disabled value="">
+            State is a mandatory field *
+          </option>
+        );
+      }
+      return cities.map((city) => (
+        <option key={city.value} value={city.value}>
+          {city.label}
+        </option>
+      ));
+    };
+  
+    const renderStateOptions = () => {
+      return stateOptions.map((state) => (
+        <option key={state.value} value={state.value}>
+          {state.label}
+        </option>
+      ));
+    };
+  
 
   return (
     <div className="edit-form">
@@ -105,40 +131,39 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
           ></textarea>
         </div>
         <div className="form-group">
-          <label className='f-label' htmlFor="location">Location:</label>
+          <label className='f-label' htmlFor="location">Address:</label>
           <input
             type="text"
             id="location"
             required
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            placeholder="Location"
+            placeholder="Address"
             className="form-outline"
           />
         </div>
         <div className="form-group">
-          <label className='f-label' htmlFor="state">State:</label>
-          <input
-            type="text"
-            id="state"
-            required
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            placeholder="State"
-            className="form-outline"
-          />
+          <label htmlFor="state">State:</label>
+          <select id="state" value={state} onChange={handleStateChange}>
+            <option disabled value="">
+              Select State
+            </option>
+            {renderStateOptions()}
+          </select>
         </div>
         <div className="form-group">
-          <label className='f-label' htmlFor="city">City:</label>
-          <input
-            type="text"
+          <label htmlFor="city">City:</label>
+          <select
             id="city"
             required
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            placeholder="City"
-            className="form-outline"
-          />
+          >
+            <option disabled hidden value="">
+              Select City
+            </option>
+            {renderCityOptions()}
+          </select>
         </div>
         <div className="form-group">
           <label className='f-label' htmlFor="email">Email:</label>
