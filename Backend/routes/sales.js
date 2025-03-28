@@ -142,8 +142,8 @@ router.get('/get-sales', async (req, res) => {
     }
 
     const sales = await Sales.find(query)
-      .sort({ timestamp: -1 }) 
-      .sort({ reportDate: -1 }) 
+      // .sort({ timestamp: -1 }) 
+      // .sort({ reportDate: -1 }) 
       .limit(limit * 1)
       .skip((page - 1) * limit)
       .exec();
@@ -178,8 +178,8 @@ router.get('/get-sales', async (req, res) => {
     }
 
     const sales = await Sales.find(query)
-      .sort({ timestamp: -1 })
-      .sort({ reportDate: -1 }) 
+      // .sort({ timestamp: -1 })
+      // .sort({ reportDate: -1 }) 
       .limit(limit * 1)
       .skip((page - 1) * limit)
       .exec();
