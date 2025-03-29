@@ -159,12 +159,13 @@ const AdminViewSpecialist = () => {
             </table>
           </div>
           {editFormVisible && (
-            <updateSpecialist
-              specialist={selectedSpecialist}
-              onUpdate={(id, updatedData) => handleUpdateSpecialist(id, updatedData)}
+            <UpdateSpecialist
+              specialistData={selectedSpecialist} 
+              onUpdate={handleUpdateSpecialist}
               onCancel={() => setEditFormVisible(false)}
             />
           )}
+
         </div>
       </div>
       <Footer />
