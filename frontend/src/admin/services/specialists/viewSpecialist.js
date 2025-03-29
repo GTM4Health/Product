@@ -4,7 +4,7 @@ import AdminMenuBar from '../../../layout/admin/AdminMenubar';
 import useAuth from '../../../hooks/useAuth';
 import AdminHeader from '../../../layout/admin/AdminHeader';
 import axios from 'axios';
-import updateSpecialist from './updateSpecialist';
+import UpdateSpecialist from './updateSpecialist';
 
 const AdminViewSpecialist = () => {
   const isAuthenticated = useAuth();
