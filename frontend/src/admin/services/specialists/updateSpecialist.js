@@ -59,6 +59,11 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
       ));
     };
   
+    const handleStateChange = (e) => {
+      setState(e.target.value);
+      setCity('');
+    };
+    
     const renderStateOptions = () => {
       return stateOptions.map((state) => (
         <option key={state.value} value={state.value}>
