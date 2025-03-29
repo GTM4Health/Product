@@ -60,8 +60,13 @@ const NewSpecialistForm = () => {
 
     const renderCityOptions = () => {
       const cities = getCityOptionsByState(state);
-      if(!state)
-      return     <option disabled value=''> State is Mandatory field * </option>
+      if (!state) {
+        return (
+          <option disabled value="">
+            State is a mandatory field *
+          </option>
+        );
+      }
       return cities.map((city) => (
         <option key={city.value} value={city.value}>
           {city.label}
@@ -73,6 +78,15 @@ const NewSpecialistForm = () => {
       setState(e.target.value);
       setCity('');
     };
+
+        const renderStateOptions = () => {
+          return stateOptions.map((state) => (
+            <option key={state.value} value={state.value}>
+              {state.label}
+            </option>
+          ));
+        };
+      
   
 
   const renderSpecialistStatusMessage = () => {
