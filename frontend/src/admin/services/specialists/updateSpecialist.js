@@ -63,7 +63,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
       setState(e.target.value);
       setCity('');
     };
-    
+
     const renderStateOptions = () => {
       return stateOptions.map((state) => (
         <option key={state.value} value={state.value}>
@@ -94,7 +94,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
           <input
             type="text"
             id="specialistIn"
-            required
+            
             value={specialistIn}
             onChange={(e) => setSpecialistIn(e.target.value)}
             placeholder="Specialist In"
@@ -105,7 +105,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
           <label className='f-label' htmlFor="qualifications">Qualifications:</label>
           <textarea
             id="qualifications"
-            required
+            
             value={qualifications}
             onChange={(e) => setQualifications(e.target.value)}
             placeholder="Qualifications"
@@ -117,7 +117,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
           <input
             type="number"
             id="yearsOfExperience"
-            required
+            
             value={yearsOfExperience}
             onChange={(e) => setYearsOfExperience(e.target.value)}
             placeholder="Years of Experience"
@@ -128,7 +128,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
           <label className='f-label' htmlFor="workExperience">Work Experience:</label>
           <textarea
             id="workExperience"
-            required
+            
             value={workExperience}
             onChange={(e) => setWorkExperience(e.target.value)}
             placeholder="Work Experience"
@@ -140,7 +140,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
           <input
             type="text"
             id="location"
-            required
+            
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Address"
@@ -175,7 +175,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
           <input
             type="email"
             id="email"
-            required
+            
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
@@ -187,7 +187,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
           <input
             type="tel"
             id="mobNumber"
-            required
+            
             value={mobNumber}
             onChange={(e) => setMobNumber(e.target.value)}
             placeholder="Mobile Number"

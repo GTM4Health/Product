@@ -62,7 +62,7 @@ const AdminViewSpecialist = () => {
 
   const handleUpdateSpecialist = async (id, updatedData) => {
     try {
-      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/specialist/update-specialist/${id}`, { data: updatedData });
+      await axios.put(`${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/specialist/update-specialist/${id}`,  updatedData);
       setEditFormVisible(false);
       setSelectedSpecialist(null);
       fetchSpecialists();
