@@ -20,6 +20,8 @@ const NewSpecialistForm = () => {
   const [mobNumber, setMobNumber] = useState("");
   const [specialistStatus, setSpecialistStatus] = useState(null);
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
