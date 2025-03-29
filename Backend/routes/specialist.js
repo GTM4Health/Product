@@ -90,7 +90,13 @@ router.get("/:id", async (req, res) => {
 // @desc    Update a specialist's details
 router.put("/update-specialist/:id", async (req, res) => {
   try {
-    const specialist = await Specialist.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const specialist = await Specialist.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true } // Enforces schema validation
+    );
+    console.log("Updated Specialist:", specialist); // Log the updated document
+    
     if (!specialist) return res.status(404).json({ message: "Specialist not found" });
     res.json({ message: "Specialist updated successfully", specialist });
   } catch (error) {
