@@ -62,6 +62,7 @@ const UPartners = () => {
           <div className="centre-details-container">
             <div className="centre-header">
               <h1 className="centre-name">{partner.name}</h1>
+              <h3 className="normal centre-insights-item"><strong>Address:</strong> {partner.address}</h3>
             </div>
             <div className="centre-info">
               <h2 className="centre-section-title">Dealers & Distributors Details</h2>
