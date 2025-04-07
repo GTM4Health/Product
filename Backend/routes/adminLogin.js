@@ -10,7 +10,7 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    if (email === 'admin@gtmscale.in' && password === 'V2_GTMScale123$') {
+    if (email === 'admin@gtmscale.in' && password === 'Launch_GS123$') {
       console.log('Admin credentials verified');
 
       // Find existing admin entry

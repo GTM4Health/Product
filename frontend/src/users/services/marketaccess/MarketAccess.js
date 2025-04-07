@@ -613,13 +613,14 @@ const MarketAccess = () => {
                 <tr>
                   <th>Sl No.</th>
                   <th>Name</th>
-                  <th>Actionable Insights</th>
+                  {/* <th>Actionable Insights</th> */}
                   <th># of Beds</th>
                   <th>Certification</th>
                   {/* <th>State</th> */}
                   <th>City</th>
                   <th>Category</th>
-                  <th>Contact Details</th>
+                  {/* <th>Contact Details</th> */}
+                  <th>Details</th>
                   {/* <th>Speciality</th> */}
                   {/* <th>Contact Email</th> */}
                   {/* <th>Contact Number</th> */}
@@ -630,13 +631,18 @@ const MarketAccess = () => {
                   <tr key={hospital._id}>
                     <td>{(currentPage - 1) * pageSize + index + 1}</td>
                     <td>{hospital.name}</td>
-                    <td>{hospital.infraSer}</td>
+                    {/* <td>{hospital.infraSer}</td> */}
                     <td>{hospital.beds}</td>
                     <td>{hospital.certification}</td>
                     {/* <td>{hospital.state}</td> */}
                     <td>{hospital.city}</td>
                     <td>{hospital.category}</td>
-                    <td>{hospital.docName}, {hospital.mail}</td> 
+                    {/* <td>{hospital.docName}, {hospital.mail}</td>  */}
+                    <td>
+                      <Link to={`/dashboard/city-analysis/centre/${hospital._id}`} className="details-link">
+                        View Details
+                      </Link>
+                    </td>
                     {/* <td>{hospital.docSpez}</td>
                     <td>{hospital.phone}</td> */}
                     {/* <td>{hospital.speciality}</td> */}

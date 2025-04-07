@@ -138,7 +138,7 @@ const AdminViewSpecialist = () => {
                     <td>{specialist.doctorName}</td>
                     <td>{specialist.specialistIn}</td>
                     <td>{specialist.qualifications}</td>
-                    <td>{specialist.yearsOfExperience}</td>
+                    <td>{specialist.yearsExperience}</td>
                     <td>{specialist.workExperience}</td>
                     <td>{specialist.location}</td>
                     <td>{specialist.state}</td>

@@ -118,7 +118,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
             type="number"
             id="yearsOfExperience"
             
-            value={yearsOfExperience}
+            value={yearsExperience}
             onChange={(e) => setYearsOfExperience(e.target.value)}
             placeholder="Years of Experience"
             className="form-outline"
