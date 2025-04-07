@@ -8,7 +8,7 @@ import Menubar from "../../../layout/users/MenuBar";
 import axios from "axios";
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions"; // Importing getCityOptionsByState from cityOptions
 import specialitiesData from "../../../assets/specialities.json"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Categories from "../../../assets/healthcareCategories.json";
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer'; // Import PDF generation dependencies
 import logo from "../../../images/newlogo.png"; // Import logo for PDF
