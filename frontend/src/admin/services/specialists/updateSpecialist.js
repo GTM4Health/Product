@@ -5,7 +5,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
   const [doctorName, setDoctorName] = useState(specialistData.doctorName);
   const [specialistIn, setSpecialistIn] = useState(specialistData.specialistIn);
   const [qualifications, setQualifications] = useState(specialistData.qualifications);
-  const [yearsOfExperience, setYearsOfExperience] = useState(specialistData.yearsOfExperience);
+  const [yearsExperience, setYearsExperience] = useState(specialistData.yearsExperience);
   const [workExperience, setWorkExperience] = useState(specialistData.workExperience);
   const [location, setLocation] = useState(specialistData.location);
   const [state, setState] = useState(specialistData.state);
@@ -17,7 +17,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
     setDoctorName(specialistData.doctorName);
     setSpecialistIn(specialistData.specialistIn);
     setQualifications(specialistData.qualifications);
-    setYearsOfExperience(specialistData.yearsOfExperience);
+    setYearsExperience(specialistData.yearsExperience);
     setWorkExperience(specialistData.workExperience);
     setLocation(specialistData.location);
     setState(specialistData.state);
@@ -32,7 +32,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
       doctorName,
       specialistIn,
       qualifications,
-      yearsOfExperience,
+      yearsExperience,
       workExperience,
       location,
       state,
@@ -119,7 +119,7 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
             id="yearsOfExperience"
             
             value={yearsExperience}
-            onChange={(e) => setYearsOfExperience(e.target.value)}
+            onChange={(e) => setYearsExperience(e.target.value)}
             placeholder="Years of Experience"
             className="form-outline"
           />
