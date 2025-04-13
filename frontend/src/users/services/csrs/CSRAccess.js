@@ -364,7 +364,7 @@ const ViewCSRPortal = () => {
                   <th>CSR/Foundation Name</th>
                   <th>Website</th>
                   <th>Domain</th>
-                  <th>Services</th>
+                  {/* <th>Services</th> */}
                   <th>Details</th>
                 </tr>
               </thead>
@@ -375,7 +375,7 @@ const ViewCSRPortal = () => {
                     <td>{csr.csrName}</td>
                     <td>{csr.website}</td>
                     <td>{csr.domain}</td>
-                    <td>{csr.ser}</td>
+                    {/* <td>{csr.ser}</td> */}
                     <td>
                       <Link to={`/dashboard/csr-foundation/${csr._id}`} className="details-link">
                         View Details

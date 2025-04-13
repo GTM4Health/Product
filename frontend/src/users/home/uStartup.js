@@ -68,7 +68,7 @@ const StartupPage = () => {
               <li className="centre-insights-item"><h3 className="normal"><strong>Founder(s):</strong> {startup.progress}</h3></li>
                 <li className="centre-info-item"><h3 className="normal"><strong>Website:</strong> {startup.website}</h3></li>
                 <li className="centre-info-item"><h3 className="normal"><strong>Domain:</strong> {startup.domain}</h3></li>
-                <li className="centre-info-item"><h3 className="normal"><strong>Product Stage:</strong> {startup.productStage}</h3></li>
+                <li className="centre-info-item"><h3 className="normal"><strong>Business Stage:</strong> {startup.productStage}</h3></li>
                 <li className="centre-insights-item"><h3 className="normal"><strong>Progress:</strong>{startup.work}</h3></li>              
               </ul>
             </div>
