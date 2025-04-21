@@ -15,6 +15,7 @@ const MenuBar = () => {
   const [isStartupsMenuOpen, setIsStartupsMenuOpen] = useState(false);
   const [isCSRMenuOpen, setIsCSRMenuOpen] = useState(false);
   const [isAssetMenuOpen, setIsAssetMenuOpen] = useState(false);
+  const [isSpecialistMenuOpen, setIsSpecialistMenuOpen] = useState(false);
 
   const medTechMenuRef = useRef(null);
   const healthcareCentresMenuRef = useRef(null);
@@ -24,6 +25,7 @@ const MenuBar = () => {
   const startupsMenuRef = useRef(null);
   const csrMenuRef = useRef(null);
   const assetMenuRef = useRef(null);
+  const specialistMenuRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -53,6 +55,10 @@ const MenuBar = () => {
       if (assetMenuRef.current && !assetMenuRef.current.contains(event.target)) {
         setIsAssetMenuOpen(false);
       }
+      if (specialistMenuRef.current && !specialistMenuRef.current.contains(event.target)) {
+        setIsSpecialistMenuOpen(false);
+      }
+    // Add more conditions for other menus if needed
     };
 
     document.addEventListener("mousedown", handleOutsideClick);
@@ -96,6 +102,10 @@ const MenuBar = () => {
   const handleAssetMenuClick = () => {
     setIsAssetMenuOpen(!isAssetMenuOpen);
   };
+
+  const handleSpecialistMenuClick = () => {
+    setIsSpecialistMenuOpen(!isSpecialistMenuOpen);
+  }
 
   return (
     <div className="adbar usrbar"> 
@@ -292,6 +302,26 @@ const MenuBar = () => {
           <a href="/dashboard/Add-Assets" className="sub-menu-item menu-link">  
               <i className="fas fa-plus-circle sub-menu-icon"></i>
               <span className="menu-text">Assets Onboarding</span>
+          </a>
+          </div>
+        )}
+      </div>
+
+      <div  className={`menu-item ad-menu-item ${ isSpecialistMenuOpen ? "active" : ""}`}
+      onClick={handleSpecialistMenuClick}
+      ref={specialistMenuRef}
+      >
+        <i className="fas fa-user-md menu-icon"></i>
+        <span className="menu-text">Access Specialists</span> 
+        {isSpecialistMenuOpen && (
+          <div className="sub-menu specialist-menu">
+          {/* <a href="/dashboard/Add-Specialist" className="sub-menu-item menu-link">
+              <i className="fas fa-plus-circle sub-menu-icon"></i>
+              <span className="menu-text">Add Specialist</span>
+          </a> */}
+          <a href="/dashboard/View-Specialist" className="sub-menu-item menu-link">
+              <i className="fas fa-clipboard-list sub-menu-icon"></i>
+              <span className="menu-text">View Specialist</span>
           </a>
           </div>
         )}
