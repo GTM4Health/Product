@@ -211,7 +211,7 @@ useEffect(() => {
                   {/* <th>Website</th> */}
                   {/* <th>Contact Name</th> */}
                   {/* <th>Role</th> */}
-                  <th>Contact Email</th>
+                  {/* <th>Contact Email</th> */}
                   <th>Details</th>
                   {/* <th>Contact Number</th> */}
                 </tr>
@@ -229,7 +229,7 @@ useEffect(() => {
                     {/* <td>{dealer.web}</td> */}
                     {/* <td>{dealer.dealerName}</td> */}
                     {/* <td>{dealer.role}</td>  */}
-                     <td>{dealer.mail}</td>
+                     {/* <td>{dealer.mail}</td> */}
                     {/* <td>{dealer.phone}</td> */}
                     <td>
                       <Link to={`/dashboard/Access-GTM-Partners-Page/${dealer._id}`} className="details-link">

@@ -59,7 +59,7 @@ const UserViewSpecialist = () => {
         <div className="dashboard">
           <MenuBar />
           <div className="page-title">
-            <h1 className="page-title-child hdblue-tag">Available Specialists</h1>
+            <h1 className="page-title-child hdblue-tag">View Specialist Profiles</h1>
           </div>
           <div className="page-display">
             <h4 className="total-rows ft5">Total Specialists = {totalRows}</h4>
@@ -80,10 +80,11 @@ const UserViewSpecialist = () => {
                   <th>Sl No.</th>
                   <th>Dr Name</th>
                   <th>Speciality</th>
-                  <th>Mobile Number</th>
+                  {/* <th>Mobile Number</th>
                   <th>Email Id</th>
-                  <th>Experience</th>
+                  <th>Experience</th> */}
                   <th>Address</th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -92,10 +93,15 @@ const UserViewSpecialist = () => {
                     <td>{(currentPage - 1) * pageSize + index + 1}</td>
                     <td>{specialist.doctorName }</td>
                     <td>{specialist.specialistIn }</td>
-                    <td>{specialist.mobNumber }</td>
+                    {/* <td>{specialist.mobNumber }</td>
                     <td>{specialist.email }</td>
-                    <td>{specialist.yearsExperience }</td>
+                    <td>{specialist.yearsExperience }</td> */}
                     <td>{specialist.location }</td>
+                    <td>
+                      <a href={`/dashboard/specialist/${specialist._id}`} className="view-button">
+                        View Details
+                      </a>
+                    </td>
                   </tr>
                 ))}
               </tbody>

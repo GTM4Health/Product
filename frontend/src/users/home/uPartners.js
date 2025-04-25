@@ -62,6 +62,7 @@ const UPartners = () => {
           <div className="centre-details-container">
             <div className="centre-header">
               <h1 className="centre-name">{partner.name}</h1>
+              <h3 className="normal centre-insights-item">{partner.role}</h3>
               <h3 className="normal centre-insights-item"><strong>Address:</strong> <br/> {partner.address}</h3>
             </div>
             <div className="centre-info">
@@ -71,7 +72,7 @@ const UPartners = () => {
                 <li className="centre-info-item"><h3 className="normal"><strong>Website:</strong> {partner.web}</h3></li>
                 {/* <li className="centre-insights-item"><h3 className="normal"><strong>Address:</strong> {partner.address}</h3></li> */}
                 <li className="centre-info-item"><h3 className="normal"><strong>Location:</strong> {partner.city}, {partner.state}</h3></li>
-                <li className="centre-info-item"><h3 className="normal"><strong>Role:</strong> {partner.role}</h3></li>
+                {/* <li className="centre-info-item"><h3 className="normal"><strong>Role:</strong> {partner.role}</h3></li> */}
                 <li className="centre-insights-item"><h3 className="normal"><strong>Products Managed:</strong>  <br/> {partner.products}</h3></li>
                 <li className="centre-info-item"><h3 className="normal"><strong>Email:</strong> {partner.mail}</h3></li>
                 <li className="centre-info-item"><h3 className="normal"><strong>Phone:</strong> {partner.phone}</h3></li>
