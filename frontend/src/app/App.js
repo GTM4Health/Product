@@ -88,6 +88,7 @@ import StartupPage from '../users/home/uStartup';
 import NewSpecialistForm from '../admin/services/specialists/addSpecialist';
 import ViewSpecialist from '../admin/services/specialists/viewSpecialist';
 import UserViewSpecialist from '../users/services/specialist/viewSpecialist';
+import USpecialist from '../users/home/uSpecialist';
 //Entry Function into the Product
 export default function App() {
   return (
@@ -176,6 +177,7 @@ export default function App() {
         <Route path='/admin/dashboard/add-specialist-profile' element = {<NewSpecialistForm />} />
         <Route path='/admin/dashboard/view-specialist-profile' element = {<ViewSpecialist />} />
         <Route path='/dashboard/View-Specialist' element = {<UserViewSpecialist />} />
+        <Route path='/dashboard/specialist/:id' element = {<USpecialist />} />
       </Routes>
     </Router>
   );

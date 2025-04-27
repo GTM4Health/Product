@@ -323,7 +323,7 @@ const UserViewStartup = () => {
                 <tr>
                   <th>#</th>
                   <th>Startup Name</th>
-                  <th>Website</th>
+                  {/* <th>Website</th> */}
                   {/* <th>Product Stage</th> */}
                   <th>Domain</th>
                   <th>Founders</th>
@@ -335,7 +335,7 @@ const UserViewStartup = () => {
                   <tr key={startup.slNo}>
                     <td>{(currentPage - 1) * pageSize + index + 1}</td>
                     <td>{startup.startupName}</td>
-                    <td>{startup.website}</td>
+                    {/* <td>{startup.website}</td> */}
                     {/* <td>{startup.productStage}</td> */}
                     <td>{startup.domain}</td>
                     <td>{startup.progress}</td>
