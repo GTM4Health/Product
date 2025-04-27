@@ -34,7 +34,7 @@ const USpecialist = () => {
   const fetchSpecialist = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/specialist/get/${id}`
+        `${process.env.REACT_APP_BASE_URL}/api/admin/dashboard/specialist/${id}`
       );
       setSpecialist(response.data);
       setIsLoading(false);
