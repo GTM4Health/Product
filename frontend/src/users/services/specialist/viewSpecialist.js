@@ -83,7 +83,7 @@ const UserViewSpecialist = () => {
                   {/* <th>Mobile Number</th>
                   <th>Email Id</th>
                   <th>Experience</th> */}
-                  <th>Address</th>
+                  {/* <th>Address</th> */}
                   <th>Details</th>
                 </tr>
               </thead>
@@ -96,7 +96,7 @@ const UserViewSpecialist = () => {
                     {/* <td>{specialist.mobNumber }</td>
                     <td>{specialist.email }</td>
                     <td>{specialist.yearsExperience }</td> */}
-                    <td>{specialist.location }</td>
+                    {/* <td>{specialist.location }</td> */}
                     <td>
                       <a href={`/dashboard/specialist/${specialist._id}`} className="view-button">
                         View Details

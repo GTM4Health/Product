@@ -23,11 +23,11 @@ const USpecialist = () => {
 
   useEffect(() => {
     if (isAuthenticated && user) {
-      if (!user.gtmPrivileges) {
-        navigate("/dashboard/Subscription");
-      } else {
+      // if (!user.gtmPrivileges) {
+      //   navigate("/dashboard/Subscription");
+      // } else {
         fetchSpecialist();
-      }
+      //}
     }
   }, [isAuthenticated, user, id, navigate]);
 
@@ -65,7 +65,13 @@ const USpecialist = () => {
                 <strong>Speciality:</strong> {specialist.specialistIn}
               </h3>
               <h3 className="normal centre-insights-item">
-                <strong>Experience:</strong> {specialist.yearsExperience} Years
+                <strong>Experience:</strong> {specialist.yearsExperience} 
+              </h3>
+              <h3 className="normal centre-insights-item">
+                <strong>Qualifications:</strong> {specialist.qualifications} 
+              </h3>
+              <h3 className="normal centre-insights-item">
+                <strong>Career:</strong><br /> {specialist.workExperience}
               </h3>
               <h3 className="normal centre-insights-item">
                 <strong>Address:</strong><br /> {specialist.location}
