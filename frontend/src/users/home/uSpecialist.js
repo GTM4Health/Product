@@ -14,22 +14,31 @@ const USpecialist = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(storedUser);
+      setUser(JSON.parse(storedUser));
     }
   }, []);
+  
 
   useEffect(() => {
-    if (isAuthenticated && user) {
-      // if (!user.gtmPrivileges) {
-      //   navigate("/dashboard/Subscription");
-      // } else {
-        fetchSpecialist();
-      //}
+    if (isAuthenticated && user !== null) {
+      fetchSpecialist();
     }
-  }, [isAuthenticated, user, id, navigate]);
+  }, [isAuthenticated, user, id]);
+  
+
+  // useEffect(() => {
+  //   if (isAuthenticated && user) {
+  //     // if (!user.gtmPrivileges) {
+  //     //   navigate("/dashboard/Subscription");
+  //     // } else {
+  //       fetchSpecialist();
+  //     //}
+  //   }
+  // }, [isAuthenticated, user, id, navigate]);
 
   const fetchSpecialist = async () => {
     try {
