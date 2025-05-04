@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions";
+import specialistOptions from '../../../assets/Specialist.json';
+
 
 const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
   const [doctorName, setDoctorName] = useState(specialistData.doctorName);
@@ -71,6 +73,14 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
         </option>
       ));
     };
+
+    const renderSpecialistOptions = () => {
+      return specialistOptions.map((specialist) => (
+        <option key={specialist.value} value={specialist.value}>
+          {specialist.label}
+        </option>
+      ));
+    };
   
 
   return (
@@ -90,16 +100,19 @@ const UpdateSpecialist = ({ specialistData, onUpdate, onCancel }) => {
           />
         </div>
         <div className="form-group">
-          <label className='f-label' htmlFor="specialistIn">Specialist In:</label>
-          <input
-            type="text"
-            id="specialistIn"
-            
-            value={specialistIn}
-            onChange={(e) => setSpecialistIn(e.target.value)}
-            placeholder="Specialist In"
-            className="form-outline"
-          />
+                <label htmlFor="specialistIn">Specialist in:</label>
+                <select
+                  id="specialistIn"
+                  required
+                  value={specialistIn}
+                  placeholder="Specialist Field"
+                  onChange={(e) => setSpecialistIn(e.target.value)} 
+                >
+                  <option disabled hidden value="">
+                    Select Specialist
+                  </option>
+                  {renderSpecialistOptions()}
+                </select>
         </div>
         <div className="form-group">
           <label className='f-label' htmlFor="qualifications">Qualifications:</label>

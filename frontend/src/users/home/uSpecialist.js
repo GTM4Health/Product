@@ -14,7 +14,7 @@ const USpecialist = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -74,7 +74,7 @@ const USpecialist = () => {
                 <strong>Speciality:</strong> {specialist.specialistIn}
               </h3>
               <h3 className="normal centre-insights-item">
-                <strong>Experience:</strong> {specialist.yearsExperience} 
+                <strong>Experience:</strong> {specialist.yearsExperience} Years
               </h3>
               <h3 className="normal centre-insights-item">
                 <strong>Qualifications:</strong> {specialist.qualifications} 

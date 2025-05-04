@@ -1,0 +1,20 @@
+[
+    { "label": "Anasthetist", "value": "Anasthetist" },
+    { "label": "Cancer Surgeon", "value": "Cancer Surgeon" },
+    { "label": "Cardiologist", "value": "Cardiologist" },
+    { "label": "Diabetologist", "value": "Diabetologist" },
+    { "label": "Endocrinologist", "value": "Endocrinologist" },
+    { "label": "Family Medicine", "value": "Family Medicine" },
+    { "label": "Fertility Expert", "value": "Fertility Expert" },
+    { "label": "Gynecologist", "value": "Gynecologist" },
+    { "label": "Hemotologist", "value": "Hemotologist" },
+    { "label": "Neonatologist", "value": "Neonatologist" },
+    { "label": "Nephrologist", "value": "Nephrologist" },
+    { "label": "Oncologist", "value": "Oncologist" },
+    { "label": "Orthopedic Surgeon", "value": "Orthopedic Surgeon" },
+    { "label": "Pathologist", "value": "Pathologist" },
+    { "label": "Pediatrician", "value": "Pediatrician" },
+    { "label": "Podiatrist", "value": "Podiatrist" },
+    { "label": "Radiologist", "value": "Radiologist" }
+]
+  

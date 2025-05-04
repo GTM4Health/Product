@@ -6,6 +6,8 @@ import useAuth from "../../../hooks/useAuth";
 import AdminHeader from "../../../layout/admin/AdminHeader";
 
 import { stateOptions, getCityOptionsByState } from '../../../assets/cityOptions';
+import specialistOptions from '../../../assets/Specialist.json';
+
 
 const NewSpecialistForm = () => {
   const [doctorName, setDoctorName] = useState("");
@@ -104,6 +106,15 @@ const NewSpecialistForm = () => {
     return null;
   };
 
+  const renderSpecialistOptions = () => {
+    return specialistOptions.map((specialist) => (
+      <option key={specialist.value} value={specialist.value}>
+        {specialist.label}
+      </option>
+    ));
+  };
+  
+
   return (
     <div className="page-view">
       <AdminHeader />
@@ -118,9 +129,24 @@ const NewSpecialistForm = () => {
                 <label htmlFor="doctorName">Doctor Name*:</label>
                 <input type="text" id="doctorName" required value={doctorName} onChange={(e) => setDoctorName(e.target.value)} placeholder="Doctor Name" className="form-outline" />
               </div>
+              {/* <div className="form-group">
+                <label htmlFor="specialistIn"></label>
+                <input type="text" id="specialistIn" value={specialistIn} onChange={(e) => setSpecialistIn(e.target.value)} placeholder="Specialist Field" className="form-outline" />
+              </div> */}
               <div className="form-group">
                 <label htmlFor="specialistIn">Specialist in:</label>
-                <input type="text" id="specialistIn" value={specialistIn} onChange={(e) => setSpecialistIn(e.target.value)} placeholder="Specialist Field" className="form-outline" />
+                <select
+                  id="specialistIn"
+                  required
+                  value={specialistIn}
+                  placeholder="Specialist Field"
+                  onChange={(e) => setSpecialistIn(e.target.value)} 
+                >
+                  <option disabled hidden value="">
+                    Select Specialist
+                  </option>
+                  {renderSpecialistOptions()}
+                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="qualifications">Qualifications:</label>
