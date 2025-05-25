@@ -89,6 +89,8 @@ import NewSpecialistForm from '../admin/services/specialists/addSpecialist';
 import ViewSpecialist from '../admin/services/specialists/viewSpecialist';
 import UserViewSpecialist from '../users/services/specialist/viewSpecialist';
 import USpecialist from '../users/home/uSpecialist';
+import AddLearningModule from '../admin/services/academy/addLearning';
+import ViewLearningModules from '../admin/services/academy/viewLearning';
 //Entry Function into the Product
 export default function App() {
   return (
@@ -178,6 +180,8 @@ export default function App() {
         <Route path='/admin/dashboard/view-specialist-profile' element = {<ViewSpecialist />} />
         <Route path='/dashboard/View-Specialist' element = {<UserViewSpecialist />} />
         <Route path='/dashboard/specialist/:id' element = {<USpecialist />} />
+        <Route path='/admin/dashboard/Add-Learning-Module' element={<AddLearningModule />} />
+        <Route path='/admin/dashboard/View-Learning-Modules' element={<ViewLearningModules />} />
       </Routes>
     </Router>
   );

@@ -129,9 +129,9 @@ const AdminMenuBar = () => {
 
   const handleAcademyMenuClick = () => {
     setIsAcademyOpen(!isAcademyOpen);
-    if (!isAcademyOpen) {
-      navigate('/admin/academy');
-    }
+    // if (!isAcademyOpen) {
+    //   navigate('/admin/academy');
+    // }
   };
 
   const handleCompetitiveIntelMenuClick = () => {
@@ -444,8 +444,34 @@ const AdminMenuBar = () => {
           </div>
         )} */}
         </div>
-
         <div 
+          className={`menu-item ad-menu-item og-tag ${
+            isAcademyOpen ? "active" : ""
+          }`}
+          onClick={handleAcademyMenuClick}
+          ref={academyOpen}
+        >
+          <i className="fas fa-graduation-cap menu-icon"></i>
+          <span className="menu-text">Learning Modules</span>
+          {isAcademyOpen && (
+            <div className="sub-menu healthcare-menu og-tag">
+              <div className="og-tag">
+                <a href="/admin/dashboard/Add-Learning-Module" className="sub-menu-item menu-link">
+                  <i className="fas fa-book-medical sub-menu-icon"></i>
+                  <span className="menu-text">Add Learning Module</span>
+                </a>
+              </div>
+              <div className="og-tag">
+                <a href="/admin/dashboard/View-Learning-Modules" className="sub-menu-item menu-link">
+                  <i className="fas fa-book-reader sub-menu-icon"></i>
+                  <span className="menu-text">View & Update Modules</span>
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* <div 
             className={`menu-item ad-menu-item og-tag ${
             isAcademyOpen ? "active" : ""
             }`}
@@ -454,15 +480,15 @@ const AdminMenuBar = () => {
         >
           <i className="fas fa-graduation-cap menu-icon"></i>
           <span className="menu-text">Learning Modules</span>
-          {/* {isDashBoardMenuOpen && (
+          {isDashBoardMenuOpen && (
           <div className="sub-menu healthcare-menu og-tag">
             <a href="/admin/dashboard/User-Dashboard" className="sub-menu-item menu-link">
               <i className="fas fa-users sub-menu-icon"></i>
               <span className="menu-text">User Dashboard</span>
             </a>
           </div>
-        )} */}
-        </div>
+        )}
+        </div> */}
         <div
         className={`menu-item ad-menu-item ${
           isSpecialistMenuOpen ? "active" : ""
