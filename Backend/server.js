@@ -75,6 +75,7 @@ const mailRouter = require('./routes/email');
 const passwordResetRoute = require('./routes/password');
 const assetRouter = require('./routes/asset');
 const specialistRouter = require('./routes/specialist');
+const learningModuleRoutes = require('./routes/academy');
 
 // Use routes
 app.use('/api/signup', signupRouter);
@@ -96,6 +97,7 @@ app.use('/api/send-welcome-email', mailRouter);
 app.use('/api/password', passwordResetRoute);
 app.use('/api/admin/dashboard/Assets', assetRouter);
 app.use('/api/admin/dashboard/specialist', specialistRouter);
+app.use('/api/learning', learningModuleRoutes);
 
 
 // Start the server
