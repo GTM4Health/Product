@@ -332,7 +332,7 @@ const MenuBar = () => {
             <div className="og-tag">
               <a href="/dashboard/View-Learning-Modules" className="sub-menu-item menu-link">
                 <i className="fas fa-book-reader sub-menu-icon"></i>
-                <span className="menu-text">View & Update Modules</span>
+                <span className="menu-text">View Learning Modules</span>
               </a>
             </div>
           </div>
