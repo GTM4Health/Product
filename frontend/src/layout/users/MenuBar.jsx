@@ -16,7 +16,9 @@ const MenuBar = () => {
   const [isCSRMenuOpen, setIsCSRMenuOpen] = useState(false);
   const [isAssetMenuOpen, setIsAssetMenuOpen] = useState(false);
   const [isSpecialistMenuOpen, setIsSpecialistMenuOpen] = useState(false);
+  const [isAcademyOpen, setIsAcademyOpen] = useState(false);
 
+  const academyOpen = useRef(null);
   const medTechMenuRef = useRef(null);
   const healthcareCentresMenuRef = useRef(null);
   const dashBoardMenuRef=useRef(null);
@@ -58,6 +60,10 @@ const MenuBar = () => {
       if (specialistMenuRef.current && !specialistMenuRef.current.contains(event.target)) {
         setIsSpecialistMenuOpen(false);
       }
+      if (academyOpen.current && !academyOpen.current.contains(event.target)) {
+        setIsAcademyOpen(false);
+      }
+
     // Add more conditions for other menus if needed
     };
 
@@ -303,6 +309,32 @@ const MenuBar = () => {
               <i className="fas fa-plus-circle sub-menu-icon"></i>
               <span className="menu-text">Assets Onboarding</span>
           </a>
+          </div>
+        )}
+      </div>
+      <div 
+        className={`menu-item ad-menu-item og-tag ${
+          isAcademyOpen ? "active" : ""
+        }`}
+        onClick={() => setIsAcademyOpen(!isAcademyOpen)}
+        ref={academyOpen}
+      >
+        <i className="fas fa-graduation-cap menu-icon"></i>
+        <span className="menu-text">Learning Modules</span>
+        {isAcademyOpen && (
+          <div className="sub-menu healthcare-menu og-tag">
+            {/* <div className="og-tag">
+              <a href="/admin/dashboard/Add-Learning-Module" className="sub-menu-item menu-link">
+                <i className="fas fa-book-medical sub-menu-icon"></i>
+                <span className="menu-text">Add Learning Module</span>
+              </a>
+            </div> */}
+            <div className="og-tag">
+              <a href="/dashboard/View-Learning-Modules" className="sub-menu-item menu-link">
+                <i className="fas fa-book-reader sub-menu-icon"></i>
+                <span className="menu-text">View & Update Modules</span>
+              </a>
+            </div>
           </div>
         )}
       </div>

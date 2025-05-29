@@ -23,6 +23,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
     ciPrivileges : user.privileges.ciPrivileges || false,
     startupPrivileges : user.privileges.startupPrivileges || false,
     assetPrivileges : user.privileges.assetPrivileges || false,
+    academyPrivileges : user.privileges.academyPrivileges || false,
   });
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
       ciPrivileges : user.privileges.ciPrivileges || false,
       startupPrivileges : user.privileges.startupPrivileges || false,
       assetPrivileges : user.privileges.assetPrivileges || false,
+      academyPrivileges : user.privileges.academyPrivileges || false,
     });
   }, [user]);
 
@@ -275,6 +277,20 @@ const AdminUpdateUserForm = ({ user, onUpdate, onCancel }) => {
                     <td>
                       <label>
                       Access Assets
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                              type="checkbox"
+                              checked={privileges.academyPrivileges}
+                              onChange={() => handlePrivilegeChange("academyPrivileges")}
+                      />
+                    </td>
+                    <td>
+                      <label>
+                      Access Academy
                       </label>
                     </td>
                   </tr>

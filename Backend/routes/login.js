@@ -58,6 +58,7 @@ router.post('/', async (req, res) => {
         ciPrivileges: user.privileges.ciPrivileges,
         startupPrivileges : user.privileges.startupPrivileges,
         assetPrivileges : user.privileges.assetPrivileges,
+        academyPrivileges : user.privileges.academyPrivileges,
         subscription : user.subscription,
         counter: user.counter,
         endDate: user.endDate,

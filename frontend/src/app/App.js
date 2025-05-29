@@ -91,6 +91,8 @@ import UserViewSpecialist from '../users/services/specialist/viewSpecialist';
 import USpecialist from '../users/home/uSpecialist';
 import AddLearningModule from '../admin/services/academy/addLearning';
 import ViewLearningModules from '../admin/services/academy/viewLearning';
+import UserViewLearningModules from '../users/services/academy/userLearningModules';
+
 //Entry Function into the Product
 export default function App() {
   return (
@@ -182,6 +184,7 @@ export default function App() {
         <Route path='/dashboard/specialist/:id' element = {<USpecialist />} />
         <Route path='/admin/dashboard/Add-Learning-Module' element={<AddLearningModule />} />
         <Route path='/admin/dashboard/View-Learning-Modules' element={<ViewLearningModules />} />
+        <Route path='/dashboard/View-Learning-Modules' element={<UserViewLearningModules />} />
       </Routes>
     </Router>
   );

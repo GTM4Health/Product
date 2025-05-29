@@ -77,14 +77,18 @@ const ViewLearningModules = () => {
     }
   };
 
-  const handleDelete = async (fileName) => {
-    try {
-      await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/learning/delete/${fileName}`);
-      setLearningModules(learningModules.filter((file) => file !== fileName));
-    } catch (error) {
-      console.error(`Error deleting file ${fileName}:`, error);
-    }
-  };
+const handleDelete = async (fileName) => {
+  const confirmDelete = window.confirm(`Are you sure you want to delete "${fileName}"?`);
+  if (!confirmDelete) return;
+
+  try {
+    await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/learning/delete/${fileName}`);
+    setLearningModules(learningModules.filter((file) => file !== fileName));
+  } catch (error) {
+    console.error(`Error deleting file ${fileName}:`, error);
+  }
+};
+
 
   return (
     <div className="page-view">
