@@ -12,6 +12,8 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
   const [reportsBetweenDates, setReportsBetweenDates] = useState(sale.reportsBetweenDates);
   const [revenue, setRevenue] = useState(sale.revenue || "");
   const [product, setProduct] = useState(sale.product || "");
+  const [healthcareCentreDetails, setHealthcareCentreDetails] = useState(sale.healthcareCentreDetails || '');
+
 
   useEffect(() => {
     setLeadName(sale.leadName);
@@ -24,6 +26,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
     setReportsBetweenDates(sale.reportsBetweenDates);
     setRevenue(sale.revenue || "");
     setProduct(sale.product || "");
+    setHealthcareCentreDetails(sale.healthcareCentreDetails || '');
   }, [sale]);
 
   const handleSubmit = (e) => {
@@ -32,6 +35,7 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
     const updatedData = {
       leadName,
       healthcareCentreName,
+      healthcareCentreDetails,
       email,
       mobileNo,
       status,
@@ -68,6 +72,17 @@ const EditSalesForm = ({ sale, onUpdate, onCancel }) => {
             placeholder="Healthcare Centre Name"
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="healthcareCentreDetails">Healthcare Centre Details</label>
+          <textarea
+            id="healthcareCentreDetails"
+            className="textarea"
+            value={healthcareCentreDetails}
+            onChange={(e) => setHealthcareCentreDetails(e.target.value)}
+            placeholder="Healthcare Centre Details"
+          />
+        </div>
+
         {/* <div className="form-group">
           <label htmlFor="email">Email</label>
           <input

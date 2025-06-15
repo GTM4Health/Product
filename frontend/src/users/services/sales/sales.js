@@ -23,6 +23,8 @@ const SalesForm = () => {
   const [revenue, setRevenue] = useState('');
   const [timestamp, setTimestamp] = useState('');
   const [product, setProduct] = useState("");
+  const [healthcareCentreDetails, setHealthcareCentreDetails] = useState('');
+
 
 
   const { isAuthenticated } = useAuth();
@@ -56,6 +58,7 @@ const SalesForm = () => {
         leadName,
         emailID,
         healthcareCentreName,
+        healthcareCentreDetails,
         product,
         email,
         mobileNo,
@@ -69,6 +72,7 @@ const SalesForm = () => {
       
       setLeadName('');
       setHealthcareCentreName('');
+      setHealthcareCentreDetails('');
       setProduct('');
       setEmail('');
       setMobileNo('');
@@ -160,6 +164,17 @@ const SalesForm = () => {
                   className="form-outline"
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="healthcareCentreDetails">Healthcare Centre Details:</label>
+                <textarea
+                  className='form-outline textarea'
+                  id="healthcareCentreDetails"
+                  value={healthcareCentreDetails}
+                  onChange={(e) => setHealthcareCentreDetails(e.target.value)}
+                  placeholder="Add Healthcare Centre Details"
+                />
+              </div>
+
               {/* <div className="form-group">
                 <label htmlFor="email">Email:</label>
                 <input

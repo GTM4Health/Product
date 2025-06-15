@@ -462,6 +462,7 @@ const ViewSales = () => {
                     <th>Lead Name</th>
                     <th className='dat'>Report Date</th>
                     <th>Healthcare Centre Name</th>
+                    <th>Healthcare Centre Details</th>
                     <th>Product</th>
                     {/* <th>Email</th>
                     <th>Mobile No</th> */}
@@ -478,6 +479,7 @@ const ViewSales = () => {
                       <td>{sale.leadName}</td>
                       <td className='dat'>{sale.reportDate ? moment(sale.reportDate).format('DD-MMM-YYYY') : ""}</td>
                       <td>{sale.healthcareCentreName}</td>
+                      <td>{sale.healthcareCentreDetails}</td>
                       <td>{sale.product}</td>
                       {/* <td>{sale.email}</td>
                       <td>{sale.mobileNo}</td> */}
