@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "../../layout/pages/Footer";
 import AdminMenuBar from "../../layout/admin/AdminMenubar";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 import AdminHeader from "../../layout/admin/AdminHeader";
 import AdminUpdateUserForm from "./AdminUpdateUsers";
 import { Pie } from "react-chartjs-2";
@@ -12,7 +12,7 @@ const moment = require('moment');
 
 
 function AdminDashboard() {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [users, setUsers] = useState([]);
   const [totalUsers, setTotalUsers] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,10 +27,10 @@ function AdminDashboard() {
   const myPieChartRef = useRef(); // Use a ref for Chart.js instance
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       fetchUsers();
-    }
-  }, [isAuthenticated, currentPage, pageSize, selectedCriteria,searchTerm]);
+    // }
+  }, [currentPage, pageSize, selectedCriteria,searchTerm]);
 
   // useEffect(() => {
   //   if (isAuthenticated) {
@@ -108,9 +108,9 @@ function AdminDashboard() {
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  // if (!isAuthenticated) {
+  //   return null;
+  // }
   const handleDeleteUser = async (id) => {
     const confirmed = window.confirm("Are you sure you want to delete this user?");
     if (!confirmed) {

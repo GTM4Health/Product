@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "../../layout/pages/Footer";
 import AdminMenuBar from "../../layout/admin/AdminMenubar";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 import AdminHeader from "../../layout/admin/AdminHeader";
 import AdminUpdateUserForm from "./AdminUpdateUsers";
 import { Pie } from "react-chartjs-2";
@@ -11,7 +11,7 @@ const moment = require('moment');
 
 
 function AdminDashboardTop() {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [users, setUsers] = useState([]);
   const [totalUsers, setTotalUsers] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,10 +25,10 @@ function AdminDashboardTop() {
   const myPieChartRef = useRef(); // Use a ref for Chart.js instance
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       fetchUsers();
-    }
-  }, [isAuthenticated, currentPage, pageSize, selectedCriteria]);
+    // }
+  }, [currentPage, pageSize, selectedCriteria]);
 
 
 

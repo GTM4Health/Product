@@ -5,7 +5,7 @@ import Settings from "../../components/Settings";
 import Help from "../../components/Help";
 import AdminDashHomeButton from "../../components/AdminDashHome";
 import SignUpButton from "../../components/Signup";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
@@ -13,7 +13,7 @@ const AdminHeader = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [adminMenuOpen, setAdminMenuOpen] = useState(false);
   const [showName, setShowName] = useState(true); // New state to control name visibility
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [lastLogin, setLastLogin] = useState(null);
   const navigate = useNavigate();
 
@@ -46,9 +46,9 @@ const AdminHeader = () => {
     setSearchQuery(e.target.value);
   };
 
-  if (!isAuthenticated) {
-    navigate('/login');
-  }
+  // if (!isAuthenticated) {
+  //   navigate('/login');
+  // }
 
   
 

@@ -56,6 +56,7 @@ import AdminBill from '../admin/services/products/AdminBill';
 import LandingPage3 from '../users/home/LP3';
 import LandingPage4 from '../users/home/Mr-Home';
 import LandingPage5 from '../users/home/mrLand5';
+import LandingPage6 from '../users/home/LandingPage6';
 import UserStateDetails from '../users/home/uStateDetails';
 import SalesForm from '../users/services/sales/sales';
 import ViewSales from '../users/services/sales/viewsales';
@@ -98,7 +99,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home3 />} />
+        <Route path="/" element={<Home5 />} />
+        <Route path="/home-3" element={<Home3 />} />
         <Route path="/test" element={<Home4 />} />
         <Route path="/admin/dashboard/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -259,6 +261,16 @@ const Home4 = () => {
     <div className="landing-page">
       <div className="content">
         <HomePage2 />
+      </div>
+    </div>
+  );
+}
+
+const Home5 = () => {
+  return (
+    <div className="landing-page">
+      <div className="content">
+        <LandingPage6 />
       </div>
     </div>
   );

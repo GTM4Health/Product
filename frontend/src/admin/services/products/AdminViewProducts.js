@@ -9,7 +9,7 @@ import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions
 import EditProductForm from "./AdminUpdateProduct";
 
 const ProductPortal = () => {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [products, setProducts] = useState([]);
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -21,10 +21,10 @@ const ProductPortal = () => {
   const [selectedCity, setSelectedCity] = useState("all");
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       fetchProducts();
-    }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+    
+  }, [currentPage, selectedState, selectedCity]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -121,10 +121,10 @@ const ProductPortal = () => {
     setCurrentPage(1);
   };
 
-  if (!isAuthenticated) {
-    // Optional: Show a loading state or return null while checking authentication
-    return null;
-  }
+  // if (!isAuthenticated) {
+  //   // Optional: Show a loading state or return null while checking authentication
+  //   return null;
+  // }
 
   const displayedProducts = products;
 

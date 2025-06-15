@@ -120,7 +120,7 @@ const MyDocument = ({ csrData }) => (
 );
 
 const CSRPortal = () => {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [csrs, setCsrs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -133,11 +133,11 @@ const CSRPortal = () => {
   const [selectedCSR, setSelectedCSR] = useState(null);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       fetchCsrs();
       setShowNoRecordsPopup(filteredCsrs.length === 0);
-    }
-  }, [isAuthenticated, currentPage, pageSize, searchQuery, filteredCsrs]);
+    
+  }, [currentPage, pageSize, searchQuery, filteredCsrs]);
 
   const handleSearchInputChange = (event) => {
     setCurrentPage(1);

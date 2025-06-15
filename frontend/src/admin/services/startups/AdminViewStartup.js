@@ -127,7 +127,7 @@ const MyDocument = ({ startupData }) => (
 
 
 const StartupPortal = () => {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [startups, setStartups] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -142,11 +142,11 @@ const StartupPortal = () => {
 
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       fetchStartups();
       setShowNoRecordsPopup(filteredStartups.length === 0);
-    }
-  }, [isAuthenticated, currentPage, pageSize, searchQuery, searchCriteria, filteredStartups]);
+    
+  }, [currentPage, pageSize, searchQuery, searchCriteria, filteredStartups]);
   
 
   const handleSearchInputChange = (event) => {
@@ -277,11 +277,11 @@ const fetchStartups = async () => {
     }
   };
 
-  if (!isAuthenticated) {
-    // Optional: Show a loading state or return null while checking authentication
-    return null;
+  // if (!isAuthenticated) {
+  //   // Optional: Show a loading state or return null while checking authentication
+  //   return null;
 
-  }
+  // }
 
 
   const generatePDF = () => {

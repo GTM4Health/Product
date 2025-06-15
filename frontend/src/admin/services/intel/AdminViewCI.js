@@ -7,7 +7,7 @@ import axios from 'axios';
 import AdminUpdateIntel from './AdminUpdateCI';
 
 const AdminViewCI = () => {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [competitiveData, setCompetitiveData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -17,10 +17,10 @@ const AdminViewCI = () => {
   const [selectedIntel, setSelectedIntel] = useState(null);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       fetchCompetitiveIntelligence();
-    }
-  }, [isAuthenticated, currentPage]);
+    
+  }, [currentPage]);
 
   const fetchCompetitiveIntelligence = async () => {
     try {

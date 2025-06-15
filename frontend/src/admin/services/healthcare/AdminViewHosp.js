@@ -11,7 +11,7 @@ import EditHospitalForm from "./AdminUpdateHosp";
 
 
 const HospitalPortal = () => {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [hospitals, setHospitals] = useState([]);
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedHospital, setSelectedHospital] = useState(null);
@@ -21,10 +21,10 @@ const HospitalPortal = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       fetchHospitals();
-    }
-  }, [isAuthenticated, currentPage]);
+    
+  }, [ currentPage]);
 
   const fetchHospitals = async () => {
     try {
@@ -94,10 +94,10 @@ const HospitalPortal = () => {
     }
   };
 
-  if (!isAuthenticated) {
-    // Optional: Show a loading state or return null while checking authentication
-    return null;
-  }
+  // if (!isAuthenticated) {
+  //   // Optional: Show a loading state or return null while checking authentication
+  //   return null;
+  // }
 
   return (
     <div className="page-view">

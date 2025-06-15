@@ -5,7 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 import Footer from '../../../layout/pages/Footer';
 
 const AdminNotFoundPage = () => {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [user, setUser] = useState(null);
   const quotes = [
     "This page is currently under Construction. Stay tuned!"
@@ -27,9 +27,9 @@ const AdminNotFoundPage = () => {
     setRandomQuote(quotes[randomIndex]);
   }, []);
   
-  if(!isAuthenticated){
-    return null;
-}
+//   if(!isAuthenticated){
+//     return null;
+// }
 
   return (
     <>

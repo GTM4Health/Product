@@ -390,7 +390,7 @@ const MyDocument = ({ hospitalData, State, City, Category }) => {
 
 
 const CityPortal = () => {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [hospitals, setHospitals] = useState([]);
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedHospital, setSelectedHospital] = useState(null);
@@ -420,12 +420,12 @@ const CityPortal = () => {
 
 
   useEffect(() => {
-    if (isAuthenticated) {
+    
       setAddedBy("Admin");
       fetchHospitals();
       fetchAllHospitals();
-    }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery, selectedCategory, addedBy]);
+    
+  }, [currentPage, selectedState, selectedCity, selectedSpeciality, searchQuery, selectedCategory, addedBy]);
   
 
   useEffect(() => {
@@ -608,10 +608,10 @@ const CityPortal = () => {
   ));
 
   
-  if (!isAuthenticated) {
-    // Optional: Show a loading state or return null while checking authentication
-    return null;
-  }
+  // if (!isAuthenticated) {
+  //   // Optional: Show a loading state or return null while checking authentication
+  //   return null;
+  // }
 
     const displayedHospitals = hospitals;
 

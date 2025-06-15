@@ -7,7 +7,7 @@ import axios from 'axios';
 import UpdateSpecialist from './updateSpecialist';
 
 const AdminViewSpecialist = () => {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [specialists, setSpecialists] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -17,10 +17,10 @@ const AdminViewSpecialist = () => {
   const [selectedSpecialist, setSelectedSpecialist] = useState(null);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       fetchSpecialists();
-    }
-  }, [isAuthenticated, currentPage]);
+    
+  }, [ currentPage]);
 
   const fetchSpecialists = async () => {
     try {

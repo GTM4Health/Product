@@ -11,7 +11,7 @@ import { stateOptions, getCityOptionsByState } from "../../../assets/cityOptions
 import EditDealerForm from "./AdminUpdateDealer";
 
 const DealerPortal = () => {
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
   const [dealers, setDealers] = useState([]);
   const [editFormVisible, setEditFormVisible] = useState(false);
   const [selectedDealer, setSelectedDealer] = useState(null);
@@ -23,10 +23,10 @@ const DealerPortal = () => {
   const [selectedCity, setSelectedCity] = useState("all");
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // if (isAuthenticated) {
       fetchDealers();
-    }
-  }, [isAuthenticated, currentPage, selectedState, selectedCity]);
+    
+  }, [currentPage, selectedState, selectedCity]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -126,10 +126,10 @@ const DealerPortal = () => {
     setCurrentPage(1);
   };
 
-  if (!isAuthenticated) {
-    // Optional: Show a loading state or return null while checking authentication
-    return null;
-  }
+  // if (!isAuthenticated) {
+  //   // Optional: Show a loading state or return null while checking authentication
+  //   return null;
+  // }
 
     const displayedDealers = dealers;
 
