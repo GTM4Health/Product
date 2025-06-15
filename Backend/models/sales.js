@@ -10,6 +10,9 @@ const salesSchema = new mongoose.Schema({
   healthcareCentreName: {
     type: String,
   },
+  healthcareCentreDetails: {
+    type: String,
+  },
   product:{
     type:String
   },
