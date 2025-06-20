@@ -1,89 +1,70 @@
-import React, { useState } from "react";
-import Carousel from 'react-bootstrap/Carousel';
-import Card from "../../components/Card";
-import cardsData from "../../assets/Features";
+import React, { useState, useEffect } from "react";
 import Footer from "../../layout/pages/Footer";
 import Header from "../../layout/users/Header";
-import Land2 from "../../images/Land2.png";
-import Intended from "../../images/Intended.png";
-import Benefits from "../../images/Benefits.png";
 import Creative from "../../images/Creative.png";
 import Banner from "../../images/Banner.png";
 import Cases from "../../images/Cases.png";
-// import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap CSS.// Import the CSS file you added.
+import "./Carousel.css"; // CSS code will be provided below
 
-import HeaderR from "./../../layout/users/HeaderR";
+const images = [Creative, Banner, Cases];
+
 const LandingPage6 = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // Auto-slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const goToPrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
   return (
     <div className="page-view">
-      <div className="content page-view">
-        <Header />
-        <div className="card-container">
-            <img src={Creative} alt="Welcome to GTMScale" className="land2" />
+      <Header />
+      <div className="gtm-carousel-container">
+        <div className="gtm-carousel">
+          {images.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`slide-${index}`}
+              className={`gtm-carousel-img ${
+                index === currentIndex ? "active" : ""
+              }`}
+            />
+          ))}
+          <button className="gtm-carousel-btn prev" onClick={goToPrev}>
+            &#10094;
+          </button>
+          <button className="gtm-carousel-btn next" onClick={goToNext}>
+            &#10095;
+          </button>
+          <div className="gtm-carousel-indicators">
+            {images.map((_, idx) => (
+              <span
+                key={idx}
+                className={`dot ${idx === currentIndex ? "active" : ""}`}
+                onClick={() => setCurrentIndex(idx)}
+              />
+            ))}
+          </div>
         </div>
-        <div className="card-container">
-            <img src={Banner} alt="Welcome to GTMScale" className="land2" />
-        </div>
-        <div className="card-container">
-            <img src={Cases} alt="Welcome to GTMScale" className="land2" />
-        </div>
-        {/* <div className="card-container">
-            <img src={Intended} alt="GTMScale" className="land3" />
-            <img src={Benefits} alt="GTMScale" className="land3" />
-        </div> */}
-        <Footer />
       </div>
+      <Footer />
     </div>
+
   );
 };
 
 export default LandingPage6;
-
-// const LandingPage2 = () => {
-//   const [index, setIndex] = useState(0);
-
-//   const handleSelect = (selectedIndex, e) => {
-//     setIndex(selectedIndex);
-//   };
-
-//   return (
-//     <div className="c-page-view">
-//       <div className="content page-view">
-//         <Header />
-//         <div className="carousel-container c-page">
-//           <Carousel
-//             activeIndex={index}
-//             interval={3000}
-//             onSelect={handleSelect}
-//             prevIcon={<span className="carousel-control-prev-icon" />}
-//             nextIcon={<span className="carousel-control-next-icon" />}
-//           >
-//             <Carousel.Item>
-//               <img
-//                 className="d-block w-100 carousel-img"
-//                 src={Land2}
-//                 alt="Welcome to GTMScale"
-//               />
-//             </Carousel.Item>
-//             <Carousel.Item>
-//               <img
-//                 className="d-block w-100 carousel-img"
-//                 src={Intended}
-//                 alt="GTMScale"
-//               />
-//             </Carousel.Item>
-//             <Carousel.Item>
-//               <img
-//                 className="d-block w-100 carousel-img"
-//                 src={Benefits}
-//                 alt="GTMScale"
-//               />
-//             </Carousel.Item>
-//           </Carousel>
-//         </div>
-//         <Footer />
-//       </div>
-//     </div>
-//   );
-// };
-
