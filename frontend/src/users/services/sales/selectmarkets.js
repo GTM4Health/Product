@@ -3,7 +3,7 @@
 import { Document, Image, Page, StyleSheet, Text, View } from '@react-pdf/renderer'; // Import PDF generation dependencies
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link  } from "react-router-dom";
 import Categories from "../../../assets/healthcareCategories.json";
 import specialitiesData from "../../../assets/specialities.json";
 import useAuth from "../../../hooks/useAuth";
@@ -523,7 +523,8 @@ const SelectMarket = () => {
                   <th>Category</th>
                   <th>Doctor Name</th>
                   {/* <th>Speciality</th> */}
-                  <th>Contact Email</th>
+                  {/* <th>Contact Email</th> */}
+                  <th>Details</th>
                   {/* <th>Contact Number</th> */}
                 </tr>
               </thead>
@@ -541,7 +542,12 @@ const SelectMarket = () => {
                     {/* <td>{hospital.docSpez}</td>
                     <td>{hospital.phone}</td> */}
                     {/* <td>{hospital.speciality}</td> */}
-                    <td>{hospital.mail}</td>
+                    {/* <td>{hospital.mail}</td> */}
+                    <td>
+                      <Link to={`/dashboard/city-analysis/centre/${hospital._id}`} className="details-link">
+                        View Details
+                      </Link>
+                    </td>
                      
                   </tr>
                 ))}
