@@ -10,7 +10,7 @@
 .gtm-carousel {
   position: relative;
   width: 90%;
-  max-width: 1600px;
+  max-width: 1800px;
   height: 800px; /* Increased height */
   overflow: hidden;
   max-height: 1000px; /* Increased max height */
