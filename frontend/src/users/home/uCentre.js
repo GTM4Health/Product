@@ -77,7 +77,7 @@ const CentreDetails = () => {
             <h2 className="centre-section-title">Contact Details</h2>
             <ul className="centre-contact-list">
               <li className="centre-contact-item"><h3 className="normal"><strong>Name: </strong>{centre.docName}</h3></li>
-              <li className="centre-contact-item"><h3 className="normal"><strong>Role: </strong>{centre.docSpec}</h3></li>
+              <li className="centre-contact-item"><h3 className="normal"><strong>Role: </strong>{centre.docSpez}</h3></li>
               <li className="centre-contact-item"><h3 className="normal"><strong>Email: </strong>{centre.mail}</h3></li>
               <li className="centre-contact-item"><h3 className="normal"><strong>Phone: </strong>{centre.phone}</h3></li>
               <li className="centre-contact-item"><h3 className="normal"><strong>Website: </strong>{centre.web}</h3></li>
