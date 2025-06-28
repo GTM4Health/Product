@@ -192,12 +192,12 @@ const EditHospitalForm = ({ hospital, onUpdate, onCancel }) => {
             />
         </div>
         <div className="form-group">
-          <label htmlFor="infraServ">Infrastructure & Services</label>
+          <label htmlFor="infraServ">Actionable Insights</label>
           <textarea
             id="infraServ"
             value={infraSer}
             onChange={(e) => setInfraSer(e.target.value)}
-            placeholder="Infrastructure & Services"
+            placeholder="Actionable Insights"
             className="textarea"
           ></textarea>
         </div>

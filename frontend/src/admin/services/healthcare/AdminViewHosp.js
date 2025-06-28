@@ -146,7 +146,7 @@ const HospitalPortal = () => {
                 <tr>
                   <th>Sl No.</th>
                   <th>Name</th>
-                  <th>Infrastructure & Services</th>
+                  <th>Actionable Insights</th>
                   <th>Category</th>
                   <th>State</th>
                   <th>City</th>

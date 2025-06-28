@@ -352,7 +352,7 @@ const AdminHospital = () => {
                   className="form-outline textarea addrx"
                 ></textarea>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="web">Website URL :</label>
                 <input
                   type="text"
@@ -362,7 +362,7 @@ const AdminHospital = () => {
                   placeholder="Website URL"
                   className="form-outline"
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="docName">Contact Name :</label>
                 <input

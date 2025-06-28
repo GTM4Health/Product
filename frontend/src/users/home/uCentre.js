@@ -55,9 +55,10 @@ const CentreDetails = () => {
             <h1 className="centre-name">{centre.name}</h1>
             {/* <hr className="divider" /> */}
             <h3>{centre.city}, {centre.state}</h3>
+            <h3 className='normal'><strong>Category:</strong> {centre.category}</h3> 
             {/* <h3 className='centre-insights-item'><strong>Address:</strong> {centre.address}</h3>  */}
             <h3 className="normal centre-insights-item"><strong>Address:</strong> <br/> {centre.address}</h3>
-            <h3 className='normal'><strong>Category:</strong> {centre.category}</h3> 
+            
 
           </div>
           <div className="centre-info">
@@ -76,6 +77,7 @@ const CentreDetails = () => {
             <h2 className="centre-section-title">Contact Details</h2>
             <ul className="centre-contact-list">
               <li className="centre-contact-item"><h3 className="normal"><strong>Name: </strong>{centre.docName}</h3></li>
+              <li className="centre-contact-item"><h3 className="normal"><strong>Role: </strong>{centre.docSpec}</h3></li>
               <li className="centre-contact-item"><h3 className="normal"><strong>Email: </strong>{centre.mail}</h3></li>
               <li className="centre-contact-item"><h3 className="normal"><strong>Phone: </strong>{centre.phone}</h3></li>
               <li className="centre-contact-item"><h3 className="normal"><strong>Website: </strong>{centre.web}</h3></li>
