@@ -20,7 +20,7 @@ const LandingPage6 = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Auto-slide every 3 seconds
+    }, 10000); // Auto-slide every 3 seconds
 
     return () => clearInterval(interval);
   }, []);

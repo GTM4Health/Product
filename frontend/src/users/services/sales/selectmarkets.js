@@ -521,7 +521,7 @@ const SelectMarket = () => {
                   <th>State</th>
                   <th>City</th>
                   <th>Category</th>
-                  <th>Doctor Name</th>
+                  <th>Contact Name</th>
                   {/* <th>Speciality</th> */}
                   {/* <th>Contact Email</th> */}
                   <th>Details</th>
