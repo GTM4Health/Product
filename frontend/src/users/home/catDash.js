@@ -42,7 +42,7 @@ const UserCategoriesDash = () => {
         <div className="dashboard">
           <MenuBar />
           <div className="page-title">
-            <h1 className="page-title-child hdblue-tag">Categories Dashboard</h1>
+            <h1 className="page-title-child hdblue-tag">Healthcare Categories Dashboard</h1>
           </div>
           <div className="table-content">
             <table className="user-table">
@@ -50,7 +50,7 @@ const UserCategoriesDash = () => {
                 <tr>
                   <th>#</th>
                   <th>Category</th>
-                  <th>Total # of Centres</th>
+                  <th>Total # of Healthcare Centres</th>
                 </tr>
               </thead>
               <tbody>
