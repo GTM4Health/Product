@@ -212,10 +212,10 @@ const Dashboard = () => {
               </tr> */}
               
             </table>
-            <div className="top-cities-charts chart-box stats-table">
+            {/* <div className="top-cities-charts chart-box stats-table">
               <h3>Top 4 Cities  - Total Centres</h3>
               <Bar data={barChartData} />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
