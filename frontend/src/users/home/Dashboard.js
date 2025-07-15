@@ -7,6 +7,7 @@ import MenuBar from "../../layout/users/MenuBar";
 import Subscription from "../../common/Subscribe";
 import { Chart, ArcElement, BarElement, CategoryScale, LinearScale } from "chart.js";
 import { Pie, Bar } from "react-chartjs-2";
+import { useNavigate, Link } from 'react-router-dom';
 
 
 Chart.register(ArcElement, BarElement, CategoryScale, LinearScale);
@@ -19,6 +20,8 @@ const Dashboard = () => {
   const [totalReports, setTotalReports] = useState(0);
   const [totalCSRs, setTotalCSRs] = useState(0);
   const [topCities, setTopCities] = useState([]);
+  const [stateCenters, setStateCenters] = useState([]);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -39,9 +42,27 @@ const Dashboard = () => {
       fetchReports();
       fetchCSRs();
       fetchTopCities();
+      fetchStateCenters();
     }
 
   }, [isAuthenticated]);
+
+    const fetchStateCenters = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/hospital-portal/state-centers`);
+      const sortedStateCenters = response.data.sort((a, b) => b.totalCenters - a.totalCenters);
+      setStateCenters(sortedStateCenters);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleStateClick = (state) => {
+    const selectedState = stateCenters.find((entry) => entry.state === state);
+    if (selectedState) {
+      navigate(`/dashboard/state-details/${state}`); // Navigate to the StateDetails component with the selected state
+    }
+  };
 
   const fetchHospitals = async () => {
     try {
@@ -216,6 +237,33 @@ const Dashboard = () => {
               <h3>Top 4 Cities  - Total Centres</h3>
               <Bar data={barChartData} />
             </div> */}
+            <div className="page-title">
+              <h1 className="page-title-child hdblue-tag"><br/></h1>
+            </div>
+            <div className="table-content">
+              <table className="user-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>States & Union Territories</th>
+                    <th>Total # of Centres</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {stateCenters.map((entry, index) => (
+                    <tr key={entry.id} onClick={() => handleStateClick(entry.state)}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <Link to={`/dashboard/state-details/${entry.state}`}>
+                          {entry.state}
+                        </Link>
+                      </td>
+                      <td>{entry.totalCenters}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
