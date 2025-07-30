@@ -5,15 +5,15 @@
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 minutes
+const INACTIVITY_TIMEOUT = 5*60 * 1000; // 5 minutes
 const ACTIVITY_KEY = 'lastActivityTime';
 
 const useAuth = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const hasAlertedRef = useRef(false);
   const intervalRef = useRef(null);
 
-  // Read from localStorage for shared inactivity tracking
   const getLastActivity = () => {
     const stored = localStorage.getItem(ACTIVITY_KEY);
     return stored ? parseInt(stored, 10) : Date.now();
@@ -21,11 +21,13 @@ const useAuth = () => {
 
   const updateLastActivity = () => {
     localStorage.setItem(ACTIVITY_KEY, Date.now().toString());
+    hasAlertedRef.current = false; // reset alert flag
   };
 
   const logout = () => {
+    window.alert('Session expired due to inactivity. You are being logged out.');
     localStorage.removeItem('token');
-    localStorage.removeItem(ACTIVITY_KEY); // optional: clear last activity
+    localStorage.removeItem(ACTIVITY_KEY);
     setIsAuthenticated(false);
     navigate('/login');
   };
@@ -41,35 +43,29 @@ const useAuth = () => {
 
   useEffect(() => {
     const handleUserActivity = () => updateLastActivity();
+    const activityEvents = ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'];
+    activityEvents.forEach((event) => window.addEventListener(event, handleUserActivity));
 
-    // Attach global activity listeners
-    const events = ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'];
-    events.forEach((event) => window.addEventListener(event, handleUserActivity));
+    if (!localStorage.getItem(ACTIVITY_KEY)) updateLastActivity();
 
-    // Initialize last activity
-    if (!localStorage.getItem(ACTIVITY_KEY)) {
-      updateLastActivity();
-    }
-
-    // Cross-tab sync (listen for updates to localStorage)
-    const onStorage = (e) => {
-      if (e.key === ACTIVITY_KEY && e.newValue) {
-        // Do nothing, activity refreshed from other tab
+    window.addEventListener('storage', (e) => {
+      if (e.key === ACTIVITY_KEY) {
+        hasAlertedRef.current = false;
       }
-    };
-    window.addEventListener('storage', onStorage);
+    });
 
-    // Check inactivity every second
     intervalRef.current = setInterval(() => {
       const last = getLastActivity();
-      if (Date.now() - last > INACTIVITY_TIMEOUT) {
+      const timeSinceLastActivity = Date.now() - last;
+
+      if (timeSinceLastActivity > INACTIVITY_TIMEOUT && !hasAlertedRef.current) {
+        hasAlertedRef.current = true;
         logout();
       }
     }, 1000);
 
     return () => {
-      events.forEach((event) => window.removeEventListener(event, handleUserActivity));
-      window.removeEventListener('storage', onStorage);
+      activityEvents.forEach((event) => window.removeEventListener(event, handleUserActivity));
       clearInterval(intervalRef.current);
     };
   }, []);
@@ -78,6 +74,7 @@ const useAuth = () => {
 };
 
 export default useAuth;
+
 
 // import { useState, useEffect, useRef } from 'react';
 // import { useNavigate } from 'react-router-dom';
