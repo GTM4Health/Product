@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import HeaderIn from '../layout/users/HeaderIn';
-import Footer from "../layout/pages/Footer";
+import Footer from '../layout/pages/Footer';
+
+const API_BASE = process.env.REACT_APP_BASE_URL || 'https://your-fallback-api.com';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -30,69 +32,56 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/login`, { email, password });
+      const response = await axios.post(`${API_BASE}/api/login`, { email, password });
 
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
 
-      const { counter, lastLogin } = response.data.loginDetails;
-      const welcomeMessage = 'Login successful'
-        // : `Login successful!';      
-      // const welcomeMessage = counter === 0 
-      //   ? 'Login successful\nWelcome to GTMScale!' 
-      //    `Login successful!\nLast Login: ${lastLogin}`;
-
+      const { counter, lastLogin } = response.data.loginDetails || {};
+      const welcomeMessage = counter === 0
+        ? 'Welcome to GTMScale! This is your first login.'
+        : `Login successful! Last login: ${new Date(lastLogin).toLocaleString()}`;
 
       setSuccessMessage(welcomeMessage);
     } catch (error) {
-      console.error('Login failed', error);
+      console.error('Login failed:', error);
       setPassword('');
-
-      if (error.response && error.response.data.error) {
-        setErrorMessage(error.response.data.error);
-      } else {
-        setErrorMessage('An error occurred during login. Please try again.');
-      }
+      setErrorMessage(
+        error.response?.data?.error || 'An unexpected error occurred during login.'
+      );
     }
   };
 
-const handleSendResetEmail = async () => {
-  if (!email) {
-    setErrorMessage("Please enter your email address.");
-    return;
-  }
+  const handleSendResetEmail = async () => {
+    if (!email) {
+      setErrorMessage('Please enter your email address.');
+      return;
+    }
 
-  try {
-    // Step 1: Fetch user name from backend
-    const { data: user } = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/api/user/email/${encodeURIComponent(email)}`
-    );
+    try {
+      const { data: user } = await axios.get(
+        `${API_BASE}/api/user/email/${encodeURIComponent(email)}`
+      );
 
-    const name = user.name || "User"; // fallback just in case
+      const name = user.name || 'User';
+      const resetLink = `${window.location.origin}/reset-password?email=${encodeURIComponent(email)}`;
 
-    // Step 2: Compose reset link
-    const resetLink = `${window.location.origin}/reset-password?email=${encodeURIComponent(email)}`;
+      await axios.post(`${API_BASE}/api/reset-password`, {
+        email,
+        name,
+        resetLink,
+      });
 
-    // Step 3: Send the reset email
-    await axios.post(`${process.env.REACT_APP_BASE_URL}/api/send-welcome-email/reset-password`, {
-      email,
-      name,
-      resetLink,
-    });
-
-    setSuccessMessage("Reset email sent. Please check your inbox.");
-  } catch (error) {
-    console.error("Error sending reset email:", error);
-    setErrorMessage(
-      error.response?.data?.error || "Failed to send password reset email."
-    );
-  }
-};
-
-
+      setSuccessMessage('Reset email sent. Please check your inbox.');
+    } catch (error) {
+      console.error('Error sending reset email:', error);
+      setErrorMessage(
+        error.response?.data?.error || 'Failed to send password reset email.'
+      );
+    }
+  };
 
   const handleRenew = () => {
-    // Define the logic to handle subscription renewal here
     console.log('Renew subscription logic goes here');
     navigate('/');
   };
@@ -106,7 +95,9 @@ const handleSendResetEmail = async () => {
           <button onClick={() => setErrorMessage('')}>Try Again</button>
         </div>
       );
-    } else if (errorMessage.includes('Subscription expired')) {
+    }
+
+    if (errorMessage.includes('Subscription expired')) {
       return (
         <div className="popup failure">
           Your account has expired. Please renew your subscription to continue using our services.
@@ -114,7 +105,9 @@ const handleSendResetEmail = async () => {
           <button onClick={handleRenew}>Renew Subscription</button>
         </div>
       );
-    } else if (errorMessage) {
+    }
+
+    if (errorMessage) {
       return (
         <div className="popup failure">
           {errorMessage}
@@ -122,28 +115,30 @@ const handleSendResetEmail = async () => {
           <button onClick={() => setErrorMessage('')}>Close</button>
         </div>
       );
-    } else if (successMessage) {
+    }
+
+    if (successMessage) {
       return (
         <div className="popup success">
           {successMessage}
-          <br />
-          {/* <button onClick={() => navigate('/dashboard')}>Go to Dashboard</button> */}
         </div>
-        
       );
     }
+
     return null;
   };
 
   return (
-    <div className='page-view'>
+    <div className="page-view">
       <HeaderIn />
       <div className="login-container">
-        <h1 className="signup-title"> User <span className='blue-t'>LogIn</span></h1>
+        <h1 className="signup-title">
+          User <span className="blue-t">LogIn</span>
+        </h1>
         <form onSubmit={handleLogin}>
           <div className="centrepage">
             <div className="log-field">
-              <label htmlFor="email">&nbsp; &nbsp; &nbsp; &nbsp; Email*&nbsp; :</label>
+              <label htmlFor="email">Email* :</label>
               <input
                 type="email"
                 placeholder="Enter Email"
@@ -154,7 +149,7 @@ const handleSendResetEmail = async () => {
               />
             </div>
             <div className="log-field">
-              <label htmlFor="password">Password*&nbsp; :</label>
+              <label htmlFor="password">Password* :</label>
               <input
                 type="password"
                 placeholder="Enter Password"
@@ -174,8 +169,6 @@ const handleSendResetEmail = async () => {
                 Forgot Password?
               </button>
             </div>
-
-
             <div className="subm-row">
               <button className="login-btn" type="submit">
                 Submit
@@ -183,8 +176,6 @@ const handleSendResetEmail = async () => {
             </div>
           </div>
         </form>
-        {/* Render the popup */}
-        
         {renderPopup()}
       </div>
       <Footer />
