@@ -23,6 +23,23 @@ const User = require('../models/user');
 //   }
 // });
 
+router.get('/email/:email', async (req, res) => {
+  try {
+    const email = decodeURIComponent(req.params.email);
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error('Error fetching user by email:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 router.get("/classic", async (req, res) => {
   const { page = 1, limit = 10, search = '' } = req.query;
   const skip = (page - 1) * limit;
