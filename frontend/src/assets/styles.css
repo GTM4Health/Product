@@ -2087,3 +2087,13 @@ form.hospital-f .xform-group input {
   font-weight: normal;
 }
 /* You can customize these colors as desired */
+
+.forgot-password-btn {
+  background: none;
+  color: #007bff;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}

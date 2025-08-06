@@ -1,72 +1,100 @@
 // Used for checking if fields are not empty
 // Used for validation.
 //
-
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const INACTIVITY_TIMEOUT = 5*60 * 1000; // 5 minutes
-const ACTIVITY_KEY = 'lastActivityTime';
+const INACTIVITY_TIMEOUT =  5 * 60 * 1000; // 5 minutes
+const WARNING_THRESHOLD = 30 * 1000; // 30 seconds before logout
 
 const useAuth = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const hasAlertedRef = useRef(false);
-  const intervalRef = useRef(null);
-
-  const getLastActivity = () => {
-    const stored = localStorage.getItem(ACTIVITY_KEY);
-    return stored ? parseInt(stored, 10) : Date.now();
-  };
-
-  const updateLastActivity = () => {
-    localStorage.setItem(ACTIVITY_KEY, Date.now().toString());
-    hasAlertedRef.current = false; // reset alert flag
-  };
+  const lastActivityRef = useRef(Date.now());
+  const logoutTimeoutIdRef = useRef(null);
+  const warningTimeoutIdRef = useRef(null);
+  const hasWarnedRef = useRef(false);
+  const logoutRef = useRef(false);
 
   const logout = () => {
-    window.alert('Session expired due to inactivity. You are being logged out.');
+    if (logoutRef.current) return;
+    logoutRef.current = true;
+
+    alert('Session expired due to inactivity. Logging out.');
     localStorage.removeItem('token');
-    localStorage.removeItem(ACTIVITY_KEY);
     setIsAuthenticated(false);
     navigate('/login');
   };
 
+  const showWarning = () => {
+    if (!hasWarnedRef.current) {
+      alert('You will be logged out in 30 seconds due to inactivity. Proceed with any action to extend your session.');
+      hasWarnedRef.current = true;
+    }
+  };
+
+  const resetTimers = () => {
+    // Clear old timers
+    if (logoutTimeoutIdRef.current) clearTimeout(logoutTimeoutIdRef.current);
+    if (warningTimeoutIdRef.current) clearTimeout(warningTimeoutIdRef.current);
+
+    hasWarnedRef.current = false;
+    lastActivityRef.current = Date.now();
+
+    // Set new warning and logout timers
+    warningTimeoutIdRef.current = setTimeout(() => {
+      if (document.visibilityState === 'visible') {
+        showWarning();
+      }
+    }, INACTIVITY_TIMEOUT - WARNING_THRESHOLD);
+
+    logoutTimeoutIdRef.current = setTimeout(() => {
+      if (document.visibilityState === 'visible') {
+        logout();
+      }
+    }, INACTIVITY_TIMEOUT);
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      setIsAuthenticated(true);
-    } else {
+    if (!token) {
       navigate('/login');
+    } else {
+      setIsAuthenticated(true);
+      resetTimers();
     }
   }, [navigate]);
 
   useEffect(() => {
-    const handleUserActivity = () => updateLastActivity();
     const activityEvents = ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'];
-    activityEvents.forEach((event) => window.addEventListener(event, handleUserActivity));
 
-    if (!localStorage.getItem(ACTIVITY_KEY)) updateLastActivity();
-
-    window.addEventListener('storage', (e) => {
-      if (e.key === ACTIVITY_KEY) {
-        hasAlertedRef.current = false;
+    const handleActivity = () => {
+      if (document.visibilityState === 'visible') {
+        resetTimers();
       }
-    });
+    };
 
-    intervalRef.current = setInterval(() => {
-      const last = getLastActivity();
-      const timeSinceLastActivity = Date.now() - last;
-
-      if (timeSinceLastActivity > INACTIVITY_TIMEOUT && !hasAlertedRef.current) {
-        hasAlertedRef.current = true;
-        logout();
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const timeSinceLast = Date.now() - lastActivityRef.current;
+        if (timeSinceLast >= INACTIVITY_TIMEOUT) {
+          logout();
+        } else if (timeSinceLast >= INACTIVITY_TIMEOUT - WARNING_THRESHOLD && !hasWarnedRef.current) {
+          showWarning();
+        } else {
+          resetTimers();
+        }
       }
-    }, 1000);
+    };
+
+    activityEvents.forEach(event => window.addEventListener(event, handleActivity));
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
-      activityEvents.forEach((event) => window.removeEventListener(event, handleUserActivity));
-      clearInterval(intervalRef.current);
+      activityEvents.forEach(event => window.removeEventListener(event, handleActivity));
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      clearTimeout(logoutTimeoutIdRef.current);
+      clearTimeout(warningTimeoutIdRef.current);
     };
   }, []);
 
@@ -74,7 +102,6 @@ const useAuth = () => {
 };
 
 export default useAuth;
-
 
 // import { useState, useEffect, useRef } from 'react';
 // import { useNavigate } from 'react-router-dom';

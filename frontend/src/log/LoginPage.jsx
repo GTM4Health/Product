@@ -56,6 +56,41 @@ const LoginPage = () => {
     }
   };
 
+const handleSendResetEmail = async () => {
+  if (!email) {
+    setErrorMessage("Please enter your email address.");
+    return;
+  }
+
+  try {
+    // Step 1: Fetch user name from backend
+    const { data: user } = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/api/user/email/${encodeURIComponent(email)}`
+    );
+
+    const name = user.name || "User"; // fallback just in case
+
+    // Step 2: Compose reset link
+    const resetLink = `${window.location.origin}/reset-password?email=${encodeURIComponent(email)}`;
+
+    // Step 3: Send the reset email
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/api/send-welcome-email/reset-password`, {
+      email,
+      name,
+      resetLink,
+    });
+
+    setSuccessMessage("Reset email sent. Please check your inbox.");
+  } catch (error) {
+    console.error("Error sending reset email:", error);
+    setErrorMessage(
+      error.response?.data?.error || "Failed to send password reset email."
+    );
+  }
+};
+
+
+
   const handleRenew = () => {
     // Define the logic to handle subscription renewal here
     console.log('Renew subscription logic goes here');
@@ -131,8 +166,15 @@ const LoginPage = () => {
             </div>
             <br />
             <div className="forgot-password">
-                <a href="/reset-password">Forgot Password</a>
+              <button
+                type="button"
+                onClick={handleSendResetEmail}
+                className="forgot-password-btn"
+              >
+                Forgot Password?
+              </button>
             </div>
+
 
             <div className="subm-row">
               <button className="login-btn" type="submit">
