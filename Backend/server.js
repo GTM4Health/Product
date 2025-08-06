@@ -76,6 +76,7 @@ const passwordResetRoute = require('./routes/password');
 const assetRouter = require('./routes/asset');
 const specialistRouter = require('./routes/specialist');
 const learningModuleRoutes = require('./routes/academy');
+const resetPasswordPage = require('./routes/resetEmail');
 
 // Use routes
 app.use('/api/signup', signupRouter);
@@ -98,6 +99,7 @@ app.use('/api/password', passwordResetRoute);
 app.use('/api/admin/dashboard/Assets', assetRouter);
 app.use('/api/admin/dashboard/specialist', specialistRouter);
 app.use('/api/learning', learningModuleRoutes);
+app.use('/api/reset-password', resetPasswordPage);
 
 
 // Start the server
